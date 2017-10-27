@@ -37,6 +37,8 @@ public class PatientBrowse extends javax.swing.JFrame {
     public PatientBrowse() {
         initComponents();
         initial_table_patient();
+        
+        Info_top4.getRootPane().setDefaultButton(btn_Search);
     }
 
     private void showRows(ResultSet rs) {
@@ -113,8 +115,23 @@ public class PatientBrowse extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         Info_top4 = new javax.swing.JPanel();
         btn_Search = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        rbtn_searchCritMain = new javax.swing.JRadioButton();
+        rbtn_NOT1 = new javax.swing.JRadioButton();
+        txt_searchCrit1 = new javax.swing.JTextField();
+        rbtn_searchCrit1 = new javax.swing.JRadioButton();
+        CB_searchCrit1 = new javax.swing.JComboBox<>();
+        CB_andor = new javax.swing.JComboBox<>();
+        rbtn_searchCrit2 = new javax.swing.JRadioButton();
+        CB_searchCrit2 = new javax.swing.JComboBox<>();
+        rbtn_NOT2 = new javax.swing.JRadioButton();
+        txt_searchCrit2 = new javax.swing.JTextField();
+        rbtn_all = new javax.swing.JRadioButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtArea_test = new javax.swing.JTextArea();
         jToolBar1 = new javax.swing.JToolBar();
         bnt_test = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -136,13 +153,144 @@ public class PatientBrowse extends javax.swing.JFrame {
         Info_top4.setRequestFocusEnabled(false);
 
         btn_Search.setText("Search");
+        btn_Search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_SearchActionPerformed(evt);
+            }
+        });
+
+        jPanel1.setBackground(new java.awt.Color(102, 153, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        buttonGroup1.add(rbtn_searchCritMain);
+        rbtn_searchCritMain.setText("patients with ...");
+        rbtn_searchCritMain.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        rbtn_searchCritMain.setBorderPainted(true);
+        rbtn_searchCritMain.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtn_searchCritMainActionPerformed(evt);
+            }
+        });
+
+        rbtn_NOT1.setText("NOT");
+        rbtn_NOT1.setEnabled(false);
+
+        txt_searchCrit1.setBackground(new java.awt.Color(204, 204, 204));
+        txt_searchCrit1.setEnabled(false);
+
+        rbtn_searchCrit1.setEnabled(false);
+
+        CB_searchCrit1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "pat_id", "fm_pat_no", "fname", "surname", "surname old", "sex", "birth date", "diagnosis date", "mb. down", "study", "study_id", "project", " ", " " }));
+        CB_searchCrit1.setEnabled(false);
+        CB_searchCrit1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CB_searchCrit1ActionPerformed(evt);
+            }
+        });
+
+        CB_andor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AND", "OR" }));
+        CB_andor.setEnabled(false);
+
+        rbtn_searchCrit2.setEnabled(false);
+
+        CB_searchCrit2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "pat_id", "fm_pat_no", "fname", "surname", "surname old", "sex", "birth date", "diagnosis date", "mb. down", "study", "study_id", "project" }));
+        CB_searchCrit2.setToolTipText("searching for Date:  >=,date  or  between,date1,date2");
+        CB_searchCrit2.setEnabled(false);
+
+        rbtn_NOT2.setText("NOT");
+        rbtn_NOT2.setEnabled(false);
+
+        txt_searchCrit2.setBackground(new java.awt.Color(204, 204, 204));
+        txt_searchCrit2.setEnabled(false);
+
+        buttonGroup1.add(rbtn_all);
+        rbtn_all.setSelected(true);
+        rbtn_all.setText("all patients");
+        rbtn_all.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        rbtn_all.setBorderPainted(true);
+        rbtn_all.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtn_allActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addComponent(CB_andor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(rbtn_NOT2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_searchCrit2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(rbtn_all, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(rbtn_searchCrit1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(rbtn_searchCrit2, javax.swing.GroupLayout.Alignment.TRAILING))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(CB_searchCrit1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                            .addGap(3, 3, 3)
+                                            .addComponent(CB_searchCrit2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(rbtn_searchCritMain, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(5, 5, 5)
+                        .addComponent(rbtn_NOT1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_searchCrit1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(5, 5, 5))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(rbtn_all)
+                        .addGap(4, 4, 4)
+                        .addComponent(rbtn_searchCritMain)
+                        .addGap(3, 3, 3)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rbtn_NOT1)
+                            .addComponent(rbtn_searchCrit1)
+                            .addComponent(txt_searchCrit1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CB_searchCrit1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(3, 3, 3)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rbtn_NOT2)
+                            .addComponent(rbtn_searchCrit2)
+                            .addComponent(txt_searchCrit2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CB_searchCrit2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CB_andor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(5, 5, 5))
+        );
+
+        txtArea_test.setColumns(20);
+        txtArea_test.setLineWrap(true);
+        txtArea_test.setRows(5);
+        jScrollPane2.setViewportView(txtArea_test);
 
         javax.swing.GroupLayout Info_top4Layout = new javax.swing.GroupLayout(Info_top4);
         Info_top4.setLayout(Info_top4Layout);
         Info_top4Layout.setHorizontalGroup(
             Info_top4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Info_top4Layout.createSequentialGroup()
-                .addContainerGap(1194, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_Search)
                 .addGap(21, 21, 21))
         );
@@ -150,8 +298,11 @@ public class PatientBrowse extends javax.swing.JFrame {
             Info_top4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Info_top4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btn_Search)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addGroup(Info_top4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_Search))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jToolBar1.setRollover(true);
@@ -254,7 +405,7 @@ public class PatientBrowse extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Info_top4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbl_rowsReturned)
                 .addGap(12, 12, 12))
@@ -295,6 +446,205 @@ public class PatientBrowse extends javax.swing.JFrame {
         // Testbutton in toolbar
     }//GEN-LAST:event_bnt_testActionPerformed
 
+    private void rbtn_searchCritMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_searchCritMainActionPerformed
+        if (rbtn_searchCritMain.isSelected()){
+
+            rbtn_searchCrit1.setEnabled(true);
+            rbtn_NOT1.setEnabled(true);
+            txt_searchCrit1.setEnabled(true);
+            txt_searchCrit1.setBackground(new java.awt.Color(255, 255, 255));
+            CB_searchCrit1.setEnabled(true);
+
+            rbtn_searchCrit2.setEnabled(true);
+            rbtn_NOT2.setEnabled(true);
+            txt_searchCrit2.setEnabled(true);
+            txt_searchCrit2.setBackground(new java.awt.Color(255, 255, 255));
+            CB_searchCrit2.setEnabled(true);
+            CB_andor.setEnabled(true);
+        }
+    }//GEN-LAST:event_rbtn_searchCritMainActionPerformed
+
+    private void rbtn_allActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_allActionPerformed
+        if (rbtn_all.isSelected()){
+
+            rbtn_searchCrit1.setEnabled(false);
+            rbtn_NOT1.setEnabled(false);
+            txt_searchCrit1.setEnabled(false);
+            txt_searchCrit1.setBackground(new java.awt.Color(204, 204, 204));
+            CB_searchCrit1.setEnabled(false);
+
+            rbtn_searchCrit2.setEnabled(false);
+            rbtn_NOT2.setEnabled(false);
+            txt_searchCrit2.setEnabled(false);
+            txt_searchCrit2.setBackground(new java.awt.Color(204, 204, 204));
+            CB_searchCrit2.setEnabled(false);
+            CB_andor.setEnabled(false);
+
+        }
+
+    }//GEN-LAST:event_rbtn_allActionPerformed
+
+    private void btn_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SearchActionPerformed
+        // TODO add your handling code here:
+        if(rbtn_all.isSelected()){
+            initial_table_patient();
+            
+        } else if (rbtn_searchCritMain.isSelected()){
+            Connection conn = DBconnect.ConnecrDb();
+            ResultSet rs = null;
+            PreparedStatement pst = null;
+            
+            String sql = "SELECT p.pat_id, fm_pat_no, fname, surname, surname_old, sex, b_date, dg_date, mb_down as MDown, stdy_name, pat_study_id as stdy_ID, proj_name"
+                + " FROM patient p, pat_instudy ps, pat_inproject pj, study s, project j"
+                + " where p.pat_id=ps.pat_id and p.pat_id=pj.pat_id "
+                + " and s.stdy_id=ps.stdy_id and j.proj_id=pj.proj_id ";
+            
+            if (rbtn_searchCrit1.isSelected()) {
+                String searchCrit_select = CB_searchCrit1.getSelectedItem().toString();
+                String searchCrit = "";
+                String sCrit_txt = txt_searchCrit1.getText();
+                String select = "";
+                
+                switch (searchCrit_select) {
+                    case "pat_id":
+                        searchCrit = "p.pat_id";
+                        select = "ID";
+                        break;
+                    case "fm_pat_no":
+                        searchCrit = "fm_pat_no";
+                        select = "ID";
+                        break;
+                    case "fname":
+                        searchCrit = "fname";
+                        select = "TXT";
+                        break;
+                    case "surname":
+                        searchCrit = "surname";
+                        select = "TXT";
+                        break;
+                    case "surname old":
+                        searchCrit = "surname_old";
+                        select = "TXT";
+                        break;
+                    case "sex":
+                        searchCrit = "sex";
+                        select = "TXT";
+                        break;
+                    case "birth date":
+                        searchCrit = "b_date";
+                        select ="DATE";
+                        break;
+                    case "diagnosis date":
+                        searchCrit = "dg_date";
+                        select = "DATE";
+                        break;
+                    case "mb. down":
+                        searchCrit = "mb_down";
+                        select = "TXT";
+                        break;
+                    case "study":
+                        searchCrit = "stdy_name";
+                        select = "TXT";
+                        break;
+                    case "study_id":
+                        searchCrit = "pat_study_id";
+                        select = "ID";
+                        break;
+                    case "project":
+                        searchCrit = "proj_name";
+                        break;
+                    default:
+                        break;
+                }
+
+                if (select.equals("ID")) {
+                    if (rbtn_NOT1.isSelected()) {
+                        sql = sql + " and " + searchCrit + " not in ( " + sCrit_txt + " )";
+                    } else {
+                        sql = sql + " and " + searchCrit + " in ( " + sCrit_txt + " )";
+                    }
+                } else if (select.equals("TXT")) {
+                    if (rbtn_NOT1.isSelected()) {
+                        sql = sql + " and " + searchCrit + " NOT like '%" + sCrit_txt + "%'";
+                    } else {
+                        sql = sql + " and " + searchCrit + " like '%" + sCrit_txt + "%'";
+                    }
+                } else if (select.equals("DATE")) {
+                    String splitDate[] = sCrit_txt.split(",");          //  >=,2009-01-01   between,2009-01-01;2012-01-01
+                    
+                    if (splitDate[0].equals("between")){
+                        //JOptionPane.showMessageDialog(null, "1;2;3 " +splitDate[2]);
+                        sql = sql + " and " + searchCrit + " " + splitDate[0] +" '"+splitDate[1]+"' and '" + splitDate[2] +"'" ;
+                    }else if (splitDate[0].equals(">") || splitDate[0].equals("<") || splitDate[0].equals("=") ) {
+                        //JOptionPane.showMessageDialog(null, "1;2 " +splitDate[1]);
+                        sql = sql + " and " + searchCrit +" " +splitDate[0] +" '"+splitDate[1]+"'" ;
+                    }
+                    //sql = sql + " and " + searchCrit + " " + sCrit_txt;
+                }
+                      
+            }
+
+            txtArea_test.setText(sql);
+            
+            try {
+                pst = conn.prepareStatement(sql);
+                rs = pst.executeQuery();
+
+                table_patient.setModel(DbUtils.resultSetToTableModel(rs));
+                CustomSorter.table_customRowSort(table_patient);
+
+                if (table_patient.getColumnModel().getColumnCount() > 0) {
+                    table_patient.getColumnModel().getColumn(0).setPreferredWidth(80);
+                    table_patient.getColumnModel().getColumn(0).setMaxWidth(100);
+                    table_patient.getColumnModel().getColumn(1).setPreferredWidth(80);
+                    table_patient.getColumnModel().getColumn(1).setMaxWidth(100);
+                    table_patient.getColumnModel().getColumn(2).setPreferredWidth(140);
+                    table_patient.getColumnModel().getColumn(2).setMaxWidth(170);
+                    table_patient.getColumnModel().getColumn(3).setPreferredWidth(140);
+                    table_patient.getColumnModel().getColumn(3).setMaxWidth(170);
+                    table_patient.getColumnModel().getColumn(4).setPreferredWidth(120);
+                    table_patient.getColumnModel().getColumn(4).setMaxWidth(170);
+                    table_patient.getColumnModel().getColumn(5).setPreferredWidth(60); // Sex
+                    table_patient.getColumnModel().getColumn(5).setMaxWidth(60);
+                    table_patient.getColumnModel().getColumn(6).setPreferredWidth(90);
+                    table_patient.getColumnModel().getColumn(6).setMaxWidth(120);
+                    table_patient.getColumnModel().getColumn(7).setPreferredWidth(90);
+                    table_patient.getColumnModel().getColumn(7).setMaxWidth(120);
+                    table_patient.getColumnModel().getColumn(8).setPreferredWidth(60); // MDown
+                    table_patient.getColumnModel().getColumn(8).setMaxWidth(60);
+                    table_patient.getColumnModel().getColumn(10).setPreferredWidth(70); // stdy_ID
+                    table_patient.getColumnModel().getColumn(10).setMaxWidth(100);
+                }
+                showRows(rs);
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+            } finally {
+                try {
+                    if (rs != null) { rs.close();}
+                    if (pst != null) { pst.close();}
+                    if (conn != null) { conn.close();}
+                } catch (Exception e) {
+                }
+            }
+            
+            
+            
+        }
+         
+    }//GEN-LAST:event_btn_SearchActionPerformed
+
+    private void CB_searchCrit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_searchCrit1ActionPerformed
+
+        String searchCrit_select = CB_searchCrit1.getSelectedItem().toString();
+        if (searchCrit_select.equals("birth date") || searchCrit_select.equals("diagnosis date")){
+            rbtn_NOT1.setEnabled(false);
+        } else{
+            rbtn_NOT1.setEnabled(true);
+        }
+        
+    }//GEN-LAST:event_CB_searchCrit1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -332,9 +682,13 @@ public class PatientBrowse extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> CB_andor;
+    private javax.swing.JComboBox<String> CB_searchCrit1;
+    private javax.swing.JComboBox<String> CB_searchCrit2;
     private javax.swing.JPanel Info_top4;
     private javax.swing.JButton bnt_test;
     private javax.swing.JButton btn_Search;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -343,9 +697,20 @@ public class PatientBrowse extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1_HowTo;
     private javax.swing.JMenuItem jMenuItem1_openModel;
     private javax.swing.JMenuItem jMenuItem2_Info;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JLabel lbl_rowsReturned;
+    private javax.swing.JRadioButton rbtn_NOT1;
+    private javax.swing.JRadioButton rbtn_NOT2;
+    private javax.swing.JRadioButton rbtn_all;
+    private javax.swing.JRadioButton rbtn_searchCrit1;
+    private javax.swing.JRadioButton rbtn_searchCrit2;
+    private javax.swing.JRadioButton rbtn_searchCritMain;
     private javax.swing.JTable table_patient;
+    private javax.swing.JTextArea txtArea_test;
+    private javax.swing.JTextField txt_searchCrit1;
+    private javax.swing.JTextField txt_searchCrit2;
     // End of variables declaration//GEN-END:variables
 }
