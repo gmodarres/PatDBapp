@@ -1,0 +1,2650 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
+    </Component>
+    <Container class="javax.swing.JPopupMenu" name="popUpSave">
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+        <Property name="useNullLayout" type="boolean" value="true"/>
+      </Layout>
+      <SubComponents>
+        <MenuItem class="javax.swing.JMenuItem" name="popUpMenu_save">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="save ..."/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="popUpMenu_saveActionPerformed"/>
+          </Events>
+        </MenuItem>
+        <MenuItem class="javax.swing.JMenuItem" name="popUpMenu_selectAll">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="select all ..."/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="popUpMenu_selectAllActionPerformed"/>
+          </Events>
+        </MenuItem>
+        <MenuItem class="javax.swing.JMenuItem" name="popUpMenu_moveTbl">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="move table ..."/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="popUpMenu_moveTblActionPerformed"/>
+          </Events>
+        </MenuItem>
+      </SubComponents>
+    </Container>
+    <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
+      <SubComponents>
+        <Menu class="javax.swing.JMenu" name="jMenu4">
+          <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/ico/NeedsAName_Font_small07.png"/>
+            </Property>
+            <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+              <Insets value="[0, 0, 0, 5]"/>
+            </Property>
+          </Properties>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="jMenu1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="File"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1_openModel">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/ico/open-file-icon.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="open DB Model"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1_openModelActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="jMenu2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Edit"/>
+          </Properties>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="jMenu3">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Help"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1_HowTo">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="how to use"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1_HowToActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2_Info">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Info"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem2_InfoActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+      </SubComponents>
+    </Menu>
+  </NonVisualComponents>
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
+    <Property name="title" type="java.lang.String" value="Easy Analysis of Linked Results"/>
+    <Property name="location" type="java.awt.Point" editor="org.netbeans.beaninfo.editors.PointEditor">
+      <Point value="[100, 0]"/>
+    </Property>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="jToolBar1" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="Info_top" max="32767" attributes="0"/>
+                  <Component id="tab_main" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                      <Component id="lbl_rowsReturned" min="-2" pref="327" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="btn_E" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="jToolBar1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="Info_top" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="tab_main" min="-2" pref="601" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="btn_E" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbl_rowsReturned" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JTabbedPane" name="tab_main">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="99" red="66" type="rgb"/>
+        </Property>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+            <EtchetBorder/>
+          </Border>
+        </Property>
+      </Properties>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
+      <SubComponents>
+        <Container class="javax.swing.JPanel" name="tab_array">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Array">
+                <Property name="tabTitle" type="java.lang.String" value="Array"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jPanel5" max="32767" attributes="0"/>
+                          <Component id="jPanel2" max="32767" attributes="0"/>
+                          <Component id="A_btn_clear" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jPanel6" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" pref="1271" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jPanel7" min="-2" pref="153" max="-2" attributes="0"/>
+                          <Component id="jPanel12" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jPanel12" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="jPanel5" max="32767" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="A_btn_clear" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="jScrollPane1" min="-2" pref="454" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="34" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTable" name="table_array">
+                  <Properties>
+                    <Property name="autoCreateRowSorter" type="boolean" value="true"/>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                      <Table columnCount="12" rowCount="4">
+                        <Column editable="true" title="Title 1" type="java.lang.Object"/>
+                        <Column editable="true" title="Title 2" type="java.lang.Object"/>
+                        <Column editable="true" title="Title 3" type="java.lang.Object"/>
+                        <Column editable="true" title="Title 4" type="java.lang.Object"/>
+                        <Column editable="true" title="Title 5" type="java.lang.Object"/>
+                        <Column editable="true" title="Title 6" type="java.lang.Object"/>
+                        <Column editable="true" title="Title 7" type="java.lang.Object"/>
+                        <Column editable="true" title="Title 8" type="java.lang.Object"/>
+                        <Column editable="true" title="Title 9" type="java.lang.Object"/>
+                        <Column editable="true" title="Title 10" type="java.lang.Object"/>
+                        <Column editable="true" title="Title 11" type="java.lang.Object"/>
+                        <Column editable="true" title="Title 12" type="java.lang.Object"/>
+                      </Table>
+                    </Property>
+                    <Property name="toolTipText" type="java.lang.String" value="array result"/>
+                    <Property name="cellSelectionEnabled" type="boolean" value="true"/>
+                  </Properties>
+                  <AccessibilityProperties>
+                    <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="table_array"/>
+                  </AccessibilityProperties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="table_arrayMouseClicked"/>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="table_arrayKeyReleased"/>
+                  </Events>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="jPanel5">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                    <EtchetBorder/>
+                  </Border>
+                </Property>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jPanel10" max="32767" attributes="0"/>
+                              <Component id="A_ComboBox_sort" alignment="0" max="32767" attributes="0"/>
+                              <Component id="A_txt_sort" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                              <Component id="A_lab_result_id" max="32767" attributes="0"/>
+                                              <Component id="A_lab_lab_id" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="A_lab_array_sub_id" alignment="0" pref="55" max="32767" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                                  <Component id="A_txt_array_sub_id" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
+                                                  <Component id="A_txt_lab_id" alignment="1" min="-2" pref="90" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="A_txt_result_id" alignment="1" min="-2" pref="90" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Component id="A_rbtn_sort" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="A_txt_lab_id" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="A_lab_lab_id" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="A_txt_array_sub_id" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="A_lab_array_sub_id" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="A_txt_result_id" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="A_lab_result_id" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="jPanel10" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="A_rbtn_sort" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="A_ComboBox_sort" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="A_txt_sort" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="A_lab_lab_id">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="lab_id"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="A_lab_result_id">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="result_id"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="A_lab_array_sub_id">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="A.sub_id"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="A_txt_lab_id">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="A_txt_lab_idActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JTextField" name="A_txt_result_id">
+                </Component>
+                <Component class="javax.swing.JTextField" name="A_txt_array_sub_id">
+                </Component>
+                <Container class="javax.swing.JPanel" name="jPanel10">
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="btn_openLoc" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txt_fullLoc" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                              <Component id="btn_openLoc" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txt_fullLoc" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Component class="javax.swing.JTextField" name="txt_fullLoc">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Tahoma" size="11" style="0"/>
+                        </Property>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="btn_openLoc">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="open Loc"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_openLocActionPerformed"/>
+                      </Events>
+                    </Component>
+                  </SubComponents>
+                </Container>
+                <Component class="javax.swing.JTextField" name="A_txt_sort">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="asc"/>
+                    <Property name="toolTipText" type="java.lang.String" value="asc, desc"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="A_rbtn_sort">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="sort"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="A_ComboBox_sort">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="12">
+                        <StringItem index="0" value="array_sub_id"/>
+                        <StringItem index="1" value="ma_nom"/>
+                        <StringItem index="2" value="result_id"/>
+                        <StringItem index="3" value="chr"/>
+                        <StringItem index="4" value="arr_type"/>
+                        <StringItem index="5" value="cnst"/>
+                        <StringItem index="6" value="arr_call"/>
+                        <StringItem index="7" value="size"/>
+                        <StringItem index="8" value="loc_start"/>
+                        <StringItem index="9" value="loc_end"/>
+                        <StringItem index="10" value="cyto_regions"/>
+                        <StringItem index="11" value="genes"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JButton" name="A_btn_clear">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="clear all"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="A_btn_clearActionPerformed"/>
+              </Events>
+            </Component>
+            <Container class="javax.swing.JPanel" name="jPanel6">
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          <Component id="jPanel13" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="A_txt_nom" pref="298" max="32767" attributes="0"/>
+                              <Component id="A_txt_nom_1" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="A_txt_resID" pref="52" max="32767" attributes="0"/>
+                              <Component id="A_txt_resID_1" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="A_txt_chr_1" pref="54" max="32767" attributes="0"/>
+                              <Component id="A_txt_chr" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="A_txt_type" pref="50" max="32767" attributes="0"/>
+                              <Component id="A_txt_type_1" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="A_txt_cnst_1" pref="59" max="32767" attributes="0"/>
+                              <Component id="A_txt_cnst" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="A_txt_call" pref="103" max="32767" attributes="0"/>
+                              <Component id="A_txt_call_1" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="A_txt_size_1" pref="95" max="32767" attributes="0"/>
+                              <Component id="A_txt_size" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="A_txt_locStart" pref="95" max="32767" attributes="0"/>
+                              <Component id="A_txt_locStart_1" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="A_txt_locEnd_1" pref="91" max="32767" attributes="0"/>
+                              <Component id="A_txt_locEnd" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="A_txt_Creg" pref="100" max="32767" attributes="0"/>
+                              <Component id="A_txt_Creg_1" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="A_lbl_genes1" min="-2" max="-2" attributes="0"/>
+                              <Component id="A_lbl_genes2" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="86" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jPanel13" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="A_txt_type" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="A_txt_cnst" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="A_txt_call" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="A_txt_locStart" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="A_txt_locEnd" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="A_txt_nom" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="A_txt_size" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="A_txt_chr" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="A_lbl_genes1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="A_txt_resID" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="A_txt_Creg" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="A_txt_type_1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="A_txt_cnst_1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="A_txt_call_1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="A_txt_locStart_1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="A_txt_locEnd_1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="A_txt_nom_1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="A_txt_size_1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="A_txt_chr_1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="A_lbl_genes2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="A_txt_resID_1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="A_txt_Creg_1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JTextField" name="A_txt_type">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="search text, % for any"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="A_txt_cnst">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="&gt;,&lt;,= number"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="A_txt_call">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="search text, % for any, null for empty"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="A_txt_locStart">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="&gt;,&lt;,= number"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="A_txt_size">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="&lt;,&gt;,=  number"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="A_txt_nom">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="search text, % for any"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="A_txt_locEnd">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="&gt;,&lt;,= number"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="A_txt_type_1">
+                </Component>
+                <Component class="javax.swing.JTextField" name="A_txt_cnst_1">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="&gt;,&lt;,= number"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="A_txt_call_1">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="search text, % for any"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="A_txt_nom_1">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="search text, % for any"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="A_txt_size_1">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="&lt;,&gt;,=  number"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="A_txt_locStart_1">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="search text, % for any"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="A_txt_locEnd_1">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="search text, % for any"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="A_txt_chr">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="1,2,3,...,&quot;X&quot;,&quot;Y&quot;"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="A_txt_chr_1">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="1,2,3,...,&quot;X&quot;,&quot;Y&quot;"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="A_lbl_genes1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="select  -&gt;"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="A_lbl_genes2">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="select  -&gt;"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="A_txt_resID">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="1,2,3,..."/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="A_txt_resID_1">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="1,2,3,..."/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="A_txt_Creg">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="search text, % for any"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="A_txt_Creg_1">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="search text, % for any"/>
+                  </Properties>
+                </Component>
+                <Container class="javax.swing.JPanel" name="jPanel13">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="99" green="99" red="99" type="rgb"/>
+                    </Property>
+                  </Properties>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                                      <Component id="A_txt_ANDOR" min="-2" pref="66" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="A_rbtn_NOT" alignment="0" min="-2" pref="66" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                              <Component id="A_txt_ANDOR" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="A_rbtn_NOT" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Component class="javax.swing.JTextField" name="A_txt_ANDOR">
+                      <Properties>
+                        <Property name="toolTipText" type="java.lang.String" value="and, or  to proceed to second query"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JRadioButton" name="A_rbtn_NOT">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="   NOT"/>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="jPanel7">
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="A_txt2_genes1" min="-2" pref="62" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="A_txt2_genes2" min="-2" pref="62" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="A_txt1_genes1" max="32767" attributes="0"/>
+                                      <Component id="A_lbl_genes1_1" min="-2" pref="62" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="A_txt1_genes2" max="32767" attributes="0"/>
+                                      <Component id="A_lbl_genes2_1" min="-2" pref="62" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="A_txt3_genes1" min="-2" pref="62" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="A_txt3_genes2" min="-2" pref="62" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="A_txt4_genes1" min="-2" pref="62" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="A_txt4_genes2" min="-2" pref="62" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="A_txt5_genes1" min="-2" pref="62" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="A_txt5_genes2" min="-2" pref="62" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="A_lbl_genes1_1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="A_lbl_genes2_1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="A_txt1_genes1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="A_txt1_genes2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="A_txt2_genes1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="A_txt2_genes2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="A_txt3_genes1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="A_txt3_genes2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="A_txt4_genes1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="A_txt4_genes2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="A_txt5_genes1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="A_txt5_genes2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="42" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JTextField" name="A_txt1_genes1">
+                </Component>
+                <Component class="javax.swing.JLabel" name="A_lbl_genes1_1">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="13" style="1"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="Genes 1"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="A_lbl_genes2_1">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="13" style="1"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="Genes 2"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="A_txt3_genes1">
+                </Component>
+                <Component class="javax.swing.JTextField" name="A_txt1_genes2">
+                </Component>
+                <Component class="javax.swing.JTextField" name="A_txt2_genes1">
+                </Component>
+                <Component class="javax.swing.JTextField" name="A_txt2_genes2">
+                </Component>
+                <Component class="javax.swing.JTextField" name="A_txt3_genes2">
+                </Component>
+                <Component class="javax.swing.JTextField" name="A_txt4_genes1">
+                </Component>
+                <Component class="javax.swing.JTextField" name="A_txt4_genes2">
+                </Component>
+                <Component class="javax.swing.JTextField" name="A_txt5_genes1">
+                </Component>
+                <Component class="javax.swing.JTextField" name="A_txt5_genes2">
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="jPanel2">
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="A_btn_search" max="32767" attributes="0"/>
+                      <Component id="rbtn_useFresult" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          <Component id="A_btn_search" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="rbtn_useFresult" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JRadioButton" name="rbtn_useFresult">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="use FISH result"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="A_btn_search">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="search"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="A_btn_searchActionPerformed"/>
+                  </Events>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="jPanel12">
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="txt_genOnc" max="32767" attributes="0"/>
+                              <Component id="btn_openGenOnc" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          <Component id="btn_openGenOnc" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="txt_genOnc" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JTextField" name="txt_genOnc">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="11" style="0"/>
+                    </Property>
+                    <Property name="toolTipText" type="java.lang.String" value="copy &amp; paste gene name here"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="btn_openGenOnc">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Genetics Oncology"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_openGenOncActionPerformed"/>
+                  </Events>
+                </Component>
+              </SubComponents>
+            </Container>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="tab_fish">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="FISH">
+                <Property name="tabTitle" type="java.lang.String" value="FISH"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jPanel3" max="32767" attributes="0"/>
+                          <Component id="jPanel11" max="32767" attributes="0"/>
+                          <Component id="F_btn_clear" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jPanel4" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="jScrollPane2" min="-2" pref="1323" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="153" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanel11" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="jPanel3" max="32767" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="F_btn_clear" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jScrollPane2" min="-2" pref="454" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTable" name="table_fish">
+                  <Properties>
+                    <Property name="autoCreateRowSorter" type="boolean" value="true"/>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                      <Table columnCount="4" rowCount="4">
+                        <Column editable="true" title="Title 1" type="java.lang.Object"/>
+                        <Column editable="true" title="Title 2" type="java.lang.Object"/>
+                        <Column editable="true" title="Title 3" type="java.lang.Object"/>
+                        <Column editable="true" title="Title 4" type="java.lang.Object"/>
+                      </Table>
+                    </Property>
+                    <Property name="toolTipText" type="java.lang.String" value="fish result"/>
+                    <Property name="cellSelectionEnabled" type="boolean" value="true"/>
+                  </Properties>
+                  <AccessibilityProperties>
+                    <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="table_fish"/>
+                  </AccessibilityProperties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="table_fishMouseClicked"/>
+                  </Events>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="jPanel3">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                    <EtchetBorder/>
+                  </Border>
+                </Property>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="F_ComboBox_sort" alignment="0" max="32767" attributes="0"/>
+                              <Component id="F_txt_sort" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="F_lab_result_id" pref="55" max="32767" attributes="0"/>
+                                      <Component id="F_lab_fish_sub_id" alignment="0" pref="55" max="32767" attributes="0"/>
+                                      <Component id="F_lab_lab_id" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                          <Component id="F_txt_fish_sub_id" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
+                                          <Component id="F_txt_lab_id" alignment="1" min="-2" pref="90" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="F_txt_result_id" alignment="1" min="-2" pref="90" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Component id="jScrollPane11" pref="0" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="F_rbtn_sort" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="F_txt_probe_no" min="-2" pref="90" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="F_txt_lab_id" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="F_lab_lab_id" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="F_txt_fish_sub_id" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="F_lab_fish_sub_id" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="F_txt_result_id" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="F_lab_result_id" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="F_txt_probe_no" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPane11" min="-2" pref="58" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="F_rbtn_sort" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="F_ComboBox_sort" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="F_txt_sort" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="F_lab_lab_id">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="lab_id"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="F_lab_result_id">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="result_id"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="F_lab_fish_sub_id">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="F.sub_id"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="F_txt_lab_id">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="F_txt_lab_idActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JTextField" name="F_txt_result_id">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="F_txt_result_idActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JTextField" name="F_txt_fish_sub_id">
+                </Component>
+                <Component class="javax.swing.JComboBox" name="F_ComboBox_sort">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="14">
+                        <StringItem index="0" value="fish_sub_id"/>
+                        <StringItem index="1" value="result_id"/>
+                        <StringItem index="2" value="i_count"/>
+                        <StringItem index="3" value="m_count"/>
+                        <StringItem index="4" value="percent"/>
+                        <StringItem index="5" value="region1"/>
+                        <StringItem index="6" value="sig1"/>
+                        <StringItem index="7" value="region2"/>
+                        <StringItem index="8" value="sig2"/>
+                        <StringItem index="9" value="fsn_sig"/>
+                        <StringItem index="10" value="fish_chng"/>
+                        <StringItem index="11" value="result"/>
+                        <StringItem index="12" value="material"/>
+                        <StringItem index="13" value="p.probe_no"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JTextField" name="F_txt_sort">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="asc"/>
+                    <Property name="toolTipText" type="java.lang.String" value="asc, desc"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="F_rbtn_sort">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="sort"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="probe"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="F_txt_probe_no">
+                </Component>
+                <Container class="javax.swing.JScrollPane" name="jScrollPane11">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="10" style="0"/>
+                    </Property>
+                    <Property name="horizontalScrollBar" type="javax.swing.JScrollBar" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                      <ComponentRef name="null"/>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                  </AuxValues>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Component class="javax.swing.JTextArea" name="F_txtArea_loc">
+                      <Properties>
+                        <Property name="columns" type="int" value="20"/>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Tahoma" size="10" style="0"/>
+                        </Property>
+                        <Property name="lineWrap" type="boolean" value="true"/>
+                        <Property name="rows" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="3" type="code"/>
+                        </Property>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JButton" name="F_btn_clear">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="clear all"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="F_btn_clearActionPerformed"/>
+              </Events>
+            </Component>
+            <Container class="javax.swing.JPanel" name="jPanel4">
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          <Component id="jPanel14" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="F_txt_resID_1" pref="50" max="32767" attributes="0"/>
+                              <Component id="F_txt_resID" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="F_txt_kerne_1" pref="51" max="32767" attributes="0"/>
+                              <Component id="F_txt_kerne" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="F_txt_mitos_1" pref="50" max="32767" attributes="0"/>
+                              <Component id="F_txt_mitos" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="F_txt_percent_1" pref="52" max="32767" attributes="0"/>
+                              <Component id="F_txt_percent" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="F_txt_reg1" pref="98" max="32767" attributes="0"/>
+                              <Component id="F_txt_reg1_1" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="F_txt_sig1" min="-2" pref="44" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                                  <Component id="F_txt_reg2" min="-2" pref="95" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                                  <Component id="F_txt_sig2" min="-2" pref="42" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="F_txt_fsn" min="-2" pref="55" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="F_txt_fchng" min="-2" pref="90" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="F_txt_sig1_1" min="-2" pref="44" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                                  <Component id="F_txt_reg2_1" min="-2" pref="95" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                                  <Component id="F_txt_sig2_1" min="-2" pref="42" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="F_txt_fsn_1" min="-2" pref="55" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="F_txt_fchng_1" min="-2" pref="90" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="F_txt_result_1" pref="446" max="32767" attributes="0"/>
+                              <Component id="F_txt_result" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="F_txt_material_1" min="-2" pref="107" max="-2" attributes="0"/>
+                              <Component id="F_txt_material" alignment="0" min="-2" pref="107" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="165" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jPanel14" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="F_txt_percent" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="F_txt_reg1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="F_txt_sig1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="F_txt_fsn" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="F_txt_fchng" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="F_txt_reg2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="F_txt_sig2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="F_txt_result" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="F_txt_material" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="F_txt_mitos" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="F_txt_kerne" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="F_txt_resID" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="F_txt_percent_1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="F_txt_reg1_1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="F_txt_sig1_1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="F_txt_fsn_1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="F_txt_fchng_1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="F_txt_reg2_1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="F_txt_sig2_1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="F_txt_result_1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="F_txt_material_1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="F_txt_mitos_1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="F_txt_kerne_1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="F_txt_resID_1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JTextField" name="F_txt_percent">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="&lt;,&gt;,=  number"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="F_txt_reg1">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="search text, % for any"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="F_txt_sig1">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="&lt;,&gt;,=  number"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="F_txt_fsn">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="search text, % for any, null for empty"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="F_txt_sig2">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="&lt;,&gt;,=  number"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="F_txt_reg2">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="search text, % for any"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="F_txt_fchng">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="search text, % for any, null for empty"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="F_txt_result">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="search text, % for any"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="F_txt_material">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="search text, % for any"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="F_txt_percent_1">
+                </Component>
+                <Component class="javax.swing.JTextField" name="F_txt_reg1_1">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="search text, % for any"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="F_txt_sig1_1">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="&lt;,&gt;,=  number"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="F_txt_reg2_1">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="search text, % for any"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="F_txt_sig2_1">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="&lt;,&gt;,=  number"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="F_txt_fsn_1">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="search text, % for any"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="F_txt_fchng_1">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="search text, % for any"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="F_txt_result_1">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="search text, % for any"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="F_txt_material_1">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="search text, % for any"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="F_txt_mitos">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="&lt;,&gt;,=  number"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="F_txt_mitos_1">
+                </Component>
+                <Component class="javax.swing.JTextField" name="F_txt_kerne">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="&lt;,&gt;,=  number"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="F_txt_kerne_1">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="&lt;,&gt;,=  number"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="F_txt_resID">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="&lt;,&gt;,=  number"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="F_txt_resID_1">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="&lt;,&gt;,=  number"/>
+                  </Properties>
+                </Component>
+                <Container class="javax.swing.JPanel" name="jPanel14">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="99" green="99" red="99" type="rgb"/>
+                    </Property>
+                  </Properties>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                                      <Component id="F_txt_ANDOR" min="-2" pref="66" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="F_rbtn_NOT" alignment="0" min="-2" pref="66" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                              <Component id="F_txt_ANDOR" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="F_rbtn_NOT" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Component class="javax.swing.JTextField" name="F_txt_ANDOR">
+                      <Properties>
+                        <Property name="toolTipText" type="java.lang.String" value="and, or  to proceed to second query"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JRadioButton" name="F_rbtn_NOT">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="   NOT"/>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="jPanel11">
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="F_btn_search" max="32767" attributes="0"/>
+                      <Component id="rbtn_useAresult" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          <Component id="F_btn_search" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                          <Component id="rbtn_useAresult" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JButton" name="F_btn_search">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="search"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="F_btn_searchActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="rbtn_useAresult">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="use array result"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[115, 25]"/>
+                    </Property>
+                    <Property name="requestFocusEnabled" type="boolean" value="false"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="tab_ZG">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="ZG">
+                <Property name="tabTitle" type="java.lang.String" value="ZG"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jPanel9" max="32767" attributes="0"/>
+                          <Component id="jPanel1" max="32767" attributes="0"/>
+                          <Component id="Z_btn_clear" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="jScrollPane3" max="32767" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jScrollPane4" min="-2" pref="378" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jPanel8" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanel9" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jPanel1" max="32767" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="Z_btn_clear" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jScrollPane3" alignment="0" pref="454" max="32767" attributes="0"/>
+                          <Component id="jScrollPane4" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTable" name="table_zg_iscn">
+                  <Properties>
+                    <Property name="autoCreateRowSorter" type="boolean" value="true"/>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                      <Table columnCount="4" rowCount="4">
+                        <Column editable="true" title="Title 1" type="java.lang.Object"/>
+                        <Column editable="true" title="Title 2" type="java.lang.Object"/>
+                        <Column editable="true" title="Title 3" type="java.lang.Object"/>
+                        <Column editable="true" title="Title 4" type="java.lang.Object"/>
+                      </Table>
+                    </Property>
+                    <Property name="toolTipText" type="java.lang.String" value="cytogenetics result 1"/>
+                  </Properties>
+                  <AccessibilityProperties>
+                    <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="table_zg_iscn"/>
+                  </AccessibilityProperties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="table_zg_iscnMouseClicked"/>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="table_zg_iscnKeyReleased"/>
+                  </Events>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane4">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTable" name="table_zg_result">
+                  <Properties>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                      <Table columnCount="6" rowCount="4">
+                        <Column editable="true" title="result_id" type="java.lang.Object"/>
+                        <Column editable="true" title="zg_sub_id" type="java.lang.Object"/>
+                        <Column editable="true" title="klon_id" type="java.lang.Object"/>
+                        <Column editable="true" title="region" type="java.lang.Object"/>
+                        <Column editable="true" title="chr" type="java.lang.Object"/>
+                        <Column editable="true" title="chng" type="java.lang.Object"/>
+                      </Table>
+                    </Property>
+                    <Property name="toolTipText" type="java.lang.String" value="cytogenetics result 2"/>
+                  </Properties>
+                  <AccessibilityProperties>
+                    <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="table_zg_result"/>
+                  </AccessibilityProperties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="jPanel1">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                    <EtchetBorder/>
+                  </Border>
+                </Property>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="Z_lab_lab_id" max="32767" attributes="0"/>
+                                      <Component id="Z_lab_klon_id" max="32767" attributes="0"/>
+                                      <Component id="Z_lab_result_id" pref="55" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                          <Component id="Z_txt_klon_id" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
+                                          <Component id="Z_txt_lab_id" alignment="1" min="-2" pref="90" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="Z_txt_result_id" alignment="1" min="-2" pref="90" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Component id="ZG_ComboBox_sort" alignment="0" max="32767" attributes="0"/>
+                              <Component id="ZG_txt_sort" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="ZG_rbtn_sort" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="Z_txt_lab_id" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Z_lab_lab_id" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="Z_txt_klon_id" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Z_lab_klon_id" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="Z_txt_result_id" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Z_lab_result_id" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="ZG_rbtn_sort" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="ZG_ComboBox_sort" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="ZG_txt_sort" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="Z_lab_lab_id">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="lab_id"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="Z_lab_result_id">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="result_id"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="Z_lab_klon_id">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="klon_id"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="Z_txt_lab_id">
+                </Component>
+                <Component class="javax.swing.JTextField" name="Z_txt_result_id">
+                </Component>
+                <Component class="javax.swing.JTextField" name="Z_txt_klon_id">
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="ZG_rbtn_sort">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="sort"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="ZG_ComboBox_sort">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="8">
+                        <StringItem index="0" value="i.klon_id"/>
+                        <StringItem index="1" value="result_id"/>
+                        <StringItem index="2" value="chr_cnt"/>
+                        <StringItem index="3" value="mitos_cnt"/>
+                        <StringItem index="4" value="cp"/>
+                        <StringItem index="5" value="iscn"/>
+                        <StringItem index="6" value="material"/>
+                        <StringItem index="7" value="stim"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JTextField" name="ZG_txt_sort">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="asc"/>
+                    <Property name="toolTipText" type="java.lang.String" value="asc, desc"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JButton" name="Z_btn_clear">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="clear all"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Z_btn_clearActionPerformed"/>
+              </Events>
+            </Component>
+            <Container class="javax.swing.JPanel" name="jPanel8">
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          <Component id="jPanel15" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="ZI_txt_resId" pref="49" max="32767" attributes="0"/>
+                              <Component id="ZI_txt_resId_1" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="ZI_txt_chr" pref="42" max="32767" attributes="0"/>
+                              <Component id="ZI_txt_chr_1" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="ZI_txt_mitos" max="32767" attributes="0"/>
+                              <Component id="ZI_txt_mitos_1" pref="54" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="ZI_txt_cp_1" pref="43" max="32767" attributes="0"/>
+                              <Component id="ZI_txt_cp" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="ZI_txt_iscn" pref="511" max="32767" attributes="0"/>
+                              <Component id="ZI_txt_iscn_1" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="ZI_txt_mat" pref="117" max="32767" attributes="0"/>
+                              <Component id="ZI_txt_mat_1" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="ZI_txt_stim" pref="118" max="32767" attributes="0"/>
+                              <Component id="ZI_txt_stim_1" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                          <Component id="rbtn_ZGdetailResult" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="ZR_txt_klonID" pref="49" max="32767" attributes="0"/>
+                              <Component id="ZR_txt_klonID_1" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="ZR_txt_region" min="-2" pref="69" max="-2" attributes="0"/>
+                              <Component id="ZR_txt_region_1" min="-2" pref="69" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="ZR_txt_chr" pref="46" max="32767" attributes="0"/>
+                              <Component id="ZR_txt_chr_1" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="ZR_txt_chng" min="-2" pref="71" max="-2" attributes="0"/>
+                              <Component id="ZR_txt_chng_1" min="-2" pref="71" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jPanel15" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="ZI_txt_mitos" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="ZI_txt_iscn" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="ZR_txt_chr" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="ZR_txt_chng" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="ZR_txt_region" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="ZI_txt_chr" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="ZR_txt_klonID" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="ZI_txt_resId" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="ZI_txt_cp" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="ZI_txt_mat" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="ZI_txt_stim" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="rbtn_ZGdetailResult" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="ZI_txt_mitos_1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="ZI_txt_iscn_1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="ZR_txt_chr_1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="ZR_txt_chng_1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="ZR_txt_region_1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="ZI_txt_chr_1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="ZR_txt_klonID_1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="ZI_txt_resId_1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="ZI_txt_cp_1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="ZI_txt_mat_1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="ZI_txt_stim_1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JTextField" name="ZI_txt_mitos">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="&lt;,&gt;,=  number"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="ZI_txt_iscn">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="search text, % for any"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="ZR_txt_chr">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="&gt;,&lt;,= number"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="ZR_txt_region">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="&lt;,&gt;,=  number"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="ZR_txt_chng">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="&gt;,&lt;,= number"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="ZI_txt_mitos_1">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="&lt;,&gt;,=  number"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="ZI_txt_iscn_1">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="search text, % for any"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="ZR_txt_region_1">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="&lt;,&gt;,=  number"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="ZR_txt_chr_1">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="search text, % for any"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="ZR_txt_chng_1">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="search text, % for any"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="ZI_txt_chr">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="1,2,3,...,&quot;X&quot;,&quot;Y&quot;"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="ZI_txt_chr_1">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="1,2,3,...,&quot;X&quot;,&quot;Y&quot;"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="ZR_txt_klonID">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="toolTipText" type="java.lang.String" value="&lt;,&gt;,=  number"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="ZR_txt_klonID_1">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="toolTipText" type="java.lang.String" value="&lt;,&gt;,=  number"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="ZI_txt_resId">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="&lt;,&gt;,=  number"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="ZI_txt_resId_1">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="&lt;,&gt;,=  number"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="ZI_txt_cp">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="search text, % for any, null for empty"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="ZI_txt_cp_1">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="search text, % for any, null for empty"/>
+                  </Properties>
+                </Component>
+                <Container class="javax.swing.JPanel" name="jPanel15">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="99" green="99" red="99" type="rgb"/>
+                    </Property>
+                  </Properties>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                                      <Component id="ZG_txt_ANDOR" min="-2" pref="66" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="ZG_rbtn_NOT" alignment="0" min="-2" pref="66" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                              <Component id="ZG_txt_ANDOR" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="ZG_rbtn_NOT" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Component class="javax.swing.JTextField" name="ZG_txt_ANDOR">
+                      <Properties>
+                        <Property name="toolTipText" type="java.lang.String" value="and, or  to proceed to second query"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JRadioButton" name="ZG_rbtn_NOT">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="   NOT"/>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
+                <Component class="javax.swing.JTextField" name="ZI_txt_mat">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="search text, % for any"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="ZI_txt_mat_1">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="search text, % for any"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="ZI_txt_stim">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="search text, % for any"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="ZI_txt_stim_1">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="search text, % for any"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="rbtn_ZGdetailResult">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="use detail result"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="jPanel9">
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="Z_btn_search" alignment="1" max="32767" attributes="0"/>
+                      <Component id="rbtn_nyd" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          <Component id="Z_btn_search" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                          <Component id="rbtn_nyd" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JButton" name="Z_btn_search">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="search"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Z_btn_searchActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="rbtn_nyd">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="not yet defined"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[115, 25]"/>
+                    </Property>
+                    <Property name="requestFocusEnabled" type="boolean" value="false"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+          </SubComponents>
+        </Container>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="Info_top">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="99" red="66" type="rgb"/>
+        </Property>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+            <EtchetBorder/>
+          </Border>
+        </Property>
+        <Property name="requestFocusEnabled" type="boolean" value="false"/>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jScrollPane7" pref="495" max="32767" attributes="0"/>
+                      <Component id="jScrollPane10" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jPanel17" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jPanel19" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="lab_Genes" min="-2" max="-2" attributes="0"/>
+                      <Component id="lab_Creg" min="-2" pref="79" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jScrollPane5" pref="676" max="32767" attributes="0"/>
+                      <Component id="jScrollPane8" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="lab_Genes" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jScrollPane5" min="-2" pref="155" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jScrollPane8" min="-2" pref="76" max="-2" attributes="0"/>
+                              <Component id="lab_Creg" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="jScrollPane7" min="-2" pref="48" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                          <Component id="jScrollPane10" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                      <Component id="jPanel19" alignment="1" max="32767" attributes="0"/>
+                      <Component id="jPanel17" alignment="1" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane7">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="cc" green="cc" red="0" type="rgb"/>
+            </Property>
+            <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
+            <Property name="verticalScrollBarPolicy" type="int" value="21"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTable" name="table_statistics">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ee" green="d3" red="a1" type="rgb"/>
+                </Property>
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                  <Table columnCount="4" rowCount="4">
+                    <Column editable="true" title="Title 1" type="java.lang.Object"/>
+                    <Column editable="true" title="Title 2" type="java.lang.Object"/>
+                    <Column editable="true" title="Title 3" type="java.lang.Object"/>
+                    <Column editable="true" title="Title 4" type="java.lang.Object"/>
+                  </Table>
+                </Property>
+                <Property name="toolTipText" type="java.lang.String" value="statistics"/>
+                <Property name="rowHeight" type="int" value="20"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane8">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTextArea" name="txtArea_Creg">
+              <Properties>
+                <Property name="columns" type="int" value="20"/>
+                <Property name="lineWrap" type="boolean" value="true"/>
+                <Property name="rows" type="int" value="5"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Component class="javax.swing.JLabel" name="lab_Genes">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Genes"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lab_Creg">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="11"/>
+            <Property name="text" type="java.lang.String" value="cyto regions"/>
+          </Properties>
+        </Component>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane10">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTable" name="table_queryIDs">
+              <Properties>
+                <Property name="autoCreateRowSorter" type="boolean" value="true"/>
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                  <Table columnCount="6" rowCount="4">
+                    <Column editable="true" title="lab_id" type="java.lang.Object"/>
+                    <Column editable="true" title="result_ID" type="java.lang.Object"/>
+                    <Column editable="true" title="name" type="java.lang.Object"/>
+                    <Column editable="true" title="surname" type="java.lang.Object"/>
+                    <Column editable="true" title="sex" type="java.lang.Object"/>
+                    <Column editable="true" title="b_date" type="java.lang.Object"/>
+                  </Table>
+                </Property>
+                <Property name="toolTipText" type="java.lang.String" value="patients"/>
+                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                  <TableColumnModel selectionModel="0">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                  </TableColumnModel>
+                </Property>
+                <Property name="name" type="java.lang.String" value="" noResource="true"/>
+                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                  <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                </Property>
+              </Properties>
+              <AccessibilityProperties>
+                <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="table_queryIDs"/>
+              </AccessibilityProperties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="table_queryIDsMouseClicked"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="table_queryIDsKeyReleased"/>
+              </Events>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane5">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTextArea" name="txtArea_genes">
+              <Properties>
+                <Property name="columns" type="int" value="20"/>
+                <Property name="lineWrap" type="boolean" value="true"/>
+                <Property name="rows" type="int" value="5"/>
+                <Property name="name" type="java.lang.String" value="" noResource="true"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="jPanel17">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="99" red="66" type="rgb"/>
+            </Property>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                <EtchetBorder/>
+              </Border>
+            </Property>
+          </Properties>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="btn_TTT" linkSize="2" min="-2" pref="120" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                              <Component id="jPanel16" min="-2" max="-2" attributes="0"/>
+                              <Component id="btn_selCol" linkSize="2" max="32767" attributes="0"/>
+                              <Component id="btn_selPat" linkSize="2" min="-2" pref="117" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
+                      <Component id="btn_selCol" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btn_selPat" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jPanel16" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                      <Component id="btn_TTT" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Container class="javax.swing.JPanel" name="jPanel16">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="98" red="66" type="rgb"/>
+                </Property>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                    <EtchetBorder/>
+                  </Border>
+                </Property>
+                <Property name="toolTipText" type="java.lang.String" value="if result/patient is selected, orange indicates, that a result is present in corresponding result tab"/>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                          <Component id="lbl_array_signal" min="-2" pref="27" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                          <Component id="lbl_fish_signal" min="-2" pref="27" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                          <Component id="lbl_zg_signal" min="-2" pref="27" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lbl_array_signal" alignment="1" min="-2" pref="25" max="-2" attributes="0"/>
+                                  <Component id="lbl_fish_signal" alignment="1" min="-2" pref="25" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="lbl_zg_signal" min="-2" pref="25" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="lbl_array_signal">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="99" red="66" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/ico/array_label_small.png"/>
+                    </Property>
+                    <Property name="opaque" type="boolean" value="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lbl_fish_signal">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="99" red="66" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/ico/fish_label_small.png"/>
+                    </Property>
+                    <Property name="opaque" type="boolean" value="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lbl_zg_signal">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="99" red="66" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/ico/zg_label_small.png"/>
+                    </Property>
+                    <Property name="opaque" type="boolean" value="true"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JRadioButton" name="btn_TTT">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="ToolTip Help on"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_TTTActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="btn_selCol">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="column select"/>
+                <Property name="toolTipText" type="java.lang.String" value="enable to select whole column in table patients"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_selColActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="btn_selPat">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="result/ patient"/>
+                <Property name="toolTipText" type="java.lang.String" value="select to show results of selected patient only "/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="jPanel19">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="99" red="66" type="rgb"/>
+            </Property>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                <EtchetBorder/>
+              </Border>
+            </Property>
+          </Properties>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="rbtn_ST" min="-2" pref="141" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="ComboBox_projPat" alignment="0" min="-2" pref="142" max="-2" attributes="0"/>
+                              <Component id="rbtn_onlyPat" linkSize="1" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="24" pref="24" max="-2" attributes="0"/>
+                                  <Component id="lbl_fromProj" min="-2" pref="118" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="ComboBox_stdyPat" min="-2" pref="142" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="rbtn_onlyPat1" linkSize="1" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace min="24" pref="24" max="-2" attributes="0"/>
+                                      <Component id="lbl_fromStdy" min="-2" pref="118" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Component id="rbtn_SB" linkSize="1" alignment="1" min="-2" pref="141" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="rbtn_onlyPat" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Component id="lbl_fromProj" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                      <Component id="ComboBox_projPat" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <Component id="rbtn_onlyPat1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Component id="lbl_fromStdy" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                      <Component id="ComboBox_stdyPat" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <Component id="rbtn_SB" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="rbtn_ST" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JComboBox" name="ComboBox_projPat">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="2">
+                    <StringItem index="0" value="MS_ALL_Array_Diagnostics"/>
+                    <StringItem index="1" value="TEST"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lbl_fromStdy">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="from study ..."/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="rbtn_onlyPat">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="only patients"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="rbtn_onlyPat1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="only patients"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lbl_fromProj">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="from project ..."/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="ComboBox_stdyPat">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="1">
+                    <StringItem index="0" value="ALL BFM 2009"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="rbtn_SB">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="use SB result"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="rbtn_ST">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="use subtypes result"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JToolBar" name="jToolBar1">
+      <Properties>
+        <Property name="rollover" type="boolean" value="true"/>
+      </Properties>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JButton" name="bnt_test">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/ico/Actions-window-close-icon.png"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="TEST"/>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="iconTextGap" type="int" value="2"/>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bnt_testActionPerformed"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JButton" name="btn_E">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/ico/Reload-icon.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="reload"/>
+        <Property name="toolTipText" type="java.lang.String" value="Emergency reload frame &#xa;in case text fields degrade"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_EActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbl_rowsReturned">
+      <Properties>
+        <Property name="text" type="java.lang.String" value=" "/>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>
