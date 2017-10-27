@@ -11,21 +11,11 @@ package frames;
  * @author gerda.modarres
  */
 
-//import static frames.SetConnection.currentUser;
 import myClass.DBconnect;
 import java.awt.*;
 import javax.swing.*;
 import java.sql.*;
 import java.awt.event.*;
-import myClass.Log;
-import static myClass.Log.startLog;
-//import java.util.logging.Level;
-//import java.util.logging.Logger;
-//import javax.naming.NamingException;
-//import javax.naming.ldap.LdapContext;
-//import static myClass.ActiveDirectory.*;
-
-//import java.awt.*;
 
 public class LoginDB extends javax.swing.JFrame {
 
