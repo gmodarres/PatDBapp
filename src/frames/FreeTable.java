@@ -30,7 +30,7 @@ public class FreeTable extends javax.swing.JFrame {
     
     public void getTable(){
         this.setTitle(SearchResult.source);
-        ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/EsALiR_suite_BG_ico2-3_small.png"));
+        ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_small.png"));
         this.setIconImage(img.getImage());
         
         String tableMoved = SearchResult.tableMoving;

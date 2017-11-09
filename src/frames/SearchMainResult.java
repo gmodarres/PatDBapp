@@ -37,7 +37,7 @@ public class SearchMainResult extends javax.swing.JFrame {
      */
     public SearchMainResult() {
         initComponents();
-        ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/EsALiR_suite_BG_ico2-3_small.png"));
+        ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_small.png"));
         this.setIconImage(img.getImage());
         setIcons();
         initial_table_queryIDs();
@@ -346,7 +346,7 @@ public class SearchMainResult extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Easy Analysis of Linked Results");
+        setTitle("Linked Results Analysis Tool");
         setLocation(new java.awt.Point(150, 50));
 
         tab_main.setBackground(new java.awt.Color(102, 153, 255));
@@ -858,7 +858,7 @@ public class SearchMainResult extends javax.swing.JFrame {
         jToolBar1.add(bnt_test);
 
         jMenu4.setBorder(null);
-        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/NeedsAName_Font_small07.png"))); // NOI18N
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_Font_small07_web.png"))); // NOI18N
         jMenu4.setMargin(new java.awt.Insets(0, 0, 0, 5));
         jMenuBar1.add(jMenu4);
 

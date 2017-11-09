@@ -54,7 +54,7 @@ public class ReadyForSQL extends javax.swing.JFrame {
      */
     public ReadyForSQL() {
         initComponents();
-        ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/EsALiR_suite_BG_ico2-3_small.png"));
+        ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_small.png"));
         this.setIconImage(img.getImage());
         getIniData();
         initial_table_queryIDs();
@@ -493,7 +493,7 @@ public class ReadyForSQL extends javax.swing.JFrame {
         popUpSave.add(popUpMenu_selectAll);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Easy Analysis of Linked Results");
+        setTitle("Linked Results Analysis Tool");
         setLocation(new java.awt.Point(100, 50));
 
         Info_top.setBackground(new java.awt.Color(102, 153, 255));
@@ -633,7 +633,7 @@ public class ReadyForSQL extends javax.swing.JFrame {
         lbl_rowsReturned.setText(" ");
 
         jMenu4.setBorder(null);
-        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/NeedsAName_Font_small07.png"))); // NOI18N
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_Font_small07_web.png"))); // NOI18N
         jMenu4.setMargin(new java.awt.Insets(0, 0, 0, 5));
         jMenuBar1.add(jMenu4);
 

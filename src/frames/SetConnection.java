@@ -67,7 +67,7 @@ public class SetConnection extends javax.swing.JFrame {
      */
     public SetConnection() {
         initComponents();
-        ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/EsALiR_suite_BG_ico2-3_small.png"));
+        ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_small.png"));
         this.setIconImage(img.getImage());
         BoundsPopupMenuListener listener = new BoundsPopupMenuListener(true, false);
         combo_host.addPopupMenuListener( listener );
@@ -321,7 +321,7 @@ public class SetConnection extends javax.swing.JFrame {
         lbl_conn1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Easy Analysis of Linked Results");
+        setTitle("Linked Results Analysis Tool");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());

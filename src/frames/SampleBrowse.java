@@ -20,6 +20,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import myClass.CustomSorter;
@@ -44,9 +45,12 @@ public class SampleBrowse extends javax.swing.JFrame {
      */
     public SampleBrowse() {
         initComponents();
+        ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_small.png"));
+        this.setIconImage(img.getImage());
         initial_table_sample();
         initial_table_resultID();
         Info_top4.getRootPane().setDefaultButton(btn_newList);
+        
     }
  
     private void showRows(ResultSet rs){
@@ -326,6 +330,7 @@ public class SampleBrowse extends javax.swing.JFrame {
         popUpResult.add(cpLabIds);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Linked Results Analysis Tool");
 
         jToolBar1.setRollover(true);
 
@@ -518,7 +523,7 @@ public class SampleBrowse extends javax.swing.JFrame {
         lbl_rowsReturned.setText(" ");
 
         jMenu4.setBorder(null);
-        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/NeedsAName_Font_small07.png"))); // NOI18N
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_Font_small07_web.png"))); // NOI18N
         jMenu4.setMargin(new java.awt.Insets(0, 0, 0, 5));
         jMenuBar1.add(jMenu4);
 

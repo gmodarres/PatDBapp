@@ -31,7 +31,7 @@ public class LoginDB extends javax.swing.JFrame {
     
     public LoginDB() {
         initComponents();
-        ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/EsALiR_suite_BG_ico2-3_small.png"));
+        ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_small.png"));
         this.setIconImage(img.getImage());
         getUser();
         //conn = DBconnect.ConnecrDb();
@@ -73,12 +73,11 @@ public class LoginDB extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         cmd_login = new javax.swing.JButton();
         LOGO = new javax.swing.JLabel();
-        btn_Test = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Easy Analysis of Linked Results");
+        setTitle("Linked Results Analysis Tool");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Login", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18), new java.awt.Color(0, 102, 153))); // NOI18N
 
@@ -132,14 +131,7 @@ public class LoginDB extends javax.swing.JFrame {
         );
 
         LOGO.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        LOGO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/NeedsAName_small.png"))); // NOI18N
-
-        btn_Test.setText("TEST");
-        btn_Test.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_TestActionPerformed(evt);
-            }
-        });
+        LOGO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_long_small.png"))); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(55, 16, 168));
@@ -159,7 +151,6 @@ public class LoginDB extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_Test)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(LOGO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -176,9 +167,7 @@ public class LoginDB extends javax.swing.JFrame {
                 .addComponent(LOGO)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btn_Test, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         pack();
@@ -233,11 +222,6 @@ public class LoginDB extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txt_passwordKeyPressed
 
-    private void btn_TestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TestActionPerformed
-        StartFrame f = new StartFrame();
-        f.setVisible(true);       
-    }//GEN-LAST:event_btn_TestActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -279,7 +263,6 @@ public class LoginDB extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LOGO;
-    private javax.swing.JButton btn_Test;
     private javax.swing.JButton cmd_login;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

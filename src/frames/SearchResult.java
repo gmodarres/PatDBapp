@@ -15,7 +15,7 @@ package frames;
 //import static java.awt.Color.blue;
 import static frames.SetConnection.personalConfig;
 import static frames.SampleBrowse.SB_resultIDs;
-import static frames.SubtypesBrowse.ST_resultIDs;
+import static frames.SubtypeBrowse.ST_resultIDs;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Desktop;
@@ -90,7 +90,7 @@ public class SearchResult extends javax.swing.JFrame {
      */
     public SearchResult() {
         initComponents();
-        ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/EsALiR_suite_BG_ico2-3_small.png"));
+        ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_small.png"));
         //ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/patIGUS.png"));
         this.setIconImage(img.getImage());
         getIniData();
@@ -778,7 +778,7 @@ public class SearchResult extends javax.swing.JFrame {
         }
     }
     
-    private void deliver_ST_ids(String caller, String sql) {    // ids from SubtypesBrowse
+    private void deliver_ST_ids(String caller, String sql) {    // ids from SubtypeBrowse
         // to extend sql in Array search
         try {
             String ids = ST_resultIDs;
@@ -1293,7 +1293,7 @@ public void toExcel(JTable table, File file){
         popUpSave.add(popUpMenu_moveTbl);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Easy Analysis of Linked Results");
+        setTitle("Linked Results Analysis Tool");
         setLocation(new java.awt.Point(100, 0));
 
         tab_main.setBackground(new java.awt.Color(102, 153, 255));
@@ -2649,9 +2649,9 @@ public void toExcel(JTable table, File file){
 
         ComboBox_stdyPat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALL BFM 2009" }));
 
-        rbtn_SB.setText("use SB result");
+        rbtn_SB.setText("use SampleBrowse ");
 
-        rbtn_ST.setText("use subtypes result");
+        rbtn_ST.setText("use SubtypeBrowse");
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
@@ -2774,7 +2774,7 @@ public void toExcel(JTable table, File file){
         lbl_rowsReturned.setText(" ");
 
         jMenu4.setBorder(null);
-        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/NeedsAName_Font_small07.png"))); // NOI18N
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_Font_small07_web.png"))); // NOI18N
         jMenu4.setMargin(new java.awt.Insets(0, 0, 0, 5));
         jMenuBar1.add(jMenu4);
 

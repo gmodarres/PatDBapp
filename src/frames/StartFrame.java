@@ -26,7 +26,7 @@ public class StartFrame extends javax.swing.JFrame {
      */
     public StartFrame() {
         initComponents();
-        ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/EsALiR_suite_BG_ico2-3_small.png"));
+        ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_small.png"));
         this.setIconImage(img.getImage());
         
         lbl_logged1.setText("You're logged in as "+DBconnect.USER+".");
@@ -47,8 +47,7 @@ public class StartFrame extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Bye Bye, see you soon!");
                 my_log.logger.info("Closing App \n################################################################################################################################\n");
             }
-        });
-        
+        });     
     }
     
     /**
@@ -74,7 +73,7 @@ public class StartFrame extends javax.swing.JFrame {
         btn_test = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Easy Analysis of Linked Results");
+        setTitle("Linked Results Analysis Tool");
         setLocation(new java.awt.Point(15, 15));
 
         lbl_logged1.setFont(new java.awt.Font("Tahoma", 2, 13)); // NOI18N
@@ -84,7 +83,7 @@ public class StartFrame extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         LOGO.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        LOGO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/NeedsAName_small.png"))); // NOI18N
+        LOGO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_med.png"))); // NOI18N
 
         btn_admin.setFont(new java.awt.Font("Tahoma", 2, 13)); // NOI18N
         btn_admin.setForeground(new java.awt.Color(153, 153, 153));
@@ -217,7 +216,7 @@ public class StartFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lbl_logged1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -271,7 +270,7 @@ public class StartFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_testActionPerformed
 
     private void btn_browse_subtypesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_browse_subtypesActionPerformed
-        SubtypesBrowse s = new SubtypesBrowse();
+        SubtypeBrowse s = new SubtypeBrowse();
         s.setVisible(true);
     }//GEN-LAST:event_btn_browse_subtypesActionPerformed
 

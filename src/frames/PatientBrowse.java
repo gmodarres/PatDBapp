@@ -36,6 +36,8 @@ public class PatientBrowse extends javax.swing.JFrame {
      */
     public PatientBrowse() {
         initComponents();
+        ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_small.png"));
+        this.setIconImage(img.getImage());
         initial_table_patient();
         
         Info_top4.getRootPane().setDefaultButton(btn_Search);
@@ -147,6 +149,7 @@ public class PatientBrowse extends javax.swing.JFrame {
         jMenuItem2_Info = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Linked Results Analysis Tool");
 
         Info_top4.setBackground(new java.awt.Color(102, 153, 255));
         Info_top4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -338,7 +341,7 @@ public class PatientBrowse extends javax.swing.JFrame {
         lbl_rowsReturned.setText(" ");
 
         jMenu4.setBorder(null);
-        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/NeedsAName_Font_small07.png"))); // NOI18N
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_Font_small07_web.png"))); // NOI18N
         jMenu4.setMargin(new java.awt.Insets(0, 0, 0, 5));
         jMenuBar1.add(jMenu4);
 
@@ -500,89 +503,174 @@ public class PatientBrowse extends javax.swing.JFrame {
                 + " and s.stdy_id=ps.stdy_id and j.proj_id=pj.proj_id ";
             
             if (rbtn_searchCrit1.isSelected()) {
-                String searchCrit_select = CB_searchCrit1.getSelectedItem().toString();
-                String searchCrit = "";
-                String sCrit_txt = txt_searchCrit1.getText();
-                String select = "";
+                String searchCrit1_select = CB_searchCrit1.getSelectedItem().toString();
+                String searchCrit1 = "";
+                String sCrit1_txt = txt_searchCrit1.getText();
+                String select1 = "";
                 
-                switch (searchCrit_select) {
+                switch (searchCrit1_select) {
                     case "pat_id":
-                        searchCrit = "p.pat_id";
-                        select = "ID";
+                        searchCrit1 = "p.pat_id";
+                        select1 = "ID";
                         break;
                     case "fm_pat_no":
-                        searchCrit = "fm_pat_no";
-                        select = "ID";
+                        searchCrit1 = "fm_pat_no";
+                        select1 = "ID";
                         break;
                     case "fname":
-                        searchCrit = "fname";
-                        select = "TXT";
+                        searchCrit1 = "fname";
+                        select1 = "TXT";
                         break;
                     case "surname":
-                        searchCrit = "surname";
-                        select = "TXT";
+                        searchCrit1 = "surname";
+                        select1 = "TXT";
                         break;
                     case "surname old":
-                        searchCrit = "surname_old";
-                        select = "TXT";
+                        searchCrit1 = "surname_old";
+                        select1 = "TXT";
                         break;
                     case "sex":
-                        searchCrit = "sex";
-                        select = "TXT";
+                        searchCrit1 = "sex";
+                        select1 = "TXT";
                         break;
                     case "birth date":
-                        searchCrit = "b_date";
-                        select ="DATE";
+                        searchCrit1 = "b_date";
+                        select1 ="DATE";
                         break;
                     case "diagnosis date":
-                        searchCrit = "dg_date";
-                        select = "DATE";
+                        searchCrit1 = "dg_date";
+                        select1 = "DATE";
                         break;
                     case "mb. down":
-                        searchCrit = "mb_down";
-                        select = "TXT";
+                        searchCrit1 = "mb_down";
+                        select1 = "TXT";
                         break;
                     case "study":
-                        searchCrit = "stdy_name";
-                        select = "TXT";
+                        searchCrit1 = "stdy_name";
+                        select1 = "TXT";
                         break;
                     case "study_id":
-                        searchCrit = "pat_study_id";
-                        select = "ID";
+                        searchCrit1 = "pat_study_id";
+                        select1 = "TXT";
                         break;
                     case "project":
-                        searchCrit = "proj_name";
+                        searchCrit1 = "proj_name";
                         break;
                     default:
                         break;
                 }
 
-                if (select.equals("ID")) {
+                if (select1.equals("ID")) {
                     if (rbtn_NOT1.isSelected()) {
-                        sql = sql + " and " + searchCrit + " not in ( " + sCrit_txt + " )";
+                        sql = sql + " and " + searchCrit1 + " not in ( " + sCrit1_txt + " )";
                     } else {
-                        sql = sql + " and " + searchCrit + " in ( " + sCrit_txt + " )";
+                        sql = sql + " and " + searchCrit1 + " in ( " + sCrit1_txt + " )";
                     }
-                } else if (select.equals("TXT")) {
+                } else if (select1.equals("TXT")) {
                     if (rbtn_NOT1.isSelected()) {
-                        sql = sql + " and " + searchCrit + " NOT like '%" + sCrit_txt + "%'";
+                        sql = sql + " and " + searchCrit1 + " NOT like '%" + sCrit1_txt + "%'";
                     } else {
-                        sql = sql + " and " + searchCrit + " like '%" + sCrit_txt + "%'";
+                        sql = sql + " and " + searchCrit1 + " like '%" + sCrit1_txt + "%'";
                     }
-                } else if (select.equals("DATE")) {
-                    String splitDate[] = sCrit_txt.split(",");          //  >=,2009-01-01   between,2009-01-01;2012-01-01
+                } else if (select1.equals("DATE")) {
+                    String splitDate[] = sCrit1_txt.split(",");          //  >=,2009-01-01   between,2009-01-01;2012-01-01
                     
                     if (splitDate[0].equals("between")){
                         //JOptionPane.showMessageDialog(null, "1;2;3 " +splitDate[2]);
-                        sql = sql + " and " + searchCrit + " " + splitDate[0] +" '"+splitDate[1]+"' and '" + splitDate[2] +"'" ;
+                        sql = sql + " and " + searchCrit1 + " " + splitDate[0] +" '"+splitDate[1]+"' and '" + splitDate[2] +"'" ;
                     }else if (splitDate[0].equals(">") || splitDate[0].equals("<") || splitDate[0].equals("=") ) {
                         //JOptionPane.showMessageDialog(null, "1;2 " +splitDate[1]);
-                        sql = sql + " and " + searchCrit +" " +splitDate[0] +" '"+splitDate[1]+"'" ;
+                        sql = sql + " and " + searchCrit1 +" " +splitDate[0] +" '"+splitDate[1]+"'" ;
                     }
-                    //sql = sql + " and " + searchCrit + " " + sCrit_txt;
+                    //sql = sql + " and " + searchCrit1 + " " + sCrit1_txt;
                 }
-                      
             }
+            
+            if (rbtn_searchCrit2.isSelected()) {
+                String andor1 = CB_andor.getSelectedItem().toString();
+                String searchCrit2_select = CB_searchCrit2.getSelectedItem().toString();
+                String searchCrit2 = "";
+                String sCrit2_txt = txt_searchCrit2.getText();
+                String select2 = "";
+                
+                switch (searchCrit2_select) {
+                    case "pat_id":
+                        searchCrit2 = "p.pat_id";
+                        select2 = "ID";
+                        break;
+                    case "fm_pat_no":
+                        searchCrit2 = "fm_pat_no";
+                        select2 = "ID";
+                        break;
+                    case "fname":
+                        searchCrit2 = "fname";
+                        select2 = "TXT";
+                        break;
+                    case "surname":
+                        searchCrit2 = "surname";
+                        select2 = "TXT";
+                        break;
+                    case "surname old":
+                        searchCrit2 = "surname_old";
+                        select2 = "TXT";
+                        break;
+                    case "sex":
+                        searchCrit2 = "sex";
+                        select2 = "TXT";
+                        break;
+                    case "birth date":
+                        searchCrit2 = "b_date";
+                        select2 ="DATE";
+                        break;
+                    case "diagnosis date":
+                        searchCrit2 = "dg_date";
+                        select2 = "DATE";
+                        break;
+                    case "mb. down":
+                        searchCrit2 = "mb_down";
+                        select2 = "TXT";
+                        break;
+                    case "study":
+                        searchCrit2 = "stdy_name";
+                        select2 = "TXT";
+                        break;
+                    case "study_id":
+                        searchCrit2 = "pat_study_id";
+                        select2 = "TXT";
+                        break;
+                    case "project":
+                        searchCrit2 = "proj_name";
+                        break;
+                    default:
+                        break;
+                }
+
+                if (select2.equals("ID")) {
+                    if (rbtn_NOT2.isSelected()) {
+                        sql = sql +  " " + andor1 + " "+ searchCrit2 + " not in ( " + sCrit2_txt + " )";
+                    } else {
+                        sql = sql +  " " + andor1 + " " + searchCrit2 + " in ( " + sCrit2_txt + " )";
+                    }
+                } else if (select2.equals("TXT")) {
+                    if (rbtn_NOT2.isSelected()) {
+                        sql = sql + " " + andor1 + " "+ searchCrit2 + " NOT like '%" + sCrit2_txt + "%'";
+                    } else {
+                        sql = sql +  " " + andor1 + " "+ searchCrit2 + " like '%" + sCrit2_txt + "%'";
+                    }
+                } else if (select2.equals("DATE")) {
+                    String splitDate[] = sCrit2_txt.split(",");          //  >=,2009-01-01   between,2009-01-01;2012-01-01
+                    
+                    if (splitDate[0].equals("between")){
+                        //JOptionPane.showMessageDialog(null, "1;2;3 " +splitDate[2]);
+                        sql = sql + " " + andor1 + " "+ searchCrit2 + " " + splitDate[0] +" '"+splitDate[1]+"' and '" + splitDate[2] +"'" ;
+                    }else if (splitDate[0].equals(">") || splitDate[0].equals("<") || splitDate[0].equals("=") ) {
+                        //JOptionPane.showMessageDialog(null, "1;2 " +splitDate[1]);
+                        sql = sql + " " + andor1 + " "+ searchCrit2 +" " +splitDate[0] +" '"+splitDate[1]+"'" ;
+                    }
+                }
+            }
+            
+            
 
             txtArea_test.setText(sql);
             
