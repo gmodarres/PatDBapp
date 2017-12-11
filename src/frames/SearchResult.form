@@ -373,6 +373,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="A_txt_lab_id">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="fill in lab_id and press enter to get a corresponding result"/>
+                  </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="A_txt_lab_idActionPerformed"/>
                   </Events>
@@ -1120,6 +1123,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="F_txt_lab_id">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="fill in lab_id and press enter to get a corresponding result"/>
+                  </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="F_txt_lab_idActionPerformed"/>
                   </Events>
@@ -1435,12 +1441,12 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="F_txt_resID">
                   <Properties>
-                    <Property name="toolTipText" type="java.lang.String" value="&lt;,&gt;,=  number"/>
+                    <Property name="toolTipText" type="java.lang.String" value="1,2,3,..."/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="F_txt_resID_1">
                   <Properties>
-                    <Property name="toolTipText" type="java.lang.String" value="&lt;,&gt;,=  number"/>
+                    <Property name="toolTipText" type="java.lang.String" value="1,2,3,..."/>
                   </Properties>
                 </Component>
                 <Container class="javax.swing.JPanel" name="jPanel14">
@@ -1735,6 +1741,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="Z_txt_lab_id">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Z_txt_lab_idActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="Z_txt_result_id">
                 </Component>
@@ -1972,12 +1981,12 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="ZI_txt_resId">
                   <Properties>
-                    <Property name="toolTipText" type="java.lang.String" value="&lt;,&gt;,=  number"/>
+                    <Property name="toolTipText" type="java.lang.String" value="1,2,3,..."/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="ZI_txt_resId_1">
                   <Properties>
-                    <Property name="toolTipText" type="java.lang.String" value="&lt;,&gt;,=  number"/>
+                    <Property name="toolTipText" type="java.lang.String" value="1,2,3,..."/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="ZI_txt_cp">

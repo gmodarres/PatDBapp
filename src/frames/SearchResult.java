@@ -218,7 +218,7 @@ public class SearchResult extends javax.swing.JFrame {
           }
     }
 
-    private void update_table_array(){              // not used ...
+    private void update_table_array(){              // is needed for lab_id search in A_txt_lab_id
         Connection conn = DBconnect.ConnecrDb();
         ResultSet rs = null;
         PreparedStatement pst = null;
@@ -468,7 +468,52 @@ public class SearchResult extends javax.swing.JFrame {
         }
     }
 
-    private void update_table_zg_iscn(){ /* EMPTY */ }
+    private void update_table_zg_iscn() {
+        Connection conn = DBconnect.ConnecrDb();
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+
+        try {
+            String sql = "SELECT i.klon_id as Klon,i.result_id, chr_cnt as Chr, mitos_cnt as Mitosen, cp, iscn as ISCN, material, stim FROM zg_iscn i, main_result m"
+                    + " WHERE i.result_id=m.result_id AND lab_id=?";
+
+            pst = conn.prepareStatement(sql);
+            pst.setString(1, Z_txt_lab_id.getText());
+            rs = pst.executeQuery();
+            table_zg_iscn.setModel(DbUtils.resultSetToTableModel(rs));
+            CustomSorter.table_customRowSort(table_zg_iscn);
+
+            // resize column width
+            jScrollPane3.setViewportView(table_zg_iscn);
+            if (table_zg_iscn.getColumnModel().getColumnCount() > 0) {
+                table_zg_iscn.getColumnModel().getColumn(0).setPreferredWidth(60);
+                table_zg_iscn.getColumnModel().getColumn(0).setMaxWidth(60);
+                table_zg_iscn.getColumnModel().getColumn(1).setPreferredWidth(60);
+                table_zg_iscn.getColumnModel().getColumn(1).setMaxWidth(60);
+                table_zg_iscn.getColumnModel().getColumn(2).setPreferredWidth(45);
+                table_zg_iscn.getColumnModel().getColumn(2).setMaxWidth(45);
+                table_zg_iscn.getColumnModel().getColumn(3).setPreferredWidth(55);
+                table_zg_iscn.getColumnModel().getColumn(3).setMaxWidth(55);
+                table_zg_iscn.getColumnModel().getColumn(4).setPreferredWidth(50);
+                table_zg_iscn.getColumnModel().getColumn(4).setMaxWidth(50);
+                table_zg_iscn.getColumnModel().getColumn(5).setPreferredWidth(500);   // iscn
+                table_zg_iscn.getColumnModel().getColumn(5).setMaxWidth(800);         // iscn
+                table_zg_iscn.getColumnModel().getColumn(6).setPreferredWidth(60);
+                table_zg_iscn.getColumnModel().getColumn(6).setMaxWidth(150);
+                table_zg_iscn.getColumnModel().getColumn(7).setPreferredWidth(60);
+                table_zg_iscn.getColumnModel().getColumn(7).setMaxWidth(200);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        } finally {
+            try {
+                if (rs != null) { rs.close();}
+                if (pst != null) { pst.close();}
+                if (conn != null) { conn.close();}
+            } catch (Exception e) {
+            }
+        }
+    }
     
     private void initial_table_zg_result() {
         DefaultTableModel model = (DefaultTableModel) table_zg_result.getModel();
@@ -1334,6 +1379,7 @@ public void toExcel(JTable table, File file){
 
         A_lab_array_sub_id.setText("A.sub_id");
 
+        A_txt_lab_id.setToolTipText("fill in lab_id and press enter to get a corresponding result");
         A_txt_lab_id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 A_txt_lab_idActionPerformed(evt);
@@ -1794,6 +1840,7 @@ public void toExcel(JTable table, File file){
 
         F_lab_fish_sub_id.setText("F.sub_id");
 
+        F_txt_lab_id.setToolTipText("fill in lab_id and press enter to get a corresponding result");
         F_txt_lab_id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 F_txt_lab_idActionPerformed(evt);
@@ -1931,9 +1978,9 @@ public void toExcel(JTable table, File file){
 
         F_txt_kerne_1.setToolTipText("<,>,=  number");
 
-        F_txt_resID.setToolTipText("<,>,=  number");
+        F_txt_resID.setToolTipText("1,2,3,...");
 
-        F_txt_resID_1.setToolTipText("<,>,=  number");
+        F_txt_resID_1.setToolTipText("1,2,3,...");
 
         jPanel14.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -2172,6 +2219,12 @@ public void toExcel(JTable table, File file){
 
         Z_lab_klon_id.setText("klon_id");
 
+        Z_txt_lab_id.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Z_txt_lab_idActionPerformed(evt);
+            }
+        });
+
         ZG_rbtn_sort.setText("sort");
 
         ZG_ComboBox_sort.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "i.klon_id", "result_id", "chr_cnt", "mitos_cnt", "cp", "iscn", "material", "stim" }));
@@ -2267,9 +2320,9 @@ public void toExcel(JTable table, File file){
         ZR_txt_klonID_1.setBackground(new java.awt.Color(204, 204, 204));
         ZR_txt_klonID_1.setToolTipText("<,>,=  number");
 
-        ZI_txt_resId.setToolTipText("<,>,=  number");
+        ZI_txt_resId.setToolTipText("1,2,3,...");
 
-        ZI_txt_resId_1.setToolTipText("<,>,=  number");
+        ZI_txt_resId_1.setToolTipText("1,2,3,...");
 
         ZI_txt_cp.setToolTipText("search text, % for any, null for empty");
 
@@ -2982,11 +3035,14 @@ public void toExcel(JTable table, File file){
     }//GEN-LAST:event_table_fishMouseClicked
 
     private void F_btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_F_btn_clearActionPerformed
-        initial_table_fish();
+
         //initial_table_array();
+        initial_table_fish();
+        //initial_table_zg_iscn();
+        //initial_table_zg_result();
         initial_table_statistics();
         initial_table_queryIDs(); 
-        
+
         clearBtnColors();
         
          // unselect rbtn
@@ -3037,9 +3093,14 @@ public void toExcel(JTable table, File file){
     }//GEN-LAST:event_F_btn_clearActionPerformed
 
     private void Z_btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Z_btn_clearActionPerformed
+ 
+        //initial_table_array();
+        //initial_table_fish();
         initial_table_zg_iscn();
-        initial_table_array();
         initial_table_zg_result();
+        initial_table_statistics();
+        initial_table_queryIDs(); 
+        
         
         clearBtnColors();
         
@@ -3494,6 +3555,7 @@ public void toExcel(JTable table, File file){
     }//GEN-LAST:event_F_txt_lab_idActionPerformed
 
     private void Z_btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Z_btn_searchActionPerformed
+
         Connection conn = DBconnect.ConnecrDb();
         ResultSet rs = null;
         PreparedStatement pst = null;
@@ -4158,8 +4220,6 @@ public void toExcel(JTable table, File file){
             get_statistics(sql);
 
             get_queryLabIDs(sql, pst, rs, conn);
-            
-            
 
         } catch (Exception e) {
             //JOptionPane.showMessageDialog(null, "Something is wrong ...");
@@ -4176,8 +4236,11 @@ public void toExcel(JTable table, File file){
 
     private void A_btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_A_btn_clearActionPerformed
         initial_table_array();
+        //initial_table_fish();
+        //initial_table_zg_iscn();
+        //initial_table_zg_result();
         initial_table_statistics();
-        initial_table_queryIDs();  
+        initial_table_queryIDs(); 
        
         clearBtnColors();
 
@@ -4261,7 +4324,7 @@ public void toExcel(JTable table, File file){
 
     private void A_txt_lab_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_A_txt_lab_idActionPerformed
         
-        //update_table_array(); //+
+        update_table_array(); 
         Connection conn = DBconnect.ConnecrDb();
         ResultSet rs = null;
         PreparedStatement pst = null;
@@ -5145,7 +5208,6 @@ public void toExcel(JTable table, File file){
     }//GEN-LAST:event_table_queryIDsKeyReleased
 
     private void table_zg_iscnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_table_zg_iscnKeyReleased
-        // TODO add your handling code here:
         Connection conn = DBconnect.ConnecrDb();
         ResultSet rs = null;
         PreparedStatement pst = null;
@@ -5251,6 +5313,37 @@ public void toExcel(JTable table, File file){
             JOptionPane.showMessageDialog(null, e);
         }   
     }//GEN-LAST:event_jMenuItem1_openModelActionPerformed
+
+    private void Z_txt_lab_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Z_txt_lab_idActionPerformed
+        // TODO
+        update_table_zg_iscn();
+        Connection conn = DBconnect.ConnecrDb();
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+
+        try {
+
+            String lab_id = Z_txt_lab_id.getText();
+            Z_txt_klon_id.setText("");
+            String sql = "SELECT i.klon_id as Klon,i.result_id, chr_cnt as Chr, mitos_cnt as Mitosen, cp, iscn as ISCN, material, stim FROM zg_iscn i, main_result m Where i.result_id=m.result_id AND lab_id='" + lab_id + "'";
+
+            //txtArea_sql.setText(sql);
+            get_ids(sql, pst, rs, conn); // needed for get_statistics() to count patients affected
+            get_statistics(sql);
+            get_queryLabIDs(sql, pst, rs, conn);
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        } finally {
+            try {
+                if (rs != null) { rs.close();}
+                if (pst != null) { pst.close();}
+                if (conn != null) { conn.close();}
+            } catch (Exception e) {
+            }
+        }
+
+    }//GEN-LAST:event_Z_txt_lab_idActionPerformed
 
     /**
      * @param args the command line arguments
