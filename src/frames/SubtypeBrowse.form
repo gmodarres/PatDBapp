@@ -373,11 +373,12 @@
             <Component class="javax.swing.JComboBox" name="CB_specST">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
+                  <StringArray count="5">
                     <StringItem index="0" value="maj. subtype"/>
-                    <StringItem index="1" value="spec. subt. 1"/>
-                    <StringItem index="2" value="spec. subt. 2"/>
-                    <StringItem index="3" value="spec. subt. 3"/>
+                    <StringItem index="1" value="b-oth. subtype"/>
+                    <StringItem index="2" value="spec. subt. 1"/>
+                    <StringItem index="3" value="spec. subt. 2"/>
+                    <StringItem index="4" value="spec. subt. 3"/>
                   </StringArray>
                 </Property>
                 <Property name="enabled" type="boolean" value="false"/>
@@ -408,11 +409,12 @@
             <Component class="javax.swing.JComboBox" name="CB_specST1">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
+                  <StringArray count="5">
                     <StringItem index="0" value="maj. subtype"/>
-                    <StringItem index="1" value="spec. subt. 1"/>
-                    <StringItem index="2" value="spec. subt. 2"/>
-                    <StringItem index="3" value="spec. subt. 3"/>
+                    <StringItem index="1" value="b-oth. subtype"/>
+                    <StringItem index="2" value="spec. subt. 1"/>
+                    <StringItem index="3" value="spec. subt. 2"/>
+                    <StringItem index="4" value="spec. subt. 3"/>
                   </StringArray>
                 </Property>
                 <Property name="enabled" type="boolean" value="false"/>

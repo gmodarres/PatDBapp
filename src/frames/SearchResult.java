@@ -80,6 +80,8 @@ public class SearchResult extends javax.swing.JFrame {
     static String source = null;        // Name for header in FreeTable
     static String tableMoving = null;   // Name of table that is moved to FreeTable, to set row sorter
     
+    static String resultMoving = null;  // TEST 
+    
     String click_result = null;
     static String click_lID = null;
     
@@ -896,6 +898,60 @@ public class SearchResult extends javax.swing.JFrame {
     
     }
     
+     private void deliver_Stdy_ids(String sql, String set){ 
+        Connection conn = DBconnect.ConnecrDb();
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+
+        String stdy_id = "";
+        //String projPat = (String) ComboBox_projPat.getSelectedItem();
+        if(ComboBox_stdyPat.getSelectedItem().toString().equals("ALL BFM 2009")){
+            stdy_id = "1";
+        }else if(ComboBox_stdyPat.getSelectedItem().toString().equals("TEST")){
+            stdy_id = "2";
+        }else{ // no study assigned
+            stdy_id = "0";
+        }
+        
+try {
+            String sql2 = "SELECT m.*, s.pat_id, y.pat_id FROM main_result m, sample s, pat_instudy y"
+                    + " where m.lab_id=s.lab_id"
+                    + " and s.pat_id=y.pat_id"
+                    + " and y.stdy_id='" + stdy_id + "'";
+
+            pst = conn.prepareStatement(sql2);
+            rs = pst.executeQuery();
+
+            get_ids(sql2, pst, rs, conn);
+            if (ids.length() > 1){
+                ids = ids.substring(0, (ids.length() - 1));
+                if (set.equals("A")){
+                    this.mod_sql = sql + " AND m.result_id in(" + ids + ")";
+                } else if (set.equals("F")){
+                    this.mod_sql = sql + " AND result_id in(" + ids + ")";
+                }
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Something is wrong with project patient's id list!");
+            }
+            display_ids();
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        } finally {
+            try {
+                if (rs != null) { rs.close();}
+                if (pst != null) { pst.close();}
+                if (conn != null) { conn.close();}
+            } catch (Exception e) {
+            }
+        }        
+        
+        
+        
+        
+     }  
+    
     private void highlight_gene(String gene, Integer no){
         try{
             String text  = txtArea_genes.getText().toLowerCase();
@@ -1114,6 +1170,7 @@ public void toExcel(JTable table, File file){
         popUpMenu_save = new javax.swing.JMenuItem();
         popUpMenu_selectAll = new javax.swing.JMenuItem();
         popUpMenu_moveTbl = new javax.swing.JMenuItem();
+        popUpMenu_resultWin = new javax.swing.JMenuItem();
         tab_main = new javax.swing.JTabbedPane();
         tab_array = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -1336,6 +1393,14 @@ public void toExcel(JTable table, File file){
             }
         });
         popUpSave.add(popUpMenu_moveTbl);
+
+        popUpMenu_resultWin.setText("show result ...");
+        popUpMenu_resultWin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                popUpMenu_resultWinActionPerformed(evt);
+            }
+        });
+        popUpSave.add(popUpMenu_resultWin);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Linked Results Analysis Tool");
@@ -1809,6 +1874,7 @@ public void toExcel(JTable table, File file){
         );
 
         tab_main.addTab("Array", tab_array);
+        tab_array.getAccessibleContext().setAccessibleName("Array");
 
         table_fish.setAutoCreateRowSorter(true);
         table_fish.setModel(new javax.swing.table.DefaultTableModel(
@@ -2169,6 +2235,7 @@ public void toExcel(JTable table, File file){
         );
 
         tab_main.addTab("FISH", tab_fish);
+        tab_fish.getAccessibleContext().setAccessibleName("FISH");
 
         table_zg_iscn.setAutoCreateRowSorter(true);
         table_zg_iscn.setModel(new javax.swing.table.DefaultTableModel(
@@ -2195,6 +2262,7 @@ public void toExcel(JTable table, File file){
         });
         jScrollPane3.setViewportView(table_zg_iscn);
         table_zg_iscn.getAccessibleContext().setAccessibleName("table_zg_iscn");
+        table_zg_iscn.getAccessibleContext().setAccessibleDescription("cytogenetics result");
 
         table_zg_result.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -2523,6 +2591,7 @@ public void toExcel(JTable table, File file){
         );
 
         tab_main.addTab("ZG", tab_ZG);
+        tab_ZG.getAccessibleContext().setAccessibleName("Cytogenetics");
 
         Info_top.setBackground(new java.awt.Color(102, 153, 255));
         Info_top.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -2700,7 +2769,7 @@ public void toExcel(JTable table, File file){
 
         lbl_fromProj.setText("from project ...");
 
-        ComboBox_stdyPat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALL BFM 2009" }));
+        ComboBox_stdyPat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALL BFM 2009", "TEST" }));
 
         rbtn_SB.setText("use SampleBrowse ");
 
@@ -3376,6 +3445,10 @@ public void toExcel(JTable table, File file){
                 deliver_Proj_ids(sql, "F");
                 sql = this.mod_sql;
             }
+            if (rbtn_onlyPat1.isSelected()){
+                deliver_Stdy_ids(sql, "F");
+                sql = this.mod_sql;
+            }    
             
             // only for the set of sample browse result
             if (rbtn_SB.isSelected()) {
@@ -3815,6 +3888,10 @@ public void toExcel(JTable table, File file){
                 deliver_Proj_ids(sql, "A");
                 sql = this.mod_sql;
             }
+            if (rbtn_onlyPat1.isSelected()){
+                deliver_Stdy_ids(sql, "A");
+                sql = this.mod_sql;
+            }    
             
             // only for the set of sample browse result
             if (rbtn_SB.isSelected()) {     
@@ -4141,6 +4218,10 @@ public void toExcel(JTable table, File file){
                 deliver_Proj_ids(sql, "A");
                 sql = this.mod_sql;
             }
+            if (rbtn_onlyPat1.isSelected()){
+                deliver_Stdy_ids(sql, "A");
+                sql = this.mod_sql;
+            }          
 
             // only for the set of sample browse result
             if (rbtn_SB.isSelected()) {     
@@ -5278,7 +5359,7 @@ public void toExcel(JTable table, File file){
     }//GEN-LAST:event_btn_EActionPerformed
 
     private void popUpMenu_moveTblActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popUpMenu_moveTblActionPerformed
-        // TODO add your handling code here:
+
         JTable OT = this.outTable;
         source = OT.getAccessibleContext().getAccessibleDescription();
         tableMoving = OT.getAccessibleContext().getAccessibleName();
@@ -5344,6 +5425,74 @@ public void toExcel(JTable table, File file){
         }
 
     }//GEN-LAST:event_Z_txt_lab_idActionPerformed
+
+    private void popUpMenu_resultWinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popUpMenu_resultWinActionPerformed
+        // TODO add your handling code here:
+        // open window and show corresponding result-text
+        
+        Connection conn = DBconnect.ConnecrDb();
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+        
+        JTable OT = this.outTable;
+        source = OT.getAccessibleContext().getAccessibleDescription();
+        try {
+            String result_id = "";
+            switch (source) {
+                case "array result":
+                    result_id = A_txt_result_id.getText();
+                    break;
+                case "fish result":
+                    result_id = F_txt_result_id.getText();
+                    break;
+                case "cytogenetics result":
+                    result_id = Z_txt_result_id.getText();
+                    break;
+                default:
+                    break;
+            }
+
+            String sql = "select * from main_result where result_id="+ result_id;
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            
+            String arr="";
+            String fish="";
+            
+            if (rs.next()) {
+                arr = rs.getString("ar_sumGenRes");
+                fish = rs.getString("fish_intrpr");
+            }
+
+            String text = "";
+            switch (source) {
+                case "array result":
+                    text = arr;
+                    break;
+                case "fish result":
+                    text = fish;
+                    break;
+               default:
+                    break;
+            }
+            
+            resultMoving = text;
+        
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        } finally {
+            try {
+                if (rs != null) { rs.close();}
+                if (pst != null) { pst.close();}
+                if (conn != null) { conn.close();}
+            } catch (Exception e) {
+            }
+        }
+
+        new ResultWindow().setVisible(true);
+        
+        
+    }//GEN-LAST:event_popUpMenu_resultWinActionPerformed
 
     /**
      * @param args the command line arguments
@@ -5570,6 +5719,7 @@ public void toExcel(JTable table, File file){
     private javax.swing.JLabel lbl_rowsReturned;
     private javax.swing.JLabel lbl_zg_signal;
     private javax.swing.JMenuItem popUpMenu_moveTbl;
+    private javax.swing.JMenuItem popUpMenu_resultWin;
     private javax.swing.JMenuItem popUpMenu_save;
     private javax.swing.JMenuItem popUpMenu_selectAll;
     private javax.swing.JPopupMenu popUpSave;

@@ -111,8 +111,7 @@ public class SubtypeBrowse extends javax.swing.JFrame {
         ResultSet rs = null;
         PreparedStatement pst = null;
         String sql = "SELECT p.pat_id, m.result_id, m.lab_id FROM main_result m, sample s, patient p, subtypes t"
-                + " Where m.lab_id=s.lab_id and s.pat_id=p.pat_id and t.lab_id=s.lab_id;";
-        
+                + " Where m.lab_id=s.lab_id and s.pat_id=p.pat_id and t.pat_id=p.pat_id;";
         try {
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
@@ -149,7 +148,8 @@ public class SubtypeBrowse extends javax.swing.JFrame {
 
             String sql = "SELECT p.pat_id, m.result_id, m.lab_id FROM main_result m, sample s, patient p"
                     + " Where m.lab_id=s.lab_id and s.pat_id=p.pat_id"
-                    + " AND m.lab_id in (" + all_ids + ")";
+                    //+ " AND m.lab_id in (" + all_ids + ")";         
+                    + " AND p.pat_id in (" + all_ids + ")";   
             try {
                 pst = conn.prepareStatement(sql);
                 rs = pst.executeQuery();
@@ -224,7 +224,7 @@ public class SubtypeBrowse extends javax.swing.JFrame {
             
             while (rs.next()) {
                 //this.rs_sizeList.add(rs.getString("array_sub_id"));
-                String id = rs.getString("lab_id");
+                String id = rs.getString("pat_id");     // chng sql --->  lab_id is needed for table_resultID
                 
                 if (!id.equals(id_rem)){
                     id_rem = id;
@@ -384,7 +384,7 @@ public class SubtypeBrowse extends javax.swing.JFrame {
 
         rbtn_specST.setEnabled(false);
 
-        CB_specST.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "maj. subtype", "spec. subt. 1", "spec. subt. 2", "spec. subt. 3" }));
+        CB_specST.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "maj. subtype", "b-oth. subtype", "spec. subt. 1", "spec. subt. 2", "spec. subt. 3" }));
         CB_specST.setEnabled(false);
 
         CB_andor1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AND", "OR" }));
@@ -392,7 +392,7 @@ public class SubtypeBrowse extends javax.swing.JFrame {
 
         rbtn_specST1.setEnabled(false);
 
-        CB_specST1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "maj. subtype", "spec. subt. 1", "spec. subt. 2", "spec. subt. 3" }));
+        CB_specST1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "maj. subtype", "b-oth. subtype", "spec. subt. 1", "spec. subt. 2", "spec. subt. 3" }));
         CB_specST1.setEnabled(false);
 
         rbtn_NOT1.setText("NOT");
@@ -627,9 +627,9 @@ public class SubtypeBrowse extends javax.swing.JFrame {
             ResultSet rs = null;
             PreparedStatement pst = null;
             
-            String sql = "SELECT distinct t.auto_id, t.lab_id, major_subtype, spec_sub1, spec_sub2, spec_sub3 FROM sample s, patient p, subtypes t"
+            String sql = "SELECT distinct t.auto_id, t.pat_id, major_subtype, bother_subtype, spec_sub1, spec_sub2, spec_sub3, ngs_sub1, ngs_sub2 FROM sample s, patient p, subtypes t"
                 + " where s.pat_id=p.pat_id"
-                + " and t.lab_id=s.lab_id";
+                + " and t.pat_id=p.pat_id";
                 //+ " and major_subtype like '%" + majSub +"%'";
             /*
             String sql = "SELECT distinct t.auto_id, t.lab_id, major_subtype, spec_sub1, spec_sub2, spec_sub3 FROM sample s, patient p, subtypes t"
@@ -649,6 +649,9 @@ public class SubtypeBrowse extends javax.swing.JFrame {
                 switch (specST_select) { 
                     case "maj. subtype":
                         specST = "major_subtype";
+                        break;
+                    case "b-oth. subtype":
+                        specST = "bother_subtype";
                         break;
                     case "spec. subt. 1":
                         specST = "spec_sub1";
@@ -679,6 +682,9 @@ public class SubtypeBrowse extends javax.swing.JFrame {
                     case "maj. subtype":
                         specST1 = "major_subtype";
                         break;
+                    case "b-oth. subtype":
+                        specST1 = "bother_subtype";
+                        break;
                     case "spec. subt. 1":
                         specST1 = "spec_sub1";
                         break;
@@ -693,7 +699,7 @@ public class SubtypeBrowse extends javax.swing.JFrame {
                 }
                 String spec_txt1 = txt_specST1.getText();
                 
-                if (rbtn_NOT.isSelected()) {
+                if (rbtn_NOT1.isSelected()) {
                     sql = sql + " " + andor1 + " " + specST1 + " NOT like '%" + spec_txt1 + "%'";
                 } else {               
                     sql = sql + " " + andor1 + " " + specST1 + " like '%" + spec_txt1 + "%'";

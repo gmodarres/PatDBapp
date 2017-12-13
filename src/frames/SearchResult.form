@@ -34,6 +34,14 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="popUpMenu_moveTblActionPerformed"/>
           </Events>
         </MenuItem>
+        <MenuItem class="javax.swing.JMenuItem" name="popUpMenu_resultWin">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="show result ..."/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="popUpMenu_resultWinActionPerformed"/>
+          </Events>
+        </MenuItem>
       </SubComponents>
     </Container>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
@@ -178,6 +186,9 @@
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
         <Container class="javax.swing.JPanel" name="tab_array">
+          <AccessibilityProperties>
+            <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Array"/>
+          </AccessibilityProperties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="Array">
@@ -941,6 +952,9 @@
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="tab_fish">
+          <AccessibilityProperties>
+            <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="FISH"/>
+          </AccessibilityProperties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="FISH">
@@ -1542,6 +1556,9 @@
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="tab_ZG">
+          <AccessibilityProperties>
+            <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Cytogenetics"/>
+          </AccessibilityProperties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="ZG">
@@ -1619,6 +1636,7 @@
                   </Properties>
                   <AccessibilityProperties>
                     <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="table_zg_iscn"/>
+                    <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value="cytogenetics result"/>
                   </AccessibilityProperties>
                   <Events>
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="table_zg_iscnMouseClicked"/>
@@ -2591,8 +2609,9 @@
             <Component class="javax.swing.JComboBox" name="ComboBox_stdyPat">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="1">
+                  <StringArray count="2">
                     <StringItem index="0" value="ALL BFM 2009"/>
+                    <StringItem index="1" value="TEST"/>
                   </StringArray>
                 </Property>
               </Properties>
