@@ -134,6 +134,7 @@ public class CustomSorter {
             TableRowSorter<DefaultTableModel> rowSorter = (TableRowSorter<DefaultTableModel>) table.getRowSorter();
             
             rowSorter.setComparator(0, intComparator);
+            rowSorter.setComparator(1, intComparator);
             table.setRowSorter(rowSorter);
             
         } else if (tableS.equals("table_queryIDs")) {

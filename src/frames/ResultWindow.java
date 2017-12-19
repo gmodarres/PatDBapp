@@ -10,26 +10,46 @@
  */
 package frames;
 
+import static frames.SearchResult.IntrprWindowIsOpen;
+import static frames.SearchResult.source;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import myClass.ColumnFitAdapter;
 import myClass.CustomSorter;
+import myClass.DBconnect;
 
 /**
  *
  * @author gerda.modarres
  */
 public class ResultWindow extends javax.swing.JFrame {
+    
+    //static String getMovingResultID = null;
+    static String sourceOpener = null;
 
     /**
      * Creates new form freeTable
      */
     public ResultWindow() {
         initComponents();
-        getResult();
+        getIntrpr();
+    
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                SearchResult.IntrprWindowIsOpen = false;
+                //JOptionPane.showMessageDialog(null, "closing, boolean is " + IntrprWindowIsOpen);
+            }
+        }); 
+  
     }
     
-    public void getResult(){
+    public void getIntrpr(){
         this.setTitle(SearchResult.source);
+        sourceOpener = SearchResult.source;
         ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_small.png"));
         this.setIconImage(img.getImage());
         
@@ -37,9 +57,52 @@ public class ResultWindow extends javax.swing.JFrame {
         txtArea_result.setText(resultMoved);
     }
 
-    public static void updateResult(){
-    
-    }
+    public static void updateIntrpr(String resultID){
+        Connection conn = DBconnect.ConnecrDb();
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+        try{
+        String sql = "select * from main_result where result_id="+ resultID;
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            
+            String arr="";
+            String fish="";
+            String zg ="";
+            
+            if (rs.next()) {
+                arr = rs.getString("ar_intrpr");
+                fish = rs.getString("fish_intrpr");
+                zg = rs.getString("zg_intrpr");
+            }
+
+            String text = "";
+            switch (sourceOpener) {
+                case "array result":
+                    text = arr;
+                    break;
+                case "fish result":
+                    text = fish;
+                    break;
+                case "cytogenetics result":
+                    text = zg;
+                    break;
+                default:
+                    break;
+            }
+            txtArea_result.setText(text);
+  
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        } finally {
+            try {
+                if (rs != null) { rs.close();}
+                if (pst != null) { pst.close();}
+                if (conn != null) { conn.close();}
+            } catch (Exception e) {
+            }
+        }
+    }  
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -52,6 +115,7 @@ public class ResultWindow extends javax.swing.JFrame {
 
         jScrollPane2 = new javax.swing.JScrollPane();
         txtArea_result = new javax.swing.JTextArea();
+        rbtn_alwaysOnTop = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -61,25 +125,46 @@ public class ResultWindow extends javax.swing.JFrame {
         txtArea_result.setWrapStyleWord(true);
         jScrollPane2.setViewportView(txtArea_result);
 
+        rbtn_alwaysOnTop.setText("always on top");
+        rbtn_alwaysOnTop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtn_alwaysOnTopActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 802, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(rbtn_alwaysOnTop)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 802, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
+                .addGap(3, 3, 3)
+                .addComponent(rbtn_alwaysOnTop)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void rbtn_alwaysOnTopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_alwaysOnTopActionPerformed
+        if(rbtn_alwaysOnTop.isSelected()){
+            this.setAlwaysOnTop(true);
+        } else {
+            this.setAlwaysOnTop(false);
+        }
+    }//GEN-LAST:event_rbtn_alwaysOnTopActionPerformed
 
     /**
      * @param args the command line arguments
@@ -125,6 +210,7 @@ public class ResultWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea txtArea_result;
+    private javax.swing.JRadioButton rbtn_alwaysOnTop;
+    public static javax.swing.JTextArea txtArea_result;
     // End of variables declaration//GEN-END:variables
 }

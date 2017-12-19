@@ -736,11 +736,8 @@ public class SubtypeBrowse extends javax.swing.JFrame {
                 } catch (Exception e) {
                 }
             }
-
         }
-
- 
-      
+  
     }//GEN-LAST:event_btn_newListActionPerformed
 
     private void table_resultIDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_resultIDMouseClicked

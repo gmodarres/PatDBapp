@@ -34,12 +34,12 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="popUpMenu_moveTblActionPerformed"/>
           </Events>
         </MenuItem>
-        <MenuItem class="javax.swing.JMenuItem" name="popUpMenu_resultWin">
+        <MenuItem class="javax.swing.JMenuItem" name="popUpMenu_intrprWin">
           <Properties>
-            <Property name="text" type="java.lang.String" value="show result ..."/>
+            <Property name="text" type="java.lang.String" value="show interpretation ..."/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="popUpMenu_resultWinActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="popUpMenu_intrprWinActionPerformed"/>
           </Events>
         </MenuItem>
       </SubComponents>
@@ -1033,6 +1033,7 @@
                   </AccessibilityProperties>
                   <Events>
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="table_fishMouseClicked"/>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="table_fishKeyReleased"/>
                   </Events>
                 </Component>
               </SubComponents>

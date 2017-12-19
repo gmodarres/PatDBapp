@@ -13,6 +13,7 @@ package frames;
 
 
 //import static java.awt.Color.blue;
+import static frames.ResultWindow.updateIntrpr;
 import static frames.SetConnection.personalConfig;
 import static frames.SampleBrowse.SB_resultIDs;
 import static frames.SubtypeBrowse.ST_resultIDs;
@@ -81,6 +82,8 @@ public class SearchResult extends javax.swing.JFrame {
     static String tableMoving = null;   // Name of table that is moved to FreeTable, to set row sorter
     
     static String resultMoving = null;  // TEST 
+    //static String resultIDMoving = null;
+    static boolean IntrprWindowIsOpen = false;
     
     String click_result = null;
     static String click_lID = null;
@@ -523,15 +526,15 @@ public class SearchResult extends javax.swing.JFrame {
         jScrollPane4.setViewportView(table_zg_result);
         if (table_zg_result.getColumnModel().getColumnCount() > 0) {
             table_zg_result.getColumnModel().getColumn(0).setPreferredWidth(60);
-                    table_zg_result.getColumnModel().getColumn(0).setMaxWidth(60);
-                    table_zg_result.getColumnModel().getColumn(1).setPreferredWidth(70);
-                    table_zg_result.getColumnModel().getColumn(1).setMaxWidth(70);
-                    table_zg_result.getColumnModel().getColumn(2).setPreferredWidth(60);
-                    table_zg_result.getColumnModel().getColumn(2).setMaxWidth(60);
-                    table_zg_result.getColumnModel().getColumn(3).setPreferredWidth(70);
-                    table_zg_result.getColumnModel().getColumn(3).setMaxWidth(100);
-                    table_zg_result.getColumnModel().getColumn(4).setPreferredWidth(50);
-                    table_zg_result.getColumnModel().getColumn(4).setMaxWidth(70);
+            table_zg_result.getColumnModel().getColumn(0).setMaxWidth(60);
+            table_zg_result.getColumnModel().getColumn(1).setPreferredWidth(70);
+            table_zg_result.getColumnModel().getColumn(1).setMaxWidth(70);
+            table_zg_result.getColumnModel().getColumn(2).setPreferredWidth(60);
+            table_zg_result.getColumnModel().getColumn(2).setMaxWidth(60);
+            table_zg_result.getColumnModel().getColumn(3).setPreferredWidth(70);
+            table_zg_result.getColumnModel().getColumn(3).setMaxWidth(100);
+            table_zg_result.getColumnModel().getColumn(4).setPreferredWidth(50);
+            table_zg_result.getColumnModel().getColumn(4).setMaxWidth(70);
         }
     }
         
@@ -548,11 +551,27 @@ public class SearchResult extends javax.swing.JFrame {
             "        ( SELECT COUNT(*) FROM fish_result ) AS fish, " +
             "        ( SELECT COUNT(*) FROM zg_result ) AS ZG, "+
             "        (0) AS query, "+
+            "        (0) AS \"result IDs\", "+
             "        (0) AS \"pat affected\"";
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
             table_statistics.setModel(DbUtils.resultSetToTableModel(rs));
-
+            jScrollPane7.setViewportView(table_statistics);
+            if (table_statistics.getColumnModel().getColumnCount() > 0) {
+                table_statistics.getColumnModel().getColumn(0).setPreferredWidth(70);
+                table_statistics.getColumnModel().getColumn(0).setMaxWidth(100);
+                table_statistics.getColumnModel().getColumn(1).setPreferredWidth(70);
+                table_statistics.getColumnModel().getColumn(1).setMaxWidth(100);
+                table_statistics.getColumnModel().getColumn(2).setPreferredWidth(70);
+                table_statistics.getColumnModel().getColumn(2).setMaxWidth(100);
+                table_statistics.getColumnModel().getColumn(3).setPreferredWidth(70);
+                table_statistics.getColumnModel().getColumn(3).setMaxWidth(100);
+                table_statistics.getColumnModel().getColumn(4).setPreferredWidth(70);
+                table_statistics.getColumnModel().getColumn(4).setMaxWidth(100);
+                table_statistics.getColumnModel().getColumn(5).setPreferredWidth(70);
+                table_statistics.getColumnModel().getColumn(5).setMaxWidth(100);
+            }
+            
         }catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         } finally {
@@ -584,13 +603,29 @@ public class SearchResult extends javax.swing.JFrame {
             "( SELECT COUNT(*) FROM fish_result ) AS fish, \n" +
             "( SELECT COUNT(*) FROM zg_result) AS ZG, \n" +
             "( SELECT COUNT(*) FROM ( " + sql + " ) AS m) AS query, \n" +
-            "( SELECT COUNT(*) FROM ( SELECT p.pat_id FROM patient p, sample s, main_result m WHERE p.pat_id=s.pat_id AND s.lab_id=m.lab_id AND result_id in ( "+ ids + " ) ) AS c ) AS \"pat affected\"";
+            "( SELECT COUNT(*) FROM ( SELECT p.pat_id FROM patient p, sample s, main_result m WHERE p.pat_id=s.pat_id AND s.lab_id=m.lab_id AND result_id in ( "+ ids + " ) ) AS c ) AS \"result IDs\", \n" +
+            "( SELECT COUNT(*) FROM ( SELECT distinct p.pat_id FROM patient p, sample s, main_result m WHERE p.pat_id=s.pat_id AND s.lab_id=m.lab_id AND result_id in ( "+ ids + " ) ) AS c ) AS \"pat affected\"";
 
             pst = conn.prepareStatement(sql2);
             rs = pst.executeQuery();
             table_statistics.setModel(DbUtils.resultSetToTableModel(rs));
+            jScrollPane7.setViewportView(table_statistics);
+            if (table_statistics.getColumnModel().getColumnCount() > 0) {
+                table_statistics.getColumnModel().getColumn(0).setPreferredWidth(70);
+                table_statistics.getColumnModel().getColumn(0).setMaxWidth(100);
+                table_statistics.getColumnModel().getColumn(1).setPreferredWidth(70);
+                table_statistics.getColumnModel().getColumn(1).setMaxWidth(100);
+                table_statistics.getColumnModel().getColumn(2).setPreferredWidth(70);
+                table_statistics.getColumnModel().getColumn(2).setMaxWidth(100);
+                table_statistics.getColumnModel().getColumn(3).setPreferredWidth(70);
+                table_statistics.getColumnModel().getColumn(3).setMaxWidth(100);
+                table_statistics.getColumnModel().getColumn(4).setPreferredWidth(70);
+                table_statistics.getColumnModel().getColumn(4).setMaxWidth(100);
+                table_statistics.getColumnModel().getColumn(5).setPreferredWidth(70);
+                table_statistics.getColumnModel().getColumn(5).setMaxWidth(100);
+            }
             //txtArea_test.setText(ids);           
-
+                    
         }catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         } finally {
@@ -601,7 +636,6 @@ public class SearchResult extends javax.swing.JFrame {
             } catch (Exception e) {
             }
         }
-
     }   
     
     private void initial_table_queryIDs(){
@@ -1170,7 +1204,7 @@ public void toExcel(JTable table, File file){
         popUpMenu_save = new javax.swing.JMenuItem();
         popUpMenu_selectAll = new javax.swing.JMenuItem();
         popUpMenu_moveTbl = new javax.swing.JMenuItem();
-        popUpMenu_resultWin = new javax.swing.JMenuItem();
+        popUpMenu_intrprWin = new javax.swing.JMenuItem();
         tab_main = new javax.swing.JTabbedPane();
         tab_array = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -1394,13 +1428,13 @@ public void toExcel(JTable table, File file){
         });
         popUpSave.add(popUpMenu_moveTbl);
 
-        popUpMenu_resultWin.setText("show result ...");
-        popUpMenu_resultWin.addActionListener(new java.awt.event.ActionListener() {
+        popUpMenu_intrprWin.setText("show interpretation ...");
+        popUpMenu_intrprWin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                popUpMenu_resultWinActionPerformed(evt);
+                popUpMenu_intrprWinActionPerformed(evt);
             }
         });
-        popUpSave.add(popUpMenu_resultWin);
+        popUpSave.add(popUpMenu_intrprWin);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Linked Results Analysis Tool");
@@ -1893,6 +1927,11 @@ public void toExcel(JTable table, File file){
         table_fish.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 table_fishMouseClicked(evt);
+            }
+        });
+        table_fish.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                table_fishKeyReleased(evt);
             }
         });
         jScrollPane2.setViewportView(table_fish);
@@ -3008,6 +3047,11 @@ public void toExcel(JTable table, File file){
                     Z_txt_result_id.setText(add2);
                     String add3 = rs.getString("lab_id");
                     Z_txt_lab_id.setText(add3);
+                    
+                    // IF interpretation window is open
+                    if(IntrprWindowIsOpen  == true){
+                        updateIntrpr(add2);     // update text in Window "ResultWindow"
+                    }
 
                     String sql2 = "SELECT r.result_id, r.zg_sub_id, r.klon_id, region, chr, chng FROM zg_result r, zg_list l, main_result m "
                             + "Where r.zyto_id=l.zyto_id AND r.result_id=m.result_id "
@@ -3087,7 +3131,12 @@ public void toExcel(JTable table, File file){
                     F_txt_probe_no.setText(add4);
                     String add5 = rs.getString("p.loc");
                     F_txtArea_loc.setText(add5);
-
+                    
+                    // IF interpretation window is open
+                    if(IntrprWindowIsOpen  == true){
+                        updateIntrpr(add2);     // update text in Window "ResultWindow"
+                    }
+                    
                     //txtArea_sql.setText(sql);
                 }
             } catch (Exception e) {
@@ -4459,8 +4508,13 @@ public void toExcel(JTable table, File file){
                     A_txt_lab_id.setText(add3);
                     String add4 = rs.getString("genes");
                     txtArea_genes.setText(add4);
-                    // highlight searched genes in text area
+                                        
+                    // IF interpretation window is open
+                    if(IntrprWindowIsOpen  == true){
+                        updateIntrpr(add2);     // update text in Window "ResultWindow"
+                    }
                     
+                    // highlight searched genes in text area
                     if(A_txt1_genes1 != null && !A_txt1_genes1.getText().isEmpty()){
                         String gen1 = A_txt1_genes1.getText();
                         highlight_gene(gen1,1);
@@ -4594,9 +4648,14 @@ public void toExcel(JTable table, File file){
                     String add3 = rs.getString("lab_id");
                     A_txt_lab_id.setText(add3);
                     String add4 = rs.getString("genes");
-                    txtArea_genes.setText(add4);
-                    // highlight searched genes in text area
+                    txtArea_genes.setText(add4);                 
                     
+                    // IF interpretation window is open
+                    if(IntrprWindowIsOpen  == true){
+                        updateIntrpr(add2);     // update text in Window "ResultWindow"
+                    }
+                    
+                    // highlight searched genes in text area
                     if(A_txt1_genes1 != null && !A_txt1_genes1.getText().isEmpty()){
                         String gen1 = A_txt1_genes1.getText();
                         highlight_gene(gen1,1);
@@ -5312,6 +5371,11 @@ public void toExcel(JTable table, File file){
                 Z_txt_result_id.setText(add2);
                 String add3 = rs.getString("lab_id");
                 Z_txt_lab_id.setText(add3);
+   
+                // IF interpretation window is open
+                if (IntrprWindowIsOpen == true) {
+                    updateIntrpr(add2);     // update text in Window "ResultWindow"
+                }
 
                 String sql2 = "SELECT r.result_id, r.zg_sub_id, r.klon_id, region, chr, chng FROM zg_result r, zg_list l, main_result m "
                         + "Where r.zyto_id=l.zyto_id AND r.result_id=m.result_id "
@@ -5426,7 +5490,7 @@ public void toExcel(JTable table, File file){
 
     }//GEN-LAST:event_Z_txt_lab_idActionPerformed
 
-    private void popUpMenu_resultWinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popUpMenu_resultWinActionPerformed
+    private void popUpMenu_intrprWinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popUpMenu_intrprWinActionPerformed
         // TODO add your handling code here:
         // open window and show corresponding result-text
         
@@ -5490,9 +5554,60 @@ public void toExcel(JTable table, File file){
         }
 
         new ResultWindow().setVisible(true);
+        IntrprWindowIsOpen = true;
         
         
-    }//GEN-LAST:event_popUpMenu_resultWinActionPerformed
+    }//GEN-LAST:event_popUpMenu_intrprWinActionPerformed
+
+    private void table_fishKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_table_fishKeyReleased
+        // same code as in table_fishMouseClicked (without right-klick detection)
+        Connection conn = DBconnect.ConnecrDb();
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+
+        try {
+            int row = table_fish.getSelectedRow();
+            //String Table_click = (table_fish.getModel().getValueAt(row, 0).toString());       // values not correct anymore, if auto table rowsorter is used -->
+            String Table_click = (table_fish.getValueAt(row, 0).toString());
+            click_result = (table_fish.getValueAt(row, 1).toString());
+            click_lID = Table_click;
+
+            String sql = "SELECT * FROM fish_result r, fish_probe p, main_result m WHERE r.probe_no=p.probe_no AND m.result_id=r.result_id AND fish_sub_id='" + Table_click + "' ";
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+                String add1 = rs.getString("fish_sub_id");
+                F_txt_fish_sub_id.setText(add1);
+                String add2 = rs.getString("result_id");
+                F_txt_result_id.setText(add2);
+                String add3 = rs.getString("lab_id");
+                F_txt_lab_id.setText(add3);
+
+                String add4 = rs.getString("p.probe_no");
+                F_txt_probe_no.setText(add4);
+                String add5 = rs.getString("p.loc");
+                F_txtArea_loc.setText(add5);
+
+                // IF interpretation window is open
+                if (IntrprWindowIsOpen == true) {
+                    updateIntrpr(add2);     // update text in Window "ResultWindow"
+                }
+
+                //txtArea_sql.setText(sql);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        } finally {
+            try {
+                if (rs != null) { rs.close();}
+                if (pst != null) { pst.close();}
+                if (conn != null) { conn.close();}
+            } catch (Exception e) {
+            }
+        }
+
+    }//GEN-LAST:event_table_fishKeyReleased
 
     /**
      * @param args the command line arguments
@@ -5718,8 +5833,8 @@ public void toExcel(JTable table, File file){
     private javax.swing.JLabel lbl_fromStdy;
     private javax.swing.JLabel lbl_rowsReturned;
     private javax.swing.JLabel lbl_zg_signal;
+    private javax.swing.JMenuItem popUpMenu_intrprWin;
     private javax.swing.JMenuItem popUpMenu_moveTbl;
-    private javax.swing.JMenuItem popUpMenu_resultWin;
     private javax.swing.JMenuItem popUpMenu_save;
     private javax.swing.JMenuItem popUpMenu_selectAll;
     private javax.swing.JPopupMenu popUpSave;

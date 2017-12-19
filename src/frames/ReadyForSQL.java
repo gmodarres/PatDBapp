@@ -291,13 +291,29 @@ public class ReadyForSQL extends javax.swing.JFrame {
             "        ( SELECT COUNT(*) FROM fish_result ) AS fish, " +
             "        ( SELECT COUNT(*) FROM zg_result ) AS ZG, "+
             "        (0) AS query, "+
+            "        (0) AS \"result IDs\", "+
             "        (0) AS \"pat affected\"";
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
             table_statistics.setModel(DbUtils.resultSetToTableModel(rs));
-
+            jScrollPane7.setViewportView(table_statistics);
+            if (table_statistics.getColumnModel().getColumnCount() > 0) {
+                table_statistics.getColumnModel().getColumn(0).setPreferredWidth(70);
+                table_statistics.getColumnModel().getColumn(0).setMaxWidth(100);
+                table_statistics.getColumnModel().getColumn(1).setPreferredWidth(70);
+                table_statistics.getColumnModel().getColumn(1).setMaxWidth(100);
+                table_statistics.getColumnModel().getColumn(2).setPreferredWidth(70);
+                table_statistics.getColumnModel().getColumn(2).setMaxWidth(100);
+                table_statistics.getColumnModel().getColumn(3).setPreferredWidth(70);
+                table_statistics.getColumnModel().getColumn(3).setMaxWidth(100);
+                table_statistics.getColumnModel().getColumn(4).setPreferredWidth(70);
+                table_statistics.getColumnModel().getColumn(4).setMaxWidth(100);
+                table_statistics.getColumnModel().getColumn(5).setPreferredWidth(70);
+                table_statistics.getColumnModel().getColumn(5).setMaxWidth(100);
+            }
+            
         }catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            JOptionPane.showMessageDialog(null, e);
         } finally {
             try {
                 if (rs != null) { rs.close();}
@@ -325,16 +341,32 @@ public class ReadyForSQL extends javax.swing.JFrame {
                     //ids = "0";                                    // not needed due to        if (this.ids != null)
                 }
                 //String sql2 = "SELECT COUNT(*) AS matchingCriteria FROM( "+ sql + " ) AS M";
-                String sql2 = "SELECT  ( SELECT COUNT(*) FROM  patient ) AS patients, \n"
-                        + "( SELECT COUNT(*) FROM  arr_result ) AS array, \n"
-                        + "( SELECT COUNT(*) FROM fish_result ) AS fish, \n"
-                        + "( SELECT COUNT(*) FROM zg_result) AS ZG, \n"
-                        + "( SELECT COUNT(*) FROM ( " + sql + " ) AS m) AS query, \n"
-                        + "( SELECT COUNT(*) FROM ( SELECT p.pat_id FROM patient p, sample s, main_result m WHERE p.pat_id=s.pat_id AND s.lab_id=m.lab_id AND result_id in ( " + ids + " ) ) AS c ) AS \"pat affected\"";
+                String sql2 = "SELECT  ( SELECT COUNT(*) FROM  patient ) AS patients, \n" +
+                "( SELECT COUNT(*) FROM  arr_result ) AS array, \n" +
+                "( SELECT COUNT(*) FROM fish_result ) AS fish, \n" +
+                "( SELECT COUNT(*) FROM zg_result) AS ZG, \n" +
+                "( SELECT COUNT(*) FROM ( " + sql + " ) AS m) AS query, \n" +
+                "( SELECT COUNT(*) FROM ( SELECT p.pat_id FROM patient p, sample s, main_result m WHERE p.pat_id=s.pat_id AND s.lab_id=m.lab_id AND result_id in ( "+ ids + " ) ) AS c ) AS \"result IDs\", \n" +
+                "( SELECT COUNT(*) FROM ( SELECT distinct p.pat_id FROM patient p, sample s, main_result m WHERE p.pat_id=s.pat_id AND s.lab_id=m.lab_id AND result_id in ( "+ ids + " ) ) AS c ) AS \"pat affected\"";
 
                 pst = conn.prepareStatement(sql2);
                 rs = pst.executeQuery();
                 table_statistics.setModel(DbUtils.resultSetToTableModel(rs));
+                jScrollPane7.setViewportView(table_statistics);
+                if (table_statistics.getColumnModel().getColumnCount() > 0) {
+                    table_statistics.getColumnModel().getColumn(0).setPreferredWidth(70);
+                    table_statistics.getColumnModel().getColumn(0).setMaxWidth(100);
+                    table_statistics.getColumnModel().getColumn(1).setPreferredWidth(70);
+                    table_statistics.getColumnModel().getColumn(1).setMaxWidth(100);
+                    table_statistics.getColumnModel().getColumn(2).setPreferredWidth(70);
+                    table_statistics.getColumnModel().getColumn(2).setMaxWidth(100);
+                    table_statistics.getColumnModel().getColumn(3).setPreferredWidth(70);
+                    table_statistics.getColumnModel().getColumn(3).setMaxWidth(100);
+                    table_statistics.getColumnModel().getColumn(4).setPreferredWidth(70);
+                    table_statistics.getColumnModel().getColumn(4).setMaxWidth(100);
+                    table_statistics.getColumnModel().getColumn(5).setPreferredWidth(70);
+                    table_statistics.getColumnModel().getColumn(5).setMaxWidth(100);
+                }
                 //txtArea_test.setText(ids);           
 
             } catch (Exception e) {
