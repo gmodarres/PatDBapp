@@ -660,7 +660,7 @@ public class SearchResult extends javax.swing.JFrame {
             }
             if (all_ids.length() > 1) {
                 all_ids = all_ids.substring(0, (all_ids.length() - 1));
-                String sql2 = "SELECT distinct s.lab_id, result_id, fname, surname, sex, b_date from main_result m, patient p, sample s "
+                String sql2 = "SELECT distinct s.lab_id, result_id, p.pat_id, fname, surname, sex, b_date from main_result m, patient p, sample s "
                         + "Where p.pat_id=s.pat_id AND m.lab_id=s.lab_id AND result_id IN ( " + all_ids + " )";
                 //String sql2 = "SELECT distinct s.lab_id, result_id, fname, surname, sex, b_date, proj_id as P"
                 //+ " from main_result m, patient p, sample s, pat_inproject ip"
@@ -671,22 +671,23 @@ public class SearchResult extends javax.swing.JFrame {
 
                 table_queryIDs.setModel(DbUtils.resultSetToTableModel(rs));
                 CustomSorter.table_customRowSort(table_queryIDs);
-                
                 if (table_queryIDs.getColumnModel().getColumnCount() > 0) {
                     table_queryIDs.getColumnModel().getColumn(0).setPreferredWidth(85);      // 75
                     table_queryIDs.getColumnModel().getColumn(0).setMaxWidth(120);           // 80
                     table_queryIDs.getColumnModel().getColumn(1).setPreferredWidth(60);
                     table_queryIDs.getColumnModel().getColumn(1).setMaxWidth(60);
-                    table_queryIDs.getColumnModel().getColumn(2).setPreferredWidth(80);
-                    table_queryIDs.getColumnModel().getColumn(2).setMaxWidth(130);
+                    table_queryIDs.getColumnModel().getColumn(2).setPreferredWidth(60);
+                    table_queryIDs.getColumnModel().getColumn(2).setMaxWidth(60);
+                    table_queryIDs.getColumnModel().getColumn(3).setPreferredWidth(80);
+                    table_queryIDs.getColumnModel().getColumn(3).setMaxWidth(130);
                     //table_queryIDs.getColumnModel().getColumn(3).setPreferredWidth(80);
                     //table_queryIDs.getColumnModel().getColumn(3).setMaxWidth(130);
-                    table_queryIDs.getColumnModel().getColumn(4).setPreferredWidth(30);
-                    table_queryIDs.getColumnModel().getColumn(4).setMaxWidth(30);
-                    table_queryIDs.getColumnModel().getColumn(5).setPreferredWidth(90);      // 80
-                    table_queryIDs.getColumnModel().getColumn(5).setMaxWidth(120);           // 80
-                    //table_queryIDs.getColumnModel().getColumn(6).setPreferredWidth(30);
-                    //table_queryIDs.getColumnModel().getColumn(6).setMaxWidth(30);
+                    table_queryIDs.getColumnModel().getColumn(5).setPreferredWidth(30);
+                    table_queryIDs.getColumnModel().getColumn(5).setMaxWidth(30);
+                    table_queryIDs.getColumnModel().getColumn(6).setPreferredWidth(90);      // 80
+                    table_queryIDs.getColumnModel().getColumn(6).setMaxWidth(120);           // 80
+                    //table_queryIDs.getColumnModel().getColumn(7).setPreferredWidth(30);
+                    //table_queryIDs.getColumnModel().getColumn(7).setMaxWidth(30);
                 }
             }
 
@@ -719,7 +720,7 @@ public class SearchResult extends javax.swing.JFrame {
             if (all_ids.length() > 1) {
                 all_ids = all_ids.substring(0, (all_ids.length() - 1));
 
-                String sql2 = "SELECT distinct s.lab_id, result_id, fname, surname, sex, b_date from main_result m, patient p, sample s "
+                String sql2 = "SELECT distinct s.lab_id, result_id, p.pat_id, fname, surname, sex, b_date from main_result m, patient p, sample s "
                         + "Where p.pat_id=s.pat_id AND m.lab_id=s.lab_id AND result_id IN ( " + all_ids + " )";
                 //String sql2 = "SELECT distinct s.lab_id, result_id, fname, surname, sex, b_date, proj_id as P"
                 //+ " from main_result m, patient p, sample s, pat_inproject ip"
@@ -736,16 +737,18 @@ public class SearchResult extends javax.swing.JFrame {
                     table_queryIDs.getColumnModel().getColumn(0).setMaxWidth(120);           // 80
                     table_queryIDs.getColumnModel().getColumn(1).setPreferredWidth(60);
                     table_queryIDs.getColumnModel().getColumn(1).setMaxWidth(60);
-                    table_queryIDs.getColumnModel().getColumn(2).setPreferredWidth(80);
-                    table_queryIDs.getColumnModel().getColumn(2).setMaxWidth(130);
+                    table_queryIDs.getColumnModel().getColumn(2).setPreferredWidth(60);
+                    table_queryIDs.getColumnModel().getColumn(2).setMaxWidth(60);
+                    table_queryIDs.getColumnModel().getColumn(3).setPreferredWidth(80);
+                    table_queryIDs.getColumnModel().getColumn(3).setMaxWidth(130);
                     //table_queryIDs.getColumnModel().getColumn(3).setPreferredWidth(80);
                     //table_queryIDs.getColumnModel().getColumn(3).setMaxWidth(130);
-                    table_queryIDs.getColumnModel().getColumn(4).setPreferredWidth(30);
-                    table_queryIDs.getColumnModel().getColumn(4).setMaxWidth(30);
-                    table_queryIDs.getColumnModel().getColumn(5).setPreferredWidth(90);      // 80
-                    table_queryIDs.getColumnModel().getColumn(5).setMaxWidth(120);           // 80
-                    //table_queryIDs.getColumnModel().getColumn(6).setPreferredWidth(30);
-                    //table_queryIDs.getColumnModel().getColumn(6).setMaxWidth(30);
+                    table_queryIDs.getColumnModel().getColumn(5).setPreferredWidth(30);
+                    table_queryIDs.getColumnModel().getColumn(5).setMaxWidth(30);
+                    table_queryIDs.getColumnModel().getColumn(6).setPreferredWidth(90);      // 80
+                    table_queryIDs.getColumnModel().getColumn(6).setMaxWidth(120);           // 80
+                    //table_queryIDs.getColumnModel().getColumn(7).setPreferredWidth(30);
+                    //table_queryIDs.getColumnModel().getColumn(7).setMaxWidth(30);
                 }
             }
             //get ids of sql query to count patients affected in get_statistics()
@@ -2869,8 +2872,8 @@ public void toExcel(JTable table, File file){
             .addGroup(Info_topLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(Info_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE)
-                    .addComponent(jScrollPane10))
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)
+                    .addComponent(jScrollPane7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -5524,7 +5527,7 @@ public void toExcel(JTable table, File file){
             String fish="";
             
             if (rs.next()) {
-                arr = rs.getString("ar_sumGenRes");
+                arr = rs.getString("ar_intrpr");
                 fish = rs.getString("fish_intrpr");
             }
 

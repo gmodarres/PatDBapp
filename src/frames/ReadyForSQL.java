@@ -138,7 +138,7 @@ public class ReadyForSQL extends javax.swing.JFrame {
             if (all_ids.length() > 1) {
                 all_ids = all_ids.substring(0, (all_ids.length() - 1));
                 //String sql2 = "SELECT distinct lab_ID from main_result WHERE result_id IN ( " + all_ids + " )";
-                String sql2 = "SELECT distinct s.lab_id, result_id, fname, surname, sex, b_date from main_result m, patient p, sample s "
+                String sql2 = "SELECT distinct s.lab_id, result_id, p.pat_id, fname, surname, sex, b_date from main_result m, patient p, sample s "
                         + "Where p.pat_id=s.pat_id AND m.lab_id=s.lab_id AND result_id IN ( " + all_ids + " )";
                 pst = conn.prepareStatement(sql2);
                 rs = pst.executeQuery();
@@ -150,16 +150,18 @@ public class ReadyForSQL extends javax.swing.JFrame {
                     table_queryIDs.getColumnModel().getColumn(0).setMaxWidth(120);           // 80
                     table_queryIDs.getColumnModel().getColumn(1).setPreferredWidth(60);
                     table_queryIDs.getColumnModel().getColumn(1).setMaxWidth(60);
-                    table_queryIDs.getColumnModel().getColumn(2).setPreferredWidth(80);
-                    table_queryIDs.getColumnModel().getColumn(2).setMaxWidth(130);
+                    table_queryIDs.getColumnModel().getColumn(2).setPreferredWidth(60);
+                    table_queryIDs.getColumnModel().getColumn(2).setMaxWidth(60);
+                    table_queryIDs.getColumnModel().getColumn(3).setPreferredWidth(80);
+                    table_queryIDs.getColumnModel().getColumn(3).setMaxWidth(130);
                     //table_queryIDs.getColumnModel().getColumn(3).setPreferredWidth(80);
                     //table_queryIDs.getColumnModel().getColumn(3).setMaxWidth(130);
-                    table_queryIDs.getColumnModel().getColumn(4).setPreferredWidth(30);
-                    table_queryIDs.getColumnModel().getColumn(4).setMaxWidth(30);
-                    table_queryIDs.getColumnModel().getColumn(5).setPreferredWidth(90);      // 80
-                    table_queryIDs.getColumnModel().getColumn(5).setMaxWidth(120);           // 80
-                    //table_queryIDs.getColumnModel().getColumn(6).setPreferredWidth(30);
-                    //table_queryIDs.getColumnModel().getColumn(6).setMaxWidth(30);
+                    table_queryIDs.getColumnModel().getColumn(5).setPreferredWidth(30);
+                    table_queryIDs.getColumnModel().getColumn(5).setMaxWidth(30);
+                    table_queryIDs.getColumnModel().getColumn(6).setPreferredWidth(90);      // 80
+                    table_queryIDs.getColumnModel().getColumn(6).setMaxWidth(120);           // 80
+                    //table_queryIDs.getColumnModel().getColumn(7).setPreferredWidth(30);
+                    //table_queryIDs.getColumnModel().getColumn(7).setMaxWidth(30);
                 }
             }
 
@@ -206,7 +208,7 @@ public class ReadyForSQL extends javax.swing.JFrame {
 
                     all_ids = all_ids.substring(0, (all_ids.length() - 1));
                     //String sql2 = "SELECT distinct lab_ID from main_result WHERE result_id IN ( " + all_ids + " )";
-                    String sql2 = "SELECT distinct s.lab_id, result_id, fname, surname, sex, b_date from main_result m, patient p, sample s "
+                    String sql2 = "SELECT distinct s.lab_id, result_id, p.pat_id, fname, surname, sex, b_date from main_result m, patient p, sample s "
                             + "Where p.pat_id=s.pat_id AND m.lab_id=s.lab_id AND result_id IN ( " + all_ids + " )";
 
                     pst = conn.prepareStatement(sql2);
@@ -215,20 +217,22 @@ public class ReadyForSQL extends javax.swing.JFrame {
                     table_queryIDs.setModel(DbUtils.resultSetToTableModel(rs));
                     CustomSorter.table_customRowSort(table_queryIDs);
                     if (table_queryIDs.getColumnModel().getColumnCount() > 0) {
-                        table_queryIDs.getColumnModel().getColumn(0).setPreferredWidth(85);      // 75
-                        table_queryIDs.getColumnModel().getColumn(0).setMaxWidth(120);           // 80
-                        table_queryIDs.getColumnModel().getColumn(1).setPreferredWidth(60);
-                        table_queryIDs.getColumnModel().getColumn(1).setMaxWidth(60);
-                        table_queryIDs.getColumnModel().getColumn(2).setPreferredWidth(80);
-                        table_queryIDs.getColumnModel().getColumn(2).setMaxWidth(130);
-                        //table_queryIDs.getColumnModel().getColumn(3).setPreferredWidth(80);
-                        //table_queryIDs.getColumnModel().getColumn(3).setMaxWidth(130);
-                        table_queryIDs.getColumnModel().getColumn(4).setPreferredWidth(30);
-                        table_queryIDs.getColumnModel().getColumn(4).setMaxWidth(30);
-                        table_queryIDs.getColumnModel().getColumn(5).setPreferredWidth(90);      // 80
-                        table_queryIDs.getColumnModel().getColumn(5).setMaxWidth(120);           // 80
-                        //table_queryIDs.getColumnModel().getColumn(6).setPreferredWidth(30);
-                        //table_queryIDs.getColumnModel().getColumn(6).setMaxWidth(30);
+                      table_queryIDs.getColumnModel().getColumn(0).setPreferredWidth(85);      // 75
+                    table_queryIDs.getColumnModel().getColumn(0).setMaxWidth(120);           // 80
+                    table_queryIDs.getColumnModel().getColumn(1).setPreferredWidth(60);
+                    table_queryIDs.getColumnModel().getColumn(1).setMaxWidth(60);
+                    table_queryIDs.getColumnModel().getColumn(2).setPreferredWidth(60);
+                    table_queryIDs.getColumnModel().getColumn(2).setMaxWidth(60);
+                    table_queryIDs.getColumnModel().getColumn(3).setPreferredWidth(80);
+                    table_queryIDs.getColumnModel().getColumn(3).setMaxWidth(130);
+                    //table_queryIDs.getColumnModel().getColumn(3).setPreferredWidth(80);
+                    //table_queryIDs.getColumnModel().getColumn(3).setMaxWidth(130);
+                    table_queryIDs.getColumnModel().getColumn(5).setPreferredWidth(30);
+                    table_queryIDs.getColumnModel().getColumn(5).setMaxWidth(30);
+                    table_queryIDs.getColumnModel().getColumn(6).setPreferredWidth(90);      // 80
+                    table_queryIDs.getColumnModel().getColumn(6).setMaxWidth(120);           // 80
+                    //table_queryIDs.getColumnModel().getColumn(7).setPreferredWidth(30);
+                    //table_queryIDs.getColumnModel().getColumn(7).setMaxWidth(30);
                     }
                 }
 
@@ -593,37 +597,33 @@ public class ReadyForSQL extends javax.swing.JFrame {
             .addGroup(Info_topLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addGroup(Info_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE)
-                    .addComponent(jScrollPane7))
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)
+                    .addComponent(jScrollPane10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_SQLquery)
-                .addGap(18, 18, 18)
-                .addGroup(Info_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 978, Short.MAX_VALUE)
+                .addGroup(Info_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btn_clear, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(Info_topLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btn_clear, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btn_SQLquery)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 938, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         Info_topLayout.setVerticalGroup(
             Info_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Info_topLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addGroup(Info_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(Info_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(Info_topLayout.createSequentialGroup()
-                        .addComponent(btn_SQLquery, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Info_topLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                        .addComponent(btn_clear, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, Info_topLayout.createSequentialGroup()
                         .addGroup(Info_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(Info_topLayout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btn_clear, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(Info_topLayout.createSequentialGroup()
-                                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                        .addGap(10, 10, 10))))
+                            .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_SQLquery, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                .addGap(10, 10, 10))
         );
 
         jToolBar1.setRollover(true);
@@ -725,13 +725,13 @@ public class ReadyForSQL extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(Info_top, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Info_top, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(21, 21, 21))
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(lbl_rowsReturned, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -740,7 +740,7 @@ public class ReadyForSQL extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Info_top, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
                 .addGap(5, 5, 5)
                 .addComponent(lbl_rowsReturned)
                 .addGap(15, 15, 15))
