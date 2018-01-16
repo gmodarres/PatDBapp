@@ -142,7 +142,7 @@ public class StartFrame extends javax.swing.JFrame {
             }
         });
 
-        btn_test.setText("TEST");
+        btn_test.setText("Array Query");
         btn_test.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_testActionPerformed(evt);
@@ -264,9 +264,9 @@ public class StartFrame extends javax.swing.JFrame {
 
     private void btn_testActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_testActionPerformed
         // TODO add your handling code here:
-        //xx_patDB_main_result s = new xx_patDB_main_result();
-        //s.setVisible(true); 
-        JOptionPane.showMessageDialog(null, "Nothing in here yet! \nMaybe you've got an idea what we can put here?");
+        ArrayQuery s = new ArrayQuery();
+        s.setVisible(true); 
+        //JOptionPane.showMessageDialog(null, "Nothing in here yet! \nMaybe you've got an idea what we can put here?");
     }//GEN-LAST:event_btn_testActionPerformed
 
     private void btn_browse_subtypesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_browse_subtypesActionPerformed

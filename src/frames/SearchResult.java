@@ -184,7 +184,7 @@ public class SearchResult extends javax.swing.JFrame {
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
             table_array.setModel(DbUtils.resultSetToTableModel(rs));
-            CustomSorter.table_customRowSort(table_array);   // not working ?
+            CustomSorter.table_customRowSort(table_array);   
             // resize column width
             jScrollPane1.setViewportView(table_array);
 
@@ -2661,7 +2661,8 @@ public void toExcel(JTable table, File file){
 
         txtArea_Creg.setColumns(20);
         txtArea_Creg.setLineWrap(true);
-        txtArea_Creg.setRows(5);
+        txtArea_Creg.setRows(4);
+        txtArea_Creg.setWrapStyleWord(true);
         jScrollPane8.setViewportView(txtArea_Creg);
 
         lab_Genes.setText("Genes");
@@ -2699,6 +2700,7 @@ public void toExcel(JTable table, File file){
         txtArea_genes.setColumns(20);
         txtArea_genes.setLineWrap(true);
         txtArea_genes.setRows(5);
+        txtArea_genes.setWrapStyleWord(true);
         txtArea_genes.setName(""); // NOI18N
         jScrollPane5.setViewportView(txtArea_genes);
 
@@ -2899,9 +2901,10 @@ public void toExcel(JTable table, File file){
                             .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(Info_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lab_Creg))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(Info_topLayout.createSequentialGroup()
+                                .addComponent(lab_Creg)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jScrollPane8)))
                     .addGroup(Info_topLayout.createSequentialGroup()
                         .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(7, 7, 7)
@@ -5494,7 +5497,6 @@ public void toExcel(JTable table, File file){
     }//GEN-LAST:event_Z_txt_lab_idActionPerformed
 
     private void popUpMenu_intrprWinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popUpMenu_intrprWinActionPerformed
-        // TODO add your handling code here:
         // open window and show corresponding result-text
         
         Connection conn = DBconnect.ConnecrDb();
@@ -5525,10 +5527,12 @@ public void toExcel(JTable table, File file){
             
             String arr="";
             String fish="";
+            String zg="";
             
             if (rs.next()) {
                 arr = rs.getString("ar_intrpr");
                 fish = rs.getString("fish_intrpr");
+                zg = rs.getString("zg_intrpr");
             }
 
             String text = "";
@@ -5538,6 +5542,9 @@ public void toExcel(JTable table, File file){
                     break;
                 case "fish result":
                     text = fish;
+                    break;
+                case "cytogenetics result":
+                    text = zg;
                     break;
                default:
                     break;

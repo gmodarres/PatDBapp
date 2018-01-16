@@ -10,15 +10,15 @@
  */
 package frames;
 
-import static frames.SearchResult.IntrprWindowIsOpen;
-import static frames.SearchResult.source;
+//import static frames.SearchResult.IntrprWindowIsOpen;
+//import static frames.SearchResult.source;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import myClass.ColumnFitAdapter;
-import myClass.CustomSorter;
+//import myClass.ColumnFitAdapter;
+//import myClass.CustomSorter;
 import myClass.DBconnect;
 
 /**
