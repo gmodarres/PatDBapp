@@ -42,6 +42,8 @@ import org.ini4j.Ini;
  */
 public class ArrayQuery extends javax.swing.JFrame {
 
+    static String AQ_resultIDs = null;
+    
     String ids = null;
     String mod_sql = null;
     
@@ -440,6 +442,7 @@ public class ArrayQuery extends javax.swing.JFrame {
                 //txtArea_test.append("'"+id+"',");  // test
             }
             this.ids = all_ids;
+            this.AQ_resultIDs = all_ids;
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -492,7 +495,6 @@ public class ArrayQuery extends javax.swing.JFrame {
         txtArea_genes = new javax.swing.JTextArea();
         jPanel17 = new javax.swing.JPanel();
         btn_TTT = new javax.swing.JRadioButton();
-        rbtn_exportIDs = new javax.swing.JRadioButton();
         rbtn_showExample = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         table_array = new javax.swing.JTable();
@@ -524,8 +526,10 @@ public class ArrayQuery extends javax.swing.JFrame {
         jCombo_gene4const = new javax.swing.JComboBox<>();
         txt_gene4const = new javax.swing.JTextField();
         txt_genes5 = new javax.swing.JTextField();
-        lbl_Genes2 = new javax.swing.JLabel();
         lbl_or2 = new javax.swing.JLabel();
+        jCombo_gene5const = new javax.swing.JComboBox<>();
+        txt_gene5const = new javax.swing.JTextField();
+        lbl_NOT = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
@@ -660,8 +664,6 @@ public class ArrayQuery extends javax.swing.JFrame {
             }
         });
 
-        rbtn_exportIDs.setText("export result_IDs");
-
         rbtn_showExample.setText("show example");
         rbtn_showExample.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -676,17 +678,14 @@ public class ArrayQuery extends javax.swing.JFrame {
             .addGroup(jPanel17Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rbtn_exportIDs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_TTT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_TTT, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
                     .addComponent(rbtn_showExample, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel17Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(rbtn_exportIDs, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_TTT)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(rbtn_showExample)
@@ -807,10 +806,19 @@ public class ArrayQuery extends javax.swing.JFrame {
 
         jCombo_gene4const.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "type", "cnst", "size", "call", "chr" }));
 
-        lbl_Genes2.setText("(show gene, without constraints)");
+        txt_genes5.setBackground(new java.awt.Color(255, 255, 153));
+        txt_genes5.setToolTipText("if no constraint is entered, this gene will be shown (for controll)");
 
         lbl_or2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbl_or2.setText("OR");
+
+        jCombo_gene5const.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "type", "cnst", "size", "call", "chr" }));
+
+        txt_gene5const.setToolTipText("if constraint is entered here, the matching query will be excluded from result");
+
+        lbl_NOT.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        lbl_NOT.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_NOT.setText("NOT");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -833,7 +841,7 @@ public class ArrayQuery extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txt_const1_2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txt_const1_1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(rbtn_const2)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -856,15 +864,21 @@ public class ArrayQuery extends javax.swing.JFrame {
                                 .addComponent(txt_gene3const, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txt_genes5, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_genes4, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txt_genes4, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(lbl_NOT, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txt_genes5, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jCombo_gene4const, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(txt_gene4const, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(lbl_Genes2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jCombo_gene5const, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txt_gene5const, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -919,7 +933,9 @@ public class ArrayQuery extends javax.swing.JFrame {
                         .addGap(3, 3, 3)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txt_genes5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbl_Genes2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jCombo_gene5const, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_gene5const, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_NOT)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(rbtn_const1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -942,7 +958,7 @@ public class ArrayQuery extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jCombo_const2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txt_const2_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(47, 47, 47))))
+                        .addContainerGap(52, Short.MAX_VALUE))))
         );
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lbl_mainConst, lbl_or1});
@@ -954,7 +970,7 @@ public class ArrayQuery extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
                 .addComponent(btn_Search, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
@@ -1265,7 +1281,7 @@ public class ArrayQuery extends javax.swing.JFrame {
             } else{
                 JOptionPane.showMessageDialog(null, "enter at least one gene name");
             }
-            // gene 5 is only shown (no constraints)
+            // maybe gene 5 is only shown (no constraints)
             if(txt_genes5 != null && !txt_genes5.getText().isEmpty()){
                 gen5 = txt_genes5.getText();
                 sql = sql + " OR a.genes like '%"+ gen5 +"%'";
@@ -1517,6 +1533,39 @@ public class ArrayQuery extends javax.swing.JFrame {
                     sql = sql + " b.genes like '%" + gen4 + "%')\n";
                 }
             }
+            
+            if (txt_genes5 != null && !txt_genes5.getText().isEmpty()) {
+                if (txt_gene5const != null && !txt_gene5const.getText().isEmpty()) {
+                    sql = sql + " AND a.result_id not in \n(SELECT result_id from arr_result b WHERE";
+                    String gen5C = txt_gene5const.getText();
+                    String gen5C_select = jCombo_gene5const.getSelectedItem().toString();
+                    String g5C = "";
+
+                    switch (gen5C_select) {
+                        case "type":
+                            g5C = "b.arr_type";
+                            break;
+                        case "cnst":
+                            g5C = "b.cnst";
+                            break;
+                        case "size":
+                            g5C = "b.size";
+                            break;
+                        case "call":
+                            g5C = "b.arr_call";
+                            break;
+                        case "chr":
+                            g5C = "b.chr";
+                            break;
+                        default:
+                            break;
+                    }
+
+                    sql = sql + " " + g5C + " " + gen5C + " AND b.genes like '%" + gen5 + "%')\n";
+                } else {
+
+                }
+            }
 
             txtArea_genes.setText(sql); // TEST    
             pst = conn.prepareStatement(sql);
@@ -1647,6 +1696,7 @@ public class ArrayQuery extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jCombo_gene2const;
     private javax.swing.JComboBox<String> jCombo_gene3const;
     private javax.swing.JComboBox<String> jCombo_gene4const;
+    private javax.swing.JComboBox<String> jCombo_gene5const;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -1668,7 +1718,7 @@ public class ArrayQuery extends javax.swing.JFrame {
     private javax.swing.JLabel lab_Creg;
     private javax.swing.JLabel lab_Genes;
     private javax.swing.JLabel lbl_Genes;
-    private javax.swing.JLabel lbl_Genes2;
+    private javax.swing.JLabel lbl_NOT;
     private javax.swing.JLabel lbl_mainConst;
     private javax.swing.JLabel lbl_or1;
     private javax.swing.JLabel lbl_or2;
@@ -1679,7 +1729,6 @@ public class ArrayQuery extends javax.swing.JFrame {
     private javax.swing.JPopupMenu popUpSave;
     private javax.swing.JRadioButton rbtn_const1;
     private javax.swing.JRadioButton rbtn_const2;
-    private javax.swing.JRadioButton rbtn_exportIDs;
     private javax.swing.JRadioButton rbtn_showExample;
     private javax.swing.JTable table_array;
     private javax.swing.JTable table_queryIDs;
@@ -1694,6 +1743,7 @@ public class ArrayQuery extends javax.swing.JFrame {
     private javax.swing.JTextField txt_gene2const;
     private javax.swing.JTextField txt_gene3const;
     private javax.swing.JTextField txt_gene4const;
+    private javax.swing.JTextField txt_gene5const;
     private javax.swing.JTextField txt_genes1;
     private javax.swing.JTextField txt_genes2;
     private javax.swing.JTextField txt_genes3;

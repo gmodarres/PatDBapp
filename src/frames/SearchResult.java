@@ -13,6 +13,7 @@ package frames;
 
 
 //import static java.awt.Color.blue;
+import static frames.ArrayQuery.AQ_resultIDs;
 import static frames.ResultWindow.updateIntrpr;
 import static frames.SetConnection.personalConfig;
 import static frames.SampleBrowse.SB_resultIDs;
@@ -950,7 +951,7 @@ public class SearchResult extends javax.swing.JFrame {
             stdy_id = "0";
         }
         
-try {
+        try {
             String sql2 = "SELECT m.*, s.pat_id, y.pat_id FROM main_result m, sample s, pat_instudy y"
                     + " where m.lab_id=s.lab_id"
                     + " and s.pat_id=y.pat_id"
@@ -982,13 +983,32 @@ try {
                 if (conn != null) { conn.close();}
             } catch (Exception e) {
             }
-        }        
-        
-        
-        
-        
+        }         
      }  
-    
+     
+private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
+        // to extend sql in Array search
+        try {
+            String ids = AQ_resultIDs;
+            JOptionPane.showMessageDialog(null,"AQ_IDs:   "+ ids);    //TEST
+
+            if (ids == null) {
+                JOptionPane.showMessageDialog(null, "Why would you do that? ... there's nothing in there!");
+            } else if (ids.length() > 1) {
+                ids = ids.substring(0, (ids.length() - 1));
+                if (caller.equals("A_btn_searchActionPerformed")) {
+                    this.mod_sql = sql + " AND m.result_id in(" + ids + ")";
+                } else if (caller.equals("F_btn_searchActionPerformed")) {
+                    this.mod_sql = sql + " AND result_id in(" + ids + ")";
+                } else if (caller.equals("Z_btn_searchActionPerformed")) {
+                    this.mod_sql = sql + " AND m.result_id in(" + ids + ")";
+                }
+            }      
+        } catch (Exception e) {
+            //JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }     
+     
     private void highlight_gene(String gene, Integer no){
         try{
             String text  = txtArea_genes.getText().toLowerCase();
@@ -1387,13 +1407,12 @@ public void toExcel(JTable table, File file){
         btn_selPat = new javax.swing.JRadioButton();
         jPanel19 = new javax.swing.JPanel();
         ComboBox_projPat = new javax.swing.JComboBox<>();
-        lbl_fromStdy = new javax.swing.JLabel();
         rbtn_onlyPat = new javax.swing.JRadioButton();
         rbtn_onlyPat1 = new javax.swing.JRadioButton();
-        lbl_fromProj = new javax.swing.JLabel();
         ComboBox_stdyPat = new javax.swing.JComboBox<>();
         rbtn_SB = new javax.swing.JRadioButton();
         rbtn_ST = new javax.swing.JRadioButton();
+        rbtn_ArrQuery = new javax.swing.JRadioButton();
         jToolBar1 = new javax.swing.JToolBar();
         bnt_test = new javax.swing.JButton();
         btn_E = new javax.swing.JButton();
@@ -1611,9 +1630,9 @@ public void toExcel(JTable table, File file){
 
         A_txt_chr_1.setToolTipText("1,2,3,...,\"X\",\"Y\"");
 
-        A_lbl_genes1.setText("select  ->");
+        A_lbl_genes1.setText("select genes 1 ->");
 
-        A_lbl_genes2.setText("select  ->");
+        A_lbl_genes2.setText("select genes 2 ->");
 
         A_txt_resID.setToolTipText("1,2,3,...");
 
@@ -1699,10 +1718,10 @@ public void toExcel(JTable table, File file){
                     .addComponent(A_txt_Creg, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                     .addComponent(A_txt_Creg_1))
                 .addGap(15, 15, 15)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(A_lbl_genes1)
-                    .addComponent(A_lbl_genes2))
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(A_lbl_genes1, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                    .addComponent(A_lbl_genes2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1880,7 +1899,7 @@ public void toExcel(JTable table, File file){
                 .addGap(15, 15, 15)
                 .addGroup(tab_arrayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1271, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1393, Short.MAX_VALUE))
                 .addGap(24, 24, 24)
                 .addGroup(tab_arrayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2257,7 +2276,7 @@ public void toExcel(JTable table, File file){
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(tab_fishLayout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 153, Short.MAX_VALUE))))
+                        .addGap(0, 275, Short.MAX_VALUE))))
         );
         tab_fishLayout.setVerticalGroup(
             tab_fishLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2505,11 +2524,11 @@ public void toExcel(JTable table, File file){
                     .addComponent(ZI_txt_iscn_1))
                 .addGap(3, 3, 3)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ZI_txt_mat, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
+                    .addComponent(ZI_txt_mat, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
                     .addComponent(ZI_txt_mat_1))
                 .addGap(3, 3, 3)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ZI_txt_stim, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                    .addComponent(ZI_txt_stim, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
                     .addComponent(ZI_txt_stim_1))
                 .addGap(38, 38, 38)
                 .addComponent(rbtn_ZGdetailResult)
@@ -2805,19 +2824,17 @@ public void toExcel(JTable table, File file){
 
         ComboBox_projPat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MS_ALL_Array_Diagnostics", "TEST" }));
 
-        lbl_fromStdy.setText("from study ...");
+        rbtn_onlyPat.setText("only patients from project ...");
 
-        rbtn_onlyPat.setText("only patients");
-
-        rbtn_onlyPat1.setText("only patients");
-
-        lbl_fromProj.setText("from project ...");
+        rbtn_onlyPat1.setText("only patients from study ...");
 
         ComboBox_stdyPat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALL BFM 2009", "TEST" }));
 
         rbtn_SB.setText("use SampleBrowse ");
 
         rbtn_ST.setText("use SubtypeBrowse");
+
+        rbtn_ArrQuery.setText("use ArrayQuery");
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
@@ -2826,44 +2843,38 @@ public void toExcel(JTable table, File file){
             .addGroup(jPanel19Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(rbtn_ST, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(ComboBox_projPat, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(rbtn_onlyPat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel19Layout.createSequentialGroup()
-                            .addGap(24, 24, 24)
-                            .addComponent(lbl_fromProj, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(ComboBox_stdyPat, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(rbtn_onlyPat1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel19Layout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addComponent(lbl_fromStdy, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(rbtn_SB, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel19Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(rbtn_onlyPat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rbtn_onlyPat1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ComboBox_projPat, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ComboBox_stdyPat, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(rbtn_SB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(rbtn_ST, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(rbtn_ArrQuery, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(10, 10, 10))
         );
 
-        jPanel19Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {rbtn_SB, rbtn_onlyPat, rbtn_onlyPat1});
+        jPanel19Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {rbtn_onlyPat, rbtn_onlyPat1});
 
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel19Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(rbtn_onlyPat)
-                .addGap(0, 0, 0)
-                .addComponent(lbl_fromProj)
-                .addGap(3, 3, 3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ComboBox_projPat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rbtn_onlyPat1)
-                .addGap(0, 0, 0)
-                .addComponent(lbl_fromStdy)
-                .addGap(3, 3, 3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ComboBox_stdyPat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(rbtn_SB)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(rbtn_ST)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rbtn_ArrQuery)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -2881,9 +2892,9 @@ public void toExcel(JTable table, File file){
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(Info_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lab_Genes)
-                    .addComponent(lab_Creg, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(Info_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lab_Genes, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lab_Creg, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(5, 5, 5)
                 .addGroup(Info_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
@@ -2909,8 +2920,8 @@ public void toExcel(JTable table, File file){
                         .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(7, 7, 7)
                         .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel19, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel17, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel17, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel19, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(10, 10, 10))
         );
 
@@ -4287,6 +4298,12 @@ public void toExcel(JTable table, File file){
             // only for the set of subtypes result
             if (rbtn_ST.isSelected()) {     
                 deliver_ST_ids(method_name,sql);
+                sql = this.mod_sql;
+            }
+
+            // only for the set of ArrayQuery result
+            if (rbtn_ArrQuery.isSelected()) {     
+                deliver_AQ_ids(method_name,sql);
                 sql = this.mod_sql;
             }
             
@@ -5839,8 +5856,6 @@ public void toExcel(JTable table, File file){
     private javax.swing.JLabel lab_Genes;
     private javax.swing.JLabel lbl_array_signal;
     private javax.swing.JLabel lbl_fish_signal;
-    private javax.swing.JLabel lbl_fromProj;
-    private javax.swing.JLabel lbl_fromStdy;
     private javax.swing.JLabel lbl_rowsReturned;
     private javax.swing.JLabel lbl_zg_signal;
     private javax.swing.JMenuItem popUpMenu_intrprWin;
@@ -5848,6 +5863,7 @@ public void toExcel(JTable table, File file){
     private javax.swing.JMenuItem popUpMenu_save;
     private javax.swing.JMenuItem popUpMenu_selectAll;
     private javax.swing.JPopupMenu popUpSave;
+    private javax.swing.JRadioButton rbtn_ArrQuery;
     private javax.swing.JRadioButton rbtn_SB;
     private javax.swing.JRadioButton rbtn_ST;
     private javax.swing.JRadioButton rbtn_ZGdetailResult;

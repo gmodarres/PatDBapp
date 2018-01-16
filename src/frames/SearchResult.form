@@ -210,7 +210,7 @@
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jPanel6" max="32767" attributes="0"/>
-                          <Component id="jScrollPane1" pref="1271" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" pref="1393" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -537,11 +537,11 @@
                               <Component id="A_txt_Creg_1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="A_lbl_genes1" min="-2" max="-2" attributes="0"/>
-                              <Component id="A_lbl_genes2" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="A_lbl_genes1" pref="127" max="32767" attributes="0"/>
+                              <Component id="A_lbl_genes2" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="86" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -666,12 +666,12 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="A_lbl_genes1">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="select  -&gt;"/>
+                    <Property name="text" type="java.lang.String" value="select genes 1 -&gt;"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="A_lbl_genes2">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="select  -&gt;"/>
+                    <Property name="text" type="java.lang.String" value="select genes 2 -&gt;"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="A_txt_resID">
@@ -978,7 +978,7 @@
                           <Component id="jPanel4" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="jScrollPane2" min="-2" pref="1323" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="153" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="275" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -1843,12 +1843,12 @@
                           </Group>
                           <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="ZI_txt_mat" pref="117" max="32767" attributes="0"/>
+                              <Component id="ZI_txt_mat" pref="178" max="32767" attributes="0"/>
                               <Component id="ZI_txt_mat_1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="ZI_txt_stim" pref="118" max="32767" attributes="0"/>
+                              <Component id="ZI_txt_stim" pref="179" max="32767" attributes="0"/>
                               <Component id="ZI_txt_stim_1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
@@ -2164,9 +2164,9 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jPanel19" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="lab_Genes" min="-2" max="-2" attributes="0"/>
-                      <Component id="lab_Creg" min="-2" pref="79" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="lab_Genes" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lab_Creg" alignment="1" min="-2" pref="79" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -2201,8 +2201,8 @@
                           <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                           <Component id="jScrollPane10" pref="0" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="jPanel19" alignment="1" max="32767" attributes="0"/>
                       <Component id="jPanel17" alignment="1" max="32767" attributes="0"/>
+                      <Component id="jPanel19" alignment="1" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
               </Group>
@@ -2530,24 +2530,18 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="rbtn_ST" min="-2" pref="141" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="ComboBox_projPat" alignment="0" min="-2" pref="142" max="-2" attributes="0"/>
-                              <Component id="rbtn_onlyPat" linkSize="1" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="24" pref="24" max="-2" attributes="0"/>
-                                  <Component id="lbl_fromProj" min="-2" pref="118" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="ComboBox_stdyPat" min="-2" pref="142" max="-2" attributes="0"/>
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="rbtn_onlyPat1" linkSize="1" alignment="0" max="32767" attributes="0"/>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace min="24" pref="24" max="-2" attributes="0"/>
-                                      <Component id="lbl_fromStdy" min="-2" pref="118" max="-2" attributes="0"/>
-                                  </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="rbtn_onlyPat" linkSize="1" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="rbtn_onlyPat1" linkSize="1" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="ComboBox_projPat" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="ComboBox_stdyPat" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="rbtn_SB" linkSize="1" alignment="1" min="-2" pref="141" max="-2" attributes="0"/>
+                          <Component id="rbtn_SB" max="32767" attributes="0"/>
+                          <Component id="rbtn_ST" alignment="0" max="32767" attributes="0"/>
+                          <Component id="rbtn_ArrQuery" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   </Group>
@@ -2558,20 +2552,18 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="rbtn_onlyPat" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                      <Component id="lbl_fromProj" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="ComboBox_projPat" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="rbtn_onlyPat1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                      <Component id="lbl_fromStdy" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="ComboBox_stdyPat" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                       <Component id="rbtn_SB" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="rbtn_ST" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="rbtn_ArrQuery" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -2591,24 +2583,14 @@
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JLabel" name="lbl_fromStdy">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="from study ..."/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JRadioButton" name="rbtn_onlyPat">
               <Properties>
-                <Property name="text" type="java.lang.String" value="only patients"/>
+                <Property name="text" type="java.lang.String" value="only patients from project ..."/>
               </Properties>
             </Component>
             <Component class="javax.swing.JRadioButton" name="rbtn_onlyPat1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="only patients"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lbl_fromProj">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="from project ..."/>
+                <Property name="text" type="java.lang.String" value="only patients from study ..."/>
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="ComboBox_stdyPat">
@@ -2632,6 +2614,11 @@
             <Component class="javax.swing.JRadioButton" name="rbtn_ST">
               <Properties>
                 <Property name="text" type="java.lang.String" value="use SubtypeBrowse"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="rbtn_ArrQuery">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="use ArrayQuery"/>
               </Properties>
             </Component>
           </SubComponents>
