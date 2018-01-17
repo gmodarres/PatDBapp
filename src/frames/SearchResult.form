@@ -891,6 +891,7 @@
                 <Component class="javax.swing.JRadioButton" name="rbtn_useFresult">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="use FISH result"/>
+                    <Property name="toolTipText" type="java.lang.String" value="select to get IDs from tab FISH"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="A_btn_search">
@@ -1546,6 +1547,7 @@
                 <Component class="javax.swing.JRadioButton" name="rbtn_useAresult">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="use array result"/>
+                    <Property name="toolTipText" type="java.lang.String" value="select to get IDs from tab Array"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[115, 25]"/>
                     </Property>
@@ -1562,8 +1564,8 @@
           </AccessibilityProperties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="ZG">
-                <Property name="tabTitle" type="java.lang.String" value="ZG"/>
+              <JTabbedPaneConstraints tabName="Cytogenetics">
+                <Property name="tabTitle" type="java.lang.String" value="Cytogenetics"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -2498,7 +2500,7 @@
             <Component class="javax.swing.JRadioButton" name="btn_selCol">
               <Properties>
                 <Property name="text" type="java.lang.String" value="column select"/>
-                <Property name="toolTipText" type="java.lang.String" value="enable to select whole column in table patients"/>
+                <Property name="toolTipText" type="java.lang.String" value="enable to select a whole column in table patients (press Shift or Cntrl to select more columns)"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_selColActionPerformed"/>
@@ -2507,7 +2509,7 @@
             <Component class="javax.swing.JRadioButton" name="btn_selPat">
               <Properties>
                 <Property name="text" type="java.lang.String" value="result/ patient"/>
-                <Property name="toolTipText" type="java.lang.String" value="select to show results of selected patient only "/>
+                <Property name="toolTipText" type="java.lang.String" value="select to show results of selected patient only (shows in each tab - Array, FISH and Cytogenetics)"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -2586,11 +2588,13 @@
             <Component class="javax.swing.JRadioButton" name="rbtn_onlyPat">
               <Properties>
                 <Property name="text" type="java.lang.String" value="only patients from project ..."/>
+                <Property name="toolTipText" type="java.lang.String" value="select to get results from patients in a certain study (select from below)"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JRadioButton" name="rbtn_onlyPat1">
               <Properties>
                 <Property name="text" type="java.lang.String" value="only patients from study ..."/>
+                <Property name="toolTipText" type="java.lang.String" value="select to get results from patients in a certain project (select from below)"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="ComboBox_stdyPat">
@@ -2609,16 +2613,19 @@
             <Component class="javax.swing.JRadioButton" name="rbtn_SB">
               <Properties>
                 <Property name="text" type="java.lang.String" value="use SampleBrowse "/>
+                <Property name="toolTipText" type="java.lang.String" value="select to get IDs from window SampleBrowse"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JRadioButton" name="rbtn_ST">
               <Properties>
                 <Property name="text" type="java.lang.String" value="use SubtypeBrowse"/>
+                <Property name="toolTipText" type="java.lang.String" value="get IDs from window SubtypeBrowse"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JRadioButton" name="rbtn_ArrQuery">
               <Properties>
                 <Property name="text" type="java.lang.String" value="use ArrayQuery"/>
+                <Property name="toolTipText" type="java.lang.String" value="select to get IDs from window ArrayQuery"/>
               </Properties>
             </Component>
           </SubComponents>

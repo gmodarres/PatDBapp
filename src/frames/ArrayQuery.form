@@ -107,8 +107,11 @@
     </Menu>
   </NonVisualComponents>
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
   </Properties>
+  <AccessibilityProperties>
+    <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="ArrayQuery"/>
+  </AccessibilityProperties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -149,9 +152,9 @@
               <Component id="Info_top" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="388" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="27" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -484,8 +487,13 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="131" max="32767" attributes="0"/>
-                  <Component id="btn_Search" min="-2" pref="85" max="-2" attributes="0"/>
+                  <EmptySpace pref="64" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="btn_saveQuery" alignment="1" max="32767" attributes="0"/>
+                      <Component id="btn_loadQuery" alignment="1" max="32767" attributes="0"/>
+                      <Component id="btn_Search" alignment="1" max="32767" attributes="0"/>
+                      <Component id="btn_clear" alignment="0" max="32767" attributes="0"/>
+                  </Group>
                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -495,12 +503,18 @@
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                          <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                           <Component id="btn_Search" min="-2" pref="34" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="btn_loadQuery" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="btn_saveQuery" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                          <Component id="btn_clear" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                          <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
@@ -511,6 +525,12 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="btn_Search">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="99" green="99" red="99" type="rgb"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/ico/Search.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Search"/>
           </Properties>
           <Events>
@@ -533,81 +553,117 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lbl_mainConst" min="-2" pref="112" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
                               <Component id="rbtn_const1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="141" max="-2" attributes="0"/>
                               <Component id="lbl_or3" min="-2" pref="36" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                              <Component id="rbtn_const2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jPanel4" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jPanel3" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="lbl_or1" max="32767" attributes="0"/>
-                                  <Component id="jCombo_const1" pref="103" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="rbtn_const2" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                                  <Component id="lbl_or3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="rbtn_const1" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txt_const1_2" linkSize="4" min="-2" pref="104" max="-2" attributes="0"/>
-                                  <Component id="txt_const1_1" linkSize="4" min="-2" pref="104" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="rbtn_const2" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="lbl_or2" max="32767" attributes="0"/>
-                                  <Component id="jCombo_const2" pref="103" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txt_const2_1" linkSize="5" alignment="0" min="-2" pref="104" max="-2" attributes="0"/>
-                                  <Component id="txt_const2_2" linkSize="4" alignment="1" min="-2" pref="104" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="txt_genes3" min="-2" pref="104" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jCombo_gene3const" min="-2" pref="103" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="txt_gene3const" min="-2" pref="104" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="txt_genes4" alignment="1" min="-2" pref="104" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Component id="lbl_NOT" min="-2" pref="36" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="txt_genes5" min="-2" pref="104" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JRadioButton" name="rbtn_const1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="1"/>
+                <Property name="toolTipText" type="java.lang.String" value="select, if you want to add a constraint to the query"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lbl_or3">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="AND"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="rbtn_const2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="2"/>
+                <Property name="toolTipText" type="java.lang.String" value="select, if you want to add a 2nd constraint to the query"/>
+              </Properties>
+            </Component>
+            <Container class="javax.swing.JPanel" name="jPanel3">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                </Property>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace pref="21" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="txt_genes3" min="-2" pref="104" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jCombo_gene3const" min="-2" pref="103" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="txt_gene3const" min="-2" pref="104" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="txt_genes4" alignment="1" min="-2" pref="104" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <Component id="lbl_NOT" min="-2" pref="36" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="txt_genes5" min="-2" pref="104" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="jCombo_gene4const" min="-2" pref="103" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="txt_gene4const" min="-2" pref="104" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="jCombo_gene5const" min="-2" pref="103" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="txt_gene5const" min="-2" pref="104" max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
                                       </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Component id="jCombo_gene4const" min="-2" pref="103" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="txt_gene4const" min="-2" pref="104" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" attributes="0">
-                                              <Component id="jCombo_gene5const" min="-2" pref="103" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="txt_gene5const" min="-2" pref="104" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
                                   </Group>
                               </Group>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" alignment="0" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="lbl_Genes" min="-2" pref="50" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
@@ -627,292 +683,368 @@
                                   </Group>
                               </Group>
                           </Group>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lbl_Genes" alignment="3" max="32767" attributes="0"/>
-                                  <Component id="txt_genes1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jCombo_gene1const" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                                  <Component id="txt_gene1const" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jCombo_gene2const" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                                  <Component id="txt_gene2const" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txt_genes2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jCombo_gene3const" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                                  <Component id="txt_gene3const" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txt_genes3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jCombo_gene4const" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                                  <Component id="txt_gene4const" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txt_genes4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="txt_genes5" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jCombo_gene5const" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                                  <Component id="txt_gene5const" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lbl_NOT" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="rbtn_const1" min="-2" pref="22" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                      <Component id="rbtn_const2" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                                      <Component id="lbl_or3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="lbl_mainConst" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jCombo_const1" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                                          <Component id="txt_const1_1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="txt_const1_2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lbl_or1" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lbl_or2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txt_const2_2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jCombo_const2" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                                      <Component id="txt_const2_1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace pref="52" max="32767" attributes="0"/>
-                          </Group>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-              </Group>
-            </DimensionLayout>
-          </Layout>
-          <SubComponents>
-            <Component class="javax.swing.JComboBox" name="jCombo_gene1const">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="5">
-                    <StringItem index="0" value="type"/>
-                    <StringItem index="1" value="cnst"/>
-                    <StringItem index="2" value="size"/>
-                    <StringItem index="3" value="call"/>
-                    <StringItem index="4" value="chr"/>
-                  </StringArray>
-                </Property>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
-            </Component>
-            <Component class="javax.swing.JTextField" name="txt_genes1">
-            </Component>
-            <Component class="javax.swing.JTextField" name="txt_gene1const">
-            </Component>
-            <Component class="javax.swing.JTextField" name="txt_gene2const">
-            </Component>
-            <Component class="javax.swing.JComboBox" name="jCombo_gene2const">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="5">
-                    <StringItem index="0" value="type"/>
-                    <StringItem index="1" value="cnst"/>
-                    <StringItem index="2" value="size"/>
-                    <StringItem index="3" value="call"/>
-                    <StringItem index="4" value="chr"/>
-                  </StringArray>
-                </Property>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lbl_Genes">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Genes:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="txt_const1_1">
-              <Properties>
-                <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&lt;p width=400px&gt;&#xa;enter constraints here - possible values:&lt;br&gt;&#xa;&lt;font color=&quot;green&quot;&gt;&#xa;= &apos;text&apos; &amp;#9&amp;#9 ...is text&lt;br&gt;&#xa;= no. &amp;#9&amp;#9 ...is number&lt;br&gt;&#xa;&amp;lt&amp;gt &apos;text&apos; &amp;#9&amp;#9 ...is not text&lt;br&gt; &#xa;&amp;lt&amp;gt no. &amp;#9&amp;#9 ...is not a number&lt;br&gt;&#xa;like &apos;%text%&apos; &amp;#9&amp;#9 ...does contain text&lt;br&gt;&#xa;not like &apos;%text%&apos; &amp;#9 ...does not contain text&lt;br&gt;&#xa;in (no1,no2,...) &amp;#9 ...does contain numbers&lt;br&gt;&#xa;not in (no1,no2,...) &amp;#9 ...does not contain numbers&lt;br&gt;&#xa;&lt;/font&gt;&lt;/p&gt;&lt;/html&gt;"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lbl_mainConst">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="main constraints:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JRadioButton" name="rbtn_const1">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="1"/>
-                <Property name="toolTipText" type="java.lang.String" value="select, if you want to add a constraint to the query"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lbl_or1">
-              <Properties>
-                <Property name="horizontalAlignment" type="int" value="4"/>
-                <Property name="text" type="java.lang.String" value="OR"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="jCombo_const1">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="5">
-                    <StringItem index="0" value="type"/>
-                    <StringItem index="1" value="cnst"/>
-                    <StringItem index="2" value="size"/>
-                    <StringItem index="3" value="call"/>
-                    <StringItem index="4" value="chr"/>
-                  </StringArray>
-                </Property>
-                <Property name="toolTipText" type="java.lang.String" value="choose feature"/>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
-            </Component>
-            <Component class="javax.swing.JTextField" name="txt_genes2">
-            </Component>
-            <Component class="javax.swing.JTextField" name="txt_const1_2">
-              <Properties>
-                <Property name="toolTipText" type="java.lang.String" value="enter a second constraint value for a feature here"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lbl_or3">
-              <Properties>
-                <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="AND"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JRadioButton" name="rbtn_const2">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="2"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="jCombo_const2">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="5">
-                    <StringItem index="0" value="type"/>
-                    <StringItem index="1" value="cnst"/>
-                    <StringItem index="2" value="size"/>
-                    <StringItem index="3" value="call"/>
-                    <StringItem index="4" value="chr"/>
-                  </StringArray>
-                </Property>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
-            </Component>
-            <Component class="javax.swing.JTextField" name="txt_const2_1">
-            </Component>
-            <Component class="javax.swing.JTextField" name="txt_const2_2">
-            </Component>
-            <Component class="javax.swing.JTextField" name="txt_genes3">
-            </Component>
-            <Component class="javax.swing.JComboBox" name="jCombo_gene3const">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="5">
-                    <StringItem index="0" value="type"/>
-                    <StringItem index="1" value="cnst"/>
-                    <StringItem index="2" value="size"/>
-                    <StringItem index="3" value="call"/>
-                    <StringItem index="4" value="chr"/>
-                  </StringArray>
-                </Property>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
-            </Component>
-            <Component class="javax.swing.JTextField" name="txt_gene3const">
-            </Component>
-            <Component class="javax.swing.JTextField" name="txt_genes4">
-            </Component>
-            <Component class="javax.swing.JComboBox" name="jCombo_gene4const">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="5">
-                    <StringItem index="0" value="type"/>
-                    <StringItem index="1" value="cnst"/>
-                    <StringItem index="2" value="size"/>
-                    <StringItem index="3" value="call"/>
-                    <StringItem index="4" value="chr"/>
-                  </StringArray>
-                </Property>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
-            </Component>
-            <Component class="javax.swing.JTextField" name="txt_gene4const">
-            </Component>
-            <Component class="javax.swing.JTextField" name="txt_genes5">
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbl_Genes" alignment="3" max="32767" attributes="0"/>
+                              <Component id="txt_genes1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jCombo_gene1const" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="txt_gene1const" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jCombo_gene2const" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="txt_gene2const" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txt_genes2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jCombo_gene3const" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="txt_gene3const" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txt_genes3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jCombo_gene4const" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="txt_gene4const" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txt_genes4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="txt_genes5" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jCombo_gene5const" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="txt_gene5const" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbl_NOT" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JTextField" name="txt_genes3">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="enter 3rd gene name"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="txt_gene3const">
+                </Component>
+                <Component class="javax.swing.JComboBox" name="jCombo_gene4const">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="5">
+                        <StringItem index="0" value="type"/>
+                        <StringItem index="1" value="cnst"/>
+                        <StringItem index="2" value="size"/>
+                        <StringItem index="3" value="call"/>
+                        <StringItem index="4" value="chr"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JTextField" name="txt_genes1">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="enter gene name"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="txt_gene2const">
+                </Component>
+                <Component class="javax.swing.JComboBox" name="jCombo_gene2const">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="5">
+                        <StringItem index="0" value="type"/>
+                        <StringItem index="1" value="cnst"/>
+                        <StringItem index="2" value="size"/>
+                        <StringItem index="3" value="call"/>
+                        <StringItem index="4" value="chr"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JTextField" name="txt_gene1const">
+                </Component>
+                <Component class="javax.swing.JComboBox" name="jCombo_gene1const">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="5">
+                        <StringItem index="0" value="type"/>
+                        <StringItem index="1" value="cnst"/>
+                        <StringItem index="2" value="size"/>
+                        <StringItem index="3" value="call"/>
+                        <StringItem index="4" value="chr"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JTextField" name="txt_genes5">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="99" green="ff" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="toolTipText" type="java.lang.String" value="if no constraint is entered, this gene will be shown (for controll)"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lbl_NOT">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="13" style="1"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="NOT"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="txt_gene4const">
+                </Component>
+                <Component class="javax.swing.JLabel" name="lbl_Genes">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Genes:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="txt_gene5const">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="99" green="ff" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="toolTipText" type="java.lang.String" value="if constraint is entered here, the matching query will be excluded from result"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="txt_genes4">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="enter 4th gene name"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="txt_genes2">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="enter 2nd gene name"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="jCombo_gene3const">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="5">
+                        <StringItem index="0" value="type"/>
+                        <StringItem index="1" value="cnst"/>
+                        <StringItem index="2" value="size"/>
+                        <StringItem index="3" value="call"/>
+                        <StringItem index="4" value="chr"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="jCombo_gene5const">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="5">
+                        <StringItem index="0" value="type"/>
+                        <StringItem index="1" value="cnst"/>
+                        <StringItem index="2" value="size"/>
+                        <StringItem index="3" value="call"/>
+                        <StringItem index="4" value="chr"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="jPanel4">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="99" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="toolTipText" type="java.lang.String" value="if no constraint is entered, this gene will be shown (for controll)"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lbl_or2">
-              <Properties>
-                <Property name="horizontalAlignment" type="int" value="4"/>
-                <Property name="text" type="java.lang.String" value="OR"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="jCombo_gene5const">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="5">
-                    <StringItem index="0" value="type"/>
-                    <StringItem index="1" value="cnst"/>
-                    <StringItem index="2" value="size"/>
-                    <StringItem index="3" value="call"/>
-                    <StringItem index="4" value="chr"/>
-                  </StringArray>
+                  <Color blue="cc" green="cc" red="cc" type="rgb"/>
                 </Property>
               </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
-            </Component>
-            <Component class="javax.swing.JTextField" name="txt_gene5const">
-              <Properties>
-                <Property name="toolTipText" type="java.lang.String" value="if constraint is entered here, the matching query will be excluded from result"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lbl_NOT">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="13" style="1"/>
-                </Property>
-                <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="NOT"/>
-              </Properties>
-            </Component>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                          <Component id="lbl_mainConst" min="-2" pref="112" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="lbl_or1" max="32767" attributes="0"/>
+                              <Component id="jCombo_const1" min="-2" pref="103" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="txt_const1_2" linkSize="4" min="-2" pref="104" max="-2" attributes="0"/>
+                              <Component id="txt_const1_1" linkSize="4" min="-2" pref="104" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="lbl_or2" max="32767" attributes="0"/>
+                              <Component id="jCombo_const2" min="-2" pref="103" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="txt_const2_1" linkSize="5" alignment="0" min="-2" pref="104" max="-2" attributes="0"/>
+                              <Component id="txt_const2_2" linkSize="4" alignment="1" min="-2" pref="104" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="lbl_mainConst" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jCombo_const1" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                                      <Component id="txt_const1_1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="txt_const1_2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lbl_or1" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lbl_or2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txt_const2_2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                  <Component id="jCombo_const2" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                                  <Component id="txt_const2_1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JTextField" name="txt_const1_2">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="enter a second constraint value for a feature here"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lbl_or2">
+                  <Properties>
+                    <Property name="horizontalAlignment" type="int" value="4"/>
+                    <Property name="text" type="java.lang.String" value="OR"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="jCombo_const1">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="5">
+                        <StringItem index="0" value="type"/>
+                        <StringItem index="1" value="cnst"/>
+                        <StringItem index="2" value="size"/>
+                        <StringItem index="3" value="call"/>
+                        <StringItem index="4" value="chr"/>
+                      </StringArray>
+                    </Property>
+                    <Property name="toolTipText" type="java.lang.String" value="choose feature"/>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JTextField" name="txt_const2_1">
+                </Component>
+                <Component class="javax.swing.JLabel" name="lbl_mainConst">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="main constraints:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="txt_const2_2">
+                </Component>
+                <Component class="javax.swing.JTextField" name="txt_const1_1">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&lt;p width=400px&gt;&#xa;enter constraints here - possible values:&lt;br&gt;&#xa;&lt;font color=&quot;green&quot;&gt;&#xa;= &apos;text&apos; &amp;#9&amp;#9 ...is text&lt;br&gt;&#xa;= no. &amp;#9&amp;#9 ...is number&lt;br&gt;&#xa;&amp;lt&amp;gt &apos;text&apos; &amp;#9&amp;#9 ...is not text&lt;br&gt; &#xa;&amp;lt&amp;gt no. &amp;#9&amp;#9 ...is not a number&lt;br&gt;&#xa;like &apos;%text%&apos; &amp;#9&amp;#9 ...does contain text&lt;br&gt;&#xa;not like &apos;%text%&apos; &amp;#9 ...does not contain text&lt;br&gt;&#xa;in (&apos;text1&apos;,&apos;text2&apos;,...)&amp;#9 ...does match text1 or text2 or ...&lt;br&gt;&#xa;not in (&apos;text1&apos;,&apos;text2&apos;,...)&amp;#9 ...does not match text1 or text2 or ...&lt;br&gt;&#xa;in (no1,no2,...) &amp;#9 ...does match number1 or number2 or ...&lt;br&gt;&#xa;not in (no1,no2,...) &amp;#9 ...does not match number1 or number2 or ...&lt;br&gt;&#xa;&lt;/font&gt;&lt;/p&gt;&lt;/html&gt;"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lbl_or1">
+                  <Properties>
+                    <Property name="horizontalAlignment" type="int" value="4"/>
+                    <Property name="text" type="java.lang.String" value="OR"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="jCombo_const2">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="5">
+                        <StringItem index="0" value="type"/>
+                        <StringItem index="1" value="cnst"/>
+                        <StringItem index="2" value="size"/>
+                        <StringItem index="3" value="call"/>
+                        <StringItem index="4" value="chr"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+              </SubComponents>
+            </Container>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JButton" name="btn_saveQuery">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="99" red="ff" type="rgb"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/ico/Floppy-Small-icon.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="save query"/>
+            <Property name="toolTipText" type="java.lang.String" value="save current query to a file"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_saveQueryActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btn_loadQuery">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="99" red="33" type="rgb"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/ico/open-file-icon.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="load query"/>
+            <Property name="toolTipText" type="java.lang.String" value="load a saved query from a file"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_loadQueryActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btn_clear">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="99" green="99" red="99" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="clear"/>
+            <Property name="toolTipText" type="java.lang.String" value="clear all fields and settings"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_clearActionPerformed"/>
+          </Events>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

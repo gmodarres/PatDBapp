@@ -990,7 +990,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
         // to extend sql in Array search
         try {
             String ids = AQ_resultIDs;
-            JOptionPane.showMessageDialog(null,"AQ_IDs:   "+ ids);    //TEST
+            //JOptionPane.showMessageDialog(null,"AQ_IDs:   "+ ids);    //TEST
 
             if (ids == null) {
                 JOptionPane.showMessageDialog(null, "Why would you do that? ... there's nothing in there!");
@@ -1101,6 +1101,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
         if (this.ids.length() >0){
             String display_ids=this.ids.substring(0, (ids.length() - 1));  // HERE!
             //txtArea_test.setText(display_ids);
+            //txtArea_genes.setText(display_ids);
         }
     }
     
@@ -1170,7 +1171,7 @@ public void toExcel(JTable table, File file){
         try {
             //JOptionPane.showMessageDialog(null, "right click");
             JTable OT = this.outTable;
-            String dp = this.defaultPath.toString();
+            String dp = this.defaultPath;
             //JOptionPane.showMessageDialog(null, "dp:  "+dp);
 
             JFileChooser fileChooser = new JFileChooser(dp);
@@ -1830,6 +1831,7 @@ public void toExcel(JTable table, File file){
         );
 
         rbtn_useFresult.setText("use FISH result");
+        rbtn_useFresult.setToolTipText("select to get IDs from tab FISH");
 
         A_btn_search.setText("search");
         A_btn_search.addActionListener(new java.awt.event.ActionListener() {
@@ -2241,6 +2243,7 @@ public void toExcel(JTable table, File file){
         });
 
         rbtn_useAresult.setText("use array result");
+        rbtn_useAresult.setToolTipText("select to get IDs from tab Array");
         rbtn_useAresult.setPreferredSize(new java.awt.Dimension(115, 25));
         rbtn_useAresult.setRequestFocusEnabled(false);
 
@@ -2651,7 +2654,7 @@ public void toExcel(JTable table, File file){
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        tab_main.addTab("ZG", tab_ZG);
+        tab_main.addTab("Cytogenetics", tab_ZG);
         tab_ZG.getAccessibleContext().setAccessibleName("Cytogenetics");
 
         Info_top.setBackground(new java.awt.Color(102, 153, 255));
@@ -2778,7 +2781,7 @@ public void toExcel(JTable table, File file){
         });
 
         btn_selCol.setText("column select");
-        btn_selCol.setToolTipText("enable to select whole column in table patients");
+        btn_selCol.setToolTipText("enable to select a whole column in table patients (press Shift or Cntrl to select more columns)");
         btn_selCol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_selColActionPerformed(evt);
@@ -2786,7 +2789,7 @@ public void toExcel(JTable table, File file){
         });
 
         btn_selPat.setText("result/ patient");
-        btn_selPat.setToolTipText("select to show results of selected patient only ");
+        btn_selPat.setToolTipText("select to show results of selected patient only (shows in each tab - Array, FISH and Cytogenetics)");
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
@@ -2825,16 +2828,21 @@ public void toExcel(JTable table, File file){
         ComboBox_projPat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MS_ALL_Array_Diagnostics", "TEST" }));
 
         rbtn_onlyPat.setText("only patients from project ...");
+        rbtn_onlyPat.setToolTipText("select to get results from patients in a certain study (select from below)");
 
         rbtn_onlyPat1.setText("only patients from study ...");
+        rbtn_onlyPat1.setToolTipText("select to get results from patients in a certain project (select from below)");
 
         ComboBox_stdyPat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALL BFM 2009", "TEST" }));
 
         rbtn_SB.setText("use SampleBrowse ");
+        rbtn_SB.setToolTipText("select to get IDs from window SampleBrowse");
 
         rbtn_ST.setText("use SubtypeBrowse");
+        rbtn_ST.setToolTipText("get IDs from window SubtypeBrowse");
 
         rbtn_ArrQuery.setText("use ArrayQuery");
+        rbtn_ArrQuery.setToolTipText("select to get IDs from window ArrayQuery");
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
@@ -3235,8 +3243,7 @@ public void toExcel(JTable table, File file){
         initial_table_zg_result();
         initial_table_statistics();
         initial_table_queryIDs(); 
-        
-        
+
         clearBtnColors();
         
         // unselect rbtn
@@ -3527,6 +3534,12 @@ public void toExcel(JTable table, File file){
             // only for the set of subtypes result
             if (rbtn_ST.isSelected()) {     
                 deliver_ST_ids(method_name,sql);
+                sql = this.mod_sql;
+            }
+            
+            // only for the set of ArrayQuery result
+            if (rbtn_ArrQuery.isSelected()) {     
+                deliver_AQ_ids(method_name,sql);
                 sql = this.mod_sql;
             }
             
@@ -3971,6 +3984,12 @@ public void toExcel(JTable table, File file){
                 sql = this.mod_sql;
             }
             
+            // only for the set of ArrayQuery result
+            if (rbtn_ArrQuery.isSelected()) {     
+                deliver_AQ_ids(method_name,sql);
+                sql = this.mod_sql;
+            }
+            
             if (ZG_rbtn_sort.isSelected()) {
                 String order = (String) ZG_ComboBox_sort.getSelectedItem();
                 String asdes = ZG_txt_sort.getText();
@@ -4309,7 +4328,7 @@ public void toExcel(JTable table, File file){
             
             if (A_rbtn_sort.isSelected()) {
                 String order = (String) A_ComboBox_sort.getSelectedItem();
-                String asdes = F_txt_sort.getText();
+                String asdes = A_txt_sort.getText();
                 if (A_ComboBox_sort.getSelectedItem().toString().equals("array_sub_id")
                         || A_ComboBox_sort.getSelectedItem().toString().equals("chr") //|| A_ComboBox_sort.getSelectedItem().toString().equals("") 
                         //|| A_ComboBox_sort.getSelectedItem().toString().equals("")      // percent necessary?
@@ -4362,6 +4381,18 @@ public void toExcel(JTable table, File file){
                 table_array.getColumnModel().getColumn(10).setMaxWidth(200);
             }
 
+            // if resultset is empty
+            if(!rs.first()){
+                //JOptionPane.showMessageDialog(null, "No result for that query");
+                int rows = rs.getRow();
+                String getRows = String.valueOf(rows);
+                //JOptionPane.showMessageDialog(null, getRows+" row(s) returned");
+                lbl_rowsReturned.setText(getRows+" row(s) returned");
+                my_log.logger.info(getRows+" row(s) returned");
+                DefaultTableModel model = (DefaultTableModel) table_queryIDs.getModel();
+                model.setRowCount(0);
+            }
+                        
             if (rs.last()) {
                 int rows = rs.getRow();
                 String getRows = String.valueOf(rows);
@@ -4371,7 +4402,6 @@ public void toExcel(JTable table, File file){
             }
             
             get_statistics(sql);
-
             get_queryLabIDs(sql, pst, rs, conn);
 
         } catch (Exception e) {

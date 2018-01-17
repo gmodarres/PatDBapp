@@ -174,7 +174,7 @@ public class SetConnection extends javax.swing.JFrame {
         String pass = jpass_pass.getText();
         String domain = txt_domain.getText();
         OK = false;
-        if (jpass_pass.getText().equals("asd")) { // OVERRIDE password
+        if (jpass_pass.getText().equals("asd")) { // OVERRIDE LDAP password
             devmode = "ON";
             OK = true;
             return OK;
@@ -218,11 +218,9 @@ public class SetConnection extends javax.swing.JFrame {
                 @Override
                 public void run(){          
                   combo_host.setModel(new DefaultComboBoxModel<String>(
-                            lines.toArray(new String[0])));
-                    
+                            lines.toArray(new String[0])));                    
                     //combo_host.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "jdbc:mysql://localhost:3306/pat_db", "host2" }));
                     //combo_host.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {hosts}));
-
                 }
             });  
         } catch (IOException e) {

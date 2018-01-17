@@ -449,7 +449,7 @@ public class ReadyForSQL extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(SetConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
-   }
+    }
     
     private void saveOnRC(java.awt.event.ActionEvent evt) {
         try {

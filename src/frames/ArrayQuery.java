@@ -19,6 +19,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
@@ -501,35 +503,40 @@ public class ArrayQuery extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btn_Search = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jCombo_gene1const = new javax.swing.JComboBox<>();
-        txt_genes1 = new javax.swing.JTextField();
-        txt_gene1const = new javax.swing.JTextField();
-        txt_gene2const = new javax.swing.JTextField();
-        jCombo_gene2const = new javax.swing.JComboBox<>();
-        lbl_Genes = new javax.swing.JLabel();
-        txt_const1_1 = new javax.swing.JTextField();
-        lbl_mainConst = new javax.swing.JLabel();
         rbtn_const1 = new javax.swing.JRadioButton();
-        lbl_or1 = new javax.swing.JLabel();
-        jCombo_const1 = new javax.swing.JComboBox<>();
-        txt_genes2 = new javax.swing.JTextField();
-        txt_const1_2 = new javax.swing.JTextField();
         lbl_or3 = new javax.swing.JLabel();
         rbtn_const2 = new javax.swing.JRadioButton();
-        jCombo_const2 = new javax.swing.JComboBox<>();
-        txt_const2_1 = new javax.swing.JTextField();
-        txt_const2_2 = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
         txt_genes3 = new javax.swing.JTextField();
-        jCombo_gene3const = new javax.swing.JComboBox<>();
         txt_gene3const = new javax.swing.JTextField();
-        txt_genes4 = new javax.swing.JTextField();
         jCombo_gene4const = new javax.swing.JComboBox<>();
-        txt_gene4const = new javax.swing.JTextField();
+        txt_genes1 = new javax.swing.JTextField();
+        txt_gene2const = new javax.swing.JTextField();
+        jCombo_gene2const = new javax.swing.JComboBox<>();
+        txt_gene1const = new javax.swing.JTextField();
+        jCombo_gene1const = new javax.swing.JComboBox<>();
         txt_genes5 = new javax.swing.JTextField();
-        lbl_or2 = new javax.swing.JLabel();
-        jCombo_gene5const = new javax.swing.JComboBox<>();
-        txt_gene5const = new javax.swing.JTextField();
         lbl_NOT = new javax.swing.JLabel();
+        txt_gene4const = new javax.swing.JTextField();
+        lbl_Genes = new javax.swing.JLabel();
+        txt_gene5const = new javax.swing.JTextField();
+        txt_genes4 = new javax.swing.JTextField();
+        txt_genes2 = new javax.swing.JTextField();
+        jCombo_gene3const = new javax.swing.JComboBox<>();
+        jCombo_gene5const = new javax.swing.JComboBox<>();
+        jPanel4 = new javax.swing.JPanel();
+        txt_const1_2 = new javax.swing.JTextField();
+        lbl_or2 = new javax.swing.JLabel();
+        jCombo_const1 = new javax.swing.JComboBox<>();
+        txt_const2_1 = new javax.swing.JTextField();
+        lbl_mainConst = new javax.swing.JLabel();
+        txt_const2_2 = new javax.swing.JTextField();
+        txt_const1_1 = new javax.swing.JTextField();
+        lbl_or1 = new javax.swing.JLabel();
+        jCombo_const2 = new javax.swing.JComboBox<>();
+        btn_saveQuery = new javax.swing.JButton();
+        btn_loadQuery = new javax.swing.JButton();
+        btn_clear = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
@@ -564,7 +571,7 @@ public class ArrayQuery extends javax.swing.JFrame {
         });
         popUpSave.add(popUpMenu_moveTbl);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jToolBar1.setRollover(true);
 
@@ -764,6 +771,8 @@ public class ArrayQuery extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        btn_Search.setBackground(new java.awt.Color(153, 153, 153));
+        btn_Search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/Search.png"))); // NOI18N
         btn_Search.setText("Search");
         btn_Search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -774,194 +783,268 @@ public class ArrayQuery extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jCombo_gene1const.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "type", "cnst", "size", "call", "chr" }));
-
-        jCombo_gene2const.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "type", "cnst", "size", "call", "chr" }));
-
-        lbl_Genes.setText("Genes:");
-
-        txt_const1_1.setToolTipText("<html><p width=400px>\nenter constraints here - possible values:<br>\n<font color=\"green\">\n= 'text' &#9&#9 ...is text<br>\n= no. &#9&#9 ...is number<br>\n&lt&gt 'text' &#9&#9 ...is not text<br> \n&lt&gt no. &#9&#9 ...is not a number<br>\nlike '%text%' &#9&#9 ...does contain text<br>\nnot like '%text%' &#9 ...does not contain text<br>\nin (no1,no2,...) &#9 ...does contain numbers<br>\nnot in (no1,no2,...) &#9 ...does not contain numbers<br>\n</font></p></html>");
-
-        lbl_mainConst.setText("main constraints:");
-
         rbtn_const1.setText("1");
         rbtn_const1.setToolTipText("select, if you want to add a constraint to the query");
-
-        lbl_or1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lbl_or1.setText("OR");
-
-        jCombo_const1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "type", "cnst", "size", "call", "chr" }));
-        jCombo_const1.setToolTipText("choose feature");
-
-        txt_const1_2.setToolTipText("enter a second constraint value for a feature here");
 
         lbl_or3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_or3.setText("AND");
 
         rbtn_const2.setText("2");
+        rbtn_const2.setToolTipText("select, if you want to add a 2nd constraint to the query");
 
-        jCombo_const2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "type", "cnst", "size", "call", "chr" }));
+        jPanel3.setBackground(new java.awt.Color(204, 204, 204));
 
-        jCombo_gene3const.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "type", "cnst", "size", "call", "chr" }));
+        txt_genes3.setToolTipText("enter 3rd gene name");
 
         jCombo_gene4const.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "type", "cnst", "size", "call", "chr" }));
+
+        txt_genes1.setToolTipText("enter gene name");
+
+        jCombo_gene2const.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "type", "cnst", "size", "call", "chr" }));
+
+        jCombo_gene1const.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "type", "cnst", "size", "call", "chr" }));
 
         txt_genes5.setBackground(new java.awt.Color(255, 255, 153));
         txt_genes5.setToolTipText("if no constraint is entered, this gene will be shown (for controll)");
 
-        lbl_or2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lbl_or2.setText("OR");
-
-        jCombo_gene5const.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "type", "cnst", "size", "call", "chr" }));
-
-        txt_gene5const.setToolTipText("if constraint is entered here, the matching query will be excluded from result");
-
         lbl_NOT.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         lbl_NOT.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_NOT.setText("NOT");
+
+        lbl_Genes.setText("Genes:");
+
+        txt_gene5const.setBackground(new java.awt.Color(255, 255, 153));
+        txt_gene5const.setToolTipText("if constraint is entered here, the matching query will be excluded from result");
+
+        txt_genes4.setToolTipText("enter 4th gene name");
+
+        txt_genes2.setToolTipText("enter 2nd gene name");
+
+        jCombo_gene3const.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "type", "cnst", "size", "call", "chr" }));
+
+        jCombo_gene5const.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "type", "cnst", "size", "call", "chr" }));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(txt_genes3, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jCombo_gene3const, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txt_gene3const, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txt_genes4, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(lbl_NOT, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txt_genes5, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jCombo_gene4const, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txt_gene4const, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jCombo_gene5const, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txt_gene5const, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(lbl_Genes, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txt_genes1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jCombo_gene1const, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txt_gene1const, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                            .addGap(62, 62, 62)
+                            .addComponent(txt_genes2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jCombo_gene2const, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txt_gene2const, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_Genes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_genes1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCombo_gene1const, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_gene1const, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(3, 3, 3)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCombo_gene2const, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_gene2const, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_genes2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(3, 3, 3)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCombo_gene3const, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_gene3const, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_genes3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(3, 3, 3)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCombo_gene4const, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_gene4const, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_genes4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(3, 3, 3)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_genes5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCombo_gene5const, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_gene5const, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_NOT))
+                .addGap(2, 2, 2))
+        );
+
+        jPanel4.setBackground(new java.awt.Color(204, 204, 204));
+
+        txt_const1_2.setToolTipText("enter a second constraint value for a feature here");
+
+        lbl_or2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lbl_or2.setText("OR");
+
+        jCombo_const1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "type", "cnst", "size", "call", "chr" }));
+        jCombo_const1.setToolTipText("choose feature");
+
+        lbl_mainConst.setText("main constraints:");
+
+        txt_const1_1.setToolTipText("<html><p width=400px>\nenter constraints here - possible values:<br>\n<font color=\"green\">\n= 'text' &#9&#9 ...is text<br>\n= no. &#9&#9 ...is number<br>\n&lt&gt 'text' &#9&#9 ...is not text<br> \n&lt&gt no. &#9&#9 ...is not a number<br>\nlike '%text%' &#9&#9 ...does contain text<br>\nnot like '%text%' &#9 ...does not contain text<br>\nin ('text1','text2',...)&#9 ...does match text1 or text2 or ...<br>\nnot in ('text1','text2',...)&#9 ...does not match text1 or text2 or ...<br>\nin (no1,no2,...) &#9 ...does match number1 or number2 or ...<br>\nnot in (no1,no2,...) &#9 ...does not match number1 or number2 or ...<br>\n</font></p></html>");
+
+        lbl_or1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lbl_or1.setText("OR");
+
+        jCombo_const2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "type", "cnst", "size", "call", "chr" }));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(2, 2, 2)
+                .addComponent(lbl_mainConst, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lbl_or1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jCombo_const1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txt_const1_2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_const1_1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lbl_or2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jCombo_const2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txt_const2_1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_const2_2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(2, 2, 2))
+        );
+
+        jPanel4Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txt_const1_1, txt_const1_2, txt_const2_2});
+
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(2, 2, 2)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbl_mainConst)
+                            .addComponent(jCombo_const1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_const1_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(3, 3, 3)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txt_const1_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_or1)
+                            .addComponent(lbl_or2)
+                            .addComponent(txt_const2_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jCombo_const2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txt_const2_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(2, 2, 2))
+        );
+
+        jPanel4Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lbl_mainConst, lbl_or1});
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbl_mainConst, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(133, 133, 133)
                         .addComponent(rbtn_const1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lbl_or3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(141, 141, 141)
+                        .addComponent(lbl_or3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15)
+                        .addComponent(rbtn_const2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lbl_or1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jCombo_const1, 0, 103, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_const1_2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_const1_1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rbtn_const2)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lbl_or2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jCombo_const2, 0, 103, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_const2_1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_const2_2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(txt_genes3, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCombo_gene3const, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txt_gene3const, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txt_genes4, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(lbl_NOT, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txt_genes5, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jCombo_gene4const, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txt_gene4const, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jCombo_gene5const, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txt_gene5const, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(lbl_Genes, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txt_genes1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCombo_gene1const, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txt_gene1const, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGap(62, 62, 62)
-                                .addComponent(txt_genes2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCombo_gene2const, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txt_gene2const, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
-
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txt_const1_1, txt_const1_2, txt_const2_2});
-
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txt_const2_1, txt_genes2});
-
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(3, 3, 3)
+                .addGap(4, 4, 4)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbl_Genes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txt_genes1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCombo_gene1const, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_gene1const, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(3, 3, 3)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jCombo_gene2const, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_gene2const, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_genes2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(3, 3, 3)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jCombo_gene3const, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_gene3const, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_genes3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(3, 3, 3)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jCombo_gene4const, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_gene4const, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_genes4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(3, 3, 3)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txt_genes5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCombo_gene5const, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_gene5const, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbl_NOT)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(rbtn_const1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(rbtn_const2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lbl_or3)))
+                            .addComponent(rbtn_const2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_or3)
+                            .addComponent(rbtn_const1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lbl_mainConst)
-                                    .addComponent(jCombo_const1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_const1_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(3, 3, 3)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txt_const1_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lbl_or1)
-                                    .addComponent(lbl_or2)
-                                    .addComponent(txt_const2_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jCombo_const2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txt_const2_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(52, Short.MAX_VALUE))))
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)))
+                .addGap(3, 3, 3))
         );
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lbl_mainConst, lbl_or1});
+        btn_saveQuery.setBackground(new java.awt.Color(255, 153, 0));
+        btn_saveQuery.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/Floppy-Small-icon.png"))); // NOI18N
+        btn_saveQuery.setText("save query");
+        btn_saveQuery.setToolTipText("save current query to a file");
+        btn_saveQuery.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_saveQueryActionPerformed(evt);
+            }
+        });
+
+        btn_loadQuery.setBackground(new java.awt.Color(51, 153, 255));
+        btn_loadQuery.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/open-file-icon.png"))); // NOI18N
+        btn_loadQuery.setText("load query");
+        btn_loadQuery.setToolTipText("load a saved query from a file");
+        btn_loadQuery.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_loadQueryActionPerformed(evt);
+            }
+        });
+
+        btn_clear.setBackground(new java.awt.Color(153, 153, 153));
+        btn_clear.setText("clear");
+        btn_clear.setToolTipText("clear all fields and settings");
+        btn_clear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_clearActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -970,8 +1053,12 @@ public class ArrayQuery extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
-                .addComponent(btn_Search, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btn_saveQuery, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_loadQuery, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_Search, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_clear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(21, 21, 21))
         );
         jPanel1Layout.setVerticalGroup(
@@ -979,11 +1066,17 @@ public class ArrayQuery extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(7, 7, 7)
-                        .addComponent(btn_Search, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btn_Search, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_loadQuery)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_saveQuery)
+                        .addGap(15, 15, 15)
+                        .addComponent(btn_clear))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(10, 10, 10))
         );
 
@@ -1061,8 +1154,10 @@ public class ArrayQuery extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
+
+        getAccessibleContext().setAccessibleName("ArrayQuery");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -1567,7 +1662,7 @@ public class ArrayQuery extends javax.swing.JFrame {
                 }
             }
 
-            txtArea_genes.setText(sql); // TEST    
+            //txtArea_genes.setText(sql); // TEST    
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
             
@@ -1629,6 +1724,7 @@ public class ArrayQuery extends javax.swing.JFrame {
             //int initialDelay = ToolTipManager.sharedInstance().getInitialDelay();
             // Show tool tips immediately
             ToolTipManager.sharedInstance().setInitialDelay(0);
+            ToolTipManager.sharedInstance().setDismissDelay(10000);
         } else {
             ToolTipManager.sharedInstance().setEnabled(false);
         }
@@ -1649,6 +1745,200 @@ public class ArrayQuery extends javax.swing.JFrame {
             txt_const1_1.setToolTipText("<html><p width=400px>\nenter constraints here - possible values:<br>\n<font color=\"green\">\n= 'text' &#9&#9 ...is text<br>\n= no. &#9&#9 ...is number<br>\n&lt&gt 'text' &#9&#9 ...is not text<br> \n&lt&gt no. &#9&#9 ...is not a number<br>\nlike '%text%' &#9&#9 ...does contain text<br>\nnot like '%text%' &#9 ...does not contain text<br>\nin (no1,no2,...) &#9 ...does contain numbers<br>\nnot in (no1,no2,...) &#9 ...does not contain numbers<br>\n</font></p></html>");
         }
     }//GEN-LAST:event_rbtn_showExampleActionPerformed
+
+    private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
+
+        initial_table_queryIDs();
+        initial_table_statistics();
+        DefaultTableModel model = (DefaultTableModel) table_array.getModel();
+        model.setRowCount(0);
+        
+        txtArea_genes.setText("");
+        txtArea_Creg.setText("");
+        
+        rbtn_const1.setSelected(false);
+        txt_const1_1.setText("");
+        txt_const1_2.setText("");
+        rbtn_const2.setSelected(false);
+        txt_const2_1.setText("");
+        txt_const2_2.setText("");
+        
+        txt_genes1.setText("");
+        txt_genes2.setText("");
+        txt_genes3.setText("");
+        txt_genes4.setText("");
+        txt_genes5.setText("");
+        
+        txt_gene1const.setText("");
+        txt_gene2const.setText("");
+        txt_gene3const.setText("");
+        txt_gene4const.setText("");
+        txt_gene5const.setText("");
+        
+    }//GEN-LAST:event_btn_clearActionPerformed
+
+    private void btn_saveQueryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_saveQueryActionPerformed
+        String dp = this.defaultPath;    //JOptionPane.showMessageDialog(null, dp);  //TEST
+        String out_fileString = null;
+        Ini ini;
+        
+        try {
+            JFileChooser fileChooser = new JFileChooser(dp);
+            if (fileChooser.showSaveDialog(jPanel1) == JFileChooser.APPROVE_OPTION) {
+                File out_file = fileChooser.getSelectedFile();
+                out_fileString = out_file.toString();
+                out_file.createNewFile(); 
+            }
+            //JOptionPane.showMessageDialog(null, out_fileString);  //TEST
+
+            ini = new Ini(new File(out_fileString));
+            
+            // get info from which frame te data comes from
+            String method = this.getAccessibleContext().getAccessibleName();  
+            ini.put("frame", "frame", method);
+            
+            // get data from fields, comboboxes & buttons
+            boolean btn1 = rbtn_const1.isSelected();
+            Integer const1_combo = jCombo_const1.getSelectedIndex();
+            String const1_1 = txt_const1_1.getText();
+            String const1_2 = txt_const1_2.getText();
+            ini.put("btn", "btn1", btn1);
+            ini.put("const_combo", "combo1", const1_combo);
+            ini.put("const", "const1_1", const1_1);
+            ini.put("const", "const1_2", const1_2);
+            
+            boolean btn2 = rbtn_const2.isSelected();
+            Integer const2_combo = jCombo_const2.getSelectedIndex();
+            String const2_1 = txt_const2_1.getText();
+            String const2_2 = txt_const2_2.getText();
+            ini.put("btn", "btn2", btn2);
+            ini.put("const_combo", "combo2", const2_combo);
+            ini.put("const", "const2_1", const2_1);
+            ini.put("const", "const2_2", const2_2);
+            
+            String gene1 = txt_genes1.getText();
+            Integer gene1_combo = jCombo_gene1const.getSelectedIndex();
+            String gene1_const = txt_gene1const.getText();
+            ini.put("genes", "gene1", gene1);
+            ini.put("gene_combo", "combo1", gene1_combo);
+            ini.put("gene_const", "const1", gene1_const);
+            
+            String gene2 = txt_genes2.getText();
+            Integer gene2_combo = jCombo_gene2const.getSelectedIndex();
+            String gene2_const = txt_gene2const.getText();
+            ini.put("genes", "gene2", gene2);
+            ini.put("gene_combo", "combo2", gene2_combo);
+            ini.put("gene_const", "const2", gene2_const);
+            
+            String gene3 = txt_genes3.getText();
+            Integer gene3_combo = jCombo_gene3const.getSelectedIndex();
+            String gene3_const = txt_gene3const.getText();
+            ini.put("genes", "gene3", gene3);
+            ini.put("gene_combo", "combo3", gene3_combo);
+            ini.put("gene_const", "const3", gene3_const);
+            
+            String gene4 = txt_genes4.getText();
+            Integer gene4_combo = jCombo_gene4const.getSelectedIndex();
+            String gene4_const = txt_gene4const.getText();
+            ini.put("genes", "gene4", gene4);
+            ini.put("gene_combo", "combo4", gene4_combo);
+            ini.put("gene_const", "const4", gene4_const);
+
+            String gene5 = txt_genes5.getText();
+            Integer gene5_combo = jCombo_gene5const.getSelectedIndex();
+            String gene5_const = txt_gene5const.getText();
+            ini.put("genes", "gene5", gene5);
+            ini.put("gene_combo", "combo5", gene5_combo);
+            ini.put("gene_const", "const5", gene5_const);
+
+            ini.store();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(SetConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_btn_saveQueryActionPerformed
+
+    private void btn_loadQueryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loadQueryActionPerformed
+        String dp = this.defaultPath; 
+        String in_fileString = null;
+        Ini ini;
+        try {
+            ini = new Ini(new File(personalConfig));        //toggle
+
+            JFileChooser fileChooser = new JFileChooser(dp);
+            if (fileChooser.showOpenDialog(jPanel1) == JFileChooser.APPROVE_OPTION) {
+                File in_file = fileChooser.getSelectedFile();
+                in_fileString = in_file.toString();
+            }
+
+            ini = new Ini(new File(in_fileString));
+
+            String method = ini.get("frame", "frame");
+            if (method.equals("ArrayQuery")) {
+                boolean btn1 = Boolean.parseBoolean(ini.get("btn", "btn1"));
+                rbtn_const1.setSelected(btn1);
+                Integer const1_combo = Integer.parseInt(ini.get("const_combo", "combo1"));
+                jCombo_const1.setSelectedIndex(const1_combo);
+                String const1_1 = ini.get("const", "const1_1");
+                txt_const1_1.setText(const1_1);
+                String const1_2 = ini.get("const", "const1_2");
+                txt_const1_2.setText(const1_2);
+                
+                boolean btn2 = Boolean.parseBoolean(ini.get("btn", "btn2"));
+                rbtn_const2.setSelected(btn2);
+                Integer const2_combo = Integer.parseInt(ini.get("const_combo", "combo2"));
+                jCombo_const2.setSelectedIndex(const2_combo);
+                String const2_1 = ini.get("const", "const2_1");
+                txt_const2_1.setText(const2_1);
+                String const2_2 = ini.get("const", "const2_2");
+                txt_const2_2.setText(const2_2);
+                
+                String gene1 = ini.get("genes", "gene1");
+                txt_genes1.setText(gene1);
+                Integer gene1_combo = Integer.parseInt(ini.get("gene_combo", "combo1"));
+                jCombo_gene1const.setSelectedIndex(gene1_combo);
+                String gene1_const = ini.get("gene_const", "const1");
+                txt_gene1const.setText(gene1_const);
+ 
+                String gene2 = ini.get("genes", "gene2");
+                txt_genes2.setText(gene2);
+                Integer gene2_combo = Integer.parseInt(ini.get("gene_combo", "combo2"));
+                jCombo_gene2const.setSelectedIndex(gene2_combo);
+                String gene2_const = ini.get("gene_const", "const2");
+                txt_gene2const.setText(gene2_const);
+                
+                String gene3 = ini.get("genes", "gene3");
+                txt_genes3.setText(gene3);
+                Integer gene3_combo = Integer.parseInt(ini.get("gene_combo", "combo3"));
+                jCombo_gene3const.setSelectedIndex(gene3_combo);
+                String gene3_const = ini.get("gene_const", "const3");
+                txt_gene3const.setText(gene3_const);
+                
+                String gene4 = ini.get("genes", "gene4");
+                txt_genes4.setText(gene4);
+                Integer gene4_combo = Integer.parseInt(ini.get("gene_combo", "combo4"));
+                jCombo_gene4const.setSelectedIndex(gene4_combo);
+                String gene4_const = ini.get("gene_const", "const4");
+                txt_gene4const.setText(gene4_const);  
+                
+                String gene5 = ini.get("genes", "gene5");
+                txt_genes5.setText(gene5);
+                Integer gene5_combo = Integer.parseInt(ini.get("gene_combo", "combo5"));
+                jCombo_gene5const.setSelectedIndex(gene5_combo);
+                String gene5_const = ini.get("gene_const", "const5");
+                txt_gene5const.setText(gene5_const);
+                
+            } else {
+                JOptionPane.showMessageDialog(null, "You are trying to load a wrong frame format!");
+            }
+
+        } catch (IOException ex) {
+            Logger.getLogger(SetConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }//GEN-LAST:event_btn_loadQueryActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1690,6 +1980,9 @@ public class ArrayQuery extends javax.swing.JFrame {
     private javax.swing.JButton bnt_test;
     private javax.swing.JButton btn_Search;
     private javax.swing.JRadioButton btn_TTT;
+    private javax.swing.JButton btn_clear;
+    private javax.swing.JButton btn_loadQuery;
+    private javax.swing.JButton btn_saveQuery;
     private javax.swing.JComboBox<String> jCombo_const1;
     private javax.swing.JComboBox<String> jCombo_const2;
     private javax.swing.JComboBox<String> jCombo_gene1const;
@@ -1709,6 +2002,8 @@ public class ArrayQuery extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane5;
