@@ -147,8 +147,8 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-                  <Component id="jScrollPane2" min="-2" pref="562" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
+                  <Component id="jScrollPane2" min="-2" pref="531" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="btn_Search" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
@@ -172,6 +172,9 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="btn_Search">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/ico/Search.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Search"/>
           </Properties>
           <Events>
@@ -299,6 +302,7 @@
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="cc" green="cc" red="cc" type="rgb"/>
                 </Property>
+                <Property name="toolTipText" type="java.lang.String" value="searching for Date:  &gt;=,date  or  between,date1,date2"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
@@ -310,7 +314,7 @@
             <Component class="javax.swing.JComboBox" name="CB_searchCrit1">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="14">
+                  <StringArray count="16">
                     <StringItem index="0" value="pat_id"/>
                     <StringItem index="1" value="fm_pat_no"/>
                     <StringItem index="2" value="fname"/>
@@ -322,9 +326,11 @@
                     <StringItem index="8" value="mb. down"/>
                     <StringItem index="9" value="study"/>
                     <StringItem index="10" value="study_id"/>
-                    <StringItem index="11" value="project"/>
-                    <StringItem index="12" value=" "/>
-                    <StringItem index="13" value=" "/>
+                    <StringItem index="11" value="stdy_group"/>
+                    <StringItem index="12" value="monitoring"/>
+                    <StringItem index="13" value="project"/>
+                    <StringItem index="14" value=" "/>
+                    <StringItem index="15" value=" "/>
                   </StringArray>
                 </Property>
                 <Property name="enabled" type="boolean" value="false"/>
@@ -344,6 +350,7 @@
                     <StringItem index="1" value="OR"/>
                   </StringArray>
                 </Property>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <AuxValues>
@@ -358,7 +365,7 @@
             <Component class="javax.swing.JComboBox" name="CB_searchCrit2">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="12">
+                  <StringArray count="14">
                     <StringItem index="0" value="pat_id"/>
                     <StringItem index="1" value="fm_pat_no"/>
                     <StringItem index="2" value="fname"/>
@@ -370,12 +377,17 @@
                     <StringItem index="8" value="mb. down"/>
                     <StringItem index="9" value="study"/>
                     <StringItem index="10" value="study_id"/>
-                    <StringItem index="11" value="project"/>
+                    <StringItem index="11" value="stdy_group"/>
+                    <StringItem index="12" value="monitoring"/>
+                    <StringItem index="13" value="project"/>
                   </StringArray>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value="searching for Date:  &gt;=,date  or  between,date1,date2"/>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CB_searchCrit2ActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>

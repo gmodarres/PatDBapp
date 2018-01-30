@@ -771,7 +771,7 @@ public class ArrayQuery extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        btn_Search.setBackground(new java.awt.Color(153, 153, 153));
+        btn_Search.setBackground(new java.awt.Color(0, 102, 102));
         btn_Search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/Search.png"))); // NOI18N
         btn_Search.setText("Search");
         btn_Search.addActionListener(new java.awt.event.ActionListener() {

@@ -14,6 +14,7 @@ package frames;
 
 //import static java.awt.Color.blue;
 import static frames.ArrayQuery.AQ_resultIDs;
+import static frames.PatientBrowse.PB_resultIDs;
 import static frames.ResultWindow.updateIntrpr;
 import static frames.SetConnection.personalConfig;
 import static frames.SampleBrowse.SB_resultIDs;
@@ -886,6 +887,29 @@ public class SearchResult extends javax.swing.JFrame {
         }
     }
     
+    private void deliver_PB_ids(String caller, String sql) {    // ids from SubtypeBrowse
+        // to extend sql in Array search
+        try {
+            String ids = PB_resultIDs;
+
+            if (ids == null) {
+                JOptionPane.showMessageDialog(null, "Why would you do that? ... there's nothing in there!");
+            } else if (ids.length() > 1) {
+                ids = ids.substring(0, (ids.length() - 1));
+                if (caller.equals("A_btn_searchActionPerformed")) {
+                    this.mod_sql = sql + " AND m.result_id in(" + ids + ")";
+                } else if (caller.equals("F_btn_searchActionPerformed")) {
+                    this.mod_sql = sql + " AND result_id in(" + ids + ")";
+                } else if (caller.equals("Z_btn_searchActionPerformed")) {
+                    this.mod_sql = sql + " AND m.result_id in(" + ids + ")";
+                }
+            }
+
+        } catch (Exception e) {
+            //JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
+    
     private void deliver_Proj_ids(String sql, String set){ 
         Connection conn = DBconnect.ConnecrDb();
         ResultSet rs = null;
@@ -1406,6 +1430,8 @@ public void toExcel(JTable table, File file){
         btn_TTT = new javax.swing.JRadioButton();
         btn_selCol = new javax.swing.JRadioButton();
         btn_selPat = new javax.swing.JRadioButton();
+        btn_loadQuery = new javax.swing.JButton();
+        btn_saveQuery = new javax.swing.JButton();
         jPanel19 = new javax.swing.JPanel();
         ComboBox_projPat = new javax.swing.JComboBox<>();
         rbtn_onlyPat = new javax.swing.JRadioButton();
@@ -1414,6 +1440,7 @@ public void toExcel(JTable table, File file){
         rbtn_SB = new javax.swing.JRadioButton();
         rbtn_ST = new javax.swing.JRadioButton();
         rbtn_ArrQuery = new javax.swing.JRadioButton();
+        rbtn_PB = new javax.swing.JRadioButton();
         jToolBar1 = new javax.swing.JToolBar();
         bnt_test = new javax.swing.JButton();
         btn_E = new javax.swing.JButton();
@@ -1510,6 +1537,7 @@ public void toExcel(JTable table, File file){
 
         txt_fullLoc.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
 
+        btn_openLoc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/open_web2.png"))); // NOI18N
         btn_openLoc.setText("open Loc");
         btn_openLoc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1594,6 +1622,7 @@ public void toExcel(JTable table, File file){
                 .addContainerGap())
         );
 
+        A_btn_clear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/Actions-edit-clear-list-icon.png"))); // NOI18N
         A_btn_clear.setText("clear all");
         A_btn_clear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1833,6 +1862,8 @@ public void toExcel(JTable table, File file){
         rbtn_useFresult.setText("use FISH result");
         rbtn_useFresult.setToolTipText("select to get IDs from tab FISH");
 
+        A_btn_search.setBackground(new java.awt.Color(0, 102, 102));
+        A_btn_search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/Search.png"))); // NOI18N
         A_btn_search.setText("search");
         A_btn_search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1860,6 +1891,7 @@ public void toExcel(JTable table, File file){
         txt_genOnc.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         txt_genOnc.setToolTipText("copy & paste gene name here");
 
+        btn_openGenOnc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/open_web2.png"))); // NOI18N
         btn_openGenOnc.setText("Genetics Oncology");
         btn_openGenOnc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1871,12 +1903,8 @@ public void toExcel(JTable table, File file){
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_genOnc)
-                    .addComponent(btn_openGenOnc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(8, 8, 8))
+            .addComponent(btn_openGenOnc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(txt_genOnc, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1901,7 +1929,7 @@ public void toExcel(JTable table, File file){
                 .addGap(15, 15, 15)
                 .addGroup(tab_arrayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1393, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1299, Short.MAX_VALUE))
                 .addGap(24, 24, 24)
                 .addGroup(tab_arrayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2060,6 +2088,7 @@ public void toExcel(JTable table, File file){
                 .addContainerGap())
         );
 
+        F_btn_clear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/Actions-edit-clear-list-icon.png"))); // NOI18N
         F_btn_clear.setText("clear all");
         F_btn_clear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2235,6 +2264,8 @@ public void toExcel(JTable table, File file){
                 .addGap(0, 0, 0))
         );
 
+        F_btn_search.setBackground(new java.awt.Color(0, 102, 102));
+        F_btn_search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/Search.png"))); // NOI18N
         F_btn_search.setText("search");
         F_btn_search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2279,7 +2310,7 @@ public void toExcel(JTable table, File file){
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(tab_fishLayout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 275, Short.MAX_VALUE))))
+                        .addGap(0, 181, Short.MAX_VALUE))))
         );
         tab_fishLayout.setVerticalGroup(
             tab_fishLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2413,6 +2444,7 @@ public void toExcel(JTable table, File file){
                 .addContainerGap())
         );
 
+        Z_btn_clear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/Actions-edit-clear-list-icon.png"))); // NOI18N
         Z_btn_clear.setText("clear all");
         Z_btn_clear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2522,17 +2554,17 @@ public void toExcel(JTable table, File file){
                     .addComponent(ZI_txt_cp_1, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
                     .addComponent(ZI_txt_cp))
                 .addGap(5, 5, 5)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(ZI_txt_iscn, javax.swing.GroupLayout.DEFAULT_SIZE, 511, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ZI_txt_iscn)
                     .addComponent(ZI_txt_iscn_1))
-                .addGap(3, 3, 3)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ZI_txt_mat, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(ZI_txt_mat, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
                     .addComponent(ZI_txt_mat_1))
-                .addGap(3, 3, 3)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ZI_txt_stim, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
-                    .addComponent(ZI_txt_stim_1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(ZI_txt_stim_1, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+                    .addComponent(ZI_txt_stim))
                 .addGap(38, 38, 38)
                 .addComponent(rbtn_ZGdetailResult)
                 .addGap(18, 18, 18)
@@ -2589,6 +2621,8 @@ public void toExcel(JTable table, File file){
                 .addGap(0, 0, 0))
         );
 
+        Z_btn_search.setBackground(new java.awt.Color(0, 102, 102));
+        Z_btn_search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/Search.png"))); // NOI18N
         Z_btn_search.setText("search");
         Z_btn_search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2630,7 +2664,7 @@ public void toExcel(JTable table, File file){
                 .addGap(15, 15, 15)
                 .addGroup(tab_ZGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(tab_ZGLayout.createSequentialGroup()
-                        .addComponent(jScrollPane3)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1083, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(25, 25, 25))
@@ -2791,33 +2825,64 @@ public void toExcel(JTable table, File file){
         btn_selPat.setText("result/ patient");
         btn_selPat.setToolTipText("select to show results of selected patient only (shows in each tab - Array, FISH and Cytogenetics)");
 
+        btn_loadQuery.setBackground(new java.awt.Color(51, 153, 255));
+        btn_loadQuery.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/open-file-icon.png"))); // NOI18N
+        btn_loadQuery.setText("load query");
+        btn_loadQuery.setToolTipText("load a saved query from a file");
+        btn_loadQuery.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_loadQueryActionPerformed(evt);
+            }
+        });
+
+        btn_saveQuery.setBackground(new java.awt.Color(255, 153, 0));
+        btn_saveQuery.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/Floppy-Small-icon.png"))); // NOI18N
+        btn_saveQuery.setText("save query");
+        btn_saveQuery.setToolTipText("save current query to a file");
+        btn_saveQuery.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_saveQueryActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
         jPanel17Layout.setHorizontalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel17Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_TTT, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btn_selCol, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_selPat, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btn_saveQuery, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_loadQuery, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel17Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btn_selCol, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btn_selPat, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btn_TTT))))
                 .addGap(10, 10, 10))
         );
 
-        jPanel17Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btn_TTT, btn_selCol, btn_selPat});
+        jPanel17Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btn_loadQuery, btn_saveQuery, btn_selCol, btn_selPat});
 
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel17Layout.createSequentialGroup()
-                .addGap(80, 80, 80)
+                .addContainerGap()
+                .addComponent(btn_loadQuery)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_saveQuery)
+                .addGap(10, 10, 10)
                 .addComponent(btn_selCol)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_selPat)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(btn_TTT)
                 .addContainerGap())
         );
@@ -2844,23 +2909,27 @@ public void toExcel(JTable table, File file){
         rbtn_ArrQuery.setText("use ArrayQuery");
         rbtn_ArrQuery.setToolTipText("select to get IDs from window ArrayQuery");
 
+        rbtn_PB.setText("use PatientBrowse ");
+        rbtn_PB.setToolTipText("select to get IDs from window SampleBrowse");
+
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
         jPanel19Layout.setHorizontalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel19Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel19Layout.createSequentialGroup()
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(rbtn_PB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel19Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(rbtn_onlyPat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(rbtn_onlyPat1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(ComboBox_projPat, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ComboBox_stdyPat, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(rbtn_SB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(rbtn_ST, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(rbtn_ArrQuery, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(ComboBox_stdyPat, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(rbtn_SB, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(rbtn_ST, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(rbtn_ArrQuery, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(10, 10, 10))
         );
 
@@ -2877,13 +2946,15 @@ public void toExcel(JTable table, File file){
                 .addComponent(rbtn_onlyPat1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ComboBox_stdyPat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(rbtn_PB)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(rbtn_SB)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(rbtn_ST)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(rbtn_ArrQuery)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout Info_topLayout = new javax.swing.GroupLayout(Info_top);
@@ -3009,15 +3080,15 @@ public void toExcel(JTable table, File file){
             .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Info_top, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tab_main)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(lbl_rowsReturned, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_E)))
-                .addGap(21, 21, 21))
+                        .addGap(1300, 1300, 1300)
+                        .addComponent(btn_E))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(Info_top, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tab_main)))
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3033,6 +3104,8 @@ public void toExcel(JTable table, File file){
                     .addComponent(lbl_rowsReturned))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        getAccessibleContext().setAccessibleName("SearchResult");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -3523,6 +3596,12 @@ public void toExcel(JTable table, File file){
                 sql = this.mod_sql;
             }    
             
+            // only for the set of patient browse result
+            if (rbtn_PB.isSelected()) {     
+                deliver_PB_ids(method_name,sql);
+                sql = this.mod_sql;
+            }
+            
             // only for the set of sample browse result
             if (rbtn_SB.isSelected()) {
                 //String method_name = Thread.currentThread().getStackTrace()[1].getMethodName();
@@ -3603,6 +3682,18 @@ public void toExcel(JTable table, File file){
                 table_fish.getColumnModel().getColumn(12).setMaxWidth(200);
             }
 
+            // if resultset is empty
+            if(!rs.first()){
+                //JOptionPane.showMessageDialog(null, "No result for that query");
+                int rows = rs.getRow();
+                String getRows = String.valueOf(rows);
+                //JOptionPane.showMessageDialog(null, getRows+" row(s) returned");
+                lbl_rowsReturned.setText(getRows+" row(s) returned");
+                my_log.logger.info(getRows+" row(s) returned");
+                DefaultTableModel model = (DefaultTableModel) table_queryIDs.getModel();
+                model.setRowCount(0);
+            }
+            
             if (rs.last()) {
                 int rows = rs.getRow();
                 String getRows = String.valueOf(rows);
@@ -3972,6 +4063,18 @@ public void toExcel(JTable table, File file){
                 sql = this.mod_sql;
             }    
             
+            // only for the set of patient browse result
+            if (rbtn_PB.isSelected()) {     
+                deliver_PB_ids(method_name,sql);
+                sql = this.mod_sql;
+            }
+            
+            // only for the set of patient browse result
+            if (rbtn_PB.isSelected()) {     
+                deliver_PB_ids(method_name,sql);
+                sql = this.mod_sql;
+            }
+
             // only for the set of sample browse result
             if (rbtn_SB.isSelected()) {     
                 deliver_SB_ids(method_name,sql);
@@ -4036,6 +4139,18 @@ public void toExcel(JTable table, File file){
                 table_zg_iscn.getColumnModel().getColumn(6).setMaxWidth(150);
                 table_zg_iscn.getColumnModel().getColumn(7).setPreferredWidth(60);
                 table_zg_iscn.getColumnModel().getColumn(7).setMaxWidth(200);
+            }
+            
+            // if resultset is empty
+            if(!rs.first()){
+                //JOptionPane.showMessageDialog(null, "No result for that query");
+                int rows = rs.getRow();
+                String getRows = String.valueOf(rows);
+                //JOptionPane.showMessageDialog(null, getRows+" row(s) returned");
+                lbl_rowsReturned.setText(getRows+" row(s) returned");
+                my_log.logger.info(getRows+" row(s) returned");
+                DefaultTableModel model = (DefaultTableModel) table_queryIDs.getModel();
+                model.setRowCount(0);
             }
             
             if (rs.last()) {
@@ -4308,6 +4423,12 @@ public void toExcel(JTable table, File file){
                 sql = this.mod_sql;
             }          
 
+            // only for the set of patient browse result
+            if (rbtn_PB.isSelected()) {     
+                deliver_PB_ids(method_name,sql);
+                sql = this.mod_sql;
+            }
+            
             // only for the set of sample browse result
             if (rbtn_SB.isSelected()) {     
                 deliver_SB_ids(method_name,sql);
@@ -5666,6 +5787,474 @@ public void toExcel(JTable table, File file){
 
     }//GEN-LAST:event_table_fishKeyReleased
 
+    private void btn_loadQueryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loadQueryActionPerformed
+        String dp = this.defaultPath;
+        String in_fileString = null;
+        Ini ini;
+        try {
+            ini = new Ini(new File(personalConfig));        //toggle
+
+            JFileChooser fileChooser = new JFileChooser(dp);
+            if (fileChooser.showOpenDialog(jPanel1) == JFileChooser.APPROVE_OPTION) {
+                File in_file = fileChooser.getSelectedFile();
+                in_fileString = in_file.toString();
+            }
+
+            ini = new Ini(new File(in_fileString));
+
+            String method = ini.get("frame", "frame");
+            if (method.equals("SearchResult")) {
+
+                // info_top
+                boolean btn_onlyPat = Boolean.parseBoolean(ini.get("btn", "btn1"));
+                rbtn_onlyPat.setSelected(btn_onlyPat);
+                Integer combo_projPat = Integer.parseInt(ini.get("combo", "combo1"));
+                ComboBox_projPat.setSelectedIndex(combo_projPat);
+                boolean btn_onlyPat1 = Boolean.parseBoolean(ini.get("btn", "btn2"));
+                rbtn_onlyPat1.setSelected(btn_onlyPat1);
+                Integer combo_stdyPat = Integer.parseInt(ini.get("combo", "combo2"));
+                ComboBox_stdyPat.setSelectedIndex(combo_stdyPat);
+                boolean btn_SB = Boolean.parseBoolean(ini.get("btn", "btn3"));
+                rbtn_SB.setSelected(btn_SB);
+                if (btn_SB == true){
+                    SB_resultIDs = ini.get("IDs","SB_resultIDs"); //TEST
+                }
+                boolean btn_ST = Boolean.parseBoolean(ini.get("btn", "btn4"));
+                rbtn_ST.setSelected(btn_ST);
+                if (btn_ST == true){
+                    ST_resultIDs = ini.get("IDs","ST_resultIDs"); //TEST
+                }
+                boolean btn_AQ = Boolean.parseBoolean(ini.get("btn", "btn5"));
+                rbtn_ArrQuery.setSelected(btn_AQ);
+                if (btn_AQ == true){
+                    AQ_resultIDs = ini.get("IDs","AQ_resultIDs"); //TEST
+                }
+
+                //tab_array
+                boolean A_btn_NOT = Boolean.parseBoolean(ini.get("btn", "btn6"));
+                A_rbtn_NOT.setSelected(A_btn_NOT);
+                String A_ANDOR = ini.get("tabArray", "txt1");
+                A_txt_ANDOR.setText(A_ANDOR);
+                String A_tx1_genes1 = ini.get("tabArray", "txt2");
+                A_txt1_genes1.setText(A_tx1_genes1);
+                String A_tx1_genes2 = ini.get("tabArray", "txt3");
+                A_txt1_genes2.setText(A_tx1_genes2);
+                String A_tx2_genes1 = ini.get("tabArray", "txt4");
+                A_txt2_genes1.setText(A_tx2_genes1);
+                String A_tx2_genes2 = ini.get("tabArray", "txt5");
+                A_txt2_genes2.setText(A_tx2_genes2);
+                String A_tx3_genes1 = ini.get("tabArray", "txt6");
+                A_txt3_genes1.setText(A_tx3_genes1);
+                String A_tx3_genes2 = ini.get("tabArray", "txt7");
+                A_txt3_genes2.setText(A_tx3_genes2);
+                String A_tx4_genes1 = ini.get("tabArray", "txt8");
+                A_txt4_genes1.setText(A_tx4_genes1);
+                String A_tx4_genes2 = ini.get("tabArray", "txt9");
+                A_txt4_genes2.setText(A_tx4_genes2);
+                String A_tx5_genes1 = ini.get("tabArray", "txt10");
+                A_txt5_genes1.setText(A_tx5_genes1);
+                String A_tx5_genes2 = ini.get("tabArray", "txt11");
+                A_txt5_genes2.setText(A_tx5_genes2);
+                String A_tx_Creg = ini.get("tabArray", "txt12");
+                A_txt_Creg.setText(A_tx_Creg);
+                String A_tx_Creg_1 = ini.get("tabArray", "txt13");
+                A_txt_Creg_1.setText(A_tx_Creg_1);
+                String A_tx_call = ini.get("tabArray", "txt15");
+                A_txt_call.setText(A_tx_call);
+                String A_tx_call_1 = ini.get("tabArray", "txt16");
+                A_txt_call_1.setText(A_tx_call_1);
+                String A_tx_chr = ini.get("tabArray", "txt17");
+                A_txt_chr.setText(A_tx_chr);
+                String A_tx_chr_1 = ini.get("tabArray", "txt18");
+                A_txt_chr_1.setText(A_tx_chr_1);
+                String A_tx_cnst = ini.get("tabArray", "txt19");
+                A_txt_cnst.setText(A_tx_cnst);
+                String A_tx_cnst_1 = ini.get("tabArray", "txt20");
+                A_txt_cnst_1.setText(A_tx_cnst_1);
+                String A_tx_locEnd = ini.get("tabArray", "txt22");
+                A_txt_locEnd.setText(A_tx_locEnd);
+                String A_tx_locEnd_1 = ini.get("tabArray", "txt23");
+                A_txt_locEnd_1.setText(A_tx_locEnd_1);
+                String A_tx_locStart = ini.get("tabArray", "txt24");
+                A_txt_locStart.setText(A_tx_locStart);
+                String A_tx_locStart_1 = ini.get("tabArray", "txt25");
+                A_txt_locStart_1.setText(A_tx_locStart_1);
+                String A_tx_nom = ini.get("tabArray", "txt26");
+                A_txt_nom.setText(A_tx_nom);
+                String A_tx_nom_1 = ini.get("tabArray", "txt27");
+                A_txt_nom_1.setText(A_tx_nom_1);
+                String A_tx_resID = ini.get("tabArray", "txt28");
+                A_txt_resID.setText(A_tx_resID);
+                String A_tx_resID_1 = ini.get("tabArray", "txt29");
+                A_txt_resID_1.setText(A_tx_resID_1);
+                String A_tx_size = ini.get("tabArray", "txt31");
+                A_txt_size.setText(A_tx_size);
+                String A_tx_size_1 = ini.get("tabArray", "txt32");
+                A_txt_size_1.setText(A_tx_size_1);
+                String A_tx_type = ini.get("tabArray", "txt34");
+                A_txt_type.setText(A_tx_type);
+                String A_tx_type_1 = ini.get("tabArray", "txt35");
+                A_txt_type_1.setText(A_tx_type_1);
+                
+                // tab FISH
+                boolean F_btn_NOT = Boolean.parseBoolean(ini.get("btn", "btn7"));
+                F_rbtn_NOT.setSelected(F_btn_NOT);
+                String F_ANDOR = ini.get("tabFISH", "txt1");
+                F_txt_ANDOR.setText(F_ANDOR);
+
+                String F_tx_fchng = ini.get("tabFISH", "txt2");
+                F_txt_fchng.setText(F_tx_fchng);
+                String F_tx_fchng_1 = ini.get("tabFISH", "txt3");
+                F_txt_fchng_1.setText(F_tx_fchng_1);
+                String F_tx_fish_sub_id = ini.get("tabFISH", "txt4");
+                F_txt_fish_sub_id.setText(F_tx_fish_sub_id);
+                String F_tx_fsn = ini.get("tabFISH", "txt5");
+                F_txt_fsn.setText(F_tx_fsn);
+                String F_tx_fsn_1 = ini.get("tabFISH", "txt6");
+                F_txt_fsn_1.setText(F_tx_fsn_1);
+                String F_tx_kerne = ini.get("tabFISH", "txt7");
+                F_txt_kerne.setText(F_tx_kerne);
+                String F_tx_kerne_1 = ini.get("tabFISH", "txt8");
+                F_txt_kerne_1.setText(F_tx_kerne_1);
+                String F_tx_lab_id = ini.get("tabFISH", "txt9");
+                F_txt_lab_id.setText(F_tx_lab_id);
+                String F_tx_material = ini.get("tabFISH", "txt10");
+                F_txt_material.setText(F_tx_material);
+                String F_tx_material_1 = ini.get("tabFISH", "txt11");
+                F_txt_material_1.setText(F_tx_material_1);
+                String F_tx_mitos = ini.get("tabFISH", "tx12");
+                F_txt_mitos.setText(F_tx_mitos);
+                String F_tx_mitos_1 = ini.get("tabFISH", "txt13");
+                F_txt_mitos_1.setText(F_tx_mitos_1);
+                String F_tx_percent = ini.get("tabFISH", "txt14");
+                F_txt_percent.setText(F_tx_percent);
+                String F_tx_percent_1 = ini.get("tabFISH", "txt15");
+                F_txt_percent_1.setText(F_tx_percent_1);
+                String F_tx_reg1 = ini.get("tabFISH", "txt16");
+                F_txt_reg1.setText(F_tx_reg1);
+                String F_tx_reg1_1 = ini.get("tabFISH", "txt17");
+                F_txt_reg1_1.setText(F_tx_reg1_1);
+                String F_tx_reg2 = ini.get("tabFISH", "txt18");
+                F_txt_reg2.setText(F_tx_reg2);
+                String F_tx_reg2_1 = ini.get("tabFISH", "txt19");
+                F_txt_reg2_1.setText(F_tx_reg2_1);
+                String F_tx_resID = ini.get("tabFISH", "txt20");
+                F_txt_resID.setText(F_tx_resID);
+                String F_tx_resID_1 = ini.get("tabFISH", "txt21");
+                F_txt_resID_1.setText(F_tx_resID_1);
+                String F_tx_result = ini.get("tabFISH", "txt22");
+                F_txt_result.setText(F_tx_result);
+                String F_tx_result_1 = ini.get("tabFISH", "txt23");
+                F_txt_result_1.setText(F_tx_result_1);
+                String F_tx_sig1 = ini.get("tabFISH", "txt24");
+                F_txt_sig1.setText(F_tx_sig1);
+                String F_tx_sig1_1 = ini.get("tabFISH", "txt25");
+                F_txt_sig1_1.setText(F_tx_sig1_1);
+                String F_tx_sig2 = ini.get("tabFISH", "txt26");
+                F_txt_sig2.setText(F_tx_sig2);
+                String F_tx_sig2_1 = ini.get("tabFISH", "txt27");
+                F_txt_sig2_1.setText(F_tx_sig2_1);
+
+                // tab cytogenetics
+                boolean ZG_btn_NOT = Boolean.parseBoolean(ini.get("btn", "btn8"));
+                ZG_rbtn_NOT.setSelected(ZG_btn_NOT);
+                boolean btn_ZGdetailResult = Boolean.parseBoolean(ini.get("btn", "btn9"));
+                rbtn_ZGdetailResult.setSelected(btn_ZGdetailResult);
+
+                String ZG_ANDOR = ini.get("tabZG", "txt1");
+                ZG_txt_ANDOR.setText(ZG_ANDOR);
+                String ZI_tx_chr = ini.get("tabZG", "txt2");
+                ZI_txt_chr.setText(ZI_tx_chr);
+                String ZI_tx_chr_1 = ini.get("tabZG", "txt3");
+                ZI_txt_chr_1.setText(ZI_tx_chr_1);
+                String ZI_tx_cp = ini.get("tabZG", "txt4");
+                ZI_txt_cp.setText(ZI_tx_cp);
+                String ZI_tx_cp_1 = ini.get("tabZG", "txt5");
+                ZI_txt_cp_1.setText(ZI_tx_cp_1);
+
+                String ZI_tx_iscn = ini.get("tabZG", "txt6");
+                ZI_txt_iscn.setText(ZI_tx_iscn);
+                String ZI_tx_iscn_1 = ini.get("tabZG", "txt7");
+                ZI_txt_iscn_1.setText(ZI_tx_iscn_1);
+                String ZI_tx_mat = ini.get("tabZG", "txt8");
+                ZI_txt_mat.setText(ZI_tx_mat);
+                String ZI_tx_mat_1 = ini.get("tabZG", "txt9");
+                ZI_txt_mat_1.setText(ZI_tx_mat_1);
+                String ZI_tx_mitos = ini.get("tabZG", "txt10");
+                ZI_txt_mitos.setText(ZI_tx_mitos);
+                String ZI_tx_mitos_1 = ini.get("tabZG", "txt11");
+                ZI_txt_mitos_1.setText(ZI_tx_mitos_1);
+                String ZI_tx_resId = ini.get("tabZG", "txt12");
+                ZI_txt_resId.setText(ZI_tx_resId);
+                String ZI_tx_resId_1 = ini.get("tabZG", "txt13");
+                ZI_txt_resId_1.setText(ZI_tx_resId_1);
+                String ZI_tx_stim = ini.get("tabZG", "txt14");
+                ZI_txt_stim.setText(ZI_tx_stim);
+                String ZI_tx_stim_1 = ini.get("tabZG", "txt15");
+                ZI_txt_stim_1.setText(ZI_tx_stim_1);
+                String ZR_tx_chng = ini.get("tabZG", "txt16");
+                ZR_txt_chng.setText(ZR_tx_chng);
+                String ZR_tx_chng_1 = ini.get("tabZG", "txt17");
+                ZR_txt_chng_1.setText(ZR_tx_chng_1);
+                String ZR_tx_chr = ini.get("tabZG", "txt18");
+                ZR_txt_chr.setText(ZR_tx_chr);
+                String ZR_tx_chr_1 = ini.get("tabZG", "txt19");
+                ZR_txt_chr_1.setText(ZR_tx_chr_1);
+                String ZR_tx_klonID = ini.get("tabZG", "txt20");
+                ZR_txt_klonID.setText(ZR_tx_klonID);
+                String ZR_tx_klonID_1 = ini.get("tabZG", "txt21");
+                ZR_txt_klonID_1.setText(ZR_tx_klonID_1);
+                String ZR_tx_region = ini.get("tabZG", "txt22");
+                ZR_txt_region.setText(ZR_tx_region);
+                String ZR_tx_region_1 = ini.get("tabZG", "txt23");
+                ZR_txt_region_1.setText(ZR_tx_region_1);
+
+            } else {
+                JOptionPane.showMessageDialog(null, "You are trying to load a wrong frame format!");
+            }
+
+        } catch (IOException ex) {
+            Logger.getLogger(SetConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_btn_loadQueryActionPerformed
+
+    private void btn_saveQueryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_saveQueryActionPerformed
+        String dp = this.defaultPath;    //JOptionPane.showMessageDialog(null, dp);  //TEST
+        String out_fileString = null;
+        Ini ini;
+
+        try {
+            JFileChooser fileChooser = new JFileChooser(dp);
+            if (fileChooser.showSaveDialog(jPanel1) == JFileChooser.APPROVE_OPTION) {
+                File out_file = fileChooser.getSelectedFile();
+                out_fileString = out_file.toString();
+                out_file.createNewFile();
+            }
+            //JOptionPane.showMessageDialog(null, out_fileString);  //TEST
+
+            ini = new Ini(new File(out_fileString));
+
+            // get info from which frame te data comes from
+            String method = this.getAccessibleContext().getAccessibleName();
+            ini.put("frame", "frame", method);
+
+            // get data from fields, comboboxes & buttons
+            
+            // info_top
+            boolean btn_onlyPat = rbtn_onlyPat.isSelected();
+            ini.put("btn", "btn1", btn_onlyPat);
+            Integer combo_projPat = ComboBox_projPat.getSelectedIndex();
+            ini.put("combo", "combo1", combo_projPat);           
+            boolean btn_onlyPat1 = rbtn_onlyPat1.isSelected();
+            ini.put("btn", "btn2", btn_onlyPat1);
+            Integer combo_stdyPat = ComboBox_stdyPat.getSelectedIndex();
+            ini.put("combo", "combo2", combo_stdyPat);
+            
+            boolean btn_SB = rbtn_SB.isSelected();
+            ini.put("btn", "btn3", btn_SB);
+            if (rbtn_SB.isSelected()){
+                String SB_IDs = SB_resultIDs;
+                ini.put("IDs","SB_resultIDs",SB_IDs);
+            }
+            boolean btn_ST = rbtn_ST.isSelected();
+            ini.put("btn", "btn4", btn_ST);
+            if (rbtn_ST.isSelected()){
+                String ST_IDs = ST_resultIDs;
+                ini.put("IDs","SB_resultIDs",ST_IDs);
+            }
+            boolean btn_AQ = rbtn_ArrQuery.isSelected();
+            ini.put("btn", "btn5", btn_AQ); 
+            if (rbtn_ArrQuery.isSelected()){
+                String AQ_IDs = AQ_resultIDs;
+                ini.put("IDs","SB_resultIDs",AQ_IDs);
+            }
+
+            //tab_array
+            boolean A_btn_NOT = A_rbtn_NOT.isSelected();
+            ini.put("btn", "btn_6", A_btn_NOT); 
+            String A_ANDOR = A_txt_ANDOR.getText();
+            ini.put("tabArray", "txt1", A_ANDOR);
+            String A_tx1_genes1 = A_txt1_genes1.getText();
+            ini.put("tabArray", "txt2", A_tx1_genes1);
+            String A_tx1_genes2 = A_txt1_genes2.getText();
+            ini.put("tabArray", "txt3", A_tx1_genes2);
+            String A_tx2_genes1 = A_txt2_genes1.getText();
+            ini.put("tabArray", "txt4", A_tx2_genes1);
+            String A_tx2_genes2 = A_txt2_genes2.getText();
+            ini.put("tabArray", "txt5", A_tx2_genes2);
+            String A_tx3_genes1 = A_txt3_genes1.getText();
+            ini.put("tabArray", "txt6", A_tx3_genes1);
+            String A_tx3_genes2 = A_txt3_genes2.getText();
+            ini.put("tabArray", "txt7", A_tx3_genes2);
+            String A_tx4_genes1 = A_txt4_genes1.getText();
+            ini.put("tabArray", "txt8", A_tx4_genes1);
+            String A_tx4_genes2 = A_txt4_genes2.getText();
+            ini.put("tabArray", "txt9", A_tx4_genes2);
+            String A_tx5_genes1 = A_txt5_genes1.getText();
+            ini.put("tabArray", "txt10", A_tx5_genes1);
+            String A_tx5_genes2 = A_txt5_genes2.getText();
+            ini.put("tabArray", "txt11", A_tx5_genes2);
+            String A_tx_Creg = A_txt_Creg.getText();
+            ini.put("tabArray", "txt12", A_tx_Creg);
+            String A_tx_Creg_1 = A_txt_Creg_1.getText();
+            ini.put("tabArray", "txt13", A_tx_Creg_1);
+            String A_tx_call = A_txt_call.getText();
+            ini.put("tabArray", "txt15", A_tx_call);
+            String A_tx_call_1 = A_txt_call_1.getText();
+            ini.put("tabArray", "txt16", A_tx_call_1);
+            String A_tx_chr = A_txt_chr.getText();
+            ini.put("tabArray", "txt17", A_tx_chr);
+            String A_tx_chr_1 = A_txt_chr_1.getText();
+            ini.put("tabArray", "txt18", A_tx_chr_1);
+            String A_tx_cnst = A_txt_cnst.getText();
+            ini.put("tabArray", "txt19", A_tx_cnst);
+            String A_tx_cnst_1 = A_txt_cnst_1.getText();
+            ini.put("tabArray", "txt20", A_tx_cnst_1);
+            String A_tx_locEnd = A_txt_locEnd.getText();
+            ini.put("tabArray", "txt22", A_tx_locEnd);
+            String A_tx_locEnd_1 = A_txt_locEnd_1.getText();
+            ini.put("tabArray", "txt23", A_tx_locEnd_1);
+            String A_tx_locStart = A_txt_locStart.getText();
+            ini.put("tabArray", "txt24", A_tx_locStart);
+            String A_tx_locStart_1 = A_txt_locStart_1.getText();
+            ini.put("tabArray", "txt25", A_tx_locStart_1);
+            String A_tx_nom = A_txt_nom.getText();
+            ini.put("tabArray", "txt26", A_tx_nom);
+            String A_tx_nom_1 = A_txt_nom_1.getText();
+            ini.put("tabArray", "txt27", A_tx_nom_1);
+            String A_tx_resID = A_txt_resID.getText();
+            ini.put("tabArray", "txt28", A_tx_resID);
+            String A_tx_resID_1 = A_txt_resID_1.getText();
+            ini.put("tabArray", "txt29", A_tx_resID_1);
+            String A_tx_size = A_txt_size.getText();
+            ini.put("tabArray", "txt31", A_tx_size);
+            String A_tx_size_1 = A_txt_size_1.getText();
+            ini.put("tabArray", "txt32", A_tx_size_1);
+            String A_tx_type = A_txt_type.getText();
+            ini.put("tabArray", "txt34", A_tx_type);
+            String A_tx_type_1 = A_txt_type_1.getText();
+            ini.put("tabArray", "txt35", A_tx_type_1);
+            
+            // tab FISH
+            boolean F_btn_NOT = F_rbtn_NOT.isSelected();
+            ini.put("btn", "btn_7", F_btn_NOT);
+            String F_ANDOR = F_txt_ANDOR.getText();
+            ini.put("tabFISH", "txt1", F_ANDOR);
+            String F_tx_fchng = F_txt_fchng.getText();
+            ini.put("tabFISH", "txt2", F_tx_fchng);
+            String F_tx_fchng_1 = F_txt_fchng_1.getText();
+            ini.put("tabFISH", "txt3", F_tx_fchng_1);
+            String F_tx_fish_sub_id = F_txt_fish_sub_id.getText();
+            ini.put("tabFISH", "txt4", F_tx_fish_sub_id);
+            String F_tx_fsn = F_txt_fsn.getText();
+            ini.put("tabFISH", "txt5", F_tx_fsn);
+            String F_tx_fsn_1 = F_txt_fsn_1.getText();
+            ini.put("tabFISH", "txt6", F_tx_fsn_1);
+            String F_tx_kerne = F_txt_kerne.getText();
+            ini.put("tabFISH", "txt7", F_tx_kerne);
+            String F_tx_kerne_1 = F_txt_kerne_1.getText();
+            ini.put("tabFISH", "txt8", F_tx_kerne_1);
+            String F_tx_lab_id = F_txt_lab_id.getText();
+            ini.put("tabFISH", "txt9", F_tx_lab_id);
+            String F_tx_material = F_txt_material.getText();
+            ini.put("tabFISH", "txt10", F_tx_material);
+            String F_tx_material_1 = F_txt_material_1.getText();
+            ini.put("tabFISH", "txt11", F_tx_material_1);
+            String F_tx_mitos = F_txt_mitos.getText();
+            ini.put("tabFISH", "tx12", F_tx_mitos);
+            String F_tx_mitos_1 = F_txt_mitos_1.getText();
+            ini.put("tabFISH", "txt13", F_tx_mitos_1);
+            String F_tx_percent = F_txt_percent.getText();
+            ini.put("tabFISH", "txt14", F_tx_percent);
+            String F_tx_percent_1 = F_txt_percent_1.getText();
+            ini.put("tabFISH", "txt15", F_tx_percent_1);
+            String F_tx_reg1 = F_txt_reg1.getText();
+            ini.put("tabFISH", "txt16", F_tx_reg1);
+            String F_tx_reg1_1 = F_txt_reg1_1.getText();
+            ini.put("tabFISH", "txt17", F_tx_reg1_1);
+            String F_tx_reg2 = F_txt_reg2.getText();
+            ini.put("tabFISH", "txt18", F_tx_reg2);
+            String F_tx_reg2_1 = F_txt_reg2_1.getText();
+            ini.put("tabFISH", "txt19", F_tx_reg2_1);
+            String F_tx_resID = F_txt_resID.getText();
+            ini.put("tabFISH", "txt20", F_tx_resID);
+            String F_tx_resID_1 = F_txt_resID_1.getText();
+            ini.put("tabFISH", "txt21", F_tx_resID_1);
+            String F_tx_result = F_txt_result.getText();
+            ini.put("tabFISH", "txt22", F_tx_result);
+            String F_tx_result_1 = F_txt_result_1.getText();
+            ini.put("tabFISH", "txt23", F_tx_result_1);
+            String F_tx_sig1 = F_txt_sig1.getText();
+            ini.put("tabFISH", "txt24", F_tx_sig1);
+            String F_tx_sig1_1 = F_txt_sig1_1.getText();
+            ini.put("tabFISH", "txt25", F_tx_sig1_1);
+            String F_tx_sig2 = F_txt_sig2.getText();
+            ini.put("tabFISH", "txt26", F_tx_sig2);
+            String F_tx_sig2_1 = F_txt_sig2_1.getText();
+            ini.put("tabFISH", "txt27", F_tx_sig2_1);
+
+            // tab cytogenetics
+            boolean ZG_btn_NOT = ZG_rbtn_NOT.isSelected();
+            ini.put("btn", "btn_8", ZG_btn_NOT);
+            boolean btn_ZGdetailResult = rbtn_ZGdetailResult.isSelected();
+            ini.put("btn", "btn_9", btn_ZGdetailResult);
+
+            String ZG_ANDOR = ZG_txt_ANDOR.getText();
+            ini.put("tabZG", "txt1", ZG_ANDOR);
+            String ZI_tx_chr = ZI_txt_chr.getText();
+            ini.put("tabZG", "txt2",ZI_tx_chr);
+            String ZI_tx_chr_1 = ZI_txt_chr_1.getText();
+            ini.put("tabZG", "txt3",ZI_tx_chr_1);
+            String ZI_tx_cp = ZI_txt_cp.getText();
+            ini.put("tabZG", "txt4",ZI_tx_cp);
+            String ZI_tx_cp_1 = ZI_txt_cp_1.getText();
+            ini.put("tabZG", "txt5",ZI_tx_cp_1);
+            String ZI_tx_iscn = ZI_txt_iscn.getText();
+            ini.put("tabZG", "txt6",ZI_tx_iscn);
+            String ZI_tx_iscn_1 = ZI_txt_iscn_1.getText();
+            ini.put("tabZG", "txt7",ZI_tx_iscn_1);
+            String ZI_tx_mat = ZI_txt_mat.getText();
+            ini.put("tabZG", "txt8",ZI_tx_mat);
+            String ZI_tx_mat_1 = ZI_txt_mat_1.getText();
+            ini.put("tabZG", "txt9",ZI_tx_mat_1);
+            String ZI_tx_mitos = ZI_txt_mitos.getText();
+            ini.put("tabZG", "txt10",ZI_tx_mitos);
+            String ZI_tx_mitos_1 = ZI_txt_mitos_1.getText();
+            ini.put("tabZG", "txt11",ZI_tx_mitos_1);
+            String ZI_tx_resId = ZI_txt_resId.getText();
+            ini.put("tabZG", "txt12",ZI_tx_resId);
+            String ZI_tx_resId_1 = ZI_txt_resId_1.getText();
+            ini.put("tabZG", "txt13",ZI_tx_resId_1);
+            String ZI_tx_stim = ZI_txt_stim.getText();
+            ini.put("tabZG", "txt14",ZI_tx_stim);
+            String ZI_tx_stim_1 = ZI_txt_stim_1.getText();
+            ini.put("tabZG", "txt15",ZI_tx_stim_1);
+            String ZR_tx_chng = ZR_txt_chng.getText();
+            ini.put("tabZG", "txt16",ZR_tx_chng);
+            String ZR_tx_chng_1 = ZR_txt_chng_1.getText();
+            ini.put("tabZG", "txt17",ZR_tx_chng_1);
+            String ZR_tx_chr = ZR_txt_chr.getText();
+            ini.put("tabZG", "txt18",ZR_tx_chr);
+            String ZR_tx_chr_1 = ZR_txt_chr_1.getText();
+            ini.put("tabZG", "txt19",ZR_tx_chr_1);
+            String ZR_tx_klonID = ZR_txt_klonID.getText();
+            ini.put("tabZG", "txt20",ZR_tx_klonID);
+            String ZR_tx_klonID_1 = ZR_txt_klonID_1.getText();
+            ini.put("tabZG", "txt21",ZR_tx_klonID_1);
+            String ZR_tx_region = ZR_txt_region.getText();
+            ini.put("tabZG", "txt22",ZR_tx_region);
+            String ZR_tx_region_1 = ZR_txt_region_1.getText();
+            ini.put("tabZG", "txt23",ZR_tx_region_1);
+
+            ini.store();
+
+        } catch (IOException ex) {
+            Logger.getLogger(SetConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_btn_saveQueryActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -5840,8 +6429,10 @@ public void toExcel(JTable table, File file){
     private javax.swing.JButton bnt_test;
     private javax.swing.JButton btn_E;
     private javax.swing.JRadioButton btn_TTT;
+    private javax.swing.JButton btn_loadQuery;
     private javax.swing.JButton btn_openGenOnc;
     private javax.swing.JButton btn_openLoc;
+    private javax.swing.JButton btn_saveQuery;
     private javax.swing.JRadioButton btn_selCol;
     private javax.swing.JRadioButton btn_selPat;
     private javax.swing.ButtonGroup buttonGroup1;
@@ -5894,6 +6485,7 @@ public void toExcel(JTable table, File file){
     private javax.swing.JMenuItem popUpMenu_selectAll;
     private javax.swing.JPopupMenu popUpSave;
     private javax.swing.JRadioButton rbtn_ArrQuery;
+    private javax.swing.JRadioButton rbtn_PB;
     private javax.swing.JRadioButton rbtn_SB;
     private javax.swing.JRadioButton rbtn_ST;
     private javax.swing.JRadioButton rbtn_ZGdetailResult;

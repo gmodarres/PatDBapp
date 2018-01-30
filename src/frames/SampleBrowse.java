@@ -600,13 +600,15 @@ public class SampleBrowse extends javax.swing.JFrame {
             Connection conn = DBconnect.ConnecrDb();
             ResultSet rs = null;
             PreparedStatement pst = null;
-            //String sql = "SELECT a.* FROM sample a, sample b"
+            //String sql = "SELECT a.pat_id, a.fm_sample_no as 'FM sample', a.lab_id, a.corr_lab_id, a.comm as comment, a.material, a.punct_date, a.rec_date, a.ref_diag FROM sample a, sample b"
             //        + " Where LOCATE(a.lab_id, b.corr_lab_id)"
             //        + " OR LOCATE(b.lab_id, a.corr_lab_id);";
-
-            String sql = "SELECT a.pat_id, a.fm_sample_no as 'FM sample', a.lab_id, a.corr_lab_id, a.comm as comment, a.material, a.punct_date, a.rec_date, a.ref_diag FROM sample a, sample b"
-                    + " Where LOCATE(a.lab_id, b.corr_lab_id)"
-                    + " OR LOCATE(b.lab_id, a.corr_lab_id);";
+            
+            String sql = "SELECT a.pat_id, a.fm_sample_no as 'FM sample', a.lab_id, a.corr_lab_id, a.comm as comment, a.material, a.punct_date, a.rec_date, a.ref_diag FROM sample a"
+                    + " WHERE pat_id in (SELECT pat_id FROM sample"
+                    + " GROUP BY pat_id"
+                    + " HAVING COUNT(pat_id) > 1);";
+            
             my_log.logger.info("SQL:  " + sql);
             
             try {

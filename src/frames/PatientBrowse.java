@@ -30,6 +30,9 @@ import net.proteanit.sql.DbUtils;
  * @author gerda.modarres
  */
 public class PatientBrowse extends javax.swing.JFrame {
+    
+    String ids = null;
+    static String PB_resultIDs = null;
 
     /**
      * Creates new form PatientBrowse
@@ -61,10 +64,15 @@ public class PatientBrowse extends javax.swing.JFrame {
         Connection conn = DBconnect.ConnecrDb();
         ResultSet rs = null;
         PreparedStatement pst = null;
-        String sql = "SELECT p.pat_id, fm_pat_no, fname, surname, surname_old, sex, b_date, dg_date, mb_down as MDown, stdy_name, pat_study_id as stdy_ID, proj_name"
-                + " FROM patient p, pat_instudy ps, pat_inproject pj, study s, project j"
-                + " where p.pat_id=ps.pat_id and p.pat_id=pj.pat_id "
-                + " and s.stdy_id=ps.stdy_id and j.proj_id=pj.proj_id ";
+        //String sql = "SELECT p.pat_id, fm_pat_no, fname, surname, surname_old, sex, b_date, dg_date, mb_down as MDown, stdy_name, pat_study_id as stdy_ID, proj_name"
+        //        + " FROM patient p, pat_instudy ps, pat_inproject pj, study s, project j"
+        //        + " where p.pat_id=ps.pat_id and p.pat_id=pj.pat_id "
+        //        + " and s.stdy_id=ps.stdy_id and j.proj_id=pj.proj_id ";
+        
+        String sql = "SELECT p.pat_id, fm_pat_no, fname, surname, surname_old, sex, b_date, dg_date, mb_down as MDown, stdy_name, pat_study_id as stdy_ID, stdy_group, mon_pat as monitor, proj_name"
+                    + " FROM patient p, pat_instudy ps, pat_inproject pj, study s, project j"
+                    + " WHERE p.pat_id=ps.pat_id and p.pat_id=pj.pat_id "
+                    + " AND s.stdy_id=ps.stdy_id and j.proj_id=pj.proj_id ";
 
         try {
             pst = conn.prepareStatement(sql);
@@ -93,6 +101,10 @@ public class PatientBrowse extends javax.swing.JFrame {
                 table_patient.getColumnModel().getColumn(8).setMaxWidth(60);
                 table_patient.getColumnModel().getColumn(10).setPreferredWidth(70); // stdy_ID
                 table_patient.getColumnModel().getColumn(10).setMaxWidth(100);
+                table_patient.getColumnModel().getColumn(11).setPreferredWidth(80); // stdy_group
+                table_patient.getColumnModel().getColumn(11).setMaxWidth(100);
+                table_patient.getColumnModel().getColumn(12).setPreferredWidth(60); // monitoring
+                table_patient.getColumnModel().getColumn(12).setMaxWidth(100);   
             }
              showRows(rs);
 
@@ -104,6 +116,108 @@ public class PatientBrowse extends javax.swing.JFrame {
                 if (pst != null) { pst.close();}
                 if (conn != null) { conn.close();}
             } catch (Exception e) {
+            }
+        }
+    }
+    
+    private void get_r_ids(String sql, PreparedStatement pst, ResultSet rs, Connection conn) {
+        try {
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            String all_r_ids = "";
+            String r_id_rem = "";
+            while (rs.next()) {
+                String r_id = rs.getString("result_id");
+
+                if (!r_id.equals(r_id_rem)) {
+                    r_id_rem = r_id;
+                    all_r_ids = all_r_ids + "'" + r_id + "',";
+                } else {
+                    //JOptionPane.showMessageDialog(null, "id already in list: " + id + "  "+ id_rem); // test
+                }
+                //txtArea_test.append("'"+r_id+"',");  // test
+            }
+            this.PB_resultIDs = all_r_ids;
+            //txtArea_test.setText(all_r_ids);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        } finally {
+            try {
+                //rs.close(); pst.close(); //conn.close();
+                if (rs != null) { rs.close();}
+                if (pst != null) { pst.close();}
+                //if (conn != null) { conn.close();}
+            } catch (Exception e) {
+            }
+        }
+    }
+       
+    private void get_ids(String sql, PreparedStatement pst, ResultSet rs, Connection conn) {
+            
+        try {
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            String all_ids= "";
+            String id_rem = "";
+            
+            while (rs.next()) {
+                //this.rs_sizeList.add(rs.getString("array_sub_id"));
+                String id = rs.getString("pat_id");     // chng sql --->  lab_id is needed for table_resultID
+                
+                if (!id.equals(id_rem)){
+                    id_rem = id;
+                    all_ids = all_ids +"'"+id+"',";
+                }else{
+                    //JOptionPane.showMessageDialog(null, "id already in list: " + id + "  "+ id_rem); // test
+                }
+                //Combobox_id.addItem(id);        // test
+                //txtArea_test.append("'"+id+"',");  // test
+            }
+            this.ids = all_ids;
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        } finally {
+            try {
+                //rs.close(); pst.close(); //conn.close();
+                if (rs != null) { rs.close();}
+                if (pst != null) { pst.close();}
+                //if (conn != null) { conn.close();}
+            } catch (Exception e) {
+            }
+        }
+    }
+    
+    private void get_resultIDs() {
+        Connection conn = DBconnect.ConnecrDb();
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+        String all_ids = this.ids;
+                                       
+        if (all_ids.length() > 1) {
+            all_ids = all_ids.substring(0, (all_ids.length() - 1));
+
+            String sql = "SELECT p.pat_id, m.result_id, m.lab_id FROM main_result m, sample s, patient p"
+                    + " Where m.lab_id=s.lab_id and s.pat_id=p.pat_id"
+                    //+ " AND m.lab_id in (" + all_ids + ")";         
+                    + " AND p.pat_id in (" + all_ids + ")";   
+            try {
+                pst = conn.prepareStatement(sql);
+                rs = pst.executeQuery();
+               
+                get_r_ids(sql,pst,rs,conn);
+                //showRows(rs);
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+            } finally {
+                try {
+                    if (rs != null) { rs.close();}
+                    if (pst != null) { pst.close();}
+                    if (conn != null) { conn.close();}
+                } catch (Exception e) {
+                }
             }
         }
     }
@@ -155,6 +269,7 @@ public class PatientBrowse extends javax.swing.JFrame {
         Info_top4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         Info_top4.setRequestFocusEnabled(false);
 
+        btn_Search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/Search.png"))); // NOI18N
         btn_Search.setText("Search");
         btn_Search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -179,11 +294,12 @@ public class PatientBrowse extends javax.swing.JFrame {
         rbtn_NOT1.setEnabled(false);
 
         txt_searchCrit1.setBackground(new java.awt.Color(204, 204, 204));
+        txt_searchCrit1.setToolTipText("searching for Date:  >=,date  or  between,date1,date2");
         txt_searchCrit1.setEnabled(false);
 
         rbtn_searchCrit1.setEnabled(false);
 
-        CB_searchCrit1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "pat_id", "fm_pat_no", "fname", "surname", "surname old", "sex", "birth date", "diagnosis date", "mb. down", "study", "study_id", "project", " ", " " }));
+        CB_searchCrit1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "pat_id", "fm_pat_no", "fname", "surname", "surname old", "sex", "birth date", "diagnosis date", "mb. down", "study", "study_id", "stdy_group", "monitoring", "project", " ", " " }));
         CB_searchCrit1.setEnabled(false);
         CB_searchCrit1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -192,13 +308,19 @@ public class PatientBrowse extends javax.swing.JFrame {
         });
 
         CB_andor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AND", "OR" }));
+        CB_andor.setToolTipText("");
         CB_andor.setEnabled(false);
 
         rbtn_searchCrit2.setEnabled(false);
 
-        CB_searchCrit2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "pat_id", "fm_pat_no", "fname", "surname", "surname old", "sex", "birth date", "diagnosis date", "mb. down", "study", "study_id", "project" }));
-        CB_searchCrit2.setToolTipText("searching for Date:  >=,date  or  between,date1,date2");
+        CB_searchCrit2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "pat_id", "fm_pat_no", "fname", "surname", "surname old", "sex", "birth date", "diagnosis date", "mb. down", "study", "study_id", "stdy_group", "monitoring", "project" }));
+        CB_searchCrit2.setToolTipText("");
         CB_searchCrit2.setEnabled(false);
+        CB_searchCrit2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CB_searchCrit2ActionPerformed(evt);
+            }
+        });
 
         rbtn_NOT2.setText("NOT");
         rbtn_NOT2.setEnabled(false);
@@ -291,8 +413,8 @@ public class PatientBrowse extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Info_top4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(88, 88, 88)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_Search)
                 .addGap(21, 21, 21))
@@ -497,10 +619,15 @@ public class PatientBrowse extends javax.swing.JFrame {
             ResultSet rs = null;
             PreparedStatement pst = null;
             
-            String sql = "SELECT p.pat_id, fm_pat_no, fname, surname, surname_old, sex, b_date, dg_date, mb_down as MDown, stdy_name, pat_study_id as stdy_ID, proj_name"
-                + " FROM patient p, pat_instudy ps, pat_inproject pj, study s, project j"
-                + " where p.pat_id=ps.pat_id and p.pat_id=pj.pat_id "
-                + " and s.stdy_id=ps.stdy_id and j.proj_id=pj.proj_id ";
+            //String sql = "SELECT p.pat_id, fm_pat_no, fname, surname, surname_old, sex, b_date, dg_date, mb_down as MDown, stdy_name, pat_study_id as stdy_ID, proj_name"
+            //    + " FROM patient p, pat_instudy ps, pat_inproject pj, study s, project j"
+            //    + " where p.pat_id=ps.pat_id and p.pat_id=pj.pat_id "
+            //    + " and s.stdy_id=ps.stdy_id and j.proj_id=pj.proj_id ";
+            
+            String sql = "SELECT p.pat_id, fm_pat_no, fname, surname, surname_old, sex, b_date, dg_date, mb_down as MDown, stdy_name, pat_study_id as stdy_ID, stdy_group, mon_pat as monitor, proj_name"
+                    + " FROM patient p, pat_instudy ps, pat_inproject pj, study s, project j"
+                    + " WHERE p.pat_id=ps.pat_id and p.pat_id=pj.pat_id "
+                    + " AND s.stdy_id=ps.stdy_id and j.proj_id=pj.proj_id ";
             
             if (rbtn_searchCrit1.isSelected()) {
                 String searchCrit1_select = CB_searchCrit1.getSelectedItem().toString();
@@ -553,6 +680,14 @@ public class PatientBrowse extends javax.swing.JFrame {
                         searchCrit1 = "pat_study_id";
                         select1 = "TXT";
                         break;
+                    case "stdy_group":
+                        searchCrit1 = "stdy_group";
+                        select1 = "NULLable";
+                        break; 
+                    case "monitoring":
+                        searchCrit1 = "mon_pat";
+                        select1 = "NULLable";
+                        break;
                     case "project":
                         searchCrit1 = "proj_name";
                         break;
@@ -562,27 +697,42 @@ public class PatientBrowse extends javax.swing.JFrame {
 
                 if (select1.equals("ID")) {
                     if (rbtn_NOT1.isSelected()) {
-                        sql = sql + " and " + searchCrit1 + " not in ( " + sCrit1_txt + " )";
+                        sql = sql + " and (" + searchCrit1 + " not in ( " + sCrit1_txt + " )";
                     } else {
-                        sql = sql + " and " + searchCrit1 + " in ( " + sCrit1_txt + " )";
+                        sql = sql + " and (" + searchCrit1 + " in ( " + sCrit1_txt + " )";
                     }
                 } else if (select1.equals("TXT")) {
                     if (rbtn_NOT1.isSelected()) {
-                        sql = sql + " and " + searchCrit1 + " NOT like '%" + sCrit1_txt + "%'";
+                        sql = sql + " and (" + searchCrit1 + " NOT like '%" + sCrit1_txt + "%'";
                     } else {
-                        sql = sql + " and " + searchCrit1 + " like '%" + sCrit1_txt + "%'";
+                        sql = sql + " and (" + searchCrit1 + " like '%" + sCrit1_txt + "%'";
                     }
                 } else if (select1.equals("DATE")) {
                     String splitDate[] = sCrit1_txt.split(",");          //  >=,2009-01-01   between,2009-01-01;2012-01-01
                     
                     if (splitDate[0].equals("between")){
                         //JOptionPane.showMessageDialog(null, "1;2;3 " +splitDate[2]);
-                        sql = sql + " and " + searchCrit1 + " " + splitDate[0] +" '"+splitDate[1]+"' and '" + splitDate[2] +"'" ;
+                        sql = sql + " and (" + searchCrit1 + " " + splitDate[0] +" '"+splitDate[1]+"' and '" + splitDate[2] +"'" ;
                     }else if (splitDate[0].equals(">") || splitDate[0].equals("<") || splitDate[0].equals("=") ) {
                         //JOptionPane.showMessageDialog(null, "1;2 " +splitDate[1]);
-                        sql = sql + " and " + searchCrit1 +" " +splitDate[0] +" '"+splitDate[1]+"'" ;
+                        sql = sql + " and (" + searchCrit1 +" " +splitDate[0] +" '"+splitDate[1]+"'" ;
                     }
                     //sql = sql + " and " + searchCrit1 + " " + sCrit1_txt;
+                } else if (select1.equals("NULLable")){
+                    if (rbtn_NOT1.isSelected()) {
+                        if (sCrit1_txt.equals("null") || sCrit1_txt.equals("NULL")) {
+                            sql = sql + " and (" + searchCrit1 + " IS NOT NULL";
+                        } else {
+                            sql = sql + " and (" + searchCrit1 + " NOT like '%" + sCrit1_txt + "%'";
+                        }
+                        
+                    }else {
+                        if (sCrit1_txt.equals("null") || sCrit1_txt.equals("NULL")) {
+                            sql = sql + " and (" + searchCrit1 + " IS NULL";
+                        } else {
+                            sql = sql + " and (" + searchCrit1 + " like '%" + sCrit1_txt + "%'";
+                        }
+                    }
                 }
             }
             
@@ -638,6 +788,14 @@ public class PatientBrowse extends javax.swing.JFrame {
                         searchCrit2 = "pat_study_id";
                         select2 = "TXT";
                         break;
+                    case "stdy_group":
+                        searchCrit2 = "stdy_group";
+                        select2 = "NULLable";
+                        break; 
+                    case "monitoring":
+                        searchCrit2 = "mon_pat";
+                        select2 = "NULLable";
+                        break;
                     case "project":
                         searchCrit2 = "proj_name";
                         break;
@@ -647,32 +805,47 @@ public class PatientBrowse extends javax.swing.JFrame {
 
                 if (select2.equals("ID")) {
                     if (rbtn_NOT2.isSelected()) {
-                        sql = sql +  " " + andor1 + " "+ searchCrit2 + " not in ( " + sCrit2_txt + " )";
+                        sql = sql +  " " + andor1 + " "+ searchCrit2 + " not in ( " + sCrit2_txt + " ))";
                     } else {
-                        sql = sql +  " " + andor1 + " " + searchCrit2 + " in ( " + sCrit2_txt + " )";
+                        sql = sql +  " " + andor1 + " " + searchCrit2 + " in ( " + sCrit2_txt + " ))";
                     }
                 } else if (select2.equals("TXT")) {
                     if (rbtn_NOT2.isSelected()) {
-                        sql = sql + " " + andor1 + " "+ searchCrit2 + " NOT like '%" + sCrit2_txt + "%'";
+                        sql = sql + " " + andor1 + " "+ searchCrit2 + " NOT like '%" + sCrit2_txt + "%')";
                     } else {
-                        sql = sql +  " " + andor1 + " "+ searchCrit2 + " like '%" + sCrit2_txt + "%'";
+                        sql = sql +  " " + andor1 + " "+ searchCrit2 + " like '%" + sCrit2_txt + "%')";
                     }
                 } else if (select2.equals("DATE")) {
                     String splitDate[] = sCrit2_txt.split(",");          //  >=,2009-01-01   between,2009-01-01;2012-01-01
                     
                     if (splitDate[0].equals("between")){
                         //JOptionPane.showMessageDialog(null, "1;2;3 " +splitDate[2]);
-                        sql = sql + " " + andor1 + " "+ searchCrit2 + " " + splitDate[0] +" '"+splitDate[1]+"' and '" + splitDate[2] +"'" ;
+                        sql = sql + " " + andor1 + " "+ searchCrit2 + " " + splitDate[0] +" '"+splitDate[1]+"' and '" + splitDate[2] +"')" ;
                     }else if (splitDate[0].equals(">") || splitDate[0].equals("<") || splitDate[0].equals("=") ) {
                         //JOptionPane.showMessageDialog(null, "1;2 " +splitDate[1]);
-                        sql = sql + " " + andor1 + " "+ searchCrit2 +" " +splitDate[0] +" '"+splitDate[1]+"'" ;
+                        sql = sql + " " + andor1 + " "+ searchCrit2 +" " +splitDate[0] +" '"+splitDate[1]+"')" ;
+                    }
+                } else if (select2.equals("NULLable")){
+                    if (rbtn_NOT2.isSelected()) {
+                        if (sCrit2_txt.equals("null") || sCrit2_txt.equals("NULL")) {
+                            sql = sql +" " + andor1 + " "+ searchCrit2 + " IS NOT NULL)";
+                        } else {
+                            sql = sql + " " + andor1 + " " + searchCrit2 + " NOT like '%" + sCrit2_txt + "%')";
+                        }
+                        
+                    }else {
+                        if (sCrit2_txt.equals("null") || sCrit2_txt.equals("NULL")) {
+                            sql = sql + " " + andor1 + " " + searchCrit2 + " IS NULL)";
+                        } else {
+                            sql = sql +" " + andor1 + " " + searchCrit2 + " like '%" + sCrit2_txt + "%')";
+                        }
                     }
                 }
+            } else {
+                sql = sql +")";
             }
-            
-            
 
-            txtArea_test.setText(sql);
+            //txtArea_test.setText(sql);  //TEST
             
             try {
                 pst = conn.prepareStatement(sql);
@@ -702,7 +875,15 @@ public class PatientBrowse extends javax.swing.JFrame {
                     table_patient.getColumnModel().getColumn(8).setMaxWidth(60);
                     table_patient.getColumnModel().getColumn(10).setPreferredWidth(70); // stdy_ID
                     table_patient.getColumnModel().getColumn(10).setMaxWidth(100);
+                    table_patient.getColumnModel().getColumn(11).setPreferredWidth(80); // stdy_group
+                    table_patient.getColumnModel().getColumn(11).setMaxWidth(100);   
+                    table_patient.getColumnModel().getColumn(12).setPreferredWidth(60); // monitoring
+                    table_patient.getColumnModel().getColumn(12).setMaxWidth(100);                   
                 }
+                
+                get_ids(sql, pst, rs, conn);
+                get_resultIDs();
+                //get_r_ids(sql,pst,rs,conn); 
                 showRows(rs);
 
             } catch (Exception e) {
@@ -732,6 +913,16 @@ public class PatientBrowse extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_CB_searchCrit1ActionPerformed
+
+    private void CB_searchCrit2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_searchCrit2ActionPerformed
+        
+        String searchCrit_select = CB_searchCrit2.getSelectedItem().toString();
+        if (searchCrit_select.equals("birth date") || searchCrit_select.equals("diagnosis date")){
+            rbtn_NOT2.setEnabled(false);
+        } else{
+            rbtn_NOT2.setEnabled(true);
+        }
+    }//GEN-LAST:event_CB_searchCrit2ActionPerformed
 
     /**
      * @param args the command line arguments

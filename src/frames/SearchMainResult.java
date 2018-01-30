@@ -280,6 +280,34 @@ public class SearchMainResult extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        Info_top = new javax.swing.JPanel();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        table_queryIDs = new javax.swing.JTable();
+        btn_clear = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        btn_getResults = new javax.swing.JButton();
+        btn_TTT = new javax.swing.JRadioButton();
+        btn_array = new javax.swing.JToggleButton();
+        btn_fish = new javax.swing.JToggleButton();
+        jLabel1 = new javax.swing.JLabel();
+        btn_zg = new javax.swing.JToggleButton();
+        lbl_rowsReturned = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        lbl_array = new javax.swing.JLabel();
+        lbl_FISH = new javax.swing.JLabel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        txtArea_search_array = new javax.swing.JTextArea();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        txtArea_search_fish = new javax.swing.JTextArea();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        txtArea_search_zg = new javax.swing.JTextArea();
+        btn_search = new javax.swing.JButton();
+        lbl_ZG = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        lbl_searchLabId = new javax.swing.JLabel();
+        txt_searchResultId = new javax.swing.JTextField();
+        txt_searchLabId = new javax.swing.JTextField();
+        lbl_searchResultId = new javax.swing.JLabel();
         tab_main = new javax.swing.JTabbedPane();
         tab_array = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -313,30 +341,6 @@ public class SearchMainResult extends javax.swing.JFrame {
         jPanel_INFO1 = new javax.swing.JPanel();
         lbl_showResultId3 = new javax.swing.JLabel();
         lbl_showLabId3 = new javax.swing.JLabel();
-        Info_top = new javax.swing.JPanel();
-        jScrollPane10 = new javax.swing.JScrollPane();
-        table_queryIDs = new javax.swing.JTable();
-        lbl_searchLabId = new javax.swing.JLabel();
-        txt_searchLabId = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        btn_array = new javax.swing.JToggleButton();
-        btn_fish = new javax.swing.JToggleButton();
-        btn_zg = new javax.swing.JToggleButton();
-        btn_getResults = new javax.swing.JButton();
-        btn_clear = new javax.swing.JButton();
-        btn_search = new javax.swing.JButton();
-        jScrollPane8 = new javax.swing.JScrollPane();
-        txtArea_search_array = new javax.swing.JTextArea();
-        jScrollPane9 = new javax.swing.JScrollPane();
-        txtArea_search_fish = new javax.swing.JTextArea();
-        jScrollPane11 = new javax.swing.JScrollPane();
-        txtArea_search_zg = new javax.swing.JTextArea();
-        lbl_array = new javax.swing.JLabel();
-        lbl_FISH = new javax.swing.JLabel();
-        lbl_ZG = new javax.swing.JLabel();
-        lbl_searchResultId = new javax.swing.JLabel();
-        txt_searchResultId = new javax.swing.JTextField();
-        lbl_rowsReturned = new javax.swing.JLabel();
         jToolBar1 = new javax.swing.JToolBar();
         bnt_test = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -348,6 +352,269 @@ public class SearchMainResult extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Linked Results Analysis Tool");
         setLocation(new java.awt.Point(150, 50));
+
+        Info_top.setBackground(new java.awt.Color(102, 153, 255));
+        Info_top.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        table_queryIDs.setAutoCreateRowSorter(true);
+        table_queryIDs.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "lab_id", "result_ID", "name", "surname", "sex", "b_date"
+            }
+        ));
+        table_queryIDs.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                table_queryIDsMouseClicked(evt);
+            }
+        });
+        table_queryIDs.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                table_queryIDsKeyReleased(evt);
+            }
+        });
+        jScrollPane10.setViewportView(table_queryIDs);
+        table_queryIDs.getAccessibleContext().setAccessibleName("table_queryIDs");
+        table_queryIDs.getAccessibleContext().setAccessibleDescription("");
+
+        btn_clear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/Actions-edit-clear-list-icon.png"))); // NOI18N
+        btn_clear.setText("Clear all");
+        btn_clear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_clearActionPerformed(evt);
+            }
+        });
+
+        jPanel1.setBackground(new java.awt.Color(102, 153, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        btn_getResults.setBackground(new java.awt.Color(102, 102, 102));
+        btn_getResults.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btn_getResults.setForeground(java.awt.Color.white);
+        btn_getResults.setText("GET RESULTS");
+        btn_getResults.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_getResultsActionPerformed(evt);
+            }
+        });
+
+        btn_TTT.setText("ToolTip Help on");
+        btn_TTT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_TTTActionPerformed(evt);
+            }
+        });
+
+        btn_array.setBackground(java.awt.Color.gray);
+        btn_array.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btn_array.setForeground(new java.awt.Color(255, 255, 255));
+        btn_array.setText("ARRAY");
+
+        btn_fish.setBackground(java.awt.Color.gray);
+        btn_fish.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btn_fish.setForeground(new java.awt.Color(255, 255, 255));
+        btn_fish.setText("FISH");
+
+        jLabel1.setText("result exists :");
+
+        btn_zg.setBackground(java.awt.Color.gray);
+        btn_zg.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btn_zg.setForeground(new java.awt.Color(255, 255, 255));
+        btn_zg.setText("CYTOGEN.");
+
+        lbl_rowsReturned.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lbl_rowsReturned.setText(" ");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_zg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_array, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_fish, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_getResults, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_TTT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbl_rowsReturned, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btn_getResults, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_array)
+                .addGap(2, 2, 2)
+                .addComponent(btn_fish)
+                .addGap(2, 2, 2)
+                .addComponent(btn_zg)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbl_rowsReturned)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_TTT)
+                .addContainerGap())
+        );
+
+        jPanel2.setBackground(new java.awt.Color(102, 153, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        lbl_array.setText("Array:");
+
+        lbl_FISH.setText("FISH:");
+
+        txtArea_search_array.setColumns(20);
+        txtArea_search_array.setRows(2);
+        jScrollPane8.setViewportView(txtArea_search_array);
+
+        txtArea_search_fish.setColumns(20);
+        txtArea_search_fish.setRows(2);
+        jScrollPane9.setViewportView(txtArea_search_fish);
+
+        txtArea_search_zg.setColumns(20);
+        txtArea_search_zg.setRows(2);
+        jScrollPane11.setViewportView(txtArea_search_zg);
+
+        btn_search.setBackground(new java.awt.Color(0, 140, 140));
+        btn_search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/Search.png"))); // NOI18N
+        btn_search.setText("search txt");
+        btn_search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_searchActionPerformed(evt);
+            }
+        });
+
+        lbl_ZG.setText("ZG:");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lbl_ZG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbl_array, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbl_FISH, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane9)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane11)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(733, 733, 733)
+                        .addComponent(btn_search, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_array, javax.swing.GroupLayout.Alignment.LEADING))
+                .addGap(2, 2, 2)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl_FISH)
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(2, 2, 2)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl_ZG)
+                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_search)
+                .addContainerGap())
+        );
+
+        jPanel3.setBackground(new java.awt.Color(102, 153, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        lbl_searchLabId.setText("search lab_id:");
+
+        txt_searchResultId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_searchResultIdActionPerformed(evt);
+            }
+        });
+
+        txt_searchLabId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_searchLabIdActionPerformed(evt);
+            }
+        });
+
+        lbl_searchResultId.setText("search result_id:");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txt_searchResultId)
+                    .addComponent(lbl_searchResultId, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                    .addComponent(txt_searchLabId)
+                    .addComponent(lbl_searchLabId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbl_searchLabId)
+                .addGap(3, 3, 3)
+                .addComponent(txt_searchLabId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbl_searchResultId)
+                .addGap(3, 3, 3)
+                .addComponent(txt_searchResultId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9))
+        );
+
+        javax.swing.GroupLayout Info_topLayout = new javax.swing.GroupLayout(Info_top);
+        Info_top.setLayout(Info_topLayout);
+        Info_topLayout.setHorizontalGroup(
+            Info_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Info_topLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(Info_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_clear, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        Info_topLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jPanel1, jPanel3});
+
+        Info_topLayout.setVerticalGroup(
+            Info_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Info_topLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(Info_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(Info_topLayout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42)
+                        .addComponent(btn_clear))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(10, 10, 10))
+        );
 
         tab_main.setBackground(new java.awt.Color(102, 153, 255));
         tab_main.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -457,7 +724,7 @@ public class SearchMainResult extends javax.swing.JFrame {
                             .addComponent(jScrollPane6))
                         .addGap(18, 18, 18)
                         .addGroup(tab_arrayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 903, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1049, Short.MAX_VALUE)
                             .addGroup(tab_arrayLayout.createSequentialGroup()
                                 .addComponent(A_lab_intrpr)
                                 .addGap(0, 0, Short.MAX_VALUE)))))
@@ -550,7 +817,7 @@ public class SearchMainResult extends javax.swing.JFrame {
                     .addGroup(tab_fishLayout.createSequentialGroup()
                         .addComponent(F_lab_result)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1592, Short.MAX_VALUE))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1738, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tab_fishLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -619,7 +886,7 @@ public class SearchMainResult extends javax.swing.JFrame {
                     .addGroup(tab_ZGLayout.createSequentialGroup()
                         .addComponent(ZG_lab_intrpr)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 1592, Short.MAX_VALUE))
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 1738, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(tab_ZGLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -638,209 +905,6 @@ public class SearchMainResult extends javax.swing.JFrame {
         );
 
         tab_main.addTab("ZG", tab_ZG);
-
-        Info_top.setBackground(new java.awt.Color(102, 153, 255));
-        Info_top.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        table_queryIDs.setAutoCreateRowSorter(true);
-        table_queryIDs.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "lab_id", "result_ID", "name", "surname", "sex", "b_date"
-            }
-        ));
-        table_queryIDs.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                table_queryIDsMouseClicked(evt);
-            }
-        });
-        table_queryIDs.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                table_queryIDsKeyReleased(evt);
-            }
-        });
-        jScrollPane10.setViewportView(table_queryIDs);
-        table_queryIDs.getAccessibleContext().setAccessibleName("table_queryIDs");
-        table_queryIDs.getAccessibleContext().setAccessibleDescription("");
-
-        lbl_searchLabId.setText("search lab_id:");
-
-        txt_searchLabId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_searchLabIdActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("result exists :");
-
-        btn_array.setBackground(java.awt.Color.gray);
-        btn_array.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        btn_array.setForeground(new java.awt.Color(255, 255, 255));
-        btn_array.setText("ARRAY");
-
-        btn_fish.setBackground(java.awt.Color.gray);
-        btn_fish.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        btn_fish.setForeground(new java.awt.Color(255, 255, 255));
-        btn_fish.setText("FISH");
-
-        btn_zg.setBackground(java.awt.Color.gray);
-        btn_zg.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        btn_zg.setForeground(new java.awt.Color(255, 255, 255));
-        btn_zg.setText("CYTOGEN.");
-
-        btn_getResults.setBackground(java.awt.Color.darkGray);
-        btn_getResults.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        btn_getResults.setForeground(java.awt.Color.white);
-        btn_getResults.setText("GET RESULTS");
-        btn_getResults.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_getResultsActionPerformed(evt);
-            }
-        });
-
-        btn_clear.setText("Clear");
-        btn_clear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_clearActionPerformed(evt);
-            }
-        });
-
-        btn_search.setText("search txt");
-        btn_search.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_searchActionPerformed(evt);
-            }
-        });
-
-        txtArea_search_array.setColumns(20);
-        txtArea_search_array.setRows(2);
-        jScrollPane8.setViewportView(txtArea_search_array);
-
-        txtArea_search_fish.setColumns(20);
-        txtArea_search_fish.setRows(2);
-        jScrollPane9.setViewportView(txtArea_search_fish);
-
-        txtArea_search_zg.setColumns(20);
-        txtArea_search_zg.setRows(2);
-        jScrollPane11.setViewportView(txtArea_search_zg);
-
-        lbl_array.setText("Array:");
-
-        lbl_FISH.setText("FISH:");
-
-        lbl_ZG.setText("ZG:");
-
-        lbl_searchResultId.setText("search result_id:");
-
-        txt_searchResultId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_searchResultIdActionPerformed(evt);
-            }
-        });
-
-        lbl_rowsReturned.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lbl_rowsReturned.setText(" ");
-
-        javax.swing.GroupLayout Info_topLayout = new javax.swing.GroupLayout(Info_top);
-        Info_top.setLayout(Info_topLayout);
-        Info_topLayout.setHorizontalGroup(
-            Info_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Info_topLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(Info_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_zg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_array, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_fish, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_getResults, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(80, 80, 80)
-                .addGroup(Info_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lbl_ZG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbl_array, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
-                    .addComponent(lbl_FISH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(7, 7, 7)
-                .addGroup(Info_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Info_topLayout.createSequentialGroup()
-                        .addGroup(Info_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lbl_searchLabId, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
-                            .addComponent(txt_searchLabId))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(Info_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_searchResultId)
-                            .addComponent(lbl_searchResultId, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
-                        .addGap(242, 242, 242)
-                        .addComponent(lbl_rowsReturned, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_clear, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(Info_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(Info_topLayout.createSequentialGroup()
-                            .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 705, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn_search, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(Info_topLayout.createSequentialGroup()
-                            .addGroup(Info_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 705, Short.MAX_VALUE)
-                                .addComponent(jScrollPane11))
-                            .addGap(0, 0, Short.MAX_VALUE))))
-                .addContainerGap())
-        );
-
-        Info_topLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {lbl_searchLabId, lbl_searchResultId, txt_searchLabId, txt_searchResultId});
-
-        Info_topLayout.setVerticalGroup(
-            Info_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Info_topLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(Info_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Info_topLayout.createSequentialGroup()
-                        .addGroup(Info_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane8)
-                            .addComponent(btn_getResults, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn_search, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbl_array, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGroup(Info_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(Info_topLayout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addGroup(Info_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbl_FISH)
-                                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(2, 2, 2)
-                                .addGroup(Info_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbl_ZG)
-                                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(Info_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Info_topLayout.createSequentialGroup()
-                                        .addComponent(lbl_searchLabId)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txt_searchLabId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(Info_topLayout.createSequentialGroup()
-                                        .addComponent(lbl_searchResultId)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(Info_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(txt_searchResultId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lbl_rowsReturned)))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Info_topLayout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(Info_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btn_clear, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Info_topLayout.createSequentialGroup()
-                                        .addComponent(btn_array)
-                                        .addGap(2, 2, 2)
-                                        .addComponent(btn_fish)
-                                        .addGap(2, 2, 2)
-                                        .addComponent(btn_zg))))))
-                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12))
-        );
 
         jToolBar1.setRollover(true);
 
@@ -891,9 +955,9 @@ public class SearchMainResult extends javax.swing.JFrame {
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Info_top, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tab_main, javax.swing.GroupLayout.PREFERRED_SIZE, 605, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -903,423 +967,6 @@ public class SearchMainResult extends javax.swing.JFrame {
         // TODO add your handling code here:
         // Testbutton in toolbar
     }//GEN-LAST:event_bnt_testActionPerformed
-
-    private void txt_searchLabIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_searchLabIdActionPerformed
-
-        Connection conn = DBconnect.ConnecrDb();
-        ResultSet rs = null;
-        PreparedStatement pst = null;
-        
-        String sql = "SELECT * from main_result WHERE lab_id=?";
-        try {
-            pst = conn.prepareStatement(sql);
-            pst.setString(1, txt_searchLabId.getText());
-
-            rs = pst.executeQuery();
-            if (rs.next()) {
-                String ar_sgr = rs.getString("ar_sumGenRes");
-                A_txtArea_sumGenRes.setText(ar_sgr);        
-                String ar_result = rs.getString("ar_result");
-                A_txtArea_result.setText(ar_result);           
-                String ar_intrpr = rs.getString("ar_intrpr");
-                A_txtArea_intrpr.setText(ar_intrpr);
-                String ar_comm = rs.getString("ar_comm");
-                A_txtArea_comm.setText(ar_comm);
-
-                String f_intrpr = rs.getString("fish_intrpr");
-                F_txtArea_intrpr.setText(f_intrpr);
-                //String add4 = rs.getString("zg_intrpr");
-                //txt_mr_zg_interpretation.setText(add4);
-                                
-                String l_id = rs.getString("lab_id");
-                String r_id = rs.getString("result_id");
-                txt_searchResultId.setText(r_id);
-                
-                lbl_showLabId1.setText(l_id);
-                lbl_showResultId1.setText(r_id);
-                lbl_showLabId2.setText(l_id);
-                lbl_showResultId2.setText(r_id);
-                lbl_showLabId3.setText(l_id);
-                lbl_showResultId3.setText(r_id);
-
-                rs.close();
-                pst.close();
-
-            } else {
-                JOptionPane.showMessageDialog(null, "lab_id does not exist");
-            }
-        }catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }finally {
-            try {
-                if (rs != null) { rs.close();}
-                if (pst != null) { pst.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) {
-            }
-        }
-    }//GEN-LAST:event_txt_searchLabIdActionPerformed
-
-    private void table_queryIDsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_queryIDsMouseClicked
-        Connection conn = DBconnect.ConnecrDb();
-        ResultSet rs = null;
-        PreparedStatement pst = null;     
-
-        try {
-            int row = table_queryIDs.getSelectedRow();
-            //String Table_click = (table_queryIDs.getModel().getValueAt(row, 0).toString());  // values not correct anymore, if auto table rowsorter is used -->
-            String Table_click = (table_queryIDs.getValueAt(row, 0).toString());
-            click_result = (table_queryIDs.getValueAt(row, 1).toString());
-            click_lID = Table_click;
-                        
-            String sql = "SELECT distinct m.lab_id, result_id, fname, surname, sex, b_date from main_result m, patient p, sample s "
-                    + "Where p.pat_id=s.pat_id AND m.lab_id='" + Table_click + "' ";
-            pst = conn.prepareStatement(sql);
-            rs = pst.executeQuery();
-
-            if (rs.next()) {
-                String l_id = rs.getString("lab_id");
-                txt_searchLabId.setText(l_id);
-                String r_id = rs.getString("result_id");
-                txt_searchResultId.setText(r_id);
-                
-                lbl_showLabId1.setText(l_id);
-                lbl_showResultId1.setText(r_id);
-                lbl_showLabId2.setText(l_id);
-                lbl_showResultId2.setText(r_id);
-                lbl_showLabId3.setText(l_id);
-                lbl_showResultId3.setText(r_id);
-                
-                //txtArea_sql.setText(sql);
-                String sql2 = "SELECT * from main_result WHERE lab_id='" + l_id + "' ";
-
-                pst = conn.prepareStatement(sql2);
-                rs = pst.executeQuery();
-
-                if (rs.next()) {
-                    String ar_sgr = rs.getString("ar_sumGenRes");
-                    A_txtArea_sumGenRes.setText(ar_sgr);
-                    String ar_result = rs.getString("ar_result");
-                    A_txtArea_result.setText(ar_result);
-                    String ar_intrpr = rs.getString("ar_intrpr");
-                    A_txtArea_intrpr.setText(ar_intrpr);
-                    String ar_comm = rs.getString("ar_comm");
-                    A_txtArea_comm.setText(ar_comm);
-
-                    String f_intrpr = rs.getString("fish_intrpr");
-                    F_txtArea_intrpr.setText(f_intrpr);
-                    
-                    String zg_intrpr = rs.getString("zg_intrpr");
-                    ZG_txtArea_intrpr.setText(zg_intrpr);
-                    
-                    if (txtArea_search_array != null && !txtArea_search_array.getText().isEmpty()){
-                        String array_HL = txtArea_search_array.getText();
-                        highlight_txt_array(array_HL);
-                    }
-
-                    if (txtArea_search_fish != null && !txtArea_search_fish.getText().isEmpty()){
-                        String fish_HL = txtArea_search_fish.getText();
-                        highlight_txt_fish(fish_HL);
-                    }
-                    
-                    if (txtArea_search_zg !=null && !txtArea_search_zg.getText().isEmpty()){
-                        String zg_HL = txtArea_search_zg.getText();
-                        highlight_txt_fish(zg_HL);
-                    }
-                    
-                    String karyoview = rs.getString("ar_karyoview");
-                    String wgview = rs.getString("ar_wgview");
-                    
-                    //if (A_txtArea_intrpr !=null && !A_txtArea_intrpr.getText().isEmpty()){ tab_array.setBackground(Color.red);  }
-                    if (A_txtArea_intrpr !=null && !A_txtArea_intrpr.getText().isEmpty()){ /*btn_array.setBackground(Color.blue);*/ btn_array.setForeground(Color.ORANGE); }
-                    else{ btn_array.setBackground(Color.gray); btn_array.setForeground(Color.WHITE); }
-                    if (F_txtArea_intrpr !=null && !F_txtArea_intrpr.getText().isEmpty()){ /*btn_fish.setBackground(Color.blue);*/ btn_fish.setForeground(Color.ORANGE); }
-                    else{ btn_fish.setBackground(Color.gray); btn_fish.setForeground(Color.WHITE); }
-                    if (ZG_txtArea_intrpr !=null && !ZG_txtArea_intrpr.getText().isEmpty()){ /*btn_zg.setBackground(Color.blue);*/ btn_zg.setForeground(Color.ORANGE); }
-                    else{ btn_zg.setBackground(Color.gray); btn_zg.setForeground(Color.WHITE); }
-                    if (karyoview !=null && !karyoview.isEmpty()){ btn_Karyoview.setBackground(Color.blue);btn_Karyoview.setForeground(Color.WHITE);}
-                    else{ btn_Karyoview.setBackground(Color.gray); btn_Karyoview.setForeground(Color.WHITE); }
-                    if (karyoview !=null && !karyoview.isEmpty()){ btn_WGV.setBackground(Color.blue);btn_WGV.setForeground(Color.WHITE);}
-                    else{ btn_WGV.setBackground(Color.gray); btn_WGV.setForeground(Color.WHITE); }
-                    
-                    
-                }
-            }
-        }catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }finally {
-            try {
-                if (rs != null) { rs.close();}
-                if (pst != null) { pst.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) {
-            }
-        }
-    }//GEN-LAST:event_table_queryIDsMouseClicked
-
-    private void btn_getResultsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_getResultsActionPerformed
-        Connection conn = DBconnect.ConnecrDb();
-        ResultSet rs = null;
-        PreparedStatement pst = null;
-
-        try {
-            //String sql = "SELECT distinct m.lab_id, result_id, fname, surname, sex, b_date from main_result m, patient p, sample s "
-            //        + "Where p.pat_id=s.pat_id";
-            String sql = "SELECT * from main_result Where 1=1";
-
-            if (btn_array.isSelected()) { sql = sql + " AND ar_intrpr is not null"; }
-            if (btn_fish.isSelected()) { sql = sql + " AND fish_intrpr is not null"; }
-            if (btn_zg.isSelected()) { sql = sql + " AND zg_intrpr is not null"; }
-            
-            get_queryLabIDs(sql, pst, rs, conn);
-            //txtArea_sql.setText(sql);
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        } finally {
-            try {
-                if (rs != null) { rs.close();}
-                if (pst != null) { pst.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) {
-            }
-        }
-
-    }//GEN-LAST:event_btn_getResultsActionPerformed
-
-    private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
-        initial_table_queryIDs();
-        txt_searchLabId.setText("");
-        txt_searchResultId.setText("");
-        
-        A_txtArea_sumGenRes.setText("");
-        A_txtArea_result.setText("");
-        A_txtArea_intrpr.setText("");
-        A_txtArea_comm.setText("");
-        F_txtArea_intrpr.setText("");
-        ZG_txtArea_intrpr.setText("");            
-        
-        btn_array.setBackground(Color.gray); btn_array.setForeground(Color.WHITE);
-        btn_fish.setBackground(Color.gray); btn_fish.setForeground(Color.WHITE);
-        btn_zg.setBackground(Color.gray); btn_zg.setForeground(Color.WHITE);
-        btn_array.setSelected(false);
-        btn_fish.setSelected(false);
-        btn_zg.setSelected(false);
-        
-        txtArea_search_array.setText("");
-        txtArea_search_fish.setText("");
-        txtArea_search_zg.setText("");
-
-        lbl_showLabId1.setText("");
-        lbl_showResultId1.setText("");
-        lbl_showLabId2.setText("");
-        lbl_showResultId2.setText("");
-        lbl_showLabId3.setText("");
-        lbl_showResultId3.setText("");
-        
-    }//GEN-LAST:event_btn_clearActionPerformed
-
-    private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
-        // TODO add your handling code here:
-        Connection conn = DBconnect.ConnecrDb();
-        ResultSet rs = null;
-        PreparedStatement pst = null;
-        
-        try {
-           String sql = "SELECT * from main_result Where 1=1"; 
-           
-           String s_array = txtArea_search_array.getText();
-           String s_fish = txtArea_search_fish.getText();
-           String s_zg = txtArea_search_zg.getText();
-                   
-           if (txtArea_search_array !=null && !txtArea_search_array.getText().isEmpty()){ sql = sql + " AND ar_intrpr LIKE '%" + s_array + "%'"; } 
-           if (txtArea_search_fish !=null && !txtArea_search_fish.getText().isEmpty()){ sql = sql + " AND fish_intrpr LIKE '%" + s_fish + "%'"; } 
-           if (txtArea_search_zg !=null && !txtArea_search_zg.getText().isEmpty()){ sql = sql + " AND zg_intrpr LIKE '%" + s_zg + "%'"; } 
-           
-           if (btn_array.isSelected()) { sql = sql + " AND ar_intrpr is not null"; }
-           if (btn_fish.isSelected()) { sql = sql + " AND fish_intrpr is not null"; }
-           if (btn_zg.isSelected()) { sql = sql + " AND zg_intrpr is not null"; }
-           
-           get_queryLabIDs(sql, pst, rs, conn);
-           //txtArea_sql.setText(sql);
-
-        }catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-            my_log.logger.warning("ERROR: " + e);
-        }finally {
-            try {
-                if (rs != null) { rs.close();}
-                if (pst != null) { pst.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) {
-            }
-        }
-        
-    }//GEN-LAST:event_btn_searchActionPerformed
-
-    private void table_queryIDsKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_table_queryIDsKeyReleased
-        //same code as      table_queryIDsMouseClicked(java.awt.event.MouseEvent evt)
-        Connection conn = DBconnect.ConnecrDb();
-        ResultSet rs = null;
-        PreparedStatement pst = null;     
-
-        try {
-            int row = table_queryIDs.getSelectedRow();
-            //String Table_click = (table_queryIDs.getModel().getValueAt(row, 0).toString());  // values not correct anymore, if auto table rowsorter is used -->
-            String Table_click = (table_queryIDs.getValueAt(row, 0).toString());
-            click_result = (table_queryIDs.getValueAt(row, 1).toString());
-            click_lID = Table_click;
-                        
-            String sql = "SELECT distinct m.lab_id, result_id, fname, surname, sex, b_date from main_result m, patient p, sample s "
-                    + "Where p.pat_id=s.pat_id AND m.lab_id='" + Table_click + "' ";
-            pst = conn.prepareStatement(sql);
-            rs = pst.executeQuery();
-
-            if (rs.next()) {
-                String l_id = rs.getString("lab_id");
-                txt_searchLabId.setText(l_id);
-                String r_id = rs.getString("result_id");
-                txt_searchResultId.setText(r_id);
-     
-                lbl_showLabId1.setText(l_id);
-                lbl_showResultId1.setText(r_id);
-                lbl_showLabId2.setText(l_id);
-                lbl_showResultId2.setText(r_id);
-                lbl_showLabId3.setText(l_id);
-                lbl_showResultId3.setText(r_id);
-
-                //txtArea_sql.setText(sql);
-                String sql2 = "SELECT * from main_result WHERE lab_id='" + l_id + "' ";
-
-                pst = conn.prepareStatement(sql2);
-                rs = pst.executeQuery();
-
-                if (rs.next()) {
-                    String ar_sgr = rs.getString("ar_sumGenRes");
-                    A_txtArea_sumGenRes.setText(ar_sgr);
-                    String ar_result = rs.getString("ar_result");
-                    A_txtArea_result.setText(ar_result);
-                    String ar_intrpr = rs.getString("ar_intrpr");
-                    A_txtArea_intrpr.setText(ar_intrpr);
-                    String ar_comm = rs.getString("ar_comm");
-                    A_txtArea_comm.setText(ar_comm);
-
-                    String f_intrpr = rs.getString("fish_intrpr");
-                    F_txtArea_intrpr.setText(f_intrpr);
-                    
-                    String zg_intrpr = rs.getString("zg_intrpr");
-                    ZG_txtArea_intrpr.setText(zg_intrpr);
-                    
-                    if (txtArea_search_array != null && !txtArea_search_array.getText().isEmpty()){
-                        String array_HL = txtArea_search_array.getText();
-                        highlight_txt_array(array_HL);
-                    }
-
-                    if (txtArea_search_fish != null && !txtArea_search_fish.getText().isEmpty()){
-                        String fish_HL = txtArea_search_fish.getText();
-                        highlight_txt_fish(fish_HL);
-                    }
-                    
-                    if (txtArea_search_zg !=null && !txtArea_search_zg.getText().isEmpty()){
-                        String zg_HL = txtArea_search_zg.getText();
-                        highlight_txt_fish(zg_HL);
-                    }
-                    
-                    String karyoview = rs.getString("ar_karyoview");
-                    String wgview = rs.getString("ar_wgview");
-                    
-                    //if (A_txtArea_intrpr !=null && !A_txtArea_intrpr.getText().isEmpty()){ tab_array.setBackground(Color.red);  }
-                    if (A_txtArea_intrpr !=null && !A_txtArea_intrpr.getText().isEmpty()){ /*btn_array.setBackground(Color.blue);*/ btn_array.setForeground(Color.ORANGE); }
-                    else{ btn_array.setBackground(Color.gray); btn_array.setForeground(Color.WHITE); }
-                    if (F_txtArea_intrpr !=null && !F_txtArea_intrpr.getText().isEmpty()){ /*btn_fish.setBackground(Color.blue);*/ btn_fish.setForeground(Color.ORANGE); }
-                    else{ btn_fish.setBackground(Color.gray); btn_fish.setForeground(Color.WHITE); }
-                    if (ZG_txtArea_intrpr !=null && !ZG_txtArea_intrpr.getText().isEmpty()){ /*btn_zg.setBackground(Color.blue);*/ btn_zg.setForeground(Color.ORANGE); }
-                    else{ btn_zg.setBackground(Color.gray); btn_zg.setForeground(Color.WHITE); }
-                    if (karyoview !=null && !karyoview.isEmpty()){ btn_Karyoview.setBackground(Color.blue);btn_Karyoview.setForeground(Color.WHITE);}
-                    else{ btn_Karyoview.setBackground(Color.gray); btn_Karyoview.setForeground(Color.WHITE); }
-                    if (karyoview !=null && !karyoview.isEmpty()){ btn_WGV.setBackground(Color.blue);btn_WGV.setForeground(Color.WHITE);}
-                    else{ btn_WGV.setBackground(Color.gray); btn_WGV.setForeground(Color.WHITE); }
-                    
-                    
-                }
-            }
-        }catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }finally {
-            try {
-                if (rs != null) { rs.close();}
-                if (pst != null) { pst.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) {
-            }
-        }
-
-    }//GEN-LAST:event_table_queryIDsKeyReleased
-
-    private void txt_searchResultIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_searchResultIdActionPerformed
-        // TODO add your handling code here:
-        
-        Connection conn = DBconnect.ConnecrDb();
-        ResultSet rs = null;
-        PreparedStatement pst = null;
-        
-        String sql = "SELECT * from main_result WHERE result_id=?";
-        try {
-            pst = conn.prepareStatement(sql);
-            try{
-                int r_id_int = Integer.parseInt(txt_searchResultId.getText());
-            }catch (Exception e){
-                JOptionPane.showMessageDialog(null, "Not a valid result_id!" );
-            }
-            
-            pst.setString(1, txt_searchResultId.getText());
-            
-
-            rs = pst.executeQuery();
-            if (rs.next()) {
-                String ar_sgr = rs.getString("ar_sumGenRes");
-                A_txtArea_sumGenRes.setText(ar_sgr);        
-                String ar_result = rs.getString("ar_result");
-                A_txtArea_result.setText(ar_result);           
-                String ar_intrpr = rs.getString("ar_intrpr");
-                A_txtArea_intrpr.setText(ar_intrpr);
-                String ar_comm = rs.getString("ar_comm");
-                A_txtArea_comm.setText(ar_comm);
-                
-                String f_intrpr = rs.getString("fish_intrpr");
-                F_txtArea_intrpr.setText(f_intrpr);
-                //String add4 = rs.getString("zg_intrpr");
-                //txt_mr_zg_interpretation.setText(add4);
-                
-                String l_id = rs.getString("lab_id");
-                String r_id = rs.getString("result_id");
-                txt_searchLabId.setText(l_id);
-                
-                lbl_showLabId1.setText(l_id);
-                lbl_showResultId1.setText(r_id);
-                lbl_showLabId2.setText(l_id);
-                lbl_showResultId2.setText(r_id);
-                lbl_showLabId3.setText(l_id);
-                lbl_showResultId3.setText(r_id);
-
-                rs.close();
-                pst.close();
-
-            } else {
-                JOptionPane.showMessageDialog(null, "result_id does not exist");
-            }
-        }catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }finally {
-            try {
-                if (rs != null) { rs.close();}
-                if (pst != null) { pst.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) {
-            }
-        }
-        
-    }//GEN-LAST:event_txt_searchResultIdActionPerformed
 
     private void btn_WGVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_WGVActionPerformed
         // TODO add your handling code here:
@@ -1389,6 +1036,432 @@ public class SearchMainResult extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_KaryoviewActionPerformed
 
+    private void btn_TTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TTTActionPerformed
+        // TODO add your handling code here:
+        if (btn_TTT.isSelected()){
+            ToolTipManager.sharedInstance().setEnabled(true);
+            // Get current delay
+            //int initialDelay = ToolTipManager.sharedInstance().getInitialDelay();
+            // Show tool tips immediately
+            ToolTipManager.sharedInstance().setInitialDelay(0);
+        } else {
+            ToolTipManager.sharedInstance().setEnabled(false);
+        }
+    }//GEN-LAST:event_btn_TTTActionPerformed
+
+    private void btn_getResultsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_getResultsActionPerformed
+        Connection conn = DBconnect.ConnecrDb();
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+
+        try {
+            //String sql = "SELECT distinct m.lab_id, result_id, fname, surname, sex, b_date from main_result m, patient p, sample s "
+            //        + "Where p.pat_id=s.pat_id";
+            String sql = "SELECT * from main_result Where 1=1";
+
+            if (btn_array.isSelected()) { sql = sql + " AND ar_intrpr is not null"; }
+            if (btn_fish.isSelected()) { sql = sql + " AND fish_intrpr is not null"; }
+            if (btn_zg.isSelected()) { sql = sql + " AND zg_intrpr is not null"; }
+
+            get_queryLabIDs(sql, pst, rs, conn);
+            //txtArea_sql.setText(sql);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        } finally {
+            try {
+                if (rs != null) { rs.close();}
+                if (pst != null) { pst.close();}
+                if (conn != null) { conn.close();}
+            } catch (Exception e) {
+            }
+        }
+    }//GEN-LAST:event_btn_getResultsActionPerformed
+
+    private void txt_searchResultIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_searchResultIdActionPerformed
+        // TODO add your handling code here:
+
+        Connection conn = DBconnect.ConnecrDb();
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+
+        String sql = "SELECT * from main_result WHERE result_id=?";
+        try {
+            pst = conn.prepareStatement(sql);
+            try{
+                int r_id_int = Integer.parseInt(txt_searchResultId.getText());
+            }catch (Exception e){
+                JOptionPane.showMessageDialog(null, "Not a valid result_id!" );
+            }
+
+            pst.setString(1, txt_searchResultId.getText());
+
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                String ar_sgr = rs.getString("ar_sumGenRes");
+                A_txtArea_sumGenRes.setText(ar_sgr);
+                String ar_result = rs.getString("ar_result");
+                A_txtArea_result.setText(ar_result);
+                String ar_intrpr = rs.getString("ar_intrpr");
+                A_txtArea_intrpr.setText(ar_intrpr);
+                String ar_comm = rs.getString("ar_comm");
+                A_txtArea_comm.setText(ar_comm);
+
+                String f_intrpr = rs.getString("fish_intrpr");
+                F_txtArea_intrpr.setText(f_intrpr);
+                //String add4 = rs.getString("zg_intrpr");
+                //txt_mr_zg_interpretation.setText(add4);
+
+                String l_id = rs.getString("lab_id");
+                String r_id = rs.getString("result_id");
+                txt_searchLabId.setText(l_id);
+
+                lbl_showLabId1.setText(l_id);
+                lbl_showResultId1.setText(r_id);
+                lbl_showLabId2.setText(l_id);
+                lbl_showResultId2.setText(r_id);
+                lbl_showLabId3.setText(l_id);
+                lbl_showResultId3.setText(r_id);
+
+                rs.close();
+                pst.close();
+
+            } else {
+                JOptionPane.showMessageDialog(null, "result_id does not exist");
+            }
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }finally {
+            try {
+                if (rs != null) { rs.close();}
+                if (pst != null) { pst.close();}
+                if (conn != null) { conn.close();}
+            } catch (Exception e) {
+            }
+        }
+
+    }//GEN-LAST:event_txt_searchResultIdActionPerformed
+
+    private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
+        // TODO add your handling code here:
+        Connection conn = DBconnect.ConnecrDb();
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+
+        try {
+            String sql = "SELECT * from main_result Where 1=1";
+
+            String s_array = txtArea_search_array.getText();
+            String s_fish = txtArea_search_fish.getText();
+            String s_zg = txtArea_search_zg.getText();
+
+            if (txtArea_search_array !=null && !txtArea_search_array.getText().isEmpty()){ sql = sql + " AND ar_intrpr LIKE '%" + s_array + "%'"; }
+            if (txtArea_search_fish !=null && !txtArea_search_fish.getText().isEmpty()){ sql = sql + " AND fish_intrpr LIKE '%" + s_fish + "%'"; }
+            if (txtArea_search_zg !=null && !txtArea_search_zg.getText().isEmpty()){ sql = sql + " AND zg_intrpr LIKE '%" + s_zg + "%'"; }
+
+            if (btn_array.isSelected()) { sql = sql + " AND ar_intrpr is not null"; }
+            if (btn_fish.isSelected()) { sql = sql + " AND fish_intrpr is not null"; }
+            if (btn_zg.isSelected()) { sql = sql + " AND zg_intrpr is not null"; }
+
+            get_queryLabIDs(sql, pst, rs, conn);
+            //txtArea_sql.setText(sql);
+
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            my_log.logger.warning("ERROR: " + e);
+        }finally {
+            try {
+                if (rs != null) { rs.close();}
+                if (pst != null) { pst.close();}
+                if (conn != null) { conn.close();}
+            } catch (Exception e) {
+            }
+        }
+
+    }//GEN-LAST:event_btn_searchActionPerformed
+
+    private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
+        initial_table_queryIDs();
+        txt_searchLabId.setText("");
+        txt_searchResultId.setText("");
+        lbl_rowsReturned.setText("");
+
+        A_txtArea_sumGenRes.setText("");
+        A_txtArea_result.setText("");
+        A_txtArea_intrpr.setText("");
+        A_txtArea_comm.setText("");
+        F_txtArea_intrpr.setText("");
+        ZG_txtArea_intrpr.setText("");
+
+        btn_array.setBackground(Color.gray); btn_array.setForeground(Color.WHITE);
+        btn_fish.setBackground(Color.gray); btn_fish.setForeground(Color.WHITE);
+        btn_zg.setBackground(Color.gray); btn_zg.setForeground(Color.WHITE);
+        btn_array.setSelected(false);
+        btn_fish.setSelected(false);
+        btn_zg.setSelected(false);
+
+        txtArea_search_array.setText("");
+        txtArea_search_fish.setText("");
+        txtArea_search_zg.setText("");
+
+        lbl_showLabId1.setText("");
+        lbl_showResultId1.setText("");
+        lbl_showLabId2.setText("");
+        lbl_showResultId2.setText("");
+        lbl_showLabId3.setText("");
+        lbl_showResultId3.setText("");
+
+    }//GEN-LAST:event_btn_clearActionPerformed
+
+    private void txt_searchLabIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_searchLabIdActionPerformed
+
+        Connection conn = DBconnect.ConnecrDb();
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+
+        String sql = "SELECT * from main_result WHERE lab_id=?";
+        try {
+            pst = conn.prepareStatement(sql);
+            pst.setString(1, txt_searchLabId.getText());
+
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                String ar_sgr = rs.getString("ar_sumGenRes");
+                A_txtArea_sumGenRes.setText(ar_sgr);
+                String ar_result = rs.getString("ar_result");
+                A_txtArea_result.setText(ar_result);
+                String ar_intrpr = rs.getString("ar_intrpr");
+                A_txtArea_intrpr.setText(ar_intrpr);
+                String ar_comm = rs.getString("ar_comm");
+                A_txtArea_comm.setText(ar_comm);
+
+                String f_intrpr = rs.getString("fish_intrpr");
+                F_txtArea_intrpr.setText(f_intrpr);
+                //String add4 = rs.getString("zg_intrpr");
+                //txt_mr_zg_interpretation.setText(add4);
+
+                String l_id = rs.getString("lab_id");
+                String r_id = rs.getString("result_id");
+                txt_searchResultId.setText(r_id);
+
+                lbl_showLabId1.setText(l_id);
+                lbl_showResultId1.setText(r_id);
+                lbl_showLabId2.setText(l_id);
+                lbl_showResultId2.setText(r_id);
+                lbl_showLabId3.setText(l_id);
+                lbl_showResultId3.setText(r_id);
+
+                rs.close();
+                pst.close();
+
+            } else {
+                JOptionPane.showMessageDialog(null, "lab_id does not exist");
+            }
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }finally {
+            try {
+                if (rs != null) { rs.close();}
+                if (pst != null) { pst.close();}
+                if (conn != null) { conn.close();}
+            } catch (Exception e) {
+            }
+        }
+    }//GEN-LAST:event_txt_searchLabIdActionPerformed
+
+    private void table_queryIDsKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_table_queryIDsKeyReleased
+        //same code as      table_queryIDsMouseClicked(java.awt.event.MouseEvent evt)
+        Connection conn = DBconnect.ConnecrDb();
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+
+        try {
+            int row = table_queryIDs.getSelectedRow();
+            //String Table_click = (table_queryIDs.getModel().getValueAt(row, 0).toString());  // values not correct anymore, if auto table rowsorter is used -->
+            String Table_click = (table_queryIDs.getValueAt(row, 0).toString());
+            click_result = (table_queryIDs.getValueAt(row, 1).toString());
+            click_lID = Table_click;
+
+            String sql = "SELECT distinct m.lab_id, result_id, fname, surname, sex, b_date from main_result m, patient p, sample s "
+            + "Where p.pat_id=s.pat_id AND m.lab_id='" + Table_click + "' ";
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+                String l_id = rs.getString("lab_id");
+                txt_searchLabId.setText(l_id);
+                String r_id = rs.getString("result_id");
+                txt_searchResultId.setText(r_id);
+
+                lbl_showLabId1.setText(l_id);
+                lbl_showResultId1.setText(r_id);
+                lbl_showLabId2.setText(l_id);
+                lbl_showResultId2.setText(r_id);
+                lbl_showLabId3.setText(l_id);
+                lbl_showResultId3.setText(r_id);
+
+                //txtArea_sql.setText(sql);
+                String sql2 = "SELECT * from main_result WHERE lab_id='" + l_id + "' ";
+
+                pst = conn.prepareStatement(sql2);
+                rs = pst.executeQuery();
+
+                if (rs.next()) {
+                    String ar_sgr = rs.getString("ar_sumGenRes");
+                    A_txtArea_sumGenRes.setText(ar_sgr);
+                    String ar_result = rs.getString("ar_result");
+                    A_txtArea_result.setText(ar_result);
+                    String ar_intrpr = rs.getString("ar_intrpr");
+                    A_txtArea_intrpr.setText(ar_intrpr);
+                    String ar_comm = rs.getString("ar_comm");
+                    A_txtArea_comm.setText(ar_comm);
+
+                    String f_intrpr = rs.getString("fish_intrpr");
+                    F_txtArea_intrpr.setText(f_intrpr);
+
+                    String zg_intrpr = rs.getString("zg_intrpr");
+                    ZG_txtArea_intrpr.setText(zg_intrpr);
+
+                    if (txtArea_search_array != null && !txtArea_search_array.getText().isEmpty()){
+                        String array_HL = txtArea_search_array.getText();
+                        highlight_txt_array(array_HL);
+                    }
+
+                    if (txtArea_search_fish != null && !txtArea_search_fish.getText().isEmpty()){
+                        String fish_HL = txtArea_search_fish.getText();
+                        highlight_txt_fish(fish_HL);
+                    }
+
+                    if (txtArea_search_zg !=null && !txtArea_search_zg.getText().isEmpty()){
+                        String zg_HL = txtArea_search_zg.getText();
+                        highlight_txt_fish(zg_HL);
+                    }
+
+                    String karyoview = rs.getString("ar_karyoview");
+                    String wgview = rs.getString("ar_wgview");
+
+                    //if (A_txtArea_intrpr !=null && !A_txtArea_intrpr.getText().isEmpty()){ tab_array.setBackground(Color.red);  }
+                    if (A_txtArea_intrpr !=null && !A_txtArea_intrpr.getText().isEmpty()){ /*btn_array.setBackground(Color.blue);*/ btn_array.setForeground(Color.ORANGE); }
+                    else{ btn_array.setBackground(Color.gray); btn_array.setForeground(Color.WHITE); }
+                    if (F_txtArea_intrpr !=null && !F_txtArea_intrpr.getText().isEmpty()){ /*btn_fish.setBackground(Color.blue);*/ btn_fish.setForeground(Color.ORANGE); }
+                    else{ btn_fish.setBackground(Color.gray); btn_fish.setForeground(Color.WHITE); }
+                    if (ZG_txtArea_intrpr !=null && !ZG_txtArea_intrpr.getText().isEmpty()){ /*btn_zg.setBackground(Color.blue);*/ btn_zg.setForeground(Color.ORANGE); }
+                    else{ btn_zg.setBackground(Color.gray); btn_zg.setForeground(Color.WHITE); }
+                    if (karyoview !=null && !karyoview.isEmpty()){ btn_Karyoview.setBackground(Color.blue);btn_Karyoview.setForeground(Color.WHITE);}
+                    else{ btn_Karyoview.setBackground(Color.gray); btn_Karyoview.setForeground(Color.WHITE); }
+                    if (karyoview !=null && !karyoview.isEmpty()){ btn_WGV.setBackground(Color.blue);btn_WGV.setForeground(Color.WHITE);}
+                    else{ btn_WGV.setBackground(Color.gray); btn_WGV.setForeground(Color.WHITE); }
+
+                }
+            }
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }finally {
+            try {
+                if (rs != null) { rs.close();}
+                if (pst != null) { pst.close();}
+                if (conn != null) { conn.close();}
+            } catch (Exception e) {
+            }
+        }
+    }//GEN-LAST:event_table_queryIDsKeyReleased
+
+    private void table_queryIDsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_queryIDsMouseClicked
+        Connection conn = DBconnect.ConnecrDb();
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+
+        try {
+            int row = table_queryIDs.getSelectedRow();
+            //String Table_click = (table_queryIDs.getModel().getValueAt(row, 0).toString());  // values not correct anymore, if auto table rowsorter is used -->
+            String Table_click = (table_queryIDs.getValueAt(row, 0).toString());
+            click_result = (table_queryIDs.getValueAt(row, 1).toString());
+            click_lID = Table_click;
+
+            String sql = "SELECT distinct m.lab_id, result_id, fname, surname, sex, b_date from main_result m, patient p, sample s "
+            + "Where p.pat_id=s.pat_id AND m.lab_id='" + Table_click + "' ";
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+                String l_id = rs.getString("lab_id");
+                txt_searchLabId.setText(l_id);
+                String r_id = rs.getString("result_id");
+                txt_searchResultId.setText(r_id);
+
+                lbl_showLabId1.setText(l_id);
+                lbl_showResultId1.setText(r_id);
+                lbl_showLabId2.setText(l_id);
+                lbl_showResultId2.setText(r_id);
+                lbl_showLabId3.setText(l_id);
+                lbl_showResultId3.setText(r_id);
+
+                //txtArea_sql.setText(sql);
+                String sql2 = "SELECT * from main_result WHERE lab_id='" + l_id + "' ";
+
+                pst = conn.prepareStatement(sql2);
+                rs = pst.executeQuery();
+
+                if (rs.next()) {
+                    String ar_sgr = rs.getString("ar_sumGenRes");
+                    A_txtArea_sumGenRes.setText(ar_sgr);
+                    String ar_result = rs.getString("ar_result");
+                    A_txtArea_result.setText(ar_result);
+                    String ar_intrpr = rs.getString("ar_intrpr");
+                    A_txtArea_intrpr.setText(ar_intrpr);
+                    String ar_comm = rs.getString("ar_comm");
+                    A_txtArea_comm.setText(ar_comm);
+
+                    String f_intrpr = rs.getString("fish_intrpr");
+                    F_txtArea_intrpr.setText(f_intrpr);
+
+                    String zg_intrpr = rs.getString("zg_intrpr");
+                    ZG_txtArea_intrpr.setText(zg_intrpr);
+
+                    if (txtArea_search_array != null && !txtArea_search_array.getText().isEmpty()){
+                        String array_HL = txtArea_search_array.getText();
+                        highlight_txt_array(array_HL);
+                    }
+
+                    if (txtArea_search_fish != null && !txtArea_search_fish.getText().isEmpty()){
+                        String fish_HL = txtArea_search_fish.getText();
+                        highlight_txt_fish(fish_HL);
+                    }
+
+                    if (txtArea_search_zg !=null && !txtArea_search_zg.getText().isEmpty()){
+                        String zg_HL = txtArea_search_zg.getText();
+                        highlight_txt_fish(zg_HL);
+                    }
+
+                    String karyoview = rs.getString("ar_karyoview");
+                    String wgview = rs.getString("ar_wgview");
+
+                    //if (A_txtArea_intrpr !=null && !A_txtArea_intrpr.getText().isEmpty()){ tab_array.setBackground(Color.red);  }
+                    if (A_txtArea_intrpr !=null && !A_txtArea_intrpr.getText().isEmpty()){ /*btn_array.setBackground(Color.blue);*/ btn_array.setForeground(Color.ORANGE); }
+                    else{ btn_array.setBackground(Color.gray); btn_array.setForeground(Color.WHITE); }
+                    if (F_txtArea_intrpr !=null && !F_txtArea_intrpr.getText().isEmpty()){ /*btn_fish.setBackground(Color.blue);*/ btn_fish.setForeground(Color.ORANGE); }
+                    else{ btn_fish.setBackground(Color.gray); btn_fish.setForeground(Color.WHITE); }
+                    if (ZG_txtArea_intrpr !=null && !ZG_txtArea_intrpr.getText().isEmpty()){ /*btn_zg.setBackground(Color.blue);*/ btn_zg.setForeground(Color.ORANGE); }
+                    else{ btn_zg.setBackground(Color.gray); btn_zg.setForeground(Color.WHITE); }
+                    if (karyoview !=null && !karyoview.isEmpty()){ btn_Karyoview.setBackground(Color.blue);btn_Karyoview.setForeground(Color.WHITE);}
+                    else{ btn_Karyoview.setBackground(Color.gray); btn_Karyoview.setForeground(Color.WHITE); }
+                    if (karyoview !=null && !karyoview.isEmpty()){ btn_WGV.setBackground(Color.blue);btn_WGV.setForeground(Color.WHITE);}
+                    else{ btn_WGV.setBackground(Color.gray); btn_WGV.setForeground(Color.WHITE); }
+
+                }
+            }
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }finally {
+            try {
+                if (rs != null) { rs.close();}
+                if (pst != null) { pst.close();}
+                if (conn != null) { conn.close();}
+            } catch (Exception e) {
+            }
+        }
+    }//GEN-LAST:event_table_queryIDsMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1447,6 +1520,7 @@ public class SearchMainResult extends javax.swing.JFrame {
     private javax.swing.JTextArea ZG_txtArea_intrpr;
     private javax.swing.JButton bnt_test;
     private javax.swing.JButton btn_Karyoview;
+    private javax.swing.JRadioButton btn_TTT;
     private javax.swing.JButton btn_WGV;
     private javax.swing.JToggleButton btn_array;
     private javax.swing.JButton btn_clear;
@@ -1461,6 +1535,9 @@ public class SearchMainResult extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel_INFO;
     private javax.swing.JPanel jPanel_INFO1;
     private javax.swing.JPanel jPanel_INFO2;
