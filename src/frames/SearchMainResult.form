@@ -39,7 +39,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
-    <Property name="title" type="java.lang.String" value="Linked Results Analysis Tool"/>
+    <Property name="title" type="java.lang.String" value="Linked Results Analysis Tool - search main_result"/>
     <Property name="location" type="java.awt.Point" editor="org.netbeans.beaninfo.editors.PointEditor">
       <Point value="[150, 50]"/>
     </Property>

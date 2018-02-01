@@ -1,26 +1,22 @@
-package frames;
-
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
+ * stdpat_DB - Project study patient database 
+ * For efficient data evaluation and interpretation
  *
- * @author gerda.modarres
+ * Copyright (C) CCRI - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Gerda modarres <gerrda.modarres@ccri.at>, August 2017
+ *
  */
+package frames;
 
 import static frames.SetConnection.personalConfig;
 import myClass.DBconnect;
 import myClass.ColumnFitAdapter;
 import myClass.OSDetector;
-//import frames.TableStructure;
 import java.sql.*;
 import javax.swing.*;
-//import java.awt.Color;
 import java.awt.Desktop;
-import static java.awt.SystemColor.info;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -33,13 +29,7 @@ import javax.swing.table.TableModel;
 import myClass.CustomSorter;
 import myClass.Log;
 import net.proteanit.sql.DbUtils;
-
-//import javax.swing.text.DefaultHighlighter;
-//import javax.swing.text.Highlighter;
-//import javax.swing.text.Highlighter.HighlightPainter;
 import org.ini4j.Ini;
-import static myClass.Log.startLog;
-
 
 public class ReadyForSQL extends javax.swing.JFrame {
 
@@ -47,6 +37,7 @@ public class ReadyForSQL extends javax.swing.JFrame {
         
     JTable outTable = null;  
     String defaultPath = null;
+    
     Log my_log;
     
     /**
@@ -62,25 +53,8 @@ public class ReadyForSQL extends javax.swing.JFrame {
         table_SQLresult.getTableHeader().addMouseListener(new ColumnFitAdapter());      
         Info_top.getRootPane().setDefaultButton(btn_SQLquery);
 
-        //Log
-        //String info = "ReadyForSQL";
-        //startLog(my_log,info);
         my_log.logger.info("open ReadyForSQL()");
     }
-    /*
-    private void startLog(){
-        try{
-            my_log = new Log();
-            my_log.logger.setLevel(Level.FINE);
-            
-            my_log.logger.info("SOURCE:  ReadyForSQL.java");
-            //my_log.logger.warning("Warning msg");
-            //my_log.logger.severe("Severe msg");
-            
-        }catch(Exception e){
-        
-        }
-    }*/
     
     private void update_table_SQLresult(){
         Connection conn = DBconnect.ConnecrDb();
@@ -93,7 +67,7 @@ public class ReadyForSQL extends javax.swing.JFrame {
             rs = pst.executeQuery();
             //if (rs.next()) {      // this skips first row!   
             table_SQLresult.setModel(DbUtils.resultSetToTableModel(rs));
-            // HERE! TODO resize column width
+            // TODO:    resize column width
             //table_SQLresult.getColumnModel().getColumn(columnNumber).setPreferredWidth(columnWidth);
 
             get_statistics(sql);
@@ -137,7 +111,6 @@ public class ReadyForSQL extends javax.swing.JFrame {
             }
             if (all_ids.length() > 1) {
                 all_ids = all_ids.substring(0, (all_ids.length() - 1));
-                //String sql2 = "SELECT distinct lab_ID from main_result WHERE result_id IN ( " + all_ids + " )";
                 String sql2 = "SELECT distinct s.lab_id, result_id, p.pat_id, fname, surname, sex, b_date from main_result m, patient p, sample s "
                         + "Where p.pat_id=s.pat_id AND m.lab_id=s.lab_id AND result_id IN ( " + all_ids + " )";
                 pst = conn.prepareStatement(sql2);
@@ -154,8 +127,8 @@ public class ReadyForSQL extends javax.swing.JFrame {
                     table_queryIDs.getColumnModel().getColumn(2).setMaxWidth(60);
                     table_queryIDs.getColumnModel().getColumn(3).setPreferredWidth(80);
                     table_queryIDs.getColumnModel().getColumn(3).setMaxWidth(130);
-                    //table_queryIDs.getColumnModel().getColumn(3).setPreferredWidth(80);
-                    //table_queryIDs.getColumnModel().getColumn(3).setMaxWidth(130);
+                    //table_queryIDs.getColumnModel().getColumn(4).setPreferredWidth(80);
+                    //table_queryIDs.getColumnModel().getColumn(4).setMaxWidth(130);
                     table_queryIDs.getColumnModel().getColumn(5).setPreferredWidth(30);
                     table_queryIDs.getColumnModel().getColumn(5).setMaxWidth(30);
                     table_queryIDs.getColumnModel().getColumn(6).setPreferredWidth(90);      // 80
@@ -164,7 +137,6 @@ public class ReadyForSQL extends javax.swing.JFrame {
                     //table_queryIDs.getColumnModel().getColumn(7).setMaxWidth(30);
                 }
             }
-
         }catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         } finally {
@@ -177,8 +149,7 @@ public class ReadyForSQL extends javax.swing.JFrame {
         }
     }
     
-    private void get_queryLabIDs(String sql, PreparedStatement pst, ResultSet rs, Connection conn){
-        
+    private void get_queryLabIDs(String sql, PreparedStatement pst, ResultSet rs, Connection conn){        
         try{
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
@@ -207,7 +178,6 @@ public class ReadyForSQL extends javax.swing.JFrame {
                 if (all_ids.length() > 1) {
 
                     all_ids = all_ids.substring(0, (all_ids.length() - 1));
-                    //String sql2 = "SELECT distinct lab_ID from main_result WHERE result_id IN ( " + all_ids + " )";
                     String sql2 = "SELECT distinct s.lab_id, result_id, p.pat_id, fname, surname, sex, b_date from main_result m, patient p, sample s "
                             + "Where p.pat_id=s.pat_id AND m.lab_id=s.lab_id AND result_id IN ( " + all_ids + " )";
 
@@ -225,8 +195,8 @@ public class ReadyForSQL extends javax.swing.JFrame {
                     table_queryIDs.getColumnModel().getColumn(2).setMaxWidth(60);
                     table_queryIDs.getColumnModel().getColumn(3).setPreferredWidth(80);
                     table_queryIDs.getColumnModel().getColumn(3).setMaxWidth(130);
-                    //table_queryIDs.getColumnModel().getColumn(3).setPreferredWidth(80);
-                    //table_queryIDs.getColumnModel().getColumn(3).setMaxWidth(130);
+                    //table_queryIDs.getColumnModel().getColumn(4).setPreferredWidth(80);
+                    //table_queryIDs.getColumnModel().getColumn(4).setMaxWidth(130);
                     table_queryIDs.getColumnModel().getColumn(5).setPreferredWidth(30);
                     table_queryIDs.getColumnModel().getColumn(5).setMaxWidth(30);
                     table_queryIDs.getColumnModel().getColumn(6).setPreferredWidth(90);      // 80
@@ -255,8 +225,7 @@ public class ReadyForSQL extends javax.swing.JFrame {
         }
     }
     
-    private void get_ids(String sql, PreparedStatement pst, ResultSet rs, Connection conn) {
-        
+    private void get_ids(String sql, PreparedStatement pst, ResultSet rs, Connection conn) {        
         try {
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
@@ -268,7 +237,6 @@ public class ReadyForSQL extends javax.swing.JFrame {
                 all_ids = all_ids +"'"+id+"',";
                 //Combobox_id.addItem(id);        // test
                 //txtArea_test.append("'"+id+"',");  // test
-
             }
             this.ids = all_ids;
 
@@ -344,7 +312,6 @@ public class ReadyForSQL extends javax.swing.JFrame {
                     //JOptionPane.showMessageDialog(null, "no IDs");
                     //ids = "0";                                    // not needed due to        if (this.ids != null)
                 }
-                //String sql2 = "SELECT COUNT(*) AS matchingCriteria FROM( "+ sql + " ) AS M";
                 String sql2 = "SELECT  ( SELECT COUNT(*) FROM  patient ) AS patients, \n" +
                 "( SELECT COUNT(*) FROM  arr_result ) AS array, \n" +
                 "( SELECT COUNT(*) FROM fish_result ) AS fish, \n" +
@@ -529,7 +496,7 @@ public class ReadyForSQL extends javax.swing.JFrame {
         popUpSave.add(popUpMenu_selectAll);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Linked Results Analysis Tool");
+        setTitle("Linked Results Analysis Tool - free SQL");
         setLocation(new java.awt.Point(100, 50));
 
         Info_top.setBackground(new java.awt.Color(102, 153, 255));
@@ -704,6 +671,7 @@ public class ReadyForSQL extends javax.swing.JFrame {
         jMenu3.add(jMenuItem2_tableStructure);
 
         jMenuItem1_info.setText("Info");
+        jMenuItem1_info.setToolTipText("");
         jMenuItem1_info.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1_infoActionPerformed(evt);
@@ -724,9 +692,7 @@ public class ReadyForSQL extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Info_top, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(Info_top, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(21, 21, 21))
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
@@ -774,7 +740,6 @@ public class ReadyForSQL extends javax.swing.JFrame {
                 if (pst != null) { pst.close();}
                 if (conn != null) { conn.close();}
             } catch (Exception e) {
-
             }
         }
 
@@ -784,7 +749,6 @@ public class ReadyForSQL extends javax.swing.JFrame {
         initial_table_queryIDs();
         initial_table_statistics();
         txtArea_SQL.setText("");
-        
     }//GEN-LAST:event_btn_clearActionPerformed
 
     private void jMenuItem1_openModelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1_openModelActionPerformed
@@ -805,7 +769,6 @@ public class ReadyForSQL extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1_openModelActionPerformed
 
     private void jMenuItem2_tableStructureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2_tableStructureActionPerformed
-
         TableStructure s = new TableStructure();
         
         Connection conn = DBconnect.ConnecrDb();
@@ -833,32 +796,23 @@ public class ReadyForSQL extends javax.swing.JFrame {
             } catch (Exception e) {
             }
         }
-
-        s.setVisible(true);
-        
-        
+        s.setVisible(true);         
     }//GEN-LAST:event_jMenuItem2_tableStructureActionPerformed
 
     private void table_SQLresultMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_SQLresultMouseClicked
         // right klick ==> save to file
-
         if (isRightClick(evt) == true) {
             //JOptionPane.showMessageDialog(null, "right click");
             //saveOnRC(evt, table_queryIDs);
 
             popUpSave.show(table_SQLresult, evt.getX(), evt.getY());
             this.outTable = table_SQLresult;
-
-        } else {
-            
+        } else {           
         }
-
     }//GEN-LAST:event_table_SQLresultMouseClicked
 
     private void popUpMenu_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popUpMenu_saveActionPerformed
- 
         saveOnRC(evt);      
-        
     }//GEN-LAST:event_popUpMenu_saveActionPerformed
 
     private void popUpMenu_selectAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popUpMenu_selectAllActionPerformed
@@ -867,13 +821,11 @@ public class ReadyForSQL extends javax.swing.JFrame {
     }//GEN-LAST:event_popUpMenu_selectAllActionPerformed
 
     private void txtArea_SQLKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtArea_SQLKeyPressed
-
         Connection conn = DBconnect.ConnecrDb();
         ResultSet rs = null;
         PreparedStatement pst = null;
             
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-
             try {
                 String sql = txtArea_SQL.getText();
                 my_log.logger.info("SQL:  " + sql);
@@ -891,13 +843,12 @@ public class ReadyForSQL extends javax.swing.JFrame {
                 } catch (Exception e) {
                 }
             }
-
         }
     }//GEN-LAST:event_txtArea_SQLKeyPressed
 
     private void jMenuItem1_infoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1_infoActionPerformed
-        ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/EsALiR_suite_BG_ico2-3_small.png"));
-        JOptionPane.showMessageDialog(rootPane, "Needs A Name \nDB-request Tool\nVersion:   1.0.0", "Info", HEIGHT,img);
+        ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_med.png"));
+        JOptionPane.showMessageDialog(rootPane, "LInkedResultsAnalysis \nDB-request Tool\nVersion:   1.0.0", "Info", HEIGHT,img);
     }//GEN-LAST:event_jMenuItem1_infoActionPerformed
 
     private void jMenuItem1_HowToActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1_HowToActionPerformed

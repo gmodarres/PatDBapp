@@ -38,8 +38,7 @@ public class FreeTable extends javax.swing.JFrame {
         
         tbl_vario.setModel(SearchResult.moveTableModel);
         tbl_vario.getTableHeader().addMouseListener(new ColumnFitAdapter());
-        CustomSorter.table_customRowSort(tbl_vario);
-        
+        CustomSorter.table_customRowSort(tbl_vario);        
     }
 
     /**

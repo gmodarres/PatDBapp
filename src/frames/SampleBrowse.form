@@ -70,7 +70,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
-    <Property name="title" type="java.lang.String" value="Linked Results Analysis Tool"/>
+    <Property name="title" type="java.lang.String" value="Linked Results Analysis Tool - browse samples"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
@@ -125,7 +125,7 @@
               <Component id="Info_top4" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" pref="317" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="316" max="32767" attributes="0"/>
                   <Component id="jScrollPane2" pref="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -243,9 +243,9 @@
                       </Group>
                       <Component id="txt_refDiag" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="178" max="32767" attributes="0"/>
-                  <Component id="btn_newList" min="-2" pref="91" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="293" max="-2" attributes="0"/>
+                  <EmptySpace pref="448" max="32767" attributes="0"/>
+                  <Component id="btn_newList" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -259,8 +259,9 @@
                       <Component id="txt_date1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txt_date2" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="rbtn_corr" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btn_newList" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="rbtn_patID" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txt_patID" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -276,11 +277,6 @@
                       <Component id="rbtn_NOT" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="btn_newList" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -317,7 +313,13 @@
         </Component>
         <Component class="javax.swing.JButton" name="btn_newList">
           <Properties>
-            <Property name="text" type="java.lang.String" value="new List"/>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="8c" green="8c" red="0" type="rgb"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/ico/Search.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Search"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_newListActionPerformed"/>

@@ -108,6 +108,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
+    <Property name="title" type="java.lang.String" value="Linked Results Analysis Tool - array gene query"/>
   </Properties>
   <AccessibilityProperties>
     <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="ArrayQuery"/>
@@ -392,6 +393,8 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="btn_TTT" pref="125" max="32767" attributes="0"/>
                           <Component id="rbtn_showExample" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btn_saveQuery" max="32767" attributes="0"/>
+                          <Component id="btn_loadQuery" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -400,6 +403,10 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                      <Component id="btn_loadQuery" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btn_saveQuery" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="btn_TTT" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -424,6 +431,36 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtn_showExampleActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="btn_saveQuery">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="99" red="ff" type="rgb"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/ico/Floppy-Small-icon.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="save query"/>
+                <Property name="toolTipText" type="java.lang.String" value="save current query to a file"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_saveQueryActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="btn_loadQuery">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="99" red="33" type="rgb"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/ico/open-file-icon.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="load query"/>
+                <Property name="toolTipText" type="java.lang.String" value="load a saved query from a file"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_loadQueryActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -487,11 +524,9 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="64" max="32767" attributes="0"/>
+                  <EmptySpace pref="134" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="btn_saveQuery" alignment="1" max="32767" attributes="0"/>
-                      <Component id="btn_loadQuery" alignment="1" max="32767" attributes="0"/>
-                      <Component id="btn_Search" alignment="1" max="32767" attributes="0"/>
+                      <Component id="btn_Search" alignment="1" pref="115" max="32767" attributes="0"/>
                       <Component id="btn_clear" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
@@ -505,11 +540,7 @@
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                           <Component id="btn_Search" min="-2" pref="34" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btn_loadQuery" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btn_saveQuery" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="btn_clear" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -1003,36 +1034,6 @@
             </Container>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="btn_saveQuery">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="99" red="ff" type="rgb"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/ico/Floppy-Small-icon.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="save query"/>
-            <Property name="toolTipText" type="java.lang.String" value="save current query to a file"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_saveQueryActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="btn_loadQuery">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="99" red="33" type="rgb"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/ico/open-file-icon.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="load query"/>
-            <Property name="toolTipText" type="java.lang.String" value="load a saved query from a file"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_loadQueryActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JButton" name="btn_clear">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">

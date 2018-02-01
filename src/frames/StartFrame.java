@@ -1,11 +1,21 @@
+/*
+ * stdpat_DB - Project study patient database 
+ * For efficient data evaluation and interpretation
+ *
+ * Copyright (C) CCRI - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Gerda modarres <gerrda.modarres@ccri.at>, August 2017
+ *
+ */
 package frames;
 
-import java.awt.event.WindowEvent;
+import static java.awt.image.ImageObserver.HEIGHT;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 import myClass.DBconnect;
 import myClass.Log;
-import static myClass.Log.startLog;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -20,11 +30,13 @@ import static myClass.Log.startLog;
 public class StartFrame extends javax.swing.JFrame {
 
     Log my_log;
+
     
     /**
      * Creates new form Start_frame
      */
     public StartFrame() {
+        
         initComponents();
         ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_small.png"));
         this.setIconImage(img.getImage());
@@ -38,14 +50,29 @@ public class StartFrame extends javax.swing.JFrame {
             btn_admin.setFont(new java.awt.Font("Tahoma", 1, 13));
             btn_admin.setForeground(new java.awt.Color(0, 0, 0));
         }
+        UIManager.put("OptionPane.noButtonText", "Nöööö, doch nicht");
+        UIManager.put("OptionPane.yesButtonText", "Ja, geht scho!");
         //setLocationRelativeTo(null);
-        //String info = "StartFrame";
-        //startLog(my_log, info);
+
         this.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
-            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                JOptionPane.showMessageDialog(null, "Bye Bye, see you soon!");
-                my_log.logger.info("Closing App \n################################################################################################################################\n");
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {              
+                //JOptionPane.showMessageDialog(null, "Bye Bye, see you soon!");
+                //my_log.logger.info("Closing App \n################################################################################################################################\n");
+ 
+                ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/misdoubt-icon.png"));
+                ImageIcon img2 = new javax.swing.ImageIcon(getClass().getResource("/ico/byebye-icon.png"));
+                int confirm = JOptionPane.showOptionDialog(rootPane, 
+                        "Are you sure you want to close this application?", 
+                        "Exit Confirmation", JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE, img, null, null);
+                
+                if (confirm == JOptionPane.YES_OPTION) {
+                    //ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/Hands-So-So-icon_blue.png"));
+                    JOptionPane.showMessageDialog(rootPane, "Bye Bye, see you soon!", "Exit", HEIGHT,img2);
+                    my_log.logger.info("Closing App \n################################################################################################################################\n");
+                    System.exit(1);
+                }
             }
         });     
     }
@@ -72,7 +99,7 @@ public class StartFrame extends javax.swing.JFrame {
         btn_browse_patient = new javax.swing.JButton();
         btn_test = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Linked Results Analysis Tool");
         setLocation(new java.awt.Point(15, 15));
 
@@ -84,6 +111,12 @@ public class StartFrame extends javax.swing.JFrame {
 
         LOGO.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LOGO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_med.png"))); // NOI18N
+        LOGO.setToolTipText("... pluck the strings ...");
+        LOGO.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LOGOMouseClicked(evt);
+            }
+        });
 
         btn_admin.setFont(new java.awt.Font("Tahoma", 2, 13)); // NOI18N
         btn_admin.setForeground(new java.awt.Color(153, 153, 153));
@@ -275,11 +308,14 @@ public class StartFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_browse_subtypesActionPerformed
 
     private void btn_browse_patientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_browse_patientActionPerformed
-        // TODO add your handling code here:
         PatientBrowse s = new PatientBrowse();
-        s.setVisible(true);
-        
+        s.setVisible(true);        
     }//GEN-LAST:event_btn_browse_patientActionPerformed
+
+    private void LOGOMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LOGOMouseClicked
+        ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_web.png"));
+        JOptionPane.showMessageDialog(rootPane, "pluck the strings of this app \nto get your results played \n... like music ;-)","play your results ...",HEIGHT,img);
+    }//GEN-LAST:event_LOGOMouseClicked
 
     /**
      * @param args the command line arguments

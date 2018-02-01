@@ -22,6 +22,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import myClass.CustomSorter;
 import myClass.DBconnect;
+import myClass.Log;
 import myClass.OSDetector;
 import net.proteanit.sql.DbUtils;
 
@@ -33,6 +34,8 @@ public class PatientBrowse extends javax.swing.JFrame {
     
     String ids = null;
     static String PB_resultIDs = null;
+        
+    Log my_log;
 
     /**
      * Creates new form PatientBrowse
@@ -44,6 +47,8 @@ public class PatientBrowse extends javax.swing.JFrame {
         initial_table_patient();
         
         Info_top4.getRootPane().setDefaultButton(btn_Search);
+        
+        my_log.logger.info("open PatientBrowse()");
     }
 
     private void showRows(ResultSet rs) {
@@ -52,7 +57,7 @@ public class PatientBrowse extends javax.swing.JFrame {
                 int rows = rs.getRow();
                 String getRows = String.valueOf(rows);
                 lbl_rowsReturned.setText(getRows + " row(s) returned");
-                //my_log.logger.info(getRows+" row(s) returned");
+                my_log.logger.info(getRows+" row(s) returned");
             }
         } catch (SQLException ex) {
             Logger.getLogger(SampleBrowse.class.getName()).log(Level.SEVERE, null, ex);
@@ -64,11 +69,6 @@ public class PatientBrowse extends javax.swing.JFrame {
         Connection conn = DBconnect.ConnecrDb();
         ResultSet rs = null;
         PreparedStatement pst = null;
-        //String sql = "SELECT p.pat_id, fm_pat_no, fname, surname, surname_old, sex, b_date, dg_date, mb_down as MDown, stdy_name, pat_study_id as stdy_ID, proj_name"
-        //        + " FROM patient p, pat_instudy ps, pat_inproject pj, study s, project j"
-        //        + " where p.pat_id=ps.pat_id and p.pat_id=pj.pat_id "
-        //        + " and s.stdy_id=ps.stdy_id and j.proj_id=pj.proj_id ";
-        
         String sql = "SELECT p.pat_id, fm_pat_no, fname, surname, surname_old, sex, b_date, dg_date, mb_down as MDown, stdy_name, pat_study_id as stdy_ID, stdy_group, mon_pat as monitor, proj_name"
                     + " FROM patient p, pat_instudy ps, pat_inproject pj, study s, project j"
                     + " WHERE p.pat_id=ps.pat_id and p.pat_id=pj.pat_id "
@@ -79,7 +79,6 @@ public class PatientBrowse extends javax.swing.JFrame {
             rs = pst.executeQuery();
             table_patient.setModel(DbUtils.resultSetToTableModel(rs));
             CustomSorter.table_customRowSort(table_patient);      
-
             if (table_patient.getColumnModel().getColumnCount() > 0) {
                 table_patient.getColumnModel().getColumn(0).setPreferredWidth(80);
                 table_patient.getColumnModel().getColumn(0).setMaxWidth(100);
@@ -199,8 +198,7 @@ public class PatientBrowse extends javax.swing.JFrame {
             all_ids = all_ids.substring(0, (all_ids.length() - 1));
 
             String sql = "SELECT p.pat_id, m.result_id, m.lab_id FROM main_result m, sample s, patient p"
-                    + " Where m.lab_id=s.lab_id and s.pat_id=p.pat_id"
-                    //+ " AND m.lab_id in (" + all_ids + ")";         
+                    + " Where m.lab_id=s.lab_id and s.pat_id=p.pat_id"      
                     + " AND p.pat_id in (" + all_ids + ")";   
             try {
                 pst = conn.prepareStatement(sql);
@@ -246,8 +244,6 @@ public class PatientBrowse extends javax.swing.JFrame {
         rbtn_NOT2 = new javax.swing.JRadioButton();
         txt_searchCrit2 = new javax.swing.JTextField();
         rbtn_all = new javax.swing.JRadioButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txtArea_test = new javax.swing.JTextArea();
         jToolBar1 = new javax.swing.JToolBar();
         bnt_test = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -263,12 +259,13 @@ public class PatientBrowse extends javax.swing.JFrame {
         jMenuItem2_Info = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Linked Results Analysis Tool");
+        setTitle("Linked Results Analysis Tool - browse patients");
 
         Info_top4.setBackground(new java.awt.Color(102, 153, 255));
         Info_top4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         Info_top4.setRequestFocusEnabled(false);
 
+        btn_Search.setBackground(new java.awt.Color(0, 140, 140));
         btn_Search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/Search.png"))); // NOI18N
         btn_Search.setText("Search");
         btn_Search.addActionListener(new java.awt.event.ActionListener() {
@@ -401,11 +398,6 @@ public class PatientBrowse extends javax.swing.JFrame {
                 .addGap(5, 5, 5))
         );
 
-        txtArea_test.setColumns(20);
-        txtArea_test.setLineWrap(true);
-        txtArea_test.setRows(5);
-        jScrollPane2.setViewportView(txtArea_test);
-
         javax.swing.GroupLayout Info_top4Layout = new javax.swing.GroupLayout(Info_top4);
         Info_top4.setLayout(Info_top4Layout);
         Info_top4Layout.setHorizontalGroup(
@@ -413,8 +405,6 @@ public class PatientBrowse extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Info_top4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(88, 88, 88)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_Search)
                 .addGap(21, 21, 21))
@@ -423,9 +413,8 @@ public class PatientBrowse extends javax.swing.JFrame {
             Info_top4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Info_top4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(Info_top4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(Info_top4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_Search))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -562,8 +551,8 @@ public class PatientBrowse extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1_HowToActionPerformed
 
     private void jMenuItem2_InfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2_InfoActionPerformed
-        ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/EsALiR_suite_BG_ico2-3_small.png"));
-        JOptionPane.showMessageDialog(rootPane, "Needs A Name \nDB-request Tool\nVersion:   1.0.0", "Info", HEIGHT,img);
+        ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_med.png"));
+        JOptionPane.showMessageDialog(rootPane, "LInkedResultsAnalysis \nDB-request Tool\nVersion:   1.0.0", "Info", HEIGHT,img);
     }//GEN-LAST:event_jMenuItem2_InfoActionPerformed
 
     private void bnt_testActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bnt_testActionPerformed
@@ -573,7 +562,6 @@ public class PatientBrowse extends javax.swing.JFrame {
 
     private void rbtn_searchCritMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_searchCritMainActionPerformed
         if (rbtn_searchCritMain.isSelected()){
-
             rbtn_searchCrit1.setEnabled(true);
             rbtn_NOT1.setEnabled(true);
             txt_searchCrit1.setEnabled(true);
@@ -591,7 +579,6 @@ public class PatientBrowse extends javax.swing.JFrame {
 
     private void rbtn_allActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_allActionPerformed
         if (rbtn_all.isSelected()){
-
             rbtn_searchCrit1.setEnabled(false);
             rbtn_NOT1.setEnabled(false);
             txt_searchCrit1.setEnabled(false);
@@ -604,26 +591,17 @@ public class PatientBrowse extends javax.swing.JFrame {
             txt_searchCrit2.setBackground(new java.awt.Color(204, 204, 204));
             CB_searchCrit2.setEnabled(false);
             CB_andor.setEnabled(false);
-
         }
-
     }//GEN-LAST:event_rbtn_allActionPerformed
 
     private void btn_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SearchActionPerformed
-        // TODO add your handling code here:
         if(rbtn_all.isSelected()){
             initial_table_patient();
             
         } else if (rbtn_searchCritMain.isSelected()){
             Connection conn = DBconnect.ConnecrDb();
             ResultSet rs = null;
-            PreparedStatement pst = null;
-            
-            //String sql = "SELECT p.pat_id, fm_pat_no, fname, surname, surname_old, sex, b_date, dg_date, mb_down as MDown, stdy_name, pat_study_id as stdy_ID, proj_name"
-            //    + " FROM patient p, pat_instudy ps, pat_inproject pj, study s, project j"
-            //    + " where p.pat_id=ps.pat_id and p.pat_id=pj.pat_id "
-            //    + " and s.stdy_id=ps.stdy_id and j.proj_id=pj.proj_id ";
-            
+            PreparedStatement pst = null;          
             String sql = "SELECT p.pat_id, fm_pat_no, fname, surname, surname_old, sex, b_date, dg_date, mb_down as MDown, stdy_name, pat_study_id as stdy_ID, stdy_group, mon_pat as monitor, proj_name"
                     + " FROM patient p, pat_instudy ps, pat_inproject pj, study s, project j"
                     + " WHERE p.pat_id=ps.pat_id and p.pat_id=pj.pat_id "
@@ -633,8 +611,7 @@ public class PatientBrowse extends javax.swing.JFrame {
                 String searchCrit1_select = CB_searchCrit1.getSelectedItem().toString();
                 String searchCrit1 = "";
                 String sCrit1_txt = txt_searchCrit1.getText();
-                String select1 = "";
-                
+                String select1 = "";                
                 switch (searchCrit1_select) {
                     case "pat_id":
                         searchCrit1 = "p.pat_id";
@@ -741,8 +718,7 @@ public class PatientBrowse extends javax.swing.JFrame {
                 String searchCrit2_select = CB_searchCrit2.getSelectedItem().toString();
                 String searchCrit2 = "";
                 String sCrit2_txt = txt_searchCrit2.getText();
-                String select2 = "";
-                
+                String select2 = "";                
                 switch (searchCrit2_select) {
                     case "pat_id":
                         searchCrit2 = "p.pat_id";
@@ -851,9 +827,9 @@ public class PatientBrowse extends javax.swing.JFrame {
                 pst = conn.prepareStatement(sql);
                 rs = pst.executeQuery();
 
+                my_log.logger.info("SQL:  " + sql);
                 table_patient.setModel(DbUtils.resultSetToTableModel(rs));
                 CustomSorter.table_customRowSort(table_patient);
-
                 if (table_patient.getColumnModel().getColumnCount() > 0) {
                     table_patient.getColumnModel().getColumn(0).setPreferredWidth(80);
                     table_patient.getColumnModel().getColumn(0).setMaxWidth(100);
@@ -888,6 +864,7 @@ public class PatientBrowse extends javax.swing.JFrame {
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e);
+                my_log.logger.warning("ERROR: " + e);
             } finally {
                 try {
                     if (rs != null) { rs.close();}
@@ -896,26 +873,19 @@ public class PatientBrowse extends javax.swing.JFrame {
                 } catch (Exception e) {
                 }
             }
-            
-            
-            
-        }
-         
+        }         
     }//GEN-LAST:event_btn_SearchActionPerformed
 
     private void CB_searchCrit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_searchCrit1ActionPerformed
-
         String searchCrit_select = CB_searchCrit1.getSelectedItem().toString();
         if (searchCrit_select.equals("birth date") || searchCrit_select.equals("diagnosis date")){
             rbtn_NOT1.setEnabled(false);
         } else{
             rbtn_NOT1.setEnabled(true);
-        }
-        
+        }        
     }//GEN-LAST:event_CB_searchCrit1ActionPerformed
 
     private void CB_searchCrit2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_searchCrit2ActionPerformed
-        
         String searchCrit_select = CB_searchCrit2.getSelectedItem().toString();
         if (searchCrit_select.equals("birth date") || searchCrit_select.equals("diagnosis date")){
             rbtn_NOT2.setEnabled(false);
@@ -978,7 +948,6 @@ public class PatientBrowse extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2_Info;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JLabel lbl_rowsReturned;
     private javax.swing.JRadioButton rbtn_NOT1;
@@ -988,7 +957,6 @@ public class PatientBrowse extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbtn_searchCrit2;
     private javax.swing.JRadioButton rbtn_searchCritMain;
     private javax.swing.JTable table_patient;
-    private javax.swing.JTextArea txtArea_test;
     private javax.swing.JTextField txt_searchCrit1;
     private javax.swing.JTextField txt_searchCrit2;
     // End of variables declaration//GEN-END:variables

@@ -51,6 +51,7 @@ public class SampleBrowse extends javax.swing.JFrame {
         initial_table_resultID();
         Info_top4.getRootPane().setDefaultButton(btn_newList);
         
+        my_log.logger.info("open SampleBrowse()");
     }
  
     private void showRows(ResultSet rs){
@@ -71,7 +72,6 @@ public class SampleBrowse extends javax.swing.JFrame {
         Connection conn = DBconnect.ConnecrDb();
         ResultSet rs = null;
         PreparedStatement pst = null;
-        //String sql = "SELECT * from sample";
         String sql = "SELECT pat_id, fm_sample_no as 'FM sample', lab_id, corr_lab_id, comm as comment, material, punct_date, rec_date, ref_diag FROM sample";
         
         try {
@@ -224,8 +224,7 @@ public class SampleBrowse extends javax.swing.JFrame {
     }
         
         
-    private void get_ids(String sql, PreparedStatement pst, ResultSet rs, Connection conn) {
-        
+    private void get_ids(String sql, PreparedStatement pst, ResultSet rs, Connection conn) {        
         try {
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
@@ -258,7 +257,6 @@ public class SampleBrowse extends javax.swing.JFrame {
             } catch (Exception e) {
             }
         }
-
     }
      
     private static boolean isRightClick(MouseEvent e) {
@@ -330,7 +328,7 @@ public class SampleBrowse extends javax.swing.JFrame {
         popUpResult.add(cpLabIds);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Linked Results Analysis Tool");
+        setTitle("Linked Results Analysis Tool - browse samples");
 
         jToolBar1.setRollover(true);
 
@@ -378,7 +376,9 @@ public class SampleBrowse extends javax.swing.JFrame {
         rbtn_corr.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         rbtn_corr.setBorderPainted(true);
 
-        btn_newList.setText("new List");
+        btn_newList.setBackground(new java.awt.Color(0, 140, 140));
+        btn_newList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/Search.png"))); // NOI18N
+        btn_newList.setText("Search");
         btn_newList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_newListActionPerformed(evt);
@@ -454,9 +454,9 @@ public class SampleBrowse extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txt_date2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txt_refDiag))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
-                .addComponent(btn_newList, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(293, 293, 293))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 448, Short.MAX_VALUE)
+                .addComponent(btn_newList)
+                .addGap(21, 21, 21))
         );
         Info_top4Layout.setVerticalGroup(
             Info_top4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -467,8 +467,9 @@ public class SampleBrowse extends javax.swing.JFrame {
                     .addComponent(rbtn_bdate)
                     .addComponent(txt_date1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_date2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rbtn_corr))
-                .addGap(5, 5, 5)
+                    .addComponent(rbtn_corr)
+                    .addComponent(btn_newList))
+                .addGap(4, 4, 4)
                 .addGroup(Info_top4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rbtn_patID)
                     .addComponent(txt_patID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -482,10 +483,6 @@ public class SampleBrowse extends javax.swing.JFrame {
                     .addComponent(rbtn_female)
                     .addComponent(rbtn_NOT))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Info_top4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_newList)
-                .addContainerGap())
         );
 
         table_resultID.setAutoCreateRowSorter(true);
@@ -572,7 +569,7 @@ public class SampleBrowse extends javax.swing.JFrame {
                 .addComponent(Info_top4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbl_rowsReturned)
@@ -592,7 +589,6 @@ public class SampleBrowse extends javax.swing.JFrame {
     }//GEN-LAST:event_bnt_testActionPerformed
 
     private void btn_newListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_newListActionPerformed
-        // TODO add your handling code here:
         if(rbtn_all.isSelected()){
             initial_table_sample();
             update_table_resultID();
@@ -600,10 +596,6 @@ public class SampleBrowse extends javax.swing.JFrame {
             Connection conn = DBconnect.ConnecrDb();
             ResultSet rs = null;
             PreparedStatement pst = null;
-            //String sql = "SELECT a.pat_id, a.fm_sample_no as 'FM sample', a.lab_id, a.corr_lab_id, a.comm as comment, a.material, a.punct_date, a.rec_date, a.ref_diag FROM sample a, sample b"
-            //        + " Where LOCATE(a.lab_id, b.corr_lab_id)"
-            //        + " OR LOCATE(b.lab_id, a.corr_lab_id);";
-            
             String sql = "SELECT a.pat_id, a.fm_sample_no as 'FM sample', a.lab_id, a.corr_lab_id, a.comm as comment, a.material, a.punct_date, a.rec_date, a.ref_diag FROM sample a"
                     + " WHERE pat_id in (SELECT pat_id FROM sample"
                     + " GROUP BY pat_id"
@@ -616,8 +608,7 @@ public class SampleBrowse extends javax.swing.JFrame {
                 rs = pst.executeQuery();
 
                 table_sample.setModel(DbUtils.resultSetToTableModel(rs));
-                CustomSorter.table_customRowSort(table_sample);
-                
+                CustomSorter.table_customRowSort(table_sample);                
                 if (table_sample.getColumnModel().getColumnCount() > 0) {
                     table_sample.getColumnModel().getColumn(0).setPreferredWidth(60);
                     table_sample.getColumnModel().getColumn(0).setMaxWidth(60);
@@ -954,23 +945,19 @@ public class SampleBrowse extends javax.swing.JFrame {
                 }
             }
         }
-
     }//GEN-LAST:event_btn_newListActionPerformed
 
     private void table_resultIDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_resultIDMouseClicked
-        // TODO add your handling code here:
         if (isRightClick(evt) == true) {
             //JOptionPane.showMessageDialog(null, "right click");
             //saveOnRC(evt, table_queryIDs);
 
             popUpResult.show(table_resultID,evt.getX(),evt.getY());
             this.outTable = table_resultID;
-        }
-        
+        }        
     }//GEN-LAST:event_table_resultIDMouseClicked
 
     private void cpResultIdsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpResultIdsActionPerformed
-
         JTable OT = this.outTable;
         String IDs = "";
         int resultL = OT.getRowCount();
@@ -979,23 +966,11 @@ public class SampleBrowse extends javax.swing.JFrame {
             IDs = IDs + tmp + ", "; 
         }
         IDs = IDs.substring(0, (IDs.length() - 2));
-        //txtArea_test.setText(IDs);  // test
-        
-        //Toolkit.getDefaultToolkit().getSystemClipboard().setContents( 
-        //        new StringSelection(IDs), null);
-        
-        //StringSelection selection = new StringSelection(IDs);
-        //Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-        //clipboard.setContents(selection, selection);
-        
         StringSelection somestring = new StringSelection(IDs);
-        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(somestring, null);
-        
-
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(somestring, null);        
     }//GEN-LAST:event_cpResultIdsActionPerformed
 
     private void cpLabIdsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpLabIdsActionPerformed
-
         JTable OT = this.outTable;
         String IDs = "";
         int resultL = OT.getRowCount();
@@ -1007,7 +982,6 @@ public class SampleBrowse extends javax.swing.JFrame {
         //txtArea_test.setText(IDs);  // test
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents( 
                 new StringSelection(IDs), null);
-        
     }//GEN-LAST:event_cpLabIdsActionPerformed
 
     /**

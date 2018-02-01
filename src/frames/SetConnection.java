@@ -1,10 +1,14 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * stdpat_DB - Project study patient database 
+ * For efficient data evaluation and interpretation
+ *
+ * Copyright (C) CCRI - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Gerda modarres <gerrda.modarres@ccri.at>, August 2017
+ *
  */
 package frames;
-
 
 import static frames.LoginDB.LoginFrameRef;
 import java.awt.EventQueue;
@@ -21,7 +25,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.NamingException;
-//import javax.naming.ldap.LdapContext;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -29,28 +32,17 @@ import javax.swing.JOptionPane;
 import static myClass.ActiveDirectory.getConnection;
 import myClass.BoundsPopupMenuListener;
 import myClass.DBconnect;
-//import myClass.LDAPClientTest;
 import myClass.Log;
 import myClass.OSDetector;
 import org.ini4j.Ini;
 import static myClass.Log.startLog;
-//import java.awt.Desktop;
-//import java.lang.reflect.Array;
-//import java.nio.file.Path;
-//import java.util.Properties;
-//import java.util.Vector;
-//import javax.naming.ldap.LdapContext;
-//import myClass.ActiveDirectory;
-
 
 /**
  *
  * @author gerda.modarres
  */
 public class SetConnection extends javax.swing.JFrame {
-    //public static String user = null;
-    //public static String pwd = null;
-    //public static String conn_str = null;
+
     public static javax.swing.JFrame SetConnFrameRef;
     public static boolean OK;
     public static String LDAPuser = null;
@@ -60,8 +52,7 @@ public class SetConnection extends javax.swing.JFrame {
     public static String devmode = null;
 
     Log my_log;
-    
-    
+        
     /**
      * Creates new form setConnection_frame
      */
@@ -78,16 +69,7 @@ public class SetConnection extends javax.swing.JFrame {
         read_hosts_fromFile(); 
         SetConnFrameRef = this;
     }
-    
-    /*public void LDAP_test(){    // APP hängt ... ? Do not use!
-        try {
-            LDAPClientTest.importFromLDAP();
-            //JOptionPane.showMessageDialog(null, test);
-        } catch (Exception ex) {
-            Logger.getLogger(SetConnection.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }*/
-    
+   
     private void identifyUser(){
         currentUser = System.getProperty("user.name");
         // JOptionPane.showMessageDialog(null, currentUser);
@@ -100,14 +82,8 @@ public class SetConnection extends javax.swing.JFrame {
     public void getUser() throws IOException{
         String user = LDAPuser;
         String currentDir = System.getProperty("user.dir");
-        //String userDir = "./users";
-        //Path users = Paths.get("users");
-        //String s = users.toAbsolutePath().toString();
-        //JOptionPane.showMessageDialog(null, "getUser()...dir: "+ currentDir+ "  user: "+user);
-
         createUserDir("\\users\\" + user);       // toggle 1/2  --> btn_testActionPerformed(java.awt.event.ActionEvent evt)
-        //createUserDir("\\users\\" + "testuser");  //TEST local
-        
+        //createUserDir("\\users\\" + "testuser");  //TEST local        
     }
     
     private static void copyFile(File sourceFile, File destFile)
@@ -134,11 +110,6 @@ public class SetConnection extends javax.swing.JFrame {
     }
     
     private void createUserDir(String dirName) throws IOException {         // test: without final
-        //final File homeDir = new File(System.getProperty("user.home"));
-        //final File dir = new File(homeDir, dirName);
-        //if (!dir.exists() && !dir.mkdirs()) {
-        //    throw new IOException("Unable to create " + dir.getAbsolutePath());
-        //}
         try {
             if (OSDetector.isWindows()) {            
             } else {
@@ -207,20 +178,12 @@ public class SetConnection extends javax.swing.JFrame {
         try{
             final List<String> lines = Files.readAllLines(Paths.get("hosts.ini"),
             Charset.defaultCharset());
-            
-            //Ini ini = new Ini(new File("C:\\Users\\gerda.modarres\\Desktop\\pat_DB\\config.ini"));
-            //final String hosts = ini.get("hosts","host");
-            //JOptionPane.showMessageDialog(null, hosts);
-            //String[] lines = hosts.split(",");
-            //JOptionPane.showMessageDialog(null, lines);
                        
             EventQueue.invokeLater(new Runnable(){
                 @Override
                 public void run(){          
                   combo_host.setModel(new DefaultComboBoxModel<String>(
                             lines.toArray(new String[0])));                    
-                    //combo_host.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "jdbc:mysql://localhost:3306/pat_db", "host2" }));
-                    //combo_host.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {hosts}));
                 }
             });  
         } catch (IOException e) {
@@ -230,31 +193,23 @@ public class SetConnection extends javax.swing.JFrame {
     }
     
     public static void get_connData(){
-        //DBconnect.USER = txt_passUser.getText();
         DBconnect.USER = LoginDB.txt_username.getText();
-        //DBconnect.PWD = jpass_passPwd.getText();
         DBconnect.PWD = LoginDB.txt_password.getText();
         DBconnect.CONN_STR = txt_passHost.getText();
-        //JOptionPane.showMessageDialog(null, "setConn get_connData() :"+ DBconnect.USER + " _ "+ DBconnect.PWD +"conn:  "+ DBconnect.CONN_STR);
     }
    
    public static void close_setConn(){
-        //SetConnFrameRef.setVisible(false);
         SetConnFrameRef.dispose();
     }
    
    public static void getIniData(){
         Ini ini;
-        try {
-            
+        try {            
             // toggle for Testing
             //ini = new Ini(new File("config.ini"));        //TEST
             ini = new Ini(new File(personalConfig));        //toggle
-            //ini = new Ini(new File("C:\\Users\\gerda.modarres\\Desktop\\pat_DB\\config.ini"));
             //JOptionPane.showMessageDialog(null, personalConfig);
             
-            //java.util.prefs.Preferences prefs = new IniPreferences(ini);
-            //JOptionPane.showMessageDialog(null, "hosts: " + prefs.node("hosts"));
             String user = ini.get("user","user");
             txt_passUser.setText(user);
             String hosts = ini.get("hosts","host");
@@ -273,7 +228,6 @@ public class SetConnection extends javax.swing.JFrame {
             // toggle for Testing
             //ini = new Ini(new File("config.ini"));    //TEST
             ini = new Ini(new File(personalConfig));    //toggle
-            //ini = new Ini(new File("C:\\Users\\gerda.modarres\\Desktop\\pat_DB\\config.ini"));
             
             String newHost = txt_passHost.getText();
             String newUser = txt_passUser.getText();
@@ -282,8 +236,7 @@ public class SetConnection extends javax.swing.JFrame {
             ini.put("hosts", "host", newHost);
             ini.put("user", "user", newUser);
             ini.put("defaultpath", "path", newPath);
-            ini.store();
-            
+            ini.store();            
         } catch (IOException ex) {
             Logger.getLogger(SetConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -525,7 +478,6 @@ public class SetConnection extends javax.swing.JFrame {
     }//GEN-LAST:event_combo_hostPopupMenuWillBecomeInvisible
 
     private void btn_fileChooseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_fileChooseActionPerformed
-
     JFileChooser fileChooser = new JFileChooser();
     fileChooser.setCurrentDirectory(new java.io.File("."));
     fileChooser.setDialogTitle("save path for output files");
@@ -534,12 +486,10 @@ public class SetConnection extends javax.swing.JFrame {
     if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
         String dp = fileChooser.getSelectedFile().toString();
         txt_defaultPathSave.setText(dp);
-    }
-               
+    }               
     }//GEN-LAST:event_btn_fileChooseActionPerformed
 
     private void btn_LDAPloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LDAPloginActionPerformed
-        
         boolean OK = getLDAP(); // toggle 2/2     --> getUser()
         //boolean OK = true;   //test
         
@@ -560,11 +510,9 @@ public class SetConnection extends javax.swing.JFrame {
             //LoginFrameRef.dispose();
         }
         startLog(my_log,"open Logfile for user: "+currentUser);
-
     }//GEN-LAST:event_btn_LDAPloginActionPerformed
 
     private void jpass_passKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jpass_passKeyPressed
-
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             boolean OK = getLDAP();
             if (OK == true) {
@@ -582,7 +530,6 @@ public class SetConnection extends javax.swing.JFrame {
             }
             startLog(my_log,"open Logfile for user: "+currentUser);
         }
-
     }//GEN-LAST:event_jpass_passKeyPressed
 
     /**

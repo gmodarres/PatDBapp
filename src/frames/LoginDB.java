@@ -1,15 +1,14 @@
-package frames;
-
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
+ * stdpat_DB - Project study patient database 
+ * For efficient data evaluation and interpretation
  *
- * @author gerda.modarres
+ * Copyright (C) CCRI - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Gerda modarres <gerrda.modarres@ccri.at>, August 2017
+ *
  */
+package frames;
 
 import myClass.DBconnect;
 import java.awt.*;
@@ -174,7 +173,6 @@ public class LoginDB extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmd_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmd_loginActionPerformed
-
         try {
             SetConnection.get_connData();    
             //JOptionPane.showMessageDialog(null, "LOGIN_DB_frame :"+ DBconnect.USER + " _ "+ DBconnect.PWD );
@@ -199,7 +197,6 @@ public class LoginDB extends javax.swing.JFrame {
     }//GEN-LAST:event_cmd_loginActionPerformed
 
     private void txt_passwordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_passwordKeyPressed
-
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
 
             try {

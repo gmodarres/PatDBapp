@@ -1,13 +1,17 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * stdpat_DB - Project study patient database 
+ * For efficient data evaluation and interpretation
+ *
+ * Copyright (C) CCRI - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Gerda modarres <gerrda.modarres@ccri.at>, August 2017
+ *
  */
 package frames;
 
 import static frames.ResultWindow.updateIntrpr;
 import static frames.SetConnection.personalConfig;
-import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
@@ -19,11 +23,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.ToolTipManager;
@@ -82,6 +83,7 @@ public class ArrayQuery extends javax.swing.JFrame {
         jPanel1.getRootPane().setDefaultButton(btn_Search);
         
         ToolTipManager.sharedInstance().setEnabled(false);
+        my_log.logger.info("open ArrayQuery()");
     }
 
     public void getIniData() {
@@ -254,7 +256,7 @@ public class ArrayQuery extends javax.swing.JFrame {
                 //JOptionPane.showMessageDialog(null, "no IDs");
                 ids = "0";
             }
-            //String sql2 = "SELECT COUNT(*) AS matchingCriteria FROM( "+ sql + " ) AS M";
+
             String sql2 = "SELECT  ( SELECT COUNT(*) FROM  patient ) AS patients, \n" +
             "( SELECT COUNT(*) FROM  arr_result ) AS array, \n" +
             "( SELECT COUNT(*) FROM fish_result ) AS fish, \n" +
@@ -295,16 +297,13 @@ public class ArrayQuery extends javax.swing.JFrame {
         }
     }   
     
-    private void initial_table_queryIDs(){
-    
+    private void initial_table_queryIDs(){   
         Connection conn = DBconnect.ConnecrDb();
         ResultSet rs = null;
         PreparedStatement pst = null;
         String sql = "SELECT distinct s.lab_id, result_id, fname, surname, sex, b_date from main_result m, patient p, sample s "
                         + "Where p.pat_id=s.pat_id AND m.lab_id=s.lab_id";
-        //String sql = "SELECT distinct s.lab_id, result_id, fname, surname, sex, b_date, proj_id as P"
-        //        + " from main_result m, patient p, sample s, pat_inproject ip"
-        //        + " Where p.pat_id=s.pat_id AND m.lab_id=s.lab_id AND ip.pat_id=p.pat_id";
+
         try{         
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
@@ -319,9 +318,6 @@ public class ArrayQuery extends javax.swing.JFrame {
                 all_ids = all_ids.substring(0, (all_ids.length() - 1));
                 String sql2 = "SELECT distinct s.lab_id, result_id, p.pat_id, fname, surname, sex, b_date from main_result m, patient p, sample s "
                         + "Where p.pat_id=s.pat_id AND m.lab_id=s.lab_id AND result_id IN ( " + all_ids + " )";
-                //String sql2 = "SELECT distinct s.lab_id, result_id, fname, surname, sex, b_date, proj_id as P"
-                //+ " from main_result m, patient p, sample s, pat_inproject ip"
-                //+ " Where p.pat_id=s.pat_id AND m.lab_id=s.lab_id AND ip.pat_id=p.pat_id AND result_id IN ( " + all_ids + " )";
                 
                 pst = conn.prepareStatement(sql2);
                 rs = pst.executeQuery();
@@ -337,8 +333,8 @@ public class ArrayQuery extends javax.swing.JFrame {
                     table_queryIDs.getColumnModel().getColumn(2).setMaxWidth(60);
                     table_queryIDs.getColumnModel().getColumn(3).setPreferredWidth(80);
                     table_queryIDs.getColumnModel().getColumn(3).setMaxWidth(130);
-                    //table_queryIDs.getColumnModel().getColumn(3).setPreferredWidth(80);
-                    //table_queryIDs.getColumnModel().getColumn(3).setMaxWidth(130);
+                    //table_queryIDs.getColumnModel().getColumn(4).setPreferredWidth(80);
+                    //table_queryIDs.getColumnModel().getColumn(4).setMaxWidth(130);
                     table_queryIDs.getColumnModel().getColumn(5).setPreferredWidth(30);
                     table_queryIDs.getColumnModel().getColumn(5).setMaxWidth(30);
                     table_queryIDs.getColumnModel().getColumn(6).setPreferredWidth(90);      // 80
@@ -347,7 +343,6 @@ public class ArrayQuery extends javax.swing.JFrame {
                     //table_queryIDs.getColumnModel().getColumn(7).setMaxWidth(30);
                 }
             }
-
         }catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         } finally {
@@ -358,13 +353,11 @@ public class ArrayQuery extends javax.swing.JFrame {
             } catch (Exception e) {
             }
         }
-
     }
     
     private void get_queryLabIDs(String sql, PreparedStatement pst, ResultSet rs, Connection conn){
 
-        try{
-            
+        try{            
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
             String all_ids= "";
@@ -379,9 +372,6 @@ public class ArrayQuery extends javax.swing.JFrame {
 
                 String sql2 = "SELECT distinct s.lab_id, result_id, p.pat_id, fname, surname, sex, b_date from main_result m, patient p, sample s "
                         + "Where p.pat_id=s.pat_id AND m.lab_id=s.lab_id AND result_id IN ( " + all_ids + " )";
-                //String sql2 = "SELECT distinct s.lab_id, result_id, fname, surname, sex, b_date, proj_id as P"
-                //+ " from main_result m, patient p, sample s, pat_inproject ip"
-                //+ " Where p.pat_id=s.pat_id AND m.lab_id=s.lab_id AND ip.pat_id=p.pat_id AND result_id IN ( " + all_ids + " )";
                 
                 pst = conn.prepareStatement(sql2);
                 rs = pst.executeQuery();
@@ -398,8 +388,8 @@ public class ArrayQuery extends javax.swing.JFrame {
                     table_queryIDs.getColumnModel().getColumn(2).setMaxWidth(60);
                     table_queryIDs.getColumnModel().getColumn(3).setPreferredWidth(80);
                     table_queryIDs.getColumnModel().getColumn(3).setMaxWidth(130);
-                    //table_queryIDs.getColumnModel().getColumn(3).setPreferredWidth(80);
-                    //table_queryIDs.getColumnModel().getColumn(3).setMaxWidth(130);
+                    //table_queryIDs.getColumnModel().getColumn(4).setPreferredWidth(80);
+                    //table_queryIDs.getColumnModel().getColumn(4).setMaxWidth(130);
                     table_queryIDs.getColumnModel().getColumn(5).setPreferredWidth(30);
                     table_queryIDs.getColumnModel().getColumn(5).setMaxWidth(30);
                     table_queryIDs.getColumnModel().getColumn(6).setPreferredWidth(90);      // 80
@@ -440,8 +430,8 @@ public class ArrayQuery extends javax.swing.JFrame {
                 }else{
                     //JOptionPane.showMessageDialog(null, "id already in list: " + id + "  "+ id_rem); // test
                 }
-                //Combobox_id.addItem(id);        // test
-                //txtArea_test.append("'"+id+"',");  // test
+                //Combobox_id.addItem(id);          // test
+                //txtArea_test.append("'"+id+"',"); // test
             }
             this.ids = all_ids;
             this.AQ_resultIDs = all_ids;
@@ -458,7 +448,6 @@ public class ArrayQuery extends javax.swing.JFrame {
             } catch (Exception e) {
             }
         }
-
     }
        
     // For Testing
@@ -498,6 +487,8 @@ public class ArrayQuery extends javax.swing.JFrame {
         jPanel17 = new javax.swing.JPanel();
         btn_TTT = new javax.swing.JRadioButton();
         rbtn_showExample = new javax.swing.JRadioButton();
+        btn_saveQuery = new javax.swing.JButton();
+        btn_loadQuery = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         table_array = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
@@ -534,8 +525,6 @@ public class ArrayQuery extends javax.swing.JFrame {
         txt_const1_1 = new javax.swing.JTextField();
         lbl_or1 = new javax.swing.JLabel();
         jCombo_const2 = new javax.swing.JComboBox<>();
-        btn_saveQuery = new javax.swing.JButton();
-        btn_loadQuery = new javax.swing.JButton();
         btn_clear = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
@@ -572,6 +561,7 @@ public class ArrayQuery extends javax.swing.JFrame {
         popUpSave.add(popUpMenu_moveTbl);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Linked Results Analysis Tool - array gene query");
 
         jToolBar1.setRollover(true);
 
@@ -678,6 +668,26 @@ public class ArrayQuery extends javax.swing.JFrame {
             }
         });
 
+        btn_saveQuery.setBackground(new java.awt.Color(255, 153, 0));
+        btn_saveQuery.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/Floppy-Small-icon.png"))); // NOI18N
+        btn_saveQuery.setText("save query");
+        btn_saveQuery.setToolTipText("save current query to a file");
+        btn_saveQuery.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_saveQueryActionPerformed(evt);
+            }
+        });
+
+        btn_loadQuery.setBackground(new java.awt.Color(51, 153, 255));
+        btn_loadQuery.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/open-file-icon.png"))); // NOI18N
+        btn_loadQuery.setText("load query");
+        btn_loadQuery.setToolTipText("load a saved query from a file");
+        btn_loadQuery.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_loadQueryActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
         jPanel17Layout.setHorizontalGroup(
@@ -686,13 +696,19 @@ public class ArrayQuery extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_TTT, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
-                    .addComponent(rbtn_showExample, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(rbtn_showExample, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_saveQuery, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_loadQuery, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel17Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(13, 13, 13)
+                .addComponent(btn_loadQuery)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_saveQuery)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_TTT)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(rbtn_showExample)
@@ -1017,26 +1033,6 @@ public class ArrayQuery extends javax.swing.JFrame {
                 .addGap(3, 3, 3))
         );
 
-        btn_saveQuery.setBackground(new java.awt.Color(255, 153, 0));
-        btn_saveQuery.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/Floppy-Small-icon.png"))); // NOI18N
-        btn_saveQuery.setText("save query");
-        btn_saveQuery.setToolTipText("save current query to a file");
-        btn_saveQuery.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_saveQueryActionPerformed(evt);
-            }
-        });
-
-        btn_loadQuery.setBackground(new java.awt.Color(51, 153, 255));
-        btn_loadQuery.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/open-file-icon.png"))); // NOI18N
-        btn_loadQuery.setText("load query");
-        btn_loadQuery.setToolTipText("load a saved query from a file");
-        btn_loadQuery.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_loadQueryActionPerformed(evt);
-            }
-        });
-
         btn_clear.setBackground(new java.awt.Color(153, 153, 153));
         btn_clear.setText("clear");
         btn_clear.setToolTipText("clear all fields and settings");
@@ -1053,11 +1049,9 @@ public class ArrayQuery extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btn_saveQuery, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_loadQuery, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_Search, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_Search, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
                     .addComponent(btn_clear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(21, 21, 21))
         );
@@ -1068,11 +1062,7 @@ public class ArrayQuery extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(7, 7, 7)
                         .addComponent(btn_Search, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_loadQuery)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_saveQuery)
-                        .addGap(15, 15, 15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_clear))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
@@ -1169,7 +1159,6 @@ public class ArrayQuery extends javax.swing.JFrame {
 
     private void table_queryIDsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_queryIDsMouseClicked
         // right klick ==> save to file
-
         if (isRightClick(evt) == true) {
             //JOptionPane.showMessageDialog(null, "right click");
             //saveOnRC(evt, table_queryIDs);
@@ -1178,7 +1167,6 @@ public class ArrayQuery extends javax.swing.JFrame {
             this.outTable = table_queryIDs;
 
         } else {
-
         }
     }//GEN-LAST:event_table_queryIDsMouseClicked
 
@@ -1194,12 +1182,11 @@ public class ArrayQuery extends javax.swing.JFrame {
             } catch (Exception e) {
             }
         }
-
     }//GEN-LAST:event_table_queryIDsKeyReleased
 
     private void jMenuItem2_InfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2_InfoActionPerformed
-        ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/EsALiR_suite_BG_ico2-3_small.png"));
-        JOptionPane.showMessageDialog(rootPane, "Needs A Name \nDB-request Tool\nVersion:   1.0.0", "Info", HEIGHT,img);
+        ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_med.png"));
+        JOptionPane.showMessageDialog(rootPane, "LInkedResultsAnalysis \nDB-request Tool\nVersion:   1.0.0", "Info", HEIGHT,img);
     }//GEN-LAST:event_jMenuItem2_InfoActionPerformed
 
     private void jMenuItem1_HowToActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1_HowToActionPerformed
@@ -1225,29 +1212,24 @@ public class ArrayQuery extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1_openModelActionPerformed
 
     private void popUpMenu_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popUpMenu_saveActionPerformed
-
         saveOnRC(evt);
         //this.dispose();
     }//GEN-LAST:event_popUpMenu_saveActionPerformed
 
     private void popUpMenu_selectAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popUpMenu_selectAllActionPerformed
-
         JTable OT = this.outTable;
         OT.selectAll();
     }//GEN-LAST:event_popUpMenu_selectAllActionPerformed
 
     private void popUpMenu_moveTblActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popUpMenu_moveTblActionPerformed
-
         JTable OT = this.outTable;
         source = OT.getAccessibleContext().getAccessibleDescription();
         tableMoving = OT.getAccessibleContext().getAccessibleName();
         moveTableModel = (DefaultTableModel) OT.getModel();
         new FreeTable().setVisible(true);
-
     }//GEN-LAST:event_popUpMenu_moveTblActionPerformed
 
     private void table_arrayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_arrayMouseClicked
-
         // right click  ==> save to file
         if (isRightClick(evt) == true) {
             //JOptionPane.showMessageDialog(null, "right click");
@@ -1256,7 +1238,6 @@ public class ArrayQuery extends javax.swing.JFrame {
             this.outTable = table_array;
 
         } else {
-
             Connection conn = DBconnect.ConnecrDb();
             ResultSet rs = null;
             PreparedStatement pst = null;
@@ -1268,7 +1249,6 @@ public class ArrayQuery extends javax.swing.JFrame {
                 click_result = (table_array.getValueAt(row, 1).toString());
                 click_lID = Table_click;
 
-                //String sql = "SELECT * FROM fish_result r, fish_probe p, main_result m WHERE r.probe_no=p.probe_no AND m.result_id=r.result_id AND fish_sub_id='" + Table_click + "' ";
                 String sql = "SELECT * FROM arr_result a, main_result m WHERE a.result_id=m.result_id AND array_sub_id='" + Table_click + "' ";
                 pst = conn.prepareStatement(sql);
                 rs = pst.executeQuery();
@@ -1313,9 +1293,6 @@ public class ArrayQuery extends javax.swing.JFrame {
                     String add5 = rs.getString("cyto_regions");
                     txtArea_Creg.setText(add5);
 
-                    //String add6 = rs.getString("full_loc");
-                    //txt_fullLoc.setText(add6);
-
                     //txtArea_sql.setText(sql);
                     //get_queryLabIDs(sql, pst, rs, conn);
                 }
@@ -1329,12 +1306,6 @@ public class ArrayQuery extends javax.swing.JFrame {
                 } catch (Exception e) {
                 }
             }
-
-            // right click
-            if (isRightClick(evt) == true) {
-                JOptionPane.showMessageDialog(null, "right click");
-
-            }
         }
     }//GEN-LAST:event_table_arrayMouseClicked
 
@@ -1343,8 +1314,60 @@ public class ArrayQuery extends javax.swing.JFrame {
         Connection conn = DBconnect.ConnecrDb();
         ResultSet rs = null;
         PreparedStatement pst = null;
-        try{
-            // TODO enter code from mouseClicked
+        try {
+            int row = table_array.getSelectedRow();
+            //String Table_click = (table_array.getModel().getValueAt(row, 0).toString());        // values not correct anymore, if auto table rowsorter is used -->
+            String Table_click = (table_array.getValueAt(row, 0).toString());
+            click_result = (table_array.getValueAt(row, 1).toString());
+            click_lID = Table_click;
+
+            String sql = "SELECT * FROM arr_result a, main_result m WHERE a.result_id=m.result_id AND array_sub_id='" + Table_click + "' ";
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+                String add1 = rs.getString("array_sub_id");
+                //A_txt_array_sub_id.setText(add1);
+                String add2 = rs.getString("result_id");
+                //A_txt_result_id.setText(add2);
+                String add3 = rs.getString("lab_id");
+                //A_txt_lab_id.setText(add3);
+                String add4 = rs.getString("genes");
+                txtArea_genes.setText(add4);
+
+                // IF interpretation window is open
+                if (IntrprWindowIsOpen == true) {
+                    updateIntrpr(add2);     // update text in Window "ResultWindow"
+                }
+
+                // highlight searched genes in text area
+                if (txt_genes1 != null && !txt_genes1.getText().isEmpty()) {
+                    String gen1 = txt_genes1.getText();
+                    highlight_gene(gen1, 1);
+                }
+                if (txt_genes2 != null && !txt_genes2.getText().isEmpty()) {
+                    String gen2 = txt_genes2.getText();
+                    highlight_gene(gen2, 2);
+                }
+                if (txt_genes3 != null && !txt_genes3.getText().isEmpty()) {
+                    String gen3 = txt_genes3.getText();
+                    highlight_gene(gen3, 3);
+                }
+                if (txt_genes4 != null && !txt_genes4.getText().isEmpty()) {
+                    String gen4 = txt_genes4.getText();
+                    highlight_gene(gen4, 4);
+                }
+                if (txt_genes5 != null && !txt_genes5.getText().isEmpty()) {
+                    String gen5 = txt_genes5.getText();
+                    highlight_gene(gen5, 5);
+                }
+
+                String add5 = rs.getString("cyto_regions");
+                txtArea_Creg.setText(add5);
+
+                //txtArea_sql.setText(sql);
+                //get_queryLabIDs(sql, pst, rs, conn);
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         } finally {
@@ -1358,15 +1381,13 @@ public class ArrayQuery extends javax.swing.JFrame {
     }//GEN-LAST:event_table_arrayKeyReleased
 
     private void btn_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SearchActionPerformed
-        // TODO add your handling code here:
         Connection conn = DBconnect.ConnecrDb();
         ResultSet rs = null;
         PreparedStatement pst = null;
         
-        try {
-          
+        try {        
             String sql = "SELECT array_sub_id as ID, ma_nom, result_id, chr, arr_type as type, cnst, arr_call, size, loc_start, loc_end, cyto_regions AS cyto_regions, genes FROM arr_result a where (1=1";
-            //array_sub_id as ID, ma_nom, result_id, chr, arr_type as type, cnst, arr_call, size, loc_start, loc_end, cyto_regions AS cyto_regions, genes
+
             // GENES ... used twice!
             String gen1=""; String gen2=""; String gen3=""; String gen4=""; String gen5="";
          
@@ -1404,14 +1425,6 @@ public class ArrayQuery extends javax.swing.JFrame {
                     sql = sql +")\n";
                 }
             }
-            /*if(txt_genes5 != null && !txt_genes5.getText().isEmpty()){
-                gen5 = txt_genes5.getText();
-                sql = sql + " OR a.genes like '%"+ gen5 +"%')\n";
-            }else{
-                if(txt_genes4 != null && !txt_genes4.getText().isEmpty()){
-                    sql = sql +")\n";
-                }
-            }*/
             
             // constraints 1
             String const1_1=""; String const1_2=""; String const2_1=""; String const2_2="";
@@ -1420,9 +1433,7 @@ public class ArrayQuery extends javax.swing.JFrame {
                 String C1 = "";
                 
                 if(txt_const1_1 != null && !txt_const1_1.getText().isEmpty()){
-
-                    const1_1 = txt_const1_1.getText(); 
-                    
+                    const1_1 = txt_const1_1.getText();                    
                     switch (C1_select) {
                     case "type":
                         C1 = "a.arr_type";
@@ -1448,7 +1459,6 @@ public class ArrayQuery extends javax.swing.JFrame {
                 if(txt_const1_2 != null && !txt_const1_2.getText().isEmpty()){
                     const1_2 = txt_const1_2.getText();
                     sql = sql + " OR "+ C1 + " " + const1_2 + ")\n";
-
                 }else{
                     sql = sql + ")\n";
                 }
@@ -1460,8 +1470,7 @@ public class ArrayQuery extends javax.swing.JFrame {
                 String C2 = "";
                 
                 if(txt_const2_1 != null && !txt_const2_1.getText().isEmpty()){
-                    const2_1=txt_const2_1.getText();
-                    
+                    const2_1=txt_const2_1.getText();                  
                     switch (C2_select) {
                     case "type":
                         C2 = "a.arr_type";
@@ -1498,8 +1507,7 @@ public class ArrayQuery extends javax.swing.JFrame {
             if(txt_gene1const != null && !txt_gene1const.getText().isEmpty()){
                 String gen1C = txt_gene1const.getText();
                 String gen1C_select = jCombo_gene1const.getSelectedItem().toString();
-                String g1C="";
-                
+                String g1C="";                
                 switch (gen1C_select) {
                     case "type":
                         g1C = "b.arr_type";
@@ -1534,7 +1542,6 @@ public class ArrayQuery extends javax.swing.JFrame {
                     String gen2C = txt_gene2const.getText();
                     String gen2C_select = jCombo_gene2const.getSelectedItem().toString();
                     String g2C = "";
-
                     switch (gen2C_select) {
                         case "type":
                             g2C = "b.arr_type";
@@ -1568,7 +1575,6 @@ public class ArrayQuery extends javax.swing.JFrame {
                     String gen3C = txt_gene3const.getText();
                     String gen3C_select = jCombo_gene3const.getSelectedItem().toString();
                     String g3C = "";
-
                     switch (gen3C_select) {
                         case "type":
                             g3C = "b.arr_type";
@@ -1602,7 +1608,6 @@ public class ArrayQuery extends javax.swing.JFrame {
                     String gen4C = txt_gene4const.getText();
                     String gen4C_select = jCombo_gene4const.getSelectedItem().toString();
                     String g4C = "";
-
                     switch (gen4C_select) {
                         case "type":
                             g4C = "b.arr_type";
@@ -1635,7 +1640,6 @@ public class ArrayQuery extends javax.swing.JFrame {
                     String gen5C = txt_gene5const.getText();
                     String gen5C_select = jCombo_gene5const.getSelectedItem().toString();
                     String g5C = "";
-
                     switch (gen5C_select) {
                         case "type":
                             g5C = "b.arr_type";
@@ -1668,12 +1672,12 @@ public class ArrayQuery extends javax.swing.JFrame {
             
             get_ids(sql, pst, rs, conn);
             display_ids();
+            my_log.logger.info("SQL:  " + sql);
             
             table_array.setModel(DbUtils.resultSetToTableModel(rs));
             CustomSorter.table_customRowSort(table_array);   // not working ?
             // resize column width
             //jScrollPane1.setViewportView(table_array);
-
             if (table_array.getColumnModel().getColumnCount() > 0) {
                 table_array.getColumnModel().getColumn(0).setPreferredWidth(65);    // 50
                 table_array.getColumnModel().getColumn(0).setMaxWidth(65);          // 50
@@ -1705,6 +1709,7 @@ public class ArrayQuery extends javax.swing.JFrame {
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
+            my_log.logger.warning("ERROR: " + e);
         } finally {
             try {
                  if (rs != null) { rs.close();}
@@ -1713,11 +1718,9 @@ public class ArrayQuery extends javax.swing.JFrame {
             } catch (Exception e) {
             }
         }
-
     }//GEN-LAST:event_btn_SearchActionPerformed
 
     private void btn_TTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TTTActionPerformed
-        // TODO add your handling code here:
         if (btn_TTT.isSelected()){
             ToolTipManager.sharedInstance().setEnabled(true);
             // Get current delay
@@ -1731,14 +1734,11 @@ public class ArrayQuery extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_TTTActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
         ArrayQueryCheatSheet s = new ArrayQueryCheatSheet();
-        s.setVisible(true); 
-  
+        s.setVisible(true);   
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void rbtn_showExampleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_showExampleActionPerformed
-        // TODO add your handling code here:
         if (rbtn_showExample.isSelected()){
             txt_const1_1.setToolTipText("<html><p width=400px>\npossible values:<br>\n<font color=\"green\">\n= 'loss'<br>\n= 7<br>\n&lt&gt 'LOH'<br> \n&lt&gt 22<br>\nlike '%mosaic%'<br>\nnot like '%gain%'<br>\nin (7,9,21)<br>\nnot in (1,2) &#9<br>\n</font></p></html>");
         }else{
@@ -1747,7 +1747,6 @@ public class ArrayQuery extends javax.swing.JFrame {
     }//GEN-LAST:event_rbtn_showExampleActionPerformed
 
     private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
-
         initial_table_queryIDs();
         initial_table_statistics();
         DefaultTableModel model = (DefaultTableModel) table_array.getModel();
@@ -1773,8 +1772,7 @@ public class ArrayQuery extends javax.swing.JFrame {
         txt_gene2const.setText("");
         txt_gene3const.setText("");
         txt_gene4const.setText("");
-        txt_gene5const.setText("");
-        
+        txt_gene5const.setText("");        
     }//GEN-LAST:event_btn_clearActionPerformed
 
     private void btn_saveQueryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_saveQueryActionPerformed
@@ -1792,6 +1790,7 @@ public class ArrayQuery extends javax.swing.JFrame {
             //JOptionPane.showMessageDialog(null, out_fileString);  //TEST
 
             ini = new Ini(new File(out_fileString));
+            my_log.logger.info("saving query:\t"+out_fileString);
             
             // get info from which frame te data comes from
             String method = this.getAccessibleContext().getAccessibleName();  
@@ -1855,14 +1854,15 @@ public class ArrayQuery extends javax.swing.JFrame {
             
         } catch (IOException ex) {
             Logger.getLogger(SetConnection.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+            my_log.logger.warning("ERROR: " + ex);
+        }        
     }//GEN-LAST:event_btn_saveQueryActionPerformed
 
     private void btn_loadQueryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loadQueryActionPerformed
         String dp = this.defaultPath; 
         String in_fileString = null;
         Ini ini;
+        
         try {
             ini = new Ini(new File(personalConfig));        //toggle
 
@@ -1873,7 +1873,8 @@ public class ArrayQuery extends javax.swing.JFrame {
             }
 
             ini = new Ini(new File(in_fileString));
-
+            my_log.logger.info("loading saved query:\t"+in_fileString);
+            
             String method = ini.get("frame", "frame");
             if (method.equals("ArrayQuery")) {
                 boolean btn1 = Boolean.parseBoolean(ini.get("btn", "btn1"));
@@ -1931,13 +1932,12 @@ public class ArrayQuery extends javax.swing.JFrame {
                 
             } else {
                 JOptionPane.showMessageDialog(null, "You are trying to load a wrong frame format!");
+                my_log.logger.warning("ERROR: trying to load wrong frame format!");
             }
-
         } catch (IOException ex) {
             Logger.getLogger(SetConnection.class.getName()).log(Level.SEVERE, null, ex);
+            my_log.logger.warning("ERROR: "+ex);
         }
-
-
     }//GEN-LAST:event_btn_loadQueryActionPerformed
 
     /**

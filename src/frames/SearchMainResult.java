@@ -1,15 +1,14 @@
-package frames;
-
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
+ * stdpat_DB - Project study patient database 
+ * For efficient data evaluation and interpretation
  *
- * @author gerda.modarres
+ * Copyright (C) CCRI - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Gerda modarres <gerrda.modarres@ccri.at>, August 2017
+ *
  */
+package frames;
 
 import myClass.DBconnect;
 import java.sql.*;
@@ -43,8 +42,7 @@ public class SearchMainResult extends javax.swing.JFrame {
         initial_table_queryIDs();
     }
 
-    private void setIcons(){
-        
+    private void setIcons(){        
         JLabel lbl_array = new JLabel("Array");
         ImageIcon img1 = new javax.swing.ImageIcon(getClass().getResource("/ico/array_label_small.png"));
         lbl_array.setIcon(img1);
@@ -83,7 +81,6 @@ public class SearchMainResult extends javax.swing.JFrame {
             }
             if (all_ids.length() > 1) {
                 all_ids = all_ids.substring(0, (all_ids.length() - 1));
-                //String sql2 = "SELECT distinct lab_ID from main_result WHERE result_id IN ( " + all_ids + " )";
                 String sql2 = "SELECT distinct s.lab_id, result_id, fname, surname, sex, b_date from main_result m, patient p, sample s "
                         + "Where p.pat_id=s.pat_id AND m.lab_id=s.lab_id AND result_id IN ( " + all_ids + " )";
                 pst = conn.prepareStatement(sql2);
@@ -121,8 +118,7 @@ public class SearchMainResult extends javax.swing.JFrame {
         }
     }
     
-    private void get_queryLabIDs(String sql, PreparedStatement pst, ResultSet rs, Connection conn){
-        
+    private void get_queryLabIDs(String sql, PreparedStatement pst, ResultSet rs, Connection conn){        
         try{
             my_log.logger.info("SQL:  " + sql);
             pst = conn.prepareStatement(sql);
@@ -138,7 +134,6 @@ public class SearchMainResult extends javax.swing.JFrame {
             if (all_ids.length() > 1) {
 
                 all_ids = all_ids.substring(0, (all_ids.length() - 1));
-                //String sql2 = "SELECT distinct lab_ID from main_result WHERE result_id IN ( " + all_ids + " )";
                 String sql2 = "SELECT distinct s.lab_id, result_id, fname, surname, sex, b_date from main_result m, patient p, sample s "
                         + "Where p.pat_id=s.pat_id AND m.lab_id=s.lab_id AND result_id IN ( " + all_ids + " )";
                 pst = conn.prepareStatement(sql2);
@@ -189,8 +184,7 @@ public class SearchMainResult extends javax.swing.JFrame {
         }
     }
     
-    private void get_ids(String sql, PreparedStatement pst, ResultSet rs, Connection conn) {
-        
+    private void get_ids(String sql, PreparedStatement pst, ResultSet rs, Connection conn) {        
         try {
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
@@ -202,7 +196,6 @@ public class SearchMainResult extends javax.swing.JFrame {
                 all_ids = all_ids +"'"+id+"',";
                 //Combobox_id.addItem(id);        // test
                 //txtArea_test.append("'"+id+"',");  // test
-
             }
             this.ids = all_ids;
 
@@ -216,7 +209,6 @@ public class SearchMainResult extends javax.swing.JFrame {
             } catch (Exception e) {
             }
         }
-
     }
       
     private void highlight_txt_array(String word){
@@ -235,21 +227,11 @@ public class SearchMainResult extends javax.swing.JFrame {
                 highlighter.addHighlight(p0, p1, painter);
                 index = text.indexOf(findWord, index + 1);
             }
-
         }catch(Exception e){
         }    
     }
     
-    private void highlight_txt_fish(String word){
-        /*try{
-            String txt_array  = F_txtArea_intrpr.getText();
-            Highlighter highlighter = F_txtArea_intrpr.getHighlighter();
-            HighlightPainter painter = new DefaultHighlighter.DefaultHighlightPainter(java.awt.Color.yellow);
-            int p0 = txt_array.indexOf(txt);
-            int p1 = p0 + txt.length();
-            highlighter.addHighlight(p0, p1, painter );
-        }catch(Exception e){
-        }*/   
+    private void highlight_txt_fish(String word){ 
         try{
             String text  = F_txtArea_intrpr.getText().toLowerCase();
             String findWord = word.toLowerCase();
@@ -350,7 +332,7 @@ public class SearchMainResult extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Linked Results Analysis Tool");
+        setTitle("Linked Results Analysis Tool - search main_result");
         setLocation(new java.awt.Point(150, 50));
 
         Info_top.setBackground(new java.awt.Color(102, 153, 255));
@@ -969,7 +951,6 @@ public class SearchMainResult extends javax.swing.JFrame {
     }//GEN-LAST:event_bnt_testActionPerformed
 
     private void btn_WGVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_WGVActionPerformed
-        // TODO add your handling code here:
         // ... open picture in new frame
         Connection conn = DBconnect.ConnecrDb();
         ResultSet rs = null;
@@ -982,12 +963,10 @@ public class SearchMainResult extends javax.swing.JFrame {
             rs = pst.executeQuery();
 
             if (rs.next()) {
-
                 imagedata = rs.getBytes("ar_wgview");
                 format = new ImageIcon(imagedata);
 
                 new ViewKaryoWG().setVisible(true);
-
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "no picture available!");
@@ -999,7 +978,6 @@ public class SearchMainResult extends javax.swing.JFrame {
             } catch (Exception e) {
             }
         }
-
     }//GEN-LAST:event_btn_WGVActionPerformed
 
     private void btn_KaryoviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_KaryoviewActionPerformed
@@ -1023,7 +1001,6 @@ public class SearchMainResult extends javax.swing.JFrame {
                 new ViewKaryoWG().setVisible(true);
                 //s.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             }
-
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "no picture available!");
         }finally {
@@ -1037,7 +1014,6 @@ public class SearchMainResult extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_KaryoviewActionPerformed
 
     private void btn_TTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TTTActionPerformed
-        // TODO add your handling code here:
         if (btn_TTT.isSelected()){
             ToolTipManager.sharedInstance().setEnabled(true);
             // Get current delay
@@ -1055,8 +1031,6 @@ public class SearchMainResult extends javax.swing.JFrame {
         PreparedStatement pst = null;
 
         try {
-            //String sql = "SELECT distinct m.lab_id, result_id, fname, surname, sex, b_date from main_result m, patient p, sample s "
-            //        + "Where p.pat_id=s.pat_id";
             String sql = "SELECT * from main_result Where 1=1";
 
             if (btn_array.isSelected()) { sql = sql + " AND ar_intrpr is not null"; }
@@ -1079,8 +1053,6 @@ public class SearchMainResult extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_getResultsActionPerformed
 
     private void txt_searchResultIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_searchResultIdActionPerformed
-        // TODO add your handling code here:
-
         Connection conn = DBconnect.ConnecrDb();
         ResultSet rs = null;
         PreparedStatement pst = null;
@@ -1109,8 +1081,6 @@ public class SearchMainResult extends javax.swing.JFrame {
 
                 String f_intrpr = rs.getString("fish_intrpr");
                 F_txtArea_intrpr.setText(f_intrpr);
-                //String add4 = rs.getString("zg_intrpr");
-                //txt_mr_zg_interpretation.setText(add4);
 
                 String l_id = rs.getString("lab_id");
                 String r_id = rs.getString("result_id");
@@ -1139,11 +1109,9 @@ public class SearchMainResult extends javax.swing.JFrame {
             } catch (Exception e) {
             }
         }
-
     }//GEN-LAST:event_txt_searchResultIdActionPerformed
 
     private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
-        // TODO add your handling code here:
         Connection conn = DBconnect.ConnecrDb();
         ResultSet rs = null;
         PreparedStatement pst = null;
@@ -1177,7 +1145,6 @@ public class SearchMainResult extends javax.swing.JFrame {
             } catch (Exception e) {
             }
         }
-
     }//GEN-LAST:event_btn_searchActionPerformed
 
     private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
@@ -1210,11 +1177,9 @@ public class SearchMainResult extends javax.swing.JFrame {
         lbl_showResultId2.setText("");
         lbl_showLabId3.setText("");
         lbl_showResultId3.setText("");
-
     }//GEN-LAST:event_btn_clearActionPerformed
 
     private void txt_searchLabIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_searchLabIdActionPerformed
-
         Connection conn = DBconnect.ConnecrDb();
         ResultSet rs = null;
         PreparedStatement pst = null;
@@ -1237,8 +1202,6 @@ public class SearchMainResult extends javax.swing.JFrame {
 
                 String f_intrpr = rs.getString("fish_intrpr");
                 F_txtArea_intrpr.setText(f_intrpr);
-                //String add4 = rs.getString("zg_intrpr");
-                //txt_mr_zg_interpretation.setText(add4);
 
                 String l_id = rs.getString("lab_id");
                 String r_id = rs.getString("result_id");
@@ -1351,7 +1314,6 @@ public class SearchMainResult extends javax.swing.JFrame {
                     else{ btn_Karyoview.setBackground(Color.gray); btn_Karyoview.setForeground(Color.WHITE); }
                     if (karyoview !=null && !karyoview.isEmpty()){ btn_WGV.setBackground(Color.blue);btn_WGV.setForeground(Color.WHITE);}
                     else{ btn_WGV.setBackground(Color.gray); btn_WGV.setForeground(Color.WHITE); }
-
                 }
             }
         }catch (Exception e) {

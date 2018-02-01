@@ -1,18 +1,15 @@
+/*
+ * stdpat_DB - Project study patient database 
+ * For efficient data evaluation and interpretation
+ *
+ * Copyright (C) CCRI - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Gerda modarres <gerrda.modarres@ccri.at>, August 2017
+ *
+ */
 package frames;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author gerda.modarres
- */
-
-
-//import static java.awt.Color.blue;
 import static frames.ArrayQuery.AQ_resultIDs;
 import static frames.PatientBrowse.PB_resultIDs;
 import static frames.ResultWindow.updateIntrpr;
@@ -20,11 +17,8 @@ import static frames.SetConnection.personalConfig;
 import static frames.SampleBrowse.SB_resultIDs;
 import static frames.SubtypeBrowse.ST_resultIDs;
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Desktop;
-import java.awt.Dimension;
 import java.awt.event.InputEvent;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileWriter;
@@ -32,41 +26,22 @@ import java.io.IOException;
 import myClass.DBconnect;
 import myClass.ColumnFitAdapter;
 import myClass.BoundsPopupMenuListener;
-
-//import static java.awt.SystemColor.text;
 import java.sql.*;
-import java.util.Comparator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.scene.input.MouseButton;
 import javax.swing.*;
-import javax.swing.event.TreeSelectionListener;
 import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
 import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Highlighter;
 import javax.swing.text.Highlighter.HighlightPainter;
 import org.ini4j.Ini;
-import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
 import myClass.CustomSorter;
 import myClass.Log;
-import static myClass.Log.startLog;
 import myClass.OSDetector;
-
-//import java.awt.event.*;
-//import java.util.ArrayList;
-//import java.util.Comparator;
-//import static java.util.Comparator.*;
-//import java.util.List;
-//import javafx.scene.paint.Color;
-//import javax.swing.table.DefaultTableModel;
-//import javax.swing.table.TableModel;
-//import javax.swing.table.TableRowSorter;
-
 
 public class SearchResult extends javax.swing.JFrame {
 
@@ -98,7 +73,6 @@ public class SearchResult extends javax.swing.JFrame {
     public SearchResult() {
         initComponents();
         ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_small.png"));
-        //ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/patIGUS.png"));
         this.setIconImage(img.getImage());
         getIniData();
         setIcons();
@@ -119,26 +93,8 @@ public class SearchResult extends javax.swing.JFrame {
         
         ToolTipManager.sharedInstance().setEnabled(false);
         
-        //TEST
-        //String info = "SearchResult";
-        //startLog(my_log, info);
         my_log.logger.info("open SearchResult()");
      }
-    
-    /*
-    private void startLog(){
-        try{
-            my_log = new Log();
-            my_log.logger.setLevel(Level.FINER);
-            
-            my_log.logger.info("SOURCE:  SearchResult.java");
-            //my_log.logger.warning("Warning msg");
-            //my_log.logger.severe("Severe msg");
-            
-        }catch(Exception e){
-        
-        }
-    }*/
     
     private void invokeTabs(){
         tab_array.getRootPane().setDefaultButton(A_btn_search);
@@ -155,8 +111,7 @@ public class SearchResult extends javax.swing.JFrame {
         });
     }
     
-    private void setIcons(){
-        
+    private void setIcons(){       
         JLabel lbl_array = new JLabel("Array");
         ImageIcon img1 = new javax.swing.ImageIcon(getClass().getResource("/ico/array_label_small.png"));
         lbl_array.setIcon(img1);
@@ -189,7 +144,6 @@ public class SearchResult extends javax.swing.JFrame {
             CustomSorter.table_customRowSort(table_array);   
             // resize column width
             jScrollPane1.setViewportView(table_array);
-
             if (table_array.getColumnModel().getColumnCount() > 0) {
                 table_array.getColumnModel().getColumn(0).setPreferredWidth(65);    // 50
                 table_array.getColumnModel().getColumn(0).setMaxWidth(65);          // 50
@@ -215,7 +169,6 @@ public class SearchResult extends javax.swing.JFrame {
                 table_array.getColumnModel().getColumn(10).setPreferredWidth(100);
                 table_array.getColumnModel().getColumn(10).setMaxWidth(200);
             }
-
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         } finally {                                                         // TODO:  Variante ...? besser als unten? 
@@ -229,15 +182,11 @@ public class SearchResult extends javax.swing.JFrame {
         Connection conn = DBconnect.ConnecrDb();
         ResultSet rs = null;
         PreparedStatement pst = null;
-        
-        //String sql = "SELECT array_sub_id as ID, a.result_id, chr, arr_type as type, cnst, arr_call, ma_nom, size, loc_start, loc_end, genes FROM arr_result a, main_result m " +
-        //    "WHERE a.result_id=m.result_id AND lab_ID=?";
 
         String sql = "SELECT array_sub_id as ID, ma_nom, a.result_id, chr, arr_type as type, cnst, arr_call, size, loc_start, loc_end, cyto_regions AS cyto_regions, genes FROM arr_result a, main_result m " +
             "WHERE a.result_id=m.result_id AND lab_ID=?";
         
         try {
-
             pst = conn.prepareStatement(sql);
             pst.setString(1, A_txt_lab_id.getText());
             rs = pst.executeQuery();
@@ -302,7 +251,7 @@ public class SearchResult extends javax.swing.JFrame {
             rs = pst.executeQuery();
             
             //ResultSetMetaData rsmd = rs.getMetaData();
-            //String col = rs.getMetaData().getColumnTypeName(5);  // HERE COLUMN CLASSES!!! ???
+            //String col = rs.getMetaData().getColumnTypeName(5);  // Info COLUMN CLASSES!!! ???
             //JOptionPane.showMessageDialog(null, rsmd);
             
             table_fish.setModel(DbUtils.resultSetToTableModel(rs));
@@ -599,7 +548,7 @@ public class SearchResult extends javax.swing.JFrame {
                 //JOptionPane.showMessageDialog(null, "no IDs");
                 ids = "0";
             }
-            //String sql2 = "SELECT COUNT(*) AS matchingCriteria FROM( "+ sql + " ) AS M";
+
             String sql2 = "SELECT  ( SELECT COUNT(*) FROM  patient ) AS patients, \n" +
             "( SELECT COUNT(*) FROM  arr_result ) AS array, \n" +
             "( SELECT COUNT(*) FROM fish_result ) AS fish, \n" +
@@ -647,9 +596,7 @@ public class SearchResult extends javax.swing.JFrame {
         PreparedStatement pst = null;
         String sql = "SELECT distinct s.lab_id, result_id, fname, surname, sex, b_date from main_result m, patient p, sample s "
                         + "Where p.pat_id=s.pat_id AND m.lab_id=s.lab_id";
-        //String sql = "SELECT distinct s.lab_id, result_id, fname, surname, sex, b_date, proj_id as P"
-        //        + " from main_result m, patient p, sample s, pat_inproject ip"
-        //        + " Where p.pat_id=s.pat_id AND m.lab_id=s.lab_id AND ip.pat_id=p.pat_id";
+
         try{         
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
@@ -664,9 +611,6 @@ public class SearchResult extends javax.swing.JFrame {
                 all_ids = all_ids.substring(0, (all_ids.length() - 1));
                 String sql2 = "SELECT distinct s.lab_id, result_id, p.pat_id, fname, surname, sex, b_date from main_result m, patient p, sample s "
                         + "Where p.pat_id=s.pat_id AND m.lab_id=s.lab_id AND result_id IN ( " + all_ids + " )";
-                //String sql2 = "SELECT distinct s.lab_id, result_id, fname, surname, sex, b_date, proj_id as P"
-                //+ " from main_result m, patient p, sample s, pat_inproject ip"
-                //+ " Where p.pat_id=s.pat_id AND m.lab_id=s.lab_id AND ip.pat_id=p.pat_id AND result_id IN ( " + all_ids + " )";
                 
                 pst = conn.prepareStatement(sql2);
                 rs = pst.executeQuery();
@@ -682,8 +626,8 @@ public class SearchResult extends javax.swing.JFrame {
                     table_queryIDs.getColumnModel().getColumn(2).setMaxWidth(60);
                     table_queryIDs.getColumnModel().getColumn(3).setPreferredWidth(80);
                     table_queryIDs.getColumnModel().getColumn(3).setMaxWidth(130);
-                    //table_queryIDs.getColumnModel().getColumn(3).setPreferredWidth(80);
-                    //table_queryIDs.getColumnModel().getColumn(3).setMaxWidth(130);
+                    //table_queryIDs.getColumnModel().getColumn(4).setPreferredWidth(80);
+                    //table_queryIDs.getColumnModel().getColumn(4).setMaxWidth(130);
                     table_queryIDs.getColumnModel().getColumn(5).setPreferredWidth(30);
                     table_queryIDs.getColumnModel().getColumn(5).setMaxWidth(30);
                     table_queryIDs.getColumnModel().getColumn(6).setPreferredWidth(90);      // 80
@@ -703,13 +647,11 @@ public class SearchResult extends javax.swing.JFrame {
             } catch (Exception e) {
             }
         }
-
     }
     
     private void get_queryLabIDs(String sql, PreparedStatement pst, ResultSet rs, Connection conn){
 
-        try{
-            
+        try{            
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
             String all_ids= "";
@@ -724,9 +666,6 @@ public class SearchResult extends javax.swing.JFrame {
 
                 String sql2 = "SELECT distinct s.lab_id, result_id, p.pat_id, fname, surname, sex, b_date from main_result m, patient p, sample s "
                         + "Where p.pat_id=s.pat_id AND m.lab_id=s.lab_id AND result_id IN ( " + all_ids + " )";
-                //String sql2 = "SELECT distinct s.lab_id, result_id, fname, surname, sex, b_date, proj_id as P"
-                //+ " from main_result m, patient p, sample s, pat_inproject ip"
-                //+ " Where p.pat_id=s.pat_id AND m.lab_id=s.lab_id AND ip.pat_id=p.pat_id AND result_id IN ( " + all_ids + " )";
                 
                 pst = conn.prepareStatement(sql2);
                 rs = pst.executeQuery();
@@ -743,8 +682,8 @@ public class SearchResult extends javax.swing.JFrame {
                     table_queryIDs.getColumnModel().getColumn(2).setMaxWidth(60);
                     table_queryIDs.getColumnModel().getColumn(3).setPreferredWidth(80);
                     table_queryIDs.getColumnModel().getColumn(3).setMaxWidth(130);
-                    //table_queryIDs.getColumnModel().getColumn(3).setPreferredWidth(80);
-                    //table_queryIDs.getColumnModel().getColumn(3).setMaxWidth(130);
+                    //table_queryIDs.getColumnModel().getColumn(4).setPreferredWidth(80);
+                    //table_queryIDs.getColumnModel().getColumn(4).setMaxWidth(130);
                     table_queryIDs.getColumnModel().getColumn(5).setPreferredWidth(30);
                     table_queryIDs.getColumnModel().getColumn(5).setMaxWidth(30);
                     table_queryIDs.getColumnModel().getColumn(6).setPreferredWidth(90);      // 80
@@ -785,8 +724,8 @@ public class SearchResult extends javax.swing.JFrame {
                 }else{
                     //JOptionPane.showMessageDialog(null, "id already in list: " + id + "  "+ id_rem); // test
                 }
-                //Combobox_id.addItem(id);        // test
-                //txtArea_test.append("'"+id+"',");  // test
+                //Combobox_id.addItem(id);          // test
+                //txtArea_test.append("'"+id+"',"); // test
             }
             this.ids = all_ids;
 
@@ -802,29 +741,7 @@ public class SearchResult extends javax.swing.JFrame {
             } catch (Exception e) {
             }
         }
-
     }
-    /*  
-    private void deliver_A_ids(String ids, String sql) {
-        // to extend sql in FISH search
-        if (ids.length() > 1){
-            ids = ids.substring(0, (ids.length() - 1));
-            this.mod_sql = sql + " AND result_id in(" + ids + ")";
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Why would you do that? ... there's nothing in there!");
-        }
-    }
-    private void deliver_F_ids(String ids, String sql) {
-        // to extend sql in Array search
-        if (ids.length() > 1){
-            ids = ids.substring(0, (ids.length() - 1));
-            this.mod_sql = sql + " AND m.result_id in(" + ids + ")";
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Why would you do that? ... there's nothing in there!");
-        }
-    }*/
     
     private void deliver_ids(String caller, String ids, String sql) {
         // to extend sql in Array search
@@ -904,7 +821,6 @@ public class SearchResult extends javax.swing.JFrame {
                     this.mod_sql = sql + " AND m.result_id in(" + ids + ")";
                 }
             }
-
         } catch (Exception e) {
             //JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -956,8 +872,7 @@ public class SearchResult extends javax.swing.JFrame {
                 if (conn != null) { conn.close();}
             } catch (Exception e) {
             }
-        }
-    
+        }    
     }
     
      private void deliver_Stdy_ids(String sql, String set){ 
@@ -1060,39 +975,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
                 index = text.indexOf(findWord, index + 1);
             }   
         }catch(Exception e){
-        }  
-        
-        
-        /*try{
-            String text  = txtArea_genes.getText();
-            String genes[] = text.split(",");
-            //JOptionPane.showMessageDialog(null, genes);
-            Highlighter highlighter = txtArea_genes.getHighlighter();
-            HighlightPainter painter = null;
-            if (no==1){
-                painter = new DefaultHighlighter.DefaultHighlightPainter(java.awt.Color.yellow);
-            } else if (no==2){
-                painter = new DefaultHighlighter.DefaultHighlightPainter(java.awt.Color.cyan);
-            } else if (no==3){
-                painter = new DefaultHighlighter.DefaultHighlightPainter(java.awt.Color.orange);
-            } else if (no==4){ // TODO ... change color if necessary --> involves gene 4 and 5
-                painter = new DefaultHighlighter.DefaultHighlightPainter(java.awt.Color.pink);
-            } else if (no==5){ // TODO ... change color if necessary --> involves gene 4 and 5
-                painter = new DefaultHighlighter.DefaultHighlightPainter(java.awt.Color.green);
-            }
-            for (int i = 0; i < genes.length; i++) {
-                String tmp = genes[i];
-                int p0 = text.indexOf(tmp);
-                int p1 = p0 + gene.length();
-                if (tmp.equals(gene) || tmp.contains(gene)) {
-                    //JOptionPane.showMessageDialog(null, gene +"    "+tmp+" "+p0+" "+tmp.length());
-                    //highlighter.addHighlight(p0, tmp.length(), painter);
-                    highlighter.addHighlight(p0, p1, painter);
-                }
-            }
-
-        }catch(Exception e){
-        }*/    
+        }     
     }
     
     private void highlight_creg(String gene, Integer no){
@@ -1120,10 +1003,10 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
         }    
     }
     
-    // For Testing
+    // For Testing (toggle .setText()-lines)
     private void display_ids(){
         if (this.ids.length() >0){
-            String display_ids=this.ids.substring(0, (ids.length() - 1));  // HERE!
+            String display_ids=this.ids.substring(0, (ids.length() - 1));  
             //txtArea_test.setText(display_ids);
             //txtArea_genes.setText(display_ids);
         }
@@ -1135,7 +1018,6 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
                     (e.getModifiers() & InputEvent.BUTTON1_MASK) != 0 &&
                     (e.getModifiers() & InputEvent.CTRL_MASK) != 0));
     }
-    
     
 public void toExcel(JTable table, File file){
     //https://sites.google.com/site/teachmemrxymon/java/export-records-from-jtable-to-ms-excel
@@ -1160,12 +1042,10 @@ public void toExcel(JTable table, File file){
                     //value = "";
                     excel.write("\t");
                 }else{
-                    excel.write(value+"\t"); 
-                    
+                    excel.write(value+"\t");                   
                 }
             }
             excel.write("\n");
-
         }
         excel.close();
 
@@ -1196,18 +1076,16 @@ public void toExcel(JTable table, File file){
             //JOptionPane.showMessageDialog(null, "right click");
             JTable OT = this.outTable;
             String dp = this.defaultPath;
-            //JOptionPane.showMessageDialog(null, "dp:  "+dp);
+            //JOptionPane.showMessageDialog(null, "dp:  "+dp); // TEST
 
             JFileChooser fileChooser = new JFileChooser(dp);
             if (fileChooser.showSaveDialog(jPanel1) == JFileChooser.APPROVE_OPTION) {
                 File out_file = fileChooser.getSelectedFile();
-
                 // save to file                   
                 toExcel(OT, out_file);
             } else {
-                //JOptionPane.showMessageDialog(null, "cancel
+                //JOptionPane.showMessageDialog(null, "cancel");
             }
-
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "SSomething went wrong saving your stuff ... " + e.getMessage());
             my_log.logger.warning("ERROR:  Something went wrong saving your stuff ...  " + e);
@@ -1219,24 +1097,6 @@ public void toExcel(JTable table, File file){
         lbl_fish_signal.setBackground(Color.getColor("6699FF"));
         lbl_zg_signal.setBackground(Color.getColor("6699FF"));
     }
-    
-    /*
-    public void table_customRowSort(JTable table) {
-        // auto row sorter assign collumns to sort by Integer
-        if (table.equals(table_queryIDs)) {
-            TableRowSorter<DefaultTableModel> rowSorter = (TableRowSorter<DefaultTableModel>) table_queryIDs.getRowSorter();
-            Comparator intComparator = new Comparator<Integer>() {
-
-                @Override
-                public int compare(Integer arg0, Integer arg1) {
-                    return arg0.intValue() - arg1.intValue();
-                }
-            };
-            rowSorter.setComparator(1, intComparator);
-            table_queryIDs.setRowSorter(rowSorter);
-            //table_queryIDs.updateUI();
-        }       
-    }*/
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -1443,7 +1303,7 @@ public void toExcel(JTable table, File file){
         rbtn_PB = new javax.swing.JRadioButton();
         jToolBar1 = new javax.swing.JToolBar();
         bnt_test = new javax.swing.JButton();
-        btn_E = new javax.swing.JButton();
+        btn_Emergency = new javax.swing.JButton();
         lbl_rowsReturned = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
@@ -1487,7 +1347,7 @@ public void toExcel(JTable table, File file){
         popUpSave.add(popUpMenu_intrprWin);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Linked Results Analysis Tool");
+        setTitle("Linked Results Analysis Tool - result search");
         setLocation(new java.awt.Point(100, 0));
 
         tab_main.setBackground(new java.awt.Color(102, 153, 255));
@@ -3019,12 +2879,12 @@ public void toExcel(JTable table, File file){
         });
         jToolBar1.add(bnt_test);
 
-        btn_E.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/Reload-icon.png"))); // NOI18N
-        btn_E.setText("reload");
-        btn_E.setToolTipText("Emergency reload frame \nin case text fields degrade");
-        btn_E.addActionListener(new java.awt.event.ActionListener() {
+        btn_Emergency.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/Reload-icon.png"))); // NOI18N
+        btn_Emergency.setText("reload");
+        btn_Emergency.setToolTipText("Emergency reload frame \nin case text fields degrade");
+        btn_Emergency.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_EActionPerformed(evt);
+                btn_EmergencyActionPerformed(evt);
             }
         });
 
@@ -3084,7 +2944,7 @@ public void toExcel(JTable table, File file){
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lbl_rowsReturned, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(1300, 1300, 1300)
-                        .addComponent(btn_E))
+                        .addComponent(btn_Emergency))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(Info_top, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(tab_main)))
@@ -3100,7 +2960,7 @@ public void toExcel(JTable table, File file){
                 .addComponent(tab_main, javax.swing.GroupLayout.PREFERRED_SIZE, 601, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_E)
+                    .addComponent(btn_Emergency)
                     .addComponent(lbl_rowsReturned))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -3112,16 +2972,14 @@ public void toExcel(JTable table, File file){
 
     private void table_zg_iscnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_zg_iscnMouseClicked
         // right klick ==> save to file
-
         if (isRightClick(evt) == true) {
             //JOptionPane.showMessageDialog(null, "right click");
             //saveOnRC(evt, table_queryIDs);
 
             popUpSave.show(table_zg_iscn, evt.getX(), evt.getY());
             this.outTable = table_zg_iscn;
-
+            
         } else {
-
             Connection conn = DBconnect.ConnecrDb();
             ResultSet rs = null;
             PreparedStatement pst = null;
@@ -3174,7 +3032,6 @@ public void toExcel(JTable table, File file){
                         table_zg_result.getColumnModel().getColumn(4).setPreferredWidth(50);
                         table_zg_result.getColumnModel().getColumn(4).setMaxWidth(70);
                     }
-
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e);
@@ -3186,22 +3043,18 @@ public void toExcel(JTable table, File file){
                 } catch (Exception e) {
                 }
             }
-
         }
     }//GEN-LAST:event_table_zg_iscnMouseClicked
 
     private void table_fishMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_fishMouseClicked
-
         // right click  ==> save to file
         if (isRightClick(evt) == true) {
             //JOptionPane.showMessageDialog(null, "right click");
-            //saveOnRC(evt, table_fish);
-            
+            //saveOnRC(evt, table_fish);           
             popUpSave.show(table_fish,evt.getX(),evt.getY());
             this.outTable = table_fish;
             
         } else {
-
             Connection conn = DBconnect.ConnecrDb();
             ResultSet rs = null;
             PreparedStatement pst = null;
@@ -3251,7 +3104,6 @@ public void toExcel(JTable table, File file){
     }//GEN-LAST:event_table_fishMouseClicked
 
     private void F_btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_F_btn_clearActionPerformed
-
         //initial_table_array();
         initial_table_fish();
         //initial_table_zg_iscn();
@@ -3309,7 +3161,6 @@ public void toExcel(JTable table, File file){
     }//GEN-LAST:event_F_btn_clearActionPerformed
 
     private void Z_btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Z_btn_clearActionPerformed
- 
         //initial_table_array();
         //initial_table_fish();
         initial_table_zg_iscn();
@@ -3750,51 +3601,7 @@ public void toExcel(JTable table, File file){
                 if (conn != null) { conn.close();}
             } catch (Exception e) {
             }
-        }
-        
-        // following code was duplicate --> is in update_table_fish()
-        /*
-        Connection conn = DBconnect.ConnecrDb();
-        ResultSet rs = null;
-        PreparedStatement pst = null;
-
-        String sql = "SELECT * FROM fish_result f, main_result m WHERE f.result_id=m.result_id AND lab_id=?";
-        try {
-            pst = conn.prepareStatement(sql);
-            pst.setString(1, F_txt_lab_id.getText());
-
-            rs = pst.executeQuery();
-            // Test
-            JOptionPane.showMessageDialog(null, pst);
-            
-            if (rs.next()) {
-                update_table_fish();
-                
-                String result_id = rs.getString("result_id");
-                F_txt_result_id.setText(result_id);
-                F_txt_fish_sub_id.setText("");
-                // Test
-                String fish_sub_id = rs.getString("fish_sub_id"); 
-                JOptionPane.showMessageDialog(null, fish_sub_id);
-                
-            } else {
-                JOptionPane.showMessageDialog(null, "Lab_ID does not exist!");
-            }
-            txtArea_sql.setText(sql);
-
-                       
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }finally {
-            try {
-                if (rs != null) { rs.close();}
-                if (pst != null) { pst.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) {
-            }
-        }
-        */
-     
+        } 
     }//GEN-LAST:event_F_txt_lab_idActionPerformed
 
     private void Z_btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Z_btn_searchActionPerformed
@@ -3845,12 +3652,10 @@ public void toExcel(JTable table, File file){
             } else {
                 sql = "SELECT i.klon_id as Klon,i.result_id, chr_cnt as Chr, mitos_cnt as Mitosen, cp, iscn as ISCN, material, stim FROM zg_iscn i, main_result m Where i.result_id=m.result_id AND (1=1";
             }
-            //String sql = "SELECT i.klon_id as Klon,i.result_id, chr_cnt as Chr, mitos_cnt as Mitosen, cp, iscn as ISCN, material, stim FROM zg_iscn i, main_result m Where i.result_id=m.result_id AND (1=1";
             
             if (ZI_txt_resId !=null && !ZI_txt_resId.getText().isEmpty()) { sql = sql + " AND i.result_id IN (" + resID + ")"; }
             if (ZI_txt_chr !=null && !ZI_txt_chr.getText().isEmpty()) { sql = sql + " AND chr_cnt " + chr ; }
             if (ZI_txt_mitos != null && !ZI_txt_mitos.getText().isEmpty()) { sql = sql + " AND mitos_cnt " + mitos ; }
-            //if (ZI_txt_cp != null && !ZI_txt_cp.getText().isEmpty()) { sql = sql + " AND cp LIKE '%" + cp + "%'"; }
             if (ZI_txt_cp != null && !ZI_txt_cp.getText().isEmpty()) { 
                 String tmp = ZI_txt_cp.getText();
                 if (tmp.equals("null") || tmp.equals("NULL")) {
@@ -3884,12 +3689,10 @@ public void toExcel(JTable table, File file){
                 if (ZR_txt_chng != null && !ZR_txt_chng.getText().isEmpty()) { sql = sql + " AND chng LIKE '%" + chng + "%'"; }            
             }
 ///////////                     
-
             if (ZG_txt_ANDOR != null && !ZG_txt_ANDOR.getText().isEmpty()) {
 
                 String andor = ZG_txt_ANDOR.getText();
 
-                //if (andor.equals("or")) { // OR
                 if (andor.equalsIgnoreCase("or")) { // OR
                     sql = sql + " OR ( 1=1 ";
 
@@ -3897,7 +3700,6 @@ public void toExcel(JTable table, File file){
 
                         // color fields where NOT can be used on
                         ZI_txt_resId_1.setBackground(java.awt.Color.yellow);
-                        //ZI_txt_cp_1.setBackground(java.awt.Color.yellow);
                         ZI_txt_iscn_1.setBackground(java.awt.Color.yellow);
                         ZI_txt_mat_1.setBackground(java.awt.Color.yellow);
                         ZI_txt_stim_1.setBackground(java.awt.Color.yellow);
@@ -3928,7 +3730,6 @@ public void toExcel(JTable table, File file){
 
                     } else {	// OR
                         ZI_txt_resId_1.setBackground(java.awt.Color.white);
-                        //ZI_txt_cp_1.setBackground(java.awt.Color.white);
                         ZI_txt_iscn_1.setBackground(java.awt.Color.white);
                         ZI_txt_mat_1.setBackground(java.awt.Color.white);
                         ZI_txt_stim_1.setBackground(java.awt.Color.white);
@@ -3955,12 +3756,12 @@ public void toExcel(JTable table, File file){
                             }
                         }
 ////////////
-            if (rbtn_ZGdetailResult.isSelected()){
-                if (ZR_txt_klonID_1 !=null && !ZR_txt_klonID_1.getText().isEmpty()) { sql = sql + " AND r.klon_id IN (" + klonID_1 + ")"; }
-                if (ZR_txt_region_1 != null && !ZR_txt_region_1.getText().isEmpty()) { sql = sql + " AND region LIKE '%" + region_1 + "%'"; }
-                if (ZR_txt_chr_1 !=null && !ZR_txt_chr_1.getText().isEmpty()) { sql = sql + " AND chr IN (" + ZR_chr_1 + ")"; }
-                if (ZR_txt_chng_1 != null && !ZR_txt_chng_1.getText().isEmpty()) { sql = sql + " AND chng LIKE '%" + chng_1 + "%'"; }            
-            }
+                        if (rbtn_ZGdetailResult.isSelected()){
+                            if (ZR_txt_klonID_1 !=null && !ZR_txt_klonID_1.getText().isEmpty()) { sql = sql + " AND r.klon_id IN (" + klonID_1 + ")"; }
+                            if (ZR_txt_region_1 != null && !ZR_txt_region_1.getText().isEmpty()) { sql = sql + " AND region LIKE '%" + region_1 + "%'"; }
+                            if (ZR_txt_chr_1 !=null && !ZR_txt_chr_1.getText().isEmpty()) { sql = sql + " AND chr IN (" + ZR_chr_1 + ")"; }
+                            if (ZR_txt_chng_1 != null && !ZR_txt_chng_1.getText().isEmpty()) { sql = sql + " AND chng LIKE '%" + chng_1 + "%'"; }            
+                        }
 ///////////        
                         sql = sql + ")";
                     }
@@ -3972,7 +3773,6 @@ public void toExcel(JTable table, File file){
 
                         // color fields where NOT can be used on
                         ZI_txt_resId_1.setBackground(java.awt.Color.yellow);
-                        //ZI_txt_cp_1.setBackground(java.awt.Color.yellow);
                         ZI_txt_iscn_1.setBackground(java.awt.Color.yellow);
                         ZI_txt_mat_1.setBackground(java.awt.Color.yellow);
                         ZI_txt_stim_1.setBackground(java.awt.Color.yellow);
@@ -4002,7 +3802,6 @@ public void toExcel(JTable table, File file){
                         sql = sql + ")";
 
                     } else {	// AND
-                        //A_txt_resID_1.setBackground(java.awt.Color.white);
                         ZI_txt_resId_1.setBackground(java.awt.Color.white);
                         ZI_txt_cp_1.setBackground(java.awt.Color.white);
                         ZI_txt_iscn_1.setBackground(java.awt.Color.white);
@@ -4031,12 +3830,12 @@ public void toExcel(JTable table, File file){
                             }
                         }
 ////////////
-            if (rbtn_ZGdetailResult.isSelected()){
-                if (ZR_txt_klonID_1 !=null && !ZR_txt_klonID_1.getText().isEmpty()) { sql = sql + " AND r.klon_id IN (" + klonID_1 + ")"; }
-                if (ZR_txt_region_1 != null && !ZR_txt_region_1.getText().isEmpty()) { sql = sql + " AND region LIKE '%" + region_1 + "%'"; }
-                if (ZR_txt_chr_1 !=null && !ZR_txt_chr_1.getText().isEmpty()) { sql = sql + " AND chr IN (" + ZR_chr_1 + ")"; }
-                if (ZR_txt_chng_1 != null && !ZR_txt_chng_1.getText().isEmpty()) { sql = sql + " AND chng LIKE '%" + chng_1 + "%'"; }            
-            }
+                        if (rbtn_ZGdetailResult.isSelected()){
+                            if (ZR_txt_klonID_1 !=null && !ZR_txt_klonID_1.getText().isEmpty()) { sql = sql + " AND r.klon_id IN (" + klonID_1 + ")"; }
+                            if (ZR_txt_region_1 != null && !ZR_txt_region_1.getText().isEmpty()) { sql = sql + " AND region LIKE '%" + region_1 + "%'"; }
+                            if (ZR_txt_chr_1 !=null && !ZR_txt_chr_1.getText().isEmpty()) { sql = sql + " AND chr IN (" + ZR_chr_1 + ")"; }
+                            if (ZR_txt_chng_1 != null && !ZR_txt_chng_1.getText().isEmpty()) { sql = sql + " AND chng LIKE '%" + chng_1 + "%'"; }            
+                        }
 ///////////        
                         sql = sql + ")";
                     }
@@ -4053,7 +3852,7 @@ public void toExcel(JTable table, File file){
                 //sql = this.mod_sql;
             }
             
-             // only for a selected patient group
+            // only for a selected patient group
             if (rbtn_onlyPat.isSelected()){
                 deliver_Proj_ids(sql, "A");
                 sql = this.mod_sql;
@@ -4107,11 +3906,7 @@ public void toExcel(JTable table, File file){
             }
           
             get_ids(sql, pst, rs, conn);
-
-            //String display_ids=this.ids.substring(0, (ids.length() - 1));  // HERE!
-            //txtArea_test.setText(display_ids);
             display_ids();
-
             //txtArea_genes.setText(sql);  // only for Testing
             my_log.logger.info("SQL:  " + sql);
             
@@ -4162,11 +3957,7 @@ public void toExcel(JTable table, File file){
             }
                         
             get_statistics(sql);
-
             get_queryLabIDs(sql, pst, rs, conn);
-            
-///////////////////////////////////////////
-
             //txtArea_genes.setText(sql);   //TEST
             
         }catch (Exception e) {
@@ -4181,7 +3972,6 @@ public void toExcel(JTable table, File file){
             } catch (Exception e) {
             }
         }
-
     }//GEN-LAST:event_Z_btn_searchActionPerformed
 
     private void A_btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_A_btn_searchActionPerformed
@@ -4226,9 +4016,6 @@ public void toExcel(JTable table, File file){
         String genes2_5 = A_txt5_genes2.getText();
 
         try {
-            //String sql = "SELECT array_sub_id as ID, a.result_id, chr, arr_type as type, cnst, arr_call, ma_nom, size, loc_start, loc_end, genes FROM arr_result a, main_result m " +
-            //"WHERE a.result_id=m.result_id AND (1=1";
-
             String sql = "SELECT array_sub_id as ID, ma_nom, a.result_id, chr, arr_type as type, cnst, arr_call, size, loc_start, loc_end, cyto_regions AS cyto_regions, genes FROM arr_result a, main_result m " +
             "WHERE a.result_id=m.result_id AND (1=1";
 
@@ -4335,7 +4122,6 @@ public void toExcel(JTable table, File file){
                     sql = sql + " AND ( 1=1 ";
 
                     if(A_rbtn_NOT.isSelected()){
-
                         // color fields where NOT can be used on
                         A_txt_resID_1.setBackground(java.awt.Color.yellow);
                         A_txt_chr_1.setBackground(java.awt.Color.yellow);
@@ -4406,7 +4192,7 @@ public void toExcel(JTable table, File file){
 
             String method_name = Thread.currentThread().getStackTrace()[1].getMethodName();
 
-             // only for the set of fish-result    
+            // only for the set of fish-result    
             if (rbtn_useFresult.isSelected()) {
                 //deliver_F_ids(this.ids, sql);
                 deliver_ids(method_name,this.ids, sql);
@@ -4461,11 +4247,7 @@ public void toExcel(JTable table, File file){
             }
 
             get_ids(sql, pst, rs, conn);
-
-            //String display_ids=this.ids.substring(0, (ids.length() - 1));  // HERE!
-            //txtArea_test.setText(display_ids);
             display_ids();
-
             //txtArea_genes.setText(sql); // test
             my_log.logger.info("SQL:  " + sql);
                         
@@ -4616,8 +4398,6 @@ public void toExcel(JTable table, File file){
     private void btn_openLocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_openLocActionPerformed
         try {
             String loc = txt_fullLoc.getText();
-
-            //String URL="https://google.com";
             String URL = "http://genome.ucsc.edu/cgi-bin/hgTracks?db=hg19&position=" + loc;
             java.awt.Desktop.getDesktop().browse(java.net.URI.create(URL));
 
@@ -4627,7 +4407,7 @@ public void toExcel(JTable table, File file){
     }//GEN-LAST:event_btn_openLocActionPerformed
 
     private void A_txt_lab_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_A_txt_lab_idActionPerformed
-        
+
         update_table_array(); 
         Connection conn = DBconnect.ConnecrDb();
         ResultSet rs = null;
@@ -4638,7 +4418,7 @@ public void toExcel(JTable table, File file){
             A_txt_array_sub_id.setText("");
             String tmpSql = "SELECT a.result_id, lab_id FROM arr_result a, main_result m WHERE a.result_id=m.result_id AND lab_id = '" + lab_id + "'";
 
-            //txtArea_sql.setText(tmpSql);
+            //txtArea_sql.setText(tmpSql);  // TEST
             get_ids(tmpSql, pst, rs, conn); // needed for get_statistics() to count patients affected
             get_statistics(tmpSql);
             get_queryLabIDs(tmpSql, pst, rs, conn);
@@ -4709,17 +4489,7 @@ public void toExcel(JTable table, File file){
                         String gen5 = A_txt5_genes1.getText();
                         highlight_gene(gen5,5);
                     }
-                    //String gen1 = A_txt1_genes1.getText().toUpperCase();
-                    //highlight_gene(gen1,1);
-                    //String gen2 = A_txt2_genes1.getText().toUpperCase();
-                    //highlight_gene(gen2,2);
-                    //String gen3 = A_txt3_genes1.getText().toUpperCase();
-                    //highlight_gene(gen3,3);
-                    //String gen4 = A_txt4_genes1.getText().toUpperCase();
-                    //highlight_gene(gen4,4);
-                    //String gen5 = A_txt5_genes1.getText().toUpperCase();
-                    //highlight_gene(gen5,5);
-                    
+                    /////////////////
                     if(A_txt1_genes2 != null && !A_txt1_genes2.getText().isEmpty()){
                         String gen1_1 = A_txt1_genes2.getText();
                         highlight_gene(gen1_1,1);
@@ -4740,21 +4510,11 @@ public void toExcel(JTable table, File file){
                         String gen5_1 = A_txt5_genes2.getText();
                         highlight_gene(gen5_1,5);
                     }
-                    //String gen1_1 = A_txt1_genes2.getText().toUpperCase();
-                    //highlight_gene(gen1_1,1);
-                    //String gen2_1 = A_txt2_genes2.getText().toUpperCase();
-                    //highlight_gene(gen2_1,2);
-                    //String gen3_1 = A_txt3_genes2.getText().toUpperCase();
-                    //highlight_gene(gen3_1,3);
-                    //String gen4_1 = A_txt4_genes2.getText().toUpperCase();
-                    //highlight_gene(gen4_1,4);
-                    //String gen5_1 = A_txt5_genes2.getText().toUpperCase();
-                    //highlight_gene(gen5_1,5);
 
                     String add5 = rs.getString("cyto_regions");
                     txtArea_Creg.setText(add5);
+                    
                     // highlight searched genes in text area
-
                     if (A_txt_Creg != null && !A_txt_Creg.getText().isEmpty()){
                         String creg1 = A_txt_Creg.getText();
                         highlight_creg(creg1,1);
@@ -4763,14 +4523,9 @@ public void toExcel(JTable table, File file){
                         String creg1_1 = A_txt_Creg_1.getText();
                         highlight_creg(creg1_1,2);
                     }
-                    //String creg1 = A_txt_Creg.getText().toUpperCase();
-                    //highlight_creg(creg1,1);
-                    //String creg1_1 = A_txt_Creg_1.getText().toUpperCase();
-                    //highlight_creg(creg1_1,2);
 
                     String add6 = rs.getString("full_loc");
                     txt_fullLoc.setText(add6);
-
                     //txtArea_sql.setText(sql);
                     //get_queryLabIDs(sql, pst, rs, conn);
                 }
@@ -4784,7 +4539,6 @@ public void toExcel(JTable table, File file){
                 } catch (Exception e) {
                 }
             }
-
     }//GEN-LAST:event_table_arrayKeyReleased
 
     private void table_arrayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_arrayMouseClicked
@@ -4809,7 +4563,6 @@ public void toExcel(JTable table, File file){
                 click_result = (table_array.getValueAt(row, 1).toString());
                 click_lID = Table_click;
 
-                //String sql = "SELECT * FROM fish_result r, fish_probe p, main_result m WHERE r.probe_no=p.probe_no AND m.result_id=r.result_id AND fish_sub_id='" + Table_click + "' ";
                 String sql = "SELECT * FROM arr_result a, main_result m WHERE a.result_id=m.result_id AND array_sub_id='" + Table_click + "' ";
                 pst = conn.prepareStatement(sql);
                 rs = pst.executeQuery();
@@ -4850,17 +4603,7 @@ public void toExcel(JTable table, File file){
                         String gen5 = A_txt5_genes1.getText();
                         highlight_gene(gen5,5);
                     }
-                    //String gen1 = A_txt1_genes1.getText().toUpperCase();
-                    //highlight_gene(gen1,1);
-                    //String gen2 = A_txt2_genes1.getText().toUpperCase();
-                    //highlight_gene(gen2,2);
-                    //String gen3 = A_txt3_genes1.getText().toUpperCase();
-                    //highlight_gene(gen3,3);
-                    //String gen4 = A_txt4_genes1.getText().toUpperCase();
-                    //highlight_gene(gen4,4);
-                    //String gen5 = A_txt5_genes1.getText().toUpperCase();
-                    //highlight_gene(gen5,5);
-                    
+                    ////////////////////////////
                     if(A_txt1_genes2 != null && !A_txt1_genes2.getText().isEmpty()){
                         String gen1_1 = A_txt1_genes2.getText();
                         highlight_gene(gen1_1,1);
@@ -4881,17 +4624,6 @@ public void toExcel(JTable table, File file){
                         String gen5_1 = A_txt5_genes2.getText();
                         highlight_gene(gen5_1,5);
                     }
-                    //String gen1_1 = A_txt1_genes2.getText().toUpperCase();
-                    //highlight_gene(gen1_1,1);
-                    //String gen2_1 = A_txt2_genes2.getText().toUpperCase();
-                    //highlight_gene(gen2_1,2);
-                    //String gen3_1 = A_txt3_genes2.getText().toUpperCase();
-                    //highlight_gene(gen3_1,3);
-                    //String gen4_1 = A_txt4_genes2.getText().toUpperCase();
-                    //highlight_gene(gen4_1,4);
-                    //String gen5_1 = A_txt5_genes2.getText().toUpperCase();
-                    //highlight_gene(gen5_1,5);
-
 
                     String add5 = rs.getString("cyto_regions");
                     txtArea_Creg.setText(add5);
@@ -4904,14 +4636,9 @@ public void toExcel(JTable table, File file){
                         String creg1_1 = A_txt_Creg_1.getText();
                         highlight_creg(creg1_1,2);
                     }
-                    //String creg1 = A_txt_Creg.getText().toUpperCase();
-                    //highlight_creg(creg1,1);
-                    //String creg1_1 = A_txt_Creg_1.getText().toUpperCase();
-                    //highlight_creg(creg1_1,2);
 
                     String add6 = rs.getString("full_loc");
                     txt_fullLoc.setText(add6);
-
                     //txtArea_sql.setText(sql);
                     //get_queryLabIDs(sql, pst, rs, conn);
                 }
@@ -4924,12 +4651,6 @@ public void toExcel(JTable table, File file){
                     if (conn != null) { conn.close();}
                 } catch (Exception e) {
                 }
-            }
-
-            // right click
-            if (isRightClick(evt) == true) {
-                JOptionPane.showMessageDialog(null, "right click");
-
             }
         }
     }//GEN-LAST:event_table_arrayMouseClicked
@@ -4948,8 +4669,6 @@ public void toExcel(JTable table, File file){
     }//GEN-LAST:event_btn_openGenOncActionPerformed
 
     private void F_txt_result_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_F_txt_result_idActionPerformed
-        // TODO add your handling code here:
-        
         //update_table_fish();
         
         /*********  Do not use ... umständlich das Feld, bei neuer Abfrage immer löschen zu müssen
@@ -5022,16 +4741,14 @@ public void toExcel(JTable table, File file){
             }
         }       
   */
-
     }//GEN-LAST:event_F_txt_result_idActionPerformed
     
     private void table_queryIDsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_queryIDsMouseClicked
-        // right klick ==> save to file
 
+        // right klick ==> save to file
         if (isRightClick(evt) == true) {
             //JOptionPane.showMessageDialog(null, "right click");
             //saveOnRC(evt, table_queryIDs);
-
             popUpSave.show(table_queryIDs,evt.getX(),evt.getY());
             this.outTable = table_queryIDs;
 
@@ -5088,7 +4805,8 @@ public void toExcel(JTable table, File file){
                         }
                     }
                     //txtArea_genes.setText(sql2); // TEST
-                     
+                    
+                    // sql query cytogenetics
                     String sql3 = "SELECT i.klon_id as Klon,i.result_id, chr_cnt as Chr, mitos_cnt as Mitosen, cp, iscn as ISCN, material, stim "
                             + "FROM zg_iscn i, main_result m Where i.result_id=m.result_id AND lab_id='" + Table_click + "' ";
                     if (ZG_rbtn_sort.isSelected()) {
@@ -5104,6 +4822,7 @@ public void toExcel(JTable table, File file){
                             sql3 = sql3 + " order by (" + order + ") " + asdes;
                         }
                     }
+                    
                     // update table_array
                     pst = conn.prepareStatement(sql);
                     rs = pst.executeQuery();
@@ -5115,7 +4834,6 @@ public void toExcel(JTable table, File file){
                     //if (rs.next()) {      // this skips first row!  
                     table_array.setModel(DbUtils.resultSetToTableModel(rs));
                     CustomSorter.table_customRowSort(table_array); 
-
                     // resize column width
                     jScrollPane1.setViewportView(table_array);
                     if (table_array.getColumnModel().getColumnCount() > 0) {
@@ -5156,7 +4874,6 @@ public void toExcel(JTable table, File file){
                     //if (rs.next()) {      // this skips first row!   
                     table_fish.setModel(DbUtils.resultSetToTableModel(rs));
                     CustomSorter.table_customRowSort(table_fish);
-                    
                     // resize column width
                     jScrollPane2.setViewportView(table_fish);
                     if (table_fish.getColumnModel().getColumnCount() > 0) {
@@ -5250,21 +4967,16 @@ public void toExcel(JTable table, File file){
                 }
             } else {
                 clearBtnColors();
-            }
-        
+            }        
         }
-
     }//GEN-LAST:event_table_queryIDsMouseClicked
 
     private void popUpMenu_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popUpMenu_saveActionPerformed
-
         saveOnRC(evt);
         //this.dispose();
-
     }//GEN-LAST:event_popUpMenu_saveActionPerformed
 
     private void popUpMenu_selectAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popUpMenu_selectAllActionPerformed
-        
         JTable OT = this.outTable;
         OT.selectAll();
     }//GEN-LAST:event_popUpMenu_selectAllActionPerformed
@@ -5286,9 +4998,9 @@ public void toExcel(JTable table, File file){
         // TODO add your handling code here:
         if (btn_TTT.isSelected()){
             ToolTipManager.sharedInstance().setEnabled(true);
-            // Get current delay
+            // Get current delay ...
             //int initialDelay = ToolTipManager.sharedInstance().getInitialDelay();
-            // Show tool tips immediately
+            // Show tool tips immediately ...
             ToolTipManager.sharedInstance().setInitialDelay(0);
         } else {
             ToolTipManager.sharedInstance().setEnabled(false);
@@ -5301,7 +5013,7 @@ public void toExcel(JTable table, File file){
     }//GEN-LAST:event_bnt_testActionPerformed
 
     private void table_queryIDsKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_table_queryIDsKeyReleased
-        // code from  table_queryIDsMouseClicked()
+        // code from  table_queryIDsMouseClicked() wo. isRightClick(evt)
         
         if (btn_selPat.isSelected()){
                 Connection conn = DBconnect.ConnecrDb();
@@ -5355,6 +5067,7 @@ public void toExcel(JTable table, File file){
                     }
                     //txtArea_genes.setText(sql2); // TEST
                      
+                    // sql query cytogenetics
                     String sql3 = "SELECT i.klon_id as Klon,i.result_id, chr_cnt as Chr, mitos_cnt as Mitosen, cp, iscn as ISCN, material, stim "
                             + "FROM zg_iscn i, main_result m Where i.result_id=m.result_id AND lab_id='" + Table_click + "' ";
                     if (ZG_rbtn_sort.isSelected()) {
@@ -5370,6 +5083,7 @@ public void toExcel(JTable table, File file){
                             sql3 = sql3 + " order by (" + order + ") " + asdes;
                         }
                     }
+                    
                     // update table_array
                     pst = conn.prepareStatement(sql);
                     rs = pst.executeQuery();
@@ -5381,7 +5095,6 @@ public void toExcel(JTable table, File file){
                     //if (rs.next()) {      // this skips first row!  
                     table_array.setModel(DbUtils.resultSetToTableModel(rs));
                     CustomSorter.table_customRowSort(table_array); 
-
                     // resize column width
                     jScrollPane1.setViewportView(table_array);
                     if (table_array.getColumnModel().getColumnCount() > 0) {
@@ -5410,8 +5123,7 @@ public void toExcel(JTable table, File file){
                         table_array.getColumnModel().getColumn(10).setMaxWidth(200);
                     }
                     //} //END if(rs.next)
-                    
-                    
+                                       
                     // update table_fish
                     pst = conn.prepareStatement(sql2);
                     rs = pst.executeQuery();
@@ -5422,8 +5134,7 @@ public void toExcel(JTable table, File file){
                     }
                     //if (rs.next()) {      // this skips first row!   
                     table_fish.setModel(DbUtils.resultSetToTableModel(rs));
-                    CustomSorter.table_customRowSort(table_fish);
-                    
+                    CustomSorter.table_customRowSort(table_fish);                    
                     // resize column width
                     jScrollPane2.setViewportView(table_fish);
                     if (table_fish.getColumnModel().getColumnCount() > 0) {
@@ -5472,7 +5183,6 @@ public void toExcel(JTable table, File file){
                     //if (rs.next()) {      // this skips first row!   
                     table_zg_iscn.setModel(DbUtils.resultSetToTableModel(rs));
                     CustomSorter.table_customRowSort(table_zg_iscn);
-
                     // resize column width
                     jScrollPane3.setViewportView(table_zg_iscn);
                     if (table_zg_iscn.getColumnModel().getColumnCount() > 0) {
@@ -5518,7 +5228,6 @@ public void toExcel(JTable table, File file){
             } else {
                 clearBtnColors();
             }
- 
     }//GEN-LAST:event_table_queryIDsKeyReleased
 
     private void table_zg_iscnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_table_zg_iscnKeyReleased
@@ -5574,7 +5283,6 @@ public void toExcel(JTable table, File file){
                     table_zg_result.getColumnModel().getColumn(4).setPreferredWidth(50);
                     table_zg_result.getColumnModel().getColumn(4).setMaxWidth(70);
                 }
-
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -5585,30 +5293,26 @@ public void toExcel(JTable table, File file){
                 if (conn != null) { conn.close();}
             } catch (Exception e) {
             }
-        }
-        
+        }       
     }//GEN-LAST:event_table_zg_iscnKeyReleased
 
-    private void btn_EActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EActionPerformed
-        // TODO add your handling code here:
+    private void btn_EmergencyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EmergencyActionPerformed
         new SearchResult().setVisible(true);
         this.dispose();
         //F_txt_resID.resize(50,28);
-    }//GEN-LAST:event_btn_EActionPerformed
+    }//GEN-LAST:event_btn_EmergencyActionPerformed
 
     private void popUpMenu_moveTblActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popUpMenu_moveTblActionPerformed
-
         JTable OT = this.outTable;
         source = OT.getAccessibleContext().getAccessibleDescription();
         tableMoving = OT.getAccessibleContext().getAccessibleName();
         moveTableModel = (DefaultTableModel) OT.getModel();
-        new FreeTable().setVisible(true);
-        
+        new FreeTable().setVisible(true);        
     }//GEN-LAST:event_popUpMenu_moveTblActionPerformed
 
     private void jMenuItem2_InfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2_InfoActionPerformed
-        ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/EsALiR_suite_BG_ico2-3_small.png"));
-        JOptionPane.showMessageDialog(rootPane, "Needs A Name \nDB-request Tool\nVersion:   1.0.0", "Info", HEIGHT,img);
+        ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_med.png"));
+        JOptionPane.showMessageDialog(rootPane, "LInkedResultsAnalysis \nDB-request Tool\nVersion:   1.0.0", "Info", HEIGHT,img);
     }//GEN-LAST:event_jMenuItem2_InfoActionPerformed
 
     private void jMenuItem1_HowToActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1_HowToActionPerformed
@@ -5661,12 +5365,10 @@ public void toExcel(JTable table, File file){
             } catch (Exception e) {
             }
         }
-
     }//GEN-LAST:event_Z_txt_lab_idActionPerformed
 
     private void popUpMenu_intrprWinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popUpMenu_intrprWinActionPerformed
-        // open window and show corresponding result-text
-        
+        // open window and show corresponding result-text       
         Connection conn = DBconnect.ConnecrDb();
         ResultSet rs = null;
         PreparedStatement pst = null;
@@ -5732,9 +5434,7 @@ public void toExcel(JTable table, File file){
         }
 
         new ResultWindow().setVisible(true);
-        IntrprWindowIsOpen = true;
-        
-        
+        IntrprWindowIsOpen = true;               
     }//GEN-LAST:event_popUpMenu_intrprWinActionPerformed
 
     private void table_fishKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_table_fishKeyReleased
@@ -5784,7 +5484,6 @@ public void toExcel(JTable table, File file){
             } catch (Exception e) {
             }
         }
-
     }//GEN-LAST:event_table_fishKeyReleased
 
     private void btn_loadQueryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loadQueryActionPerformed
@@ -6012,11 +5711,9 @@ public void toExcel(JTable table, File file){
             } else {
                 JOptionPane.showMessageDialog(null, "You are trying to load a wrong frame format!");
             }
-
         } catch (IOException ex) {
             Logger.getLogger(SetConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }//GEN-LAST:event_btn_loadQueryActionPerformed
 
     private void btn_saveQueryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_saveQueryActionPerformed
@@ -6032,15 +5729,13 @@ public void toExcel(JTable table, File file){
                 out_file.createNewFile();
             }
             //JOptionPane.showMessageDialog(null, out_fileString);  //TEST
-
             ini = new Ini(new File(out_fileString));
 
             // get info from which frame te data comes from
             String method = this.getAccessibleContext().getAccessibleName();
             ini.put("frame", "frame", method);
 
-            // get data from fields, comboboxes & buttons
-            
+            // get data from fields, comboboxes & buttons            
             // info_top
             boolean btn_onlyPat = rbtn_onlyPat.isSelected();
             ini.put("btn", "btn1", btn_onlyPat);
@@ -6248,11 +5943,9 @@ public void toExcel(JTable table, File file){
             ini.put("tabZG", "txt23",ZR_tx_region_1);
 
             ini.store();
-
         } catch (IOException ex) {
             Logger.getLogger(SetConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }//GEN-LAST:event_btn_saveQueryActionPerformed
 
     /**
@@ -6427,7 +6120,7 @@ public void toExcel(JTable table, File file){
     private javax.swing.JTextField Z_txt_lab_id;
     private javax.swing.JTextField Z_txt_result_id;
     private javax.swing.JButton bnt_test;
-    private javax.swing.JButton btn_E;
+    private javax.swing.JButton btn_Emergency;
     private javax.swing.JRadioButton btn_TTT;
     private javax.swing.JButton btn_loadQuery;
     private javax.swing.JButton btn_openGenOnc;

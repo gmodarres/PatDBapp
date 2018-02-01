@@ -1,26 +1,21 @@
+/*
+ * stdpat_DB - Project study patient database 
+ * For efficient data evaluation and interpretation
+ *
+ * Copyright (C) CCRI - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Gerda modarres <gerrda.modarres@ccri.at>, August 2017
+ *
+ */
 package frames;
 
-//import java.awt.Image;
 import java.awt.Dimension;
-import java.awt.Frame;
 import java.awt.Image;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import javax.swing.ImageIcon;
-import javax.swing.*;
-import java.awt.image.BufferedImage;
 
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author gerda.modarres
- */
 public class ViewKaryoWG extends javax.swing.JFrame {
     
 private ImageIcon format = null;
@@ -35,9 +30,7 @@ private ImageIcon format = null;
     }
     
     public void get_image(){
-        //format = new ImageIcon(xx_patDB_main_result.imagedata);
         format = new ImageIcon(SearchMainResult.imagedata);
-        //lbl_image.setIcon(format);
         
         Image img = format.getImage();//.getScaledInstance(500, 500, Image.SCALE_SMOOTH);
         int height = img.getHeight(rootPane);
@@ -50,9 +43,6 @@ private ImageIcon format = null;
         jDesktopPane1.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
-                //JLabel lbl_image = (JLabel) e.getComponent();
-                //JFrame frame = (JFrame) e.getComponent();
-                //Dimension size = frame.getSize();
                 Dimension size = jDesktopPane1.getSize();
                 Image resized = format.getImage().getScaledInstance(size.width, size.height, Image.SCALE_SMOOTH);
                 lbl_image.setIcon(new ImageIcon(resized));

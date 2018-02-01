@@ -10,14 +10,11 @@
  */
 package frames;
 
-
-import javax.swing.JFrame;
 import java.awt.Font;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
-import myClass.ColumnFitAdapter;
 import myClass.DBconnect;
 import net.proteanit.sql.DbUtils;
 
@@ -33,9 +30,6 @@ class TableStructure extends javax.swing.JFrame {
      */
     TableStructure() {
         initComponents();
-        //tbl_structure.getTableHeader().addMouseListener(new ColumnFitAdapter());
-        //SetTableStructureRef = this;
-        //tbl_structure.getTableHeader().setFont(new Font("SansSerif", Font.ITALIC, 8));
         tbl_structure.getTableHeader().setFont(new Font("Tahoma", Font.ITALIC, 10));
     }
 
@@ -117,7 +111,6 @@ class TableStructure extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void rbtn_alwaysOnTopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_alwaysOnTopActionPerformed
-
         if(rbtn_alwaysOnTop.isSelected()){
             this.setAlwaysOnTop(true);
         } else {
@@ -126,14 +119,12 @@ class TableStructure extends javax.swing.JFrame {
     }//GEN-LAST:event_rbtn_alwaysOnTopActionPerformed
 
     private void rbtn_summaryListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_summaryListActionPerformed
-
         if (rbtn_summaryList.isSelected()) {
             Connection conn = DBconnect.ConnecrDb();
             ResultSet rs = null;
             PreparedStatement pst = null;
 
             try {
-                //String sql = "select * from information_schema.columns where table_schema = DATABASE() order by table_name,ordinal_position;";	
                 String sql = "SELECT table_name, GROUP_CONCAT(column_name ORDER BY ordinal_position) as 'columns'"+
                         "FROM information_schema.columns WHERE table_schema = DATABASE()"+
                         "GROUP BY table_name ORDER BY table_name;";	
@@ -146,7 +137,6 @@ class TableStructure extends javax.swing.JFrame {
                     tbl_structure.getColumnModel().getColumn(0).setPreferredWidth(100);
                     tbl_structure.getColumnModel().getColumn(0).setMaxWidth(500);
                 }
-
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e);
             } finally {
@@ -163,7 +153,6 @@ class TableStructure extends javax.swing.JFrame {
             PreparedStatement pst = null;
 
             try {
-                //String sql = "select * from information_schema.columns where table_schema = DATABASE() order by table_name,ordinal_position;";	
                 String sql = "select TABLE_NAME, COLUMN_NAME, ORDINAL_POSITION, IS_NULLABLE, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH, "
                         + "CHARACTER_OCTET_LENGTH, NUMERIC_PRECISION, NUMERIC_SCALE, COLUMN_TYPE, COLUMN_KEY, EXTRA "
                         + "from information_schema.columns where table_schema = DATABASE() order by table_name,ordinal_position;";
@@ -172,7 +161,6 @@ class TableStructure extends javax.swing.JFrame {
                 rs = pst.executeQuery();
                 //if (rs.next()) {      // this skips first row!   
                 TableStructure.tbl_structure.setModel(DbUtils.resultSetToTableModel(rs));
-
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e);
             } finally {
