@@ -244,7 +244,7 @@
                       <Component id="txt_refDiag" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="448" max="32767" attributes="0"/>
-                  <Component id="btn_newList" min="-2" max="-2" attributes="0"/>
+                  <Component id="btn_Search" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -259,7 +259,7 @@
                       <Component id="txt_date1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txt_date2" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="rbtn_corr" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btn_newList" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btn_Search" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -311,7 +311,7 @@
             <Property name="borderPainted" type="boolean" value="true"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btn_newList">
+        <Component class="javax.swing.JButton" name="btn_Search">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="8c" green="8c" red="0" type="rgb"/>
@@ -322,7 +322,7 @@
             <Property name="text" type="java.lang.String" value="Search"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_newListActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_SearchActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="rbtn_male">

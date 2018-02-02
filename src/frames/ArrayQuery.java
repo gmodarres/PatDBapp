@@ -1740,7 +1740,9 @@ public class ArrayQuery extends javax.swing.JFrame {
 
     private void rbtn_showExampleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_showExampleActionPerformed
         if (rbtn_showExample.isSelected()){
-            txt_const1_1.setToolTipText("<html><p width=400px>\npossible values:<br>\n<font color=\"green\">\n= 'loss'<br>\n= 7<br>\n&lt&gt 'LOH'<br> \n&lt&gt 22<br>\nlike '%mosaic%'<br>\nnot like '%gain%'<br>\nin (7,9,21)<br>\nnot in (1,2) &#9<br>\n</font></p></html>");
+            //txt_const1_1.setToolTipText("<html><p width=400px>\npossible values:<br>\n<font color=\"green\">\n= 'loss'<br>\n= 7<br>\n&lt&gt 'LOH'<br> \n&lt&gt 22<br>\nlike '%mosaic%'<br>\nnot like '%gain%'<br>\nin (7,9,21)<br>\nnot in (1,2) &#9<br>\n</font></p></html>");
+            txt_const1_1.setToolTipText("<html><p width=400px>\npossible values:<br>\n<font color=\"green\">\ntype&#9= 'loss'<br>\nchr&#9= 7<br>\ntype&#9&lt&gt 'LOH'<br> \nchr&#9&lt&gt 22<br>\ntype&#9like '%mosaic%'<br>\ntype&#9not like '%gain%'<br>\ntype&#9not in ('loss','gain') &#9<br>\nchr&#9in (7,9,21)<br>\nchr&#9not in (1,2) &#9<br>\n</font></p></html>");
+
         }else{
             txt_const1_1.setToolTipText("<html><p width=400px>\nenter constraints here - possible values:<br>\n<font color=\"green\">\n= 'text' &#9&#9 ...is text<br>\n= no. &#9&#9 ...is number<br>\n&lt&gt 'text' &#9&#9 ...is not text<br> \n&lt&gt no. &#9&#9 ...is not a number<br>\nlike '%text%' &#9&#9 ...does contain text<br>\nnot like '%text%' &#9 ...does not contain text<br>\nin (no1,no2,...) &#9 ...does contain numbers<br>\nnot in (no1,no2,...) &#9 ...does not contain numbers<br>\n</font></p></html>");
         }

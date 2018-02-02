@@ -11,21 +11,14 @@
 package myClass;
 
 import com.google.common.collect.ComparisonChain;
-import com.mysql.jdbc.StringUtils;
-import frames.SearchResult;
 import java.util.Comparator;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
-
-
 /**
  *
- * @author gerda.modarres
+ * sort columns of different tables (output os sql queries)
  */
 
 public class CustomSorter {
@@ -90,10 +83,8 @@ public class CustomSorter {
         };
         
         Comparator IDComparator = new Comparator<String>() {
-
             //@Override
-            public int compare(String arg0, String arg1) {
-               
+            public int compare(String arg0, String arg1) {               
                 String[] first = arg0.split("-");
                 String[] second = arg1.split("-");
                 //JOptionPane.showMessageDialog(null, "first: " + first[1] + " second: " + second[1]);
@@ -101,24 +92,16 @@ public class CustomSorter {
                 int a = Integer.parseInt(first[0]);
                 int b = Integer.parseInt(first[1]);
                 int c = Integer.parseInt(second[0]);
-                int d = Integer.parseInt(second[1]);
-                
+                int d = Integer.parseInt(second[1]);                
                 //JOptionPane.showMessageDialog(null, "a: " + a + " b: " + b + " c: "+ c + " d: " + d );
                                
                 return ComparisonChain.start().compare(a,c).compare(b,d).result();
-            }
-            
-
+            }          
         };
         
         if (tableS.equals("table_resultID")) {
             TableRowSorter<DefaultTableModel> rowSorter = (TableRowSorter<DefaultTableModel>) table.getRowSorter();
-            //Comparator intComparator = new Comparator<Integer>() {
-            //    @Override
-            //    public int compare(Integer arg0, Integer arg1) {
-            //        return arg0.intValue() - arg1.intValue();
-            //    }
-            //};
+
             rowSorter.setComparator(0, intComparator);
             rowSorter.setComparator(1, intComparator);
             table.setRowSorter(rowSorter);

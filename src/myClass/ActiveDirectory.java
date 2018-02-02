@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * source:
+ * http://www.javaxt.com/Tutorials/Windows/How_to_Authenticate_Users_with_Active_Directory
  */
 package myClass;
 

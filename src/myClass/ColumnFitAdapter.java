@@ -1,9 +1,8 @@
-package myClass;
-
 /*
+ * source:
  *  http://www.jroller.com/santhosh/entry/fit_tablecolumns_on_demand
  */
-
+package myClass;
 
 import java.awt.event.*;
 import javax.swing.table.*;
@@ -12,9 +11,8 @@ import javax.swing.*;
 
 /**
  *
- * @author gerda.modarres
+ * doubleclick collumn to fit content
  */
-
 public class ColumnFitAdapter extends MouseAdapter{ 
 
     public void mouseClicked(MouseEvent e){ 

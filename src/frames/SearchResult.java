@@ -707,6 +707,7 @@ public class SearchResult extends javax.swing.JFrame {
         }
     }
     
+    
     private void get_ids(String sql, PreparedStatement pst, ResultSet rs, Connection conn) {
         
         try {
@@ -2766,7 +2767,7 @@ public void toExcel(JTable table, File file){
         rbtn_ST.setText("use SubtypeBrowse");
         rbtn_ST.setToolTipText("get IDs from window SubtypeBrowse");
 
-        rbtn_ArrQuery.setText("use ArrayQuery");
+        rbtn_ArrQuery.setText("use ArrayGeneQuery");
         rbtn_ArrQuery.setToolTipText("select to get IDs from window ArrayQuery");
 
         rbtn_PB.setText("use PatientBrowse ");

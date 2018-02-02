@@ -49,7 +49,7 @@ public class SubtypeBrowse extends javax.swing.JFrame {
         this.setIconImage(img.getImage());
         initial_table_subtypes();
         initial_table_resultID();
-        Info_top4.getRootPane().setDefaultButton(btn_newList);
+        Info_top4.getRootPane().setDefaultButton(btn_Search);
         
         my_log.logger.info("open SubtypeBrowse()");
     }
@@ -269,7 +269,7 @@ public class SubtypeBrowse extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         table_subtypes = new javax.swing.JTable();
         Info_top4 = new javax.swing.JPanel();
-        btn_newList = new javax.swing.JButton();
+        btn_Search = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         rbtn_majSub = new javax.swing.JRadioButton();
         rbtn_NOT = new javax.swing.JRadioButton();
@@ -349,12 +349,12 @@ public class SubtypeBrowse extends javax.swing.JFrame {
         Info_top4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         Info_top4.setRequestFocusEnabled(false);
 
-        btn_newList.setBackground(new java.awt.Color(0, 140, 140));
-        btn_newList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/Search.png"))); // NOI18N
-        btn_newList.setText("Search");
-        btn_newList.addActionListener(new java.awt.event.ActionListener() {
+        btn_Search.setBackground(new java.awt.Color(0, 140, 140));
+        btn_Search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/Search.png"))); // NOI18N
+        btn_Search.setText("Search");
+        btn_Search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_newListActionPerformed(evt);
+                btn_SearchActionPerformed(evt);
             }
         });
 
@@ -492,7 +492,7 @@ public class SubtypeBrowse extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_newList)
+                .addComponent(btn_Search)
                 .addGap(21, 21, 21))
         );
         Info_top4Layout.setVerticalGroup(
@@ -500,7 +500,7 @@ public class SubtypeBrowse extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Info_top4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(Info_top4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_newList)
+                    .addComponent(btn_Search)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10))
         );
@@ -606,7 +606,7 @@ public class SubtypeBrowse extends javax.swing.JFrame {
         // Testbutton in toolbar
     }//GEN-LAST:event_bnt_testActionPerformed
 
-    private void btn_newListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_newListActionPerformed
+    private void btn_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SearchActionPerformed
          if(rbtn_all.isSelected()){
             //rbtn_specST.setEnabled(false);
             initial_table_subtypes();
@@ -715,7 +715,7 @@ public class SubtypeBrowse extends javax.swing.JFrame {
                 }
             }
         }
-    }//GEN-LAST:event_btn_newListActionPerformed
+    }//GEN-LAST:event_btn_SearchActionPerformed
 
     private void table_resultIDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_resultIDMouseClicked
         if (isRightClick(evt) == true) {
@@ -900,7 +900,7 @@ public class SubtypeBrowse extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> CB_specST1;
     private javax.swing.JPanel Info_top4;
     private javax.swing.JButton bnt_test;
-    private javax.swing.JButton btn_newList;
+    private javax.swing.JButton btn_Search;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JMenuItem cpLabIds;
     private javax.swing.JMenuItem cpResultIds;

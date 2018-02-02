@@ -27,8 +27,9 @@ import javax.swing.JOptionPane;
 import org.ini4j.Ini;
 
 /**
+ * source: 
  * https://stackoverflow.com/questions/15758685/how-to-write-logs-in-text-file-when-using-java-util-logging-logger
- * @author gerda.modarres
+ * modified @author gerda.modarres
  */
 public class Log {
     //public Logger logger;

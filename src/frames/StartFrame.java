@@ -120,7 +120,7 @@ public class StartFrame extends javax.swing.JFrame {
 
         btn_admin.setFont(new java.awt.Font("Tahoma", 2, 13)); // NOI18N
         btn_admin.setForeground(new java.awt.Color(153, 153, 153));
-        btn_admin.setText("Admin Tools");
+        btn_admin.setText("admin tools");
         btn_admin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_adminActionPerformed(evt);
@@ -175,7 +175,7 @@ public class StartFrame extends javax.swing.JFrame {
             }
         });
 
-        btn_test.setText("Array Query");
+        btn_test.setText("array gene query");
         btn_test.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_testActionPerformed(evt);

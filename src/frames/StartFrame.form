@@ -167,7 +167,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="99" green="99" red="99" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Admin Tools"/>
+                <Property name="text" type="java.lang.String" value="admin tools"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_adminActionPerformed"/>
@@ -241,7 +241,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="btn_test">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Array Query"/>
+                <Property name="text" type="java.lang.String" value="array gene query"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_testActionPerformed"/>

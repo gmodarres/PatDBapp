@@ -2703,7 +2703,7 @@
             </Component>
             <Component class="javax.swing.JRadioButton" name="rbtn_ArrQuery">
               <Properties>
-                <Property name="text" type="java.lang.String" value="use ArrayQuery"/>
+                <Property name="text" type="java.lang.String" value="use ArrayGeneQuery"/>
                 <Property name="toolTipText" type="java.lang.String" value="select to get IDs from window ArrayQuery"/>
               </Properties>
             </Component>

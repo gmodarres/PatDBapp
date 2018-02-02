@@ -49,7 +49,7 @@ public class SampleBrowse extends javax.swing.JFrame {
         this.setIconImage(img.getImage());
         initial_table_sample();
         initial_table_resultID();
-        Info_top4.getRootPane().setDefaultButton(btn_newList);
+        Info_top4.getRootPane().setDefaultButton(btn_Search);
         
         my_log.logger.info("open SampleBrowse()");
     }
@@ -286,7 +286,7 @@ public class SampleBrowse extends javax.swing.JFrame {
         Info_top4 = new javax.swing.JPanel();
         rbtn_all = new javax.swing.JRadioButton();
         rbtn_corr = new javax.swing.JRadioButton();
-        btn_newList = new javax.swing.JButton();
+        btn_Search = new javax.swing.JButton();
         rbtn_male = new javax.swing.JRadioButton();
         rbtn_female = new javax.swing.JRadioButton();
         rbtn_bdate = new javax.swing.JRadioButton();
@@ -376,12 +376,12 @@ public class SampleBrowse extends javax.swing.JFrame {
         rbtn_corr.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         rbtn_corr.setBorderPainted(true);
 
-        btn_newList.setBackground(new java.awt.Color(0, 140, 140));
-        btn_newList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/Search.png"))); // NOI18N
-        btn_newList.setText("Search");
-        btn_newList.addActionListener(new java.awt.event.ActionListener() {
+        btn_Search.setBackground(new java.awt.Color(0, 140, 140));
+        btn_Search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/Search.png"))); // NOI18N
+        btn_Search.setText("Search");
+        btn_Search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_newListActionPerformed(evt);
+                btn_SearchActionPerformed(evt);
             }
         });
 
@@ -455,7 +455,7 @@ public class SampleBrowse extends javax.swing.JFrame {
                         .addComponent(txt_date2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txt_refDiag))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 448, Short.MAX_VALUE)
-                .addComponent(btn_newList)
+                .addComponent(btn_Search)
                 .addGap(21, 21, 21))
         );
         Info_top4Layout.setVerticalGroup(
@@ -468,7 +468,7 @@ public class SampleBrowse extends javax.swing.JFrame {
                     .addComponent(txt_date1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_date2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rbtn_corr)
-                    .addComponent(btn_newList))
+                    .addComponent(btn_Search))
                 .addGap(4, 4, 4)
                 .addGroup(Info_top4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rbtn_patID)
@@ -588,7 +588,7 @@ public class SampleBrowse extends javax.swing.JFrame {
         // Testbutton in toolbar
     }//GEN-LAST:event_bnt_testActionPerformed
 
-    private void btn_newListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_newListActionPerformed
+    private void btn_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SearchActionPerformed
         if(rbtn_all.isSelected()){
             initial_table_sample();
             update_table_resultID();
@@ -945,7 +945,7 @@ public class SampleBrowse extends javax.swing.JFrame {
                 }
             }
         }
-    }//GEN-LAST:event_btn_newListActionPerformed
+    }//GEN-LAST:event_btn_SearchActionPerformed
 
     private void table_resultIDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_resultIDMouseClicked
         if (isRightClick(evt) == true) {
@@ -1026,7 +1026,7 @@ public class SampleBrowse extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> CB_MDown;
     private javax.swing.JPanel Info_top4;
     private javax.swing.JButton bnt_test;
-    private javax.swing.JButton btn_newList;
+    private javax.swing.JButton btn_Search;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JMenuItem cpLabIds;
     private javax.swing.JMenuItem cpResultIds;
