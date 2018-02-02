@@ -34,6 +34,7 @@ import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Highlighter;
 import myClass.CustomSorter;
 import myClass.DBconnect;
+import myClass.IdManagement;
 import myClass.Log;
 import myClass.OSDetector;
 import net.proteanit.sql.DbUtils;
@@ -399,7 +400,9 @@ public class ArrayQuery extends javax.swing.JFrame {
                 }
             }
             //get ids of sql query to count patients affected in get_statistics()
-            get_ids(sql, pst, rs, conn);
+            //get_ids(sql, pst, rs, conn);
+            this.ids = IdManagement.get_ids(sql, pst, rs, conn, "result_id");
+            this.AQ_resultIDs = IdManagement.get_ids(sql, pst, rs, conn, "result_id");
 
         }catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -413,7 +416,7 @@ public class ArrayQuery extends javax.swing.JFrame {
         }
     }
     
-    private void get_ids(String sql, PreparedStatement pst, ResultSet rs, Connection conn) {
+    /*private void get_ids(String sql, PreparedStatement pst, ResultSet rs, Connection conn) {
         
         try {
             pst = conn.prepareStatement(sql);
@@ -448,7 +451,7 @@ public class ArrayQuery extends javax.swing.JFrame {
             } catch (Exception e) {
             }
         }
-    }
+    }*/
        
     // For Testing
     private void display_ids(){
@@ -1670,7 +1673,10 @@ public class ArrayQuery extends javax.swing.JFrame {
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
             
-            get_ids(sql, pst, rs, conn);
+            //get_ids(sql, pst, rs, conn);
+            this.ids = IdManagement.get_ids(sql, pst, rs, conn, "result_id");
+            this.AQ_resultIDs = IdManagement.get_ids(sql, pst, rs, conn, "result_id");
+            
             display_ids();
             my_log.logger.info("SQL:  " + sql);
             

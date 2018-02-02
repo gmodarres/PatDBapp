@@ -19,6 +19,7 @@ import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Highlighter;
 import javax.swing.text.Highlighter.HighlightPainter;
 import myClass.CustomSorter;
+import myClass.IdManagement;
 import myClass.Log;
 
 public class SearchMainResult extends javax.swing.JFrame {
@@ -170,7 +171,8 @@ public class SearchMainResult extends javax.swing.JFrame {
                     CustomSorter.table_customRowSort(table_queryIDs);
                 }
             //get ids of sql query to count patients affected in get_statistics()
-            get_ids(sql, pst, rs, conn);
+            //get_ids(sql, pst, rs, conn);
+            this.ids = IdManagement.get_ids(sql, pst, rs, conn, "result_id");
 
         }catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -184,7 +186,7 @@ public class SearchMainResult extends javax.swing.JFrame {
         }
     }
     
-    private void get_ids(String sql, PreparedStatement pst, ResultSet rs, Connection conn) {        
+    /*private void get_ids(String sql, PreparedStatement pst, ResultSet rs, Connection conn) {        
         try {
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
@@ -209,7 +211,7 @@ public class SearchMainResult extends javax.swing.JFrame {
             } catch (Exception e) {
             }
         }
-    }
+    }*/
       
     private void highlight_txt_array(String word){
         try{

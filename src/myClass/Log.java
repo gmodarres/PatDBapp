@@ -22,7 +22,7 @@ import java.util.logging.Formatter;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
+//import java.util.logging.SimpleFormatter;
 import javax.swing.JOptionPane;
 import org.ini4j.Ini;
 
@@ -97,7 +97,6 @@ public class Log {
         //*/
         
         logger.setUseParentHandlers(false);     // no console output
-   
     }
     
     public static void startLog(Log my_log, String info){

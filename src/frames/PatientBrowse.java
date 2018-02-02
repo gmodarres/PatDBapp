@@ -22,6 +22,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import myClass.CustomSorter;
 import myClass.DBconnect;
+import myClass.IdManagement;
 import myClass.Log;
 import myClass.OSDetector;
 import net.proteanit.sql.DbUtils;
@@ -119,7 +120,7 @@ public class PatientBrowse extends javax.swing.JFrame {
         }
     }
     
-    private void get_r_ids(String sql, PreparedStatement pst, ResultSet rs, Connection conn) {
+    /*private void get_r_ids(String sql, PreparedStatement pst, ResultSet rs, Connection conn) {
         try {
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
@@ -186,7 +187,7 @@ public class PatientBrowse extends javax.swing.JFrame {
             } catch (Exception e) {
             }
         }
-    }
+    }*/
     
     private void get_resultIDs() {
         Connection conn = DBconnect.ConnecrDb();
@@ -204,7 +205,9 @@ public class PatientBrowse extends javax.swing.JFrame {
                 pst = conn.prepareStatement(sql);
                 rs = pst.executeQuery();
                
-                get_r_ids(sql,pst,rs,conn);
+                //get_r_ids(sql,pst,rs,conn);
+                //this.PB_resultIDs = IdManagement.get_r_ids(sql, pst, rs, conn);
+                this.PB_resultIDs = IdManagement.get_ids(sql, pst, rs, conn, "result_id");
                 //showRows(rs);
 
             } catch (Exception e) {
@@ -857,7 +860,8 @@ public class PatientBrowse extends javax.swing.JFrame {
                     table_patient.getColumnModel().getColumn(12).setMaxWidth(100);                   
                 }
                 
-                get_ids(sql, pst, rs, conn);
+                //get_ids(sql, pst, rs, conn);
+                this.ids=IdManagement.get_ids(sql, pst, rs, conn, "pat_id");
                 get_resultIDs();
                 //get_r_ids(sql,pst,rs,conn); 
                 showRows(rs);

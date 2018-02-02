@@ -27,6 +27,7 @@ import myClass.CustomSorter;
 import myClass.DBconnect;
 import myClass.Log;
 import net.proteanit.sql.DbUtils;
+import myClass.IdManagement;
 
 /**
  *
@@ -88,7 +89,8 @@ public class SubtypeBrowse extends javax.swing.JFrame {
                 table_subtypes.getColumnModel().getColumn(1).setMaxWidth(100);
             }
             
-            get_ids(sql,pst,rs,conn);
+            //get_ids(sql,pst,rs,conn);
+            this.ids=IdManagement.get_ids(sql, pst, rs, conn,"pat_id");
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -160,7 +162,9 @@ public class SubtypeBrowse extends javax.swing.JFrame {
                     table_resultID.getColumnModel().getColumn(1).setMaxWidth(100);
                 }
                 
-                get_r_ids(sql,pst,rs,conn);
+                //get_r_ids(sql,pst,rs,conn);   // old --> substitute:
+                //this.ST_resultIDs = IdManagement.get_r_ids(sql,pst,rs,conn); // TEST classIdManagement
+                this.ST_resultIDs = IdManagement.get_ids(sql, pst, rs, conn, "result_id");
                 showRows(rs);
 
             } catch (Exception e) {
@@ -176,7 +180,7 @@ public class SubtypeBrowse extends javax.swing.JFrame {
         }
     }
      
-    private void get_r_ids(String sql, PreparedStatement pst, ResultSet rs, Connection conn) {
+    /*private void get_r_ids(String sql, PreparedStatement pst, ResultSet rs, Connection conn) {
         try {
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
@@ -207,9 +211,9 @@ public class SubtypeBrowse extends javax.swing.JFrame {
             } catch (Exception e) {
             }
         }
-    }
+    }*/
         
-    private void get_ids(String sql, PreparedStatement pst, ResultSet rs, Connection conn) {        
+    /*private void get_ids(String sql, PreparedStatement pst, ResultSet rs, Connection conn) {        
         try {
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
@@ -242,7 +246,7 @@ public class SubtypeBrowse extends javax.swing.JFrame {
             } catch (Exception e) {
             }
         }
-    }
+    }*/
      
     private static boolean isRightClick(MouseEvent e) {
         return (e.getButton() == MouseEvent.BUTTON3
@@ -700,7 +704,8 @@ public class SubtypeBrowse extends javax.swing.JFrame {
                     table_subtypes.getColumnModel().getColumn(1).setMaxWidth(100);
                 }
 
-                get_ids(sql, pst, rs, conn);
+                //get_ids(sql, pst, rs, conn);
+                this.ids=IdManagement.get_ids(sql, pst, rs, conn,"pat_id");
                 update_table_resultID();
 
             } catch (Exception e) {

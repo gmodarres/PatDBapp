@@ -27,6 +27,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.TableModel;
 import myClass.CustomSorter;
+import myClass.IdManagement;
 import myClass.Log;
 import net.proteanit.sql.DbUtils;
 import org.ini4j.Ini;
@@ -207,8 +208,9 @@ public class ReadyForSQL extends javax.swing.JFrame {
                 }
 
                 //get ids of sql query to count patients affected in get_statistics()
-                get_ids(sql, pst, rs, conn);
-                
+                //get_ids(sql, pst, rs, conn);
+                this.ids = IdManagement.get_ids(sql, pst, rs, conn, "result_id");
+
             }else if (IdsPres == false){
                 this.ids = null;
             }
@@ -225,7 +227,7 @@ public class ReadyForSQL extends javax.swing.JFrame {
         }
     }
     
-    private void get_ids(String sql, PreparedStatement pst, ResultSet rs, Connection conn) {        
+    /*private void get_ids(String sql, PreparedStatement pst, ResultSet rs, Connection conn) {        
         try {
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
@@ -250,7 +252,7 @@ public class ReadyForSQL extends javax.swing.JFrame {
             } catch (Exception e) {
             }
         }
-    }
+    }*/
       
     private void initial_table_statistics(){
         Connection conn = DBconnect.ConnecrDb();

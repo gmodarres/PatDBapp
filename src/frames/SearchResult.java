@@ -40,6 +40,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
 import myClass.CustomSorter;
+import myClass.IdManagement;
 import myClass.Log;
 import myClass.OSDetector;
 
@@ -693,7 +694,8 @@ public class SearchResult extends javax.swing.JFrame {
                 }
             }
             //get ids of sql query to count patients affected in get_statistics()
-            get_ids(sql, pst, rs, conn);
+            //get_ids(sql, pst, rs, conn);
+            this.ids = IdManagement.get_ids(sql, pst, rs, conn, "result_id");
 
         }catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -707,8 +709,7 @@ public class SearchResult extends javax.swing.JFrame {
         }
     }
     
-    
-    private void get_ids(String sql, PreparedStatement pst, ResultSet rs, Connection conn) {
+    /*private void get_ids(String sql, PreparedStatement pst, ResultSet rs, Connection conn) {
         
         try {
             pst = conn.prepareStatement(sql);
@@ -742,7 +743,7 @@ public class SearchResult extends javax.swing.JFrame {
             } catch (Exception e) {
             }
         }
-    }
+    }*/
     
     private void deliver_ids(String caller, String ids, String sql) {
         // to extend sql in Array search
@@ -850,7 +851,9 @@ public class SearchResult extends javax.swing.JFrame {
             pst = conn.prepareStatement(sql2);
             rs = pst.executeQuery();
 
-            get_ids(sql2, pst, rs, conn);
+            //get_ids(sql2, pst, rs, conn);
+            this.ids = IdManagement.get_ids(sql2, pst, rs, conn, "result_id");
+            
             if (ids.length() > 1){
                 ids = ids.substring(0, (ids.length() - 1));
                 if (set.equals("A")){
@@ -900,7 +903,9 @@ public class SearchResult extends javax.swing.JFrame {
             pst = conn.prepareStatement(sql2);
             rs = pst.executeQuery();
 
-            get_ids(sql2, pst, rs, conn);
+            //get_ids(sql2, pst, rs, conn);
+            this.ids = IdManagement.get_ids(sql2, pst, rs, conn, "result_id");
+            
             if (ids.length() > 1){
                 ids = ids.substring(0, (ids.length() - 1));
                 if (set.equals("A")){
@@ -3488,7 +3493,9 @@ public void toExcel(JTable table, File file){
                 }
             }
             
-            get_ids(sql, pst, rs, conn);
+            //get_ids(sql, pst, rs, conn);
+            this.ids = IdManagement.get_ids(sql, pst, rs, conn, "result_id");
+            
             //txtArea_sql.setText(sql);
             my_log.logger.info("SQL:  " + sql);
                       
@@ -3588,7 +3595,8 @@ public void toExcel(JTable table, File file){
             String sql = "SELECT f.result_id FROM fish_result f, main_result m WHERE f.result_id = m.result_id AND lab_id='" + lab_id + "'";
 
             //txtArea_sql.setText(sql);
-            get_ids(sql, pst, rs, conn); // needed for get_statistics() to count patients affected
+            //get_ids(sql, pst, rs, conn); // needed for get_statistics() to count patients affected
+            this.ids = IdManagement.get_ids(sql, pst, rs, conn, "result_id");
             get_statistics(sql);
             get_queryLabIDs(sql, pst, rs, conn);
 
@@ -3906,7 +3914,8 @@ public void toExcel(JTable table, File file){
                 }
             }
           
-            get_ids(sql, pst, rs, conn);
+            //get_ids(sql, pst, rs, conn);
+            this.ids = IdManagement.get_ids(sql, pst, rs, conn, "result_id");
             display_ids();
             //txtArea_genes.setText(sql);  // only for Testing
             my_log.logger.info("SQL:  " + sql);
@@ -4247,7 +4256,8 @@ public void toExcel(JTable table, File file){
                 }
             }
 
-            get_ids(sql, pst, rs, conn);
+            //get_ids(sql, pst, rs, conn);
+            this.ids = IdManagement.get_ids(sql, pst, rs, conn, "result_id");
             display_ids();
             //txtArea_genes.setText(sql); // test
             my_log.logger.info("SQL:  " + sql);
@@ -4420,7 +4430,8 @@ public void toExcel(JTable table, File file){
             String tmpSql = "SELECT a.result_id, lab_id FROM arr_result a, main_result m WHERE a.result_id=m.result_id AND lab_id = '" + lab_id + "'";
 
             //txtArea_sql.setText(tmpSql);  // TEST
-            get_ids(tmpSql, pst, rs, conn); // needed for get_statistics() to count patients affected
+            //get_ids(tmpSql, pst, rs, conn); // needed for get_statistics() to count patients affected
+            this.ids = IdManagement.get_ids(tmpSql, pst, rs, conn, "result_id");
             get_statistics(tmpSql);
             get_queryLabIDs(tmpSql, pst, rs, conn);
 
@@ -5352,7 +5363,8 @@ public void toExcel(JTable table, File file){
             String sql = "SELECT i.klon_id as Klon,i.result_id, chr_cnt as Chr, mitos_cnt as Mitosen, cp, iscn as ISCN, material, stim FROM zg_iscn i, main_result m Where i.result_id=m.result_id AND lab_id='" + lab_id + "'";
 
             //txtArea_sql.setText(sql);
-            get_ids(sql, pst, rs, conn); // needed for get_statistics() to count patients affected
+            //get_ids(sql, pst, rs, conn); // needed for get_statistics() to count patients affected
+            this.ids = IdManagement.get_ids(sql, pst, rs, conn, "result_id");
             get_statistics(sql);
             get_queryLabIDs(sql, pst, rs, conn);
             

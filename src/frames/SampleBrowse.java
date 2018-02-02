@@ -25,6 +25,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import myClass.CustomSorter;
 import myClass.DBconnect;
+import myClass.IdManagement;
 import myClass.Log;
 import net.proteanit.sql.DbUtils;
 
@@ -100,7 +101,8 @@ public class SampleBrowse extends javax.swing.JFrame {
                 table_sample.getColumnModel().getColumn(7).setMaxWidth(90);         // 80  
             }
             
-            get_ids(sql,pst,rs,conn);
+            //get_ids(sql,pst,rs,conn);
+            this.ids = IdManagement.get_ids(sql, pst, rs, conn,"lab_id");
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -173,7 +175,10 @@ public class SampleBrowse extends javax.swing.JFrame {
                     table_resultID.getColumnModel().getColumn(1).setMaxWidth(100);
                 }
                 
-                get_r_ids(sql,pst,rs,conn);
+                //get_r_ids(sql,pst,rs,conn);
+                //this.SB_resultIDs = IdManagement.get_r_ids(sql, pst, rs, conn);
+                this.SB_resultIDs = IdManagement.get_ids(sql, pst, rs, conn, "result_id");
+                
                 my_log.logger.info("SQL:  " + sql);
                 showRows(rs);
 
@@ -190,7 +195,7 @@ public class SampleBrowse extends javax.swing.JFrame {
         }
     }
      
-    private void get_r_ids(String sql, PreparedStatement pst, ResultSet rs, Connection conn) {
+    /*private void get_r_ids(String sql, PreparedStatement pst, ResultSet rs, Connection conn) {
         try {
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
@@ -257,7 +262,7 @@ public class SampleBrowse extends javax.swing.JFrame {
             } catch (Exception e) {
             }
         }
-    }
+    }*/
      
     private static boolean isRightClick(MouseEvent e) {
         return (e.getButton() == MouseEvent.BUTTON3
@@ -628,7 +633,8 @@ public class SampleBrowse extends javax.swing.JFrame {
                     table_sample.getColumnModel().getColumn(7).setMaxWidth(90);         // 80  
                 }
 
-                get_ids(sql, pst, rs, conn);
+                //get_ids(sql, pst, rs, conn);
+                this.ids = IdManagement.get_ids(sql, pst, rs, conn, "lab_id");
                 update_table_resultID();
 
             } catch (Exception e) {
@@ -676,7 +682,8 @@ public class SampleBrowse extends javax.swing.JFrame {
                     table_sample.getColumnModel().getColumn(7).setMaxWidth(90);         // 80  
                 }
 
-                get_ids(sql, pst, rs, conn);
+                //get_ids(sql, pst, rs, conn);
+                this.ids = IdManagement.get_ids(sql, pst, rs, conn, "lab_id");
                 update_table_resultID();
 
             } catch (Exception e) {
@@ -724,7 +731,8 @@ public class SampleBrowse extends javax.swing.JFrame {
                     table_sample.getColumnModel().getColumn(7).setMaxWidth(90);         // 80  
                 }
 
-                get_ids(sql, pst, rs, conn);
+                //get_ids(sql, pst, rs, conn);
+                this.ids = IdManagement.get_ids(sql, pst, rs, conn, "lab_id");
                 update_table_resultID();
 
             } catch (Exception e) {
@@ -775,7 +783,8 @@ public class SampleBrowse extends javax.swing.JFrame {
                     table_sample.getColumnModel().getColumn(7).setMaxWidth(90);         // 80  
                 }
                                        
-                get_ids(sql, pst, rs, conn);
+                //get_ids(sql, pst, rs, conn);
+                this.ids = IdManagement.get_ids(sql, pst, rs, conn, "lab_id");
                 update_table_resultID();
 
             } catch (Exception e) {
@@ -825,7 +834,8 @@ public class SampleBrowse extends javax.swing.JFrame {
                     table_sample.getColumnModel().getColumn(7).setMaxWidth(90);         // 80  
                 }
 
-                get_ids(sql, pst, rs, conn);
+                //get_ids(sql, pst, rs, conn);
+                this.ids = IdManagement.get_ids(sql, pst, rs, conn, "lab_id");
                 update_table_resultID();
 
                 } catch (Exception e) {
@@ -879,7 +889,8 @@ public class SampleBrowse extends javax.swing.JFrame {
                     table_sample.getColumnModel().getColumn(7).setMaxWidth(90);         // 80  
                 }
 
-                get_ids(sql, pst, rs, conn);
+                //get_ids(sql, pst, rs, conn);
+                this.ids = IdManagement.get_ids(sql, pst, rs, conn, "lab_id");
                 update_table_resultID();
 
             } catch (Exception e) {
@@ -930,7 +941,8 @@ public class SampleBrowse extends javax.swing.JFrame {
                     table_sample.getColumnModel().getColumn(7).setMaxWidth(90);         // 80  
                 }
             
-                get_ids(sql, pst, rs, conn);
+                //get_ids(sql, pst, rs, conn);
+                this.ids = IdManagement.get_ids(sql, pst, rs, conn, "lab_id");
                 update_table_resultID();
 
             } catch (Exception e) {
