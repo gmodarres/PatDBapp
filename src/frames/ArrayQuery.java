@@ -28,6 +28,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.ToolTipManager;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.text.DefaultHighlighter;
@@ -37,6 +38,7 @@ import myClass.DBconnect;
 import myClass.IdManagement;
 import myClass.Log;
 import myClass.OSDetector;
+import myClass.saveTable;
 import net.proteanit.sql.DbUtils;
 import org.ini4j.Ini;
 
@@ -107,30 +109,7 @@ public class ArrayQuery extends javax.swing.JFrame {
                     (e.getModifiers() & InputEvent.CTRL_MASK) != 0));
     }
     
-    private void saveOnRC(java.awt.event.ActionEvent evt) {
-        try {
-            //JOptionPane.showMessageDialog(null, "right click");
-            JTable OT = this.outTable;
-            String dp = this.defaultPath.toString();
-            //JOptionPane.showMessageDialog(null, "dp:  "+dp);
-
-            JFileChooser fileChooser = new JFileChooser(dp);
-            if (fileChooser.showSaveDialog(Info_top) == JFileChooser.APPROVE_OPTION) { // ? panel ... check
-                File out_file = fileChooser.getSelectedFile();
-
-                // save to file                   
-                toExcel(OT, out_file);
-            } else {
-                //JOptionPane.showMessageDialog(null, "cancel
-            }
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "SSomething went wrong saving your stuff ... " + e.getMessage());
-            my_log.logger.warning("ERROR:  Something went wrong saving your stuff ...  " + e);
-        }
-    }
-    
-    public void toExcel(JTable table, File file){
+    /*public void saveTable(JTable table, File file){
     //https://sites.google.com/site/teachmemrxymon/java/export-records-from-jtable-to-ms-excel
     
     try{
@@ -165,10 +144,10 @@ public class ArrayQuery extends javax.swing.JFrame {
     }catch(IOException e){ 
         System.out.println(e); 
     }catch(Exception e){
-        //JOptionPane.showMessageDialog(null, "toExcel() error");
+        //JOptionPane.showMessageDialog(null, "saveTable() error");
         //JOptionPane.showMessageDialog(null, e.getStackTrace());
     }
-}  
+} */
     
     private void highlight_gene(String gene, Integer no){
         try{
@@ -415,44 +394,7 @@ public class ArrayQuery extends javax.swing.JFrame {
             }
         }
     }
-    
-    /*private void get_ids(String sql, PreparedStatement pst, ResultSet rs, Connection conn) {
-        
-        try {
-            pst = conn.prepareStatement(sql);
-            rs = pst.executeQuery();
-            String all_ids= "";
-            String id_rem = "";
-            
-            while (rs.next()) {
-                //this.rs_sizeList.add(rs.getString("array_sub_id"));
-                String id = rs.getString("result_id");
-                if (!id.equals(id_rem)){
-                    id_rem = id;
-                    all_ids = all_ids +"'"+id+"',";
-                }else{
-                    //JOptionPane.showMessageDialog(null, "id already in list: " + id + "  "+ id_rem); // test
-                }
-                //Combobox_id.addItem(id);          // test
-                //txtArea_test.append("'"+id+"',"); // test
-            }
-            this.ids = all_ids;
-            this.AQ_resultIDs = all_ids;
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-            my_log.logger.warning(e.toString() + "\n\t\t\t\t\t\tERROR-SOURCE-SQL: "+sql);
-        } finally {
-            try {
-                //rs.close(); pst.close(); //conn.close();
-                if (rs != null) { rs.close();}
-                if (pst != null) { pst.close();}
-                //if (conn != null) { conn.close();}
-            } catch (Exception e) {
-            }
-        }
-    }*/
-       
+          
     // For Testing
     private void display_ids(){
         if (this.ids.length() >0){
@@ -1215,7 +1157,8 @@ public class ArrayQuery extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1_openModelActionPerformed
 
     private void popUpMenu_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popUpMenu_saveActionPerformed
-        saveOnRC(evt);
+        //saveOnRC(evt);
+        saveTable.saveOnRC(this.outTable, this.defaultPath, Info_top);
         //this.dispose();
     }//GEN-LAST:event_popUpMenu_saveActionPerformed
 
@@ -1790,10 +1733,16 @@ public class ArrayQuery extends javax.swing.JFrame {
         
         try {
             JFileChooser fileChooser = new JFileChooser(dp);
+            fileChooser.setFileFilter(new FileNameExtensionFilter(".txt","txt"));
             if (fileChooser.showSaveDialog(jPanel1) == JFileChooser.APPROVE_OPTION) {
-                File out_file = fileChooser.getSelectedFile();
+                File out_file = fileChooser.getSelectedFile();             
                 out_fileString = out_file.toString();
-                out_file.createNewFile(); 
+
+                if (!out_fileString.endsWith(".txt")){
+                    out_fileString = out_file.toString()+".txt";
+                }
+                
+                out_file.createNewFile();
             }
             //JOptionPane.showMessageDialog(null, out_fileString);  //TEST
 
@@ -1875,6 +1824,7 @@ public class ArrayQuery extends javax.swing.JFrame {
             ini = new Ini(new File(personalConfig));        //toggle
 
             JFileChooser fileChooser = new JFileChooser(dp);
+            fileChooser.setFileFilter(new FileNameExtensionFilter(".txt","txt"));
             if (fileChooser.showOpenDialog(jPanel1) == JFileChooser.APPROVE_OPTION) {
                 File in_file = fileChooser.getSelectedFile();
                 in_fileString = in_file.toString();

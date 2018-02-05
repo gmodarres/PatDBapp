@@ -194,76 +194,7 @@ public class SampleBrowse extends javax.swing.JFrame {
             }
         }
     }
-     
-    /*private void get_r_ids(String sql, PreparedStatement pst, ResultSet rs, Connection conn) {
-        try {
-            pst = conn.prepareStatement(sql);
-            rs = pst.executeQuery();
-            String all_r_ids = "";
-            String r_id_rem = "";
-            while (rs.next()) {
-                String r_id = rs.getString("result_id");
-
-                if (!r_id.equals(r_id_rem)) {
-                    r_id_rem = r_id;
-                    all_r_ids = all_r_ids + "'" + r_id + "',";
-                } else {
-                    //JOptionPane.showMessageDialog(null, "id already in list: " + id + "  "+ id_rem); // test
-                }
-                //txtArea_test.append("'"+r_id+"',");  // test
-            }
-            this.SB_resultIDs = all_r_ids;
-            //txtArea_test.setText(all_r_ids);
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        } finally {
-            try {
-                //rs.close(); pst.close(); //conn.close();
-                if (rs != null) { rs.close();}
-                if (pst != null) { pst.close();}
-                //if (conn != null) { conn.close();}
-            } catch (Exception e) {
-            }
-        }
-    }
-        
-        
-    private void get_ids(String sql, PreparedStatement pst, ResultSet rs, Connection conn) {        
-        try {
-            pst = conn.prepareStatement(sql);
-            rs = pst.executeQuery();
-            String all_ids= "";
-            String id_rem = "";
-            
-            while (rs.next()) {
-                //this.rs_sizeList.add(rs.getString("array_sub_id"));
-                String id = rs.getString("lab_id");
-                
-                if (!id.equals(id_rem)){
-                    id_rem = id;
-                    all_ids = all_ids +"'"+id+"',";
-                }else{
-                    //JOptionPane.showMessageDialog(null, "id already in list: " + id + "  "+ id_rem); // test
-                }
-                //Combobox_id.addItem(id);        // test
-                //txtArea_test.append("'"+id+"',");  // test
-            }
-            this.ids = all_ids;
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        } finally {
-            try {
-                //rs.close(); pst.close(); //conn.close();
-                if (rs != null) { rs.close();}
-                if (pst != null) { pst.close();}
-                //if (conn != null) { conn.close();}
-            } catch (Exception e) {
-            }
-        }
-    }*/
-     
+         
     private static boolean isRightClick(MouseEvent e) {
         return (e.getButton() == MouseEvent.BUTTON3
                 || (System.getProperty("os.name").contains("Mac OS X")

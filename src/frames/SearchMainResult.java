@@ -185,34 +185,7 @@ public class SearchMainResult extends javax.swing.JFrame {
             }
         }
     }
-    
-    /*private void get_ids(String sql, PreparedStatement pst, ResultSet rs, Connection conn) {        
-        try {
-            pst = conn.prepareStatement(sql);
-            rs = pst.executeQuery();
-            String all_ids= "";
-            
-            while (rs.next()) {
-                //this.rs_sizeList.add(rs.getString("array_sub_id"));
-                String id = rs.getString("result_id");
-                all_ids = all_ids +"'"+id+"',";
-                //Combobox_id.addItem(id);        // test
-                //txtArea_test.append("'"+id+"',");  // test
-            }
-            this.ids = all_ids;
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        } finally {
-            try {
-                rs.close();
-                pst.close();
-                //conn.close();
-            } catch (Exception e) {
-            }
-        }
-    }*/
-      
+          
     private void highlight_txt_array(String word){
         try{
             String text  = A_txtArea_intrpr.getText().toLowerCase();

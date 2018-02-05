@@ -25,10 +25,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.TableModel;
 import myClass.CustomSorter;
 import myClass.IdManagement;
 import myClass.Log;
+import myClass.saveTable;
 import net.proteanit.sql.DbUtils;
 import org.ini4j.Ini;
 
@@ -226,34 +228,7 @@ public class ReadyForSQL extends javax.swing.JFrame {
             }
         }
     }
-    
-    /*private void get_ids(String sql, PreparedStatement pst, ResultSet rs, Connection conn) {        
-        try {
-            pst = conn.prepareStatement(sql);
-            rs = pst.executeQuery();
-            String all_ids= "";
-            
-            while (rs.next()) {
-                //this.rs_sizeList.add(rs.getString("array_sub_id"));
-                String id = rs.getString("result_id");
-                all_ids = all_ids +"'"+id+"',";
-                //Combobox_id.addItem(id);        // test
-                //txtArea_test.append("'"+id+"',");  // test
-            }
-            this.ids = all_ids;
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        } finally {
-            try {
-                if (rs != null) { rs.close();}
-                if (pst != null) { pst.close();}
-                //if (conn != null) { conn.close();}
-            } catch (Exception e) {
-            }
-        }
-    }*/
-      
+         
     private void initial_table_statistics(){
         Connection conn = DBconnect.ConnecrDb();
         ResultSet rs = null;
@@ -366,47 +341,7 @@ public class ReadyForSQL extends javax.swing.JFrame {
                     (e.getModifiers() & InputEvent.BUTTON1_MASK) != 0 &&
                     (e.getModifiers() & InputEvent.CTRL_MASK) != 0));
     }
-   
-    public void toExcel(JTable table, File file) {
-        //https://sites.google.com/site/teachmemrxymon/java/export-records-from-jtable-to-ms-excel
-
-        try {
-            TableModel model = table.getModel();
-            FileWriter excel = new FileWriter(file);
-
-            for (int i = 0; i < model.getColumnCount(); i++) {
-                excel.write(model.getColumnName(i) + "\t");
-            }
-            excel.write("\n");
-
-            for (int i = 0; i < model.getRowCount(); i++) {
-                for (int j = 0; j < model.getColumnCount(); j++) {
-                    //excel.write(model.getValueAt(i,j).toString()+"\t");
-
-                    Object value = model.getValueAt(i, j);
-
-                    if (value == null || value.toString().isEmpty()) {
-                        //JOptionPane.showMessageDialog(null, "NULL "+value);
-                        //value = "";
-                        excel.write("\t");
-                    } else {
-                        excel.write(value + "\t");
-
-                    }
-                }
-                excel.write("\n");
-
-            }
-            excel.close();
-
-        } catch (IOException e) {
-            System.out.println(e);
-        } catch (Exception e) {
-            //JOptionPane.showMessageDialog(null, "toExcel() error");
-            //JOptionPane.showMessageDialog(null, e.getStackTrace());
-        }
-    }
-    
+      
     public void getIniData(){
         Ini ini;
         try {
@@ -419,30 +354,6 @@ public class ReadyForSQL extends javax.swing.JFrame {
             Logger.getLogger(SetConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    private void saveOnRC(java.awt.event.ActionEvent evt) {
-        try {
-            //JOptionPane.showMessageDialog(null, "right click");
-            JTable OT = this.outTable;
-            String dp = this.defaultPath.toString();
-            //JOptionPane.showMessageDialog(null, "dp:  " + dp);
-
-            JFileChooser fileChooser = new JFileChooser(dp);
-            if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
-                File out_file = fileChooser.getSelectedFile();
-
-                // save to file                   
-                toExcel(OT, out_file);
-            } else {
-                //JOptionPane.showMessageDialog(null, "cancel
-            }
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "SSomething went wrong saving your stuff ... " + e.getMessage());
-            my_log.logger.warning("ERROR:  Something went wrong saving your stuff ...  " + e);
-        }
-    }
-    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -814,7 +725,8 @@ public class ReadyForSQL extends javax.swing.JFrame {
     }//GEN-LAST:event_table_SQLresultMouseClicked
 
     private void popUpMenu_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popUpMenu_saveActionPerformed
-        saveOnRC(evt);      
+        //saveOnRC(evt);     
+        saveTable.saveOnRC(this.outTable, this.defaultPath, this);
     }//GEN-LAST:event_popUpMenu_saveActionPerformed
 
     private void popUpMenu_selectAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popUpMenu_selectAllActionPerformed
