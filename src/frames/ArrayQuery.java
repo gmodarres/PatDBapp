@@ -1736,16 +1736,14 @@ public class ArrayQuery extends javax.swing.JFrame {
             fileChooser.setFileFilter(new FileNameExtensionFilter(".txt","txt"));
             if (fileChooser.showSaveDialog(jPanel1) == JFileChooser.APPROVE_OPTION) {
                 File out_file = fileChooser.getSelectedFile();             
-                out_fileString = out_file.toString();
-
-                if (!out_fileString.endsWith(".txt")){
-                    out_fileString = out_file.toString()+".txt";
+                String filename = fileChooser.getSelectedFile().toString();
+                if (!filename.endsWith(".txt")){
+                    out_file = new File(out_file + ".txt");
                 }
-                
+                out_fileString = out_file.toString();
                 out_file.createNewFile();
             }
             //JOptionPane.showMessageDialog(null, out_fileString);  //TEST
-
             ini = new Ini(new File(out_fileString));
             my_log.logger.info("saving query:\t"+out_fileString);
             
@@ -1834,7 +1832,11 @@ public class ArrayQuery extends javax.swing.JFrame {
             my_log.logger.info("loading saved query:\t"+in_fileString);
             
             String method = ini.get("frame", "frame");
-            if (method.equals("ArrayQuery")) {
+            if (method ==null || method.isEmpty()) { 
+                JOptionPane.showMessageDialog(null, "You are trying to load a wrong frame format!");
+            }
+            
+            if (method.contains("ArrayQuery")) {
                 boolean btn1 = Boolean.parseBoolean(ini.get("btn", "btn1"));
                 rbtn_const1.setSelected(btn1);
                 Integer const1_combo = Integer.parseInt(ini.get("const_combo", "combo1"));

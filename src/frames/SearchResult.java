@@ -23,12 +23,14 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
 import myClass.DBconnect;
 import myClass.ColumnFitAdapter;
 import myClass.BoundsPopupMenuListener;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.activation.MimetypesFileTypeMap;
 import javax.swing.*;
 import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
@@ -5422,10 +5424,16 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
             }
 
             ini = new Ini(new File(in_fileString));
+            my_log.logger.info("loading saved query:\t"+in_fileString);
 
             String method = ini.get("frame", "frame");
-            if (method.equals("SearchResult")) {
+            //JOptionPane.showMessageDialog(null, "String method: "+ method+".");  // TEST
+            if (method ==null || method.isEmpty()) { 
+                JOptionPane.showMessageDialog(null, "You are trying to load a wrong frame format!");
+            }
 
+            if (method.contains("SearchResult")){
+            //if (method.equals("SearchResult")) {
                 // info_top
                 boolean btn_onlyPat = Boolean.parseBoolean(ini.get("btn", "btn1"));
                 rbtn_onlyPat.setSelected(btn_onlyPat);
@@ -5632,9 +5640,11 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
 
             } else {
                 JOptionPane.showMessageDialog(null, "You are trying to load a wrong frame format!");
+                my_log.logger.warning("ERROR: trying to load wrong frame format!");
             }
         } catch (IOException ex) {
             Logger.getLogger(SetConnection.class.getName()).log(Level.SEVERE, null, ex);
+            my_log.logger.warning("ERROR: "+ex);
         }
     }//GEN-LAST:event_btn_loadQueryActionPerformed
 
@@ -5647,17 +5657,17 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
             JFileChooser fileChooser = new JFileChooser(dp);
             fileChooser.setFileFilter(new FileNameExtensionFilter(".txt","txt"));
             if (fileChooser.showSaveDialog(jPanel1) == JFileChooser.APPROVE_OPTION) {
-                File out_file = fileChooser.getSelectedFile();             
-                out_fileString = out_file.toString();
-
-                if (!out_fileString.endsWith(".txt")){
-                    out_fileString = out_file.toString()+".txt";
+                File out_file = fileChooser.getSelectedFile();  
+                String filename = fileChooser.getSelectedFile().toString();
+                if (!filename.endsWith(".txt")){
+                    out_file = new File(out_file + ".txt");
                 }
-                
+                out_fileString = out_file.toString();
                 out_file.createNewFile();
             }
             //JOptionPane.showMessageDialog(null, out_fileString);  //TEST
             ini = new Ini(new File(out_fileString));
+            my_log.logger.info("saving query:\t"+out_fileString);
 
             // get info from which frame te data comes from
             String method = this.getAccessibleContext().getAccessibleName();
@@ -5873,6 +5883,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
             ini.store();
         } catch (IOException ex) {
             Logger.getLogger(SetConnection.class.getName()).log(Level.SEVERE, null, ex);
+            my_log.logger.warning("ERROR: "+ex);
         }
     }//GEN-LAST:event_btn_saveQueryActionPerformed
 

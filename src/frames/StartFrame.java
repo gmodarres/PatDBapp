@@ -50,8 +50,8 @@ public class StartFrame extends javax.swing.JFrame {
             btn_admin.setFont(new java.awt.Font("Tahoma", 1, 13));
             btn_admin.setForeground(new java.awt.Color(0, 0, 0));
         }
-        UIManager.put("OptionPane.noButtonText", "Nöööö, doch nicht");
-        UIManager.put("OptionPane.yesButtonText", "Ja, geht scho!");
+        UIManager.put("OptionPane.noButtonText", "Wait! I forgot something.");
+        UIManager.put("OptionPane.yesButtonText", "Yes, get me out of here!");
         //setLocationRelativeTo(null);
 
         this.addWindowListener(new java.awt.event.WindowAdapter() {

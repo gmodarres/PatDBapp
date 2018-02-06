@@ -21,6 +21,8 @@ import javax.swing.table.TableModel;
  */
 public class saveTable {
     
+    static Log my_log;
+    
     public static void toExcel(JTable table, File file) {
         //https://sites.google.com/site/teachmemrxymon/java/export-records-from-jtable-to-ms-excel
 
@@ -84,7 +86,7 @@ public class saveTable {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "SSomething went wrong saving your stuff ... " + e.getMessage());
-            //my_log.logger.warning("ERROR:  Something went wrong saving your stuff ...  " + e);
+            my_log.logger.warning("ERROR:  Something went wrong saving your stuff ...  " + e);
         }
     
     
