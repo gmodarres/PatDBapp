@@ -10,9 +10,13 @@
  */
 package frames;
 
+import java.awt.Window;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowFocusListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Observer;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import myClass.DBconnect;
@@ -25,6 +29,7 @@ public class ResultWindow extends javax.swing.JFrame {
     
     //static String getMovingResultID = null;
     static String sourceOpener = null;
+    public static javax.swing.JFrame ResultWindowRef;
 
     /**
      * Creates new form freeTable
@@ -32,33 +37,59 @@ public class ResultWindow extends javax.swing.JFrame {
     public ResultWindow() {
         initComponents();
         getIntrpr();
-    
+        ResultWindowRef = this;
+        
+        ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_small.png"));
+        this.setIconImage(img.getImage());
+        
+        
+/*        this.addWindowFocusListener(new WindowFocusListener() {
+            @Override
+            public void windowGainedFocus(WindowEvent windowevent) {
+                //window = "getWIndow";  //TEST
+                windowevent.getWindow().getAccessibleContext().getAccessibleName();
+                windowevent.getWindow().requestFocus();
+                windowevent.getWindow().getAccessibleContext().getAccessibleComponent().equals(txtArea_result);
+                //JOptionPane.showMessageDialog(null, "win: "+ window);
+
+            }
+
+            @Override
+            public void windowLostFocus(WindowEvent e) {
+                //e.getWindow().toFront();
+                //e.getWindow().requestFocus();
+                e.getWindow().getAccessibleContext().getAccessibleName();
+                //JOptionPane.showMessageDialog(null, "new: "+ e.getWindow().getAccessibleContext().getAccessibleName());
+                
+            }
+        });*/
+         
         this.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
                 SearchResult.IntrprWindowIsOpen = false;
                 //JOptionPane.showMessageDialog(null, "closing, boolean is " + IntrprWindowIsOpen);
-            }
+            }         
         }); 
-  
+         
     }
     
     public void getIntrpr(){
         this.setTitle(SearchResult.source);
         sourceOpener = SearchResult.source;
-        ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_small.png"));
-        this.setIconImage(img.getImage());
+        //this.setName(sourceOpener);
         
         String resultMoved = SearchResult.resultMoving;
         txtArea_result.setText(resultMoved);
     }
 
     public static void updateIntrpr(String resultID){
+        
         Connection conn = DBconnect.ConnecrDb();
         ResultSet rs = null;
         PreparedStatement pst = null;
         try{
-        String sql = "select * from main_result where result_id="+ resultID;
+            String sql = "select * from main_result where result_id="+ resultID;
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
             
@@ -85,9 +116,9 @@ public class ResultWindow extends javax.swing.JFrame {
                     break;
                 default:
                     break;
-            }
+            }            
             txtArea_result.setText(text);
-  
+            
         }catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         } finally {
@@ -99,6 +130,27 @@ public class ResultWindow extends javax.swing.JFrame {
             }
         }
     }  
+    
+    public static void close_RW(){
+        ResultWindowRef.setVisible(false);
+    } 
+  
+    /*Window getSelectedWindow(Window[] windows) {
+    Window result = null;
+    for (int i = 0; i < windows.length; i++) {
+        Window window = windows[i];
+        if (window.isActive()) {
+            result = window;
+        } else {
+            Window[] ownedWindows = window.getOwnedWindows();
+            if (ownedWindows != null) {
+                result = getSelectedWindow(ownedWindows);
+            }
+        }
+    }
+    return result;
+    } */
+      
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -114,6 +166,7 @@ public class ResultWindow extends javax.swing.JFrame {
         rbtn_alwaysOnTop = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Interpretation");
 
         txtArea_result.setColumns(20);
         txtArea_result.setLineWrap(true);
@@ -132,13 +185,13 @@ public class ResultWindow extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 874, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(rbtn_alwaysOnTop)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 802, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -147,7 +200,7 @@ public class ResultWindow extends javax.swing.JFrame {
                 .addGap(3, 3, 3)
                 .addComponent(rbtn_alwaysOnTop)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

@@ -973,12 +973,12 @@ public class ArrayQuery extends javax.swing.JFrame {
                             .addComponent(lbl_or3)
                             .addComponent(rbtn_const1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)))
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(3, 3, 3))
         );
 
         btn_clear.setBackground(new java.awt.Color(153, 153, 153));
+        btn_clear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/Actions-edit-clear-list-icon.png"))); // NOI18N
         btn_clear.setText("clear");
         btn_clear.setToolTipText("clear all fields and settings");
         btn_clear.addActionListener(new java.awt.event.ActionListener() {
