@@ -94,6 +94,9 @@ public class SearchResult extends javax.swing.JFrame {
         ComboBox_projPat.addPopupMenuListener( listener );
         ComboBox_projPat.setPrototypeDisplayValue("ItemWWW");
         
+        ComboBox_stdyPat.addPopupMenuListener( listener );
+        ComboBox_stdyPat.setPrototypeDisplayValue("ItemWWW");
+
         ToolTipManager.sharedInstance().setEnabled(false);
         
         my_log.logger.info("open SearchResult()");
@@ -854,7 +857,7 @@ public class SearchResult extends javax.swing.JFrame {
         //String projPat = (String) ComboBox_projPat.getSelectedItem();
         if(ComboBox_stdyPat.getSelectedItem().toString().equals("ALL BFM 2009")){
             stdy_id = "1";
-        }else if(ComboBox_stdyPat.getSelectedItem().toString().equals("TEST")){
+        }else if(ComboBox_stdyPat.getSelectedItem().toString().equals("Register paedMyLeu BMF-A 2014")){
             stdy_id = "2";
         }else{ // no study assigned
             stdy_id = "0";
@@ -1485,11 +1488,11 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(3, 3, 3)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(A_txt_nom, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
                     .addComponent(A_txt_nom_1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(3, 3, 3)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(A_txt_resID, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
                     .addComponent(A_txt_resID_1))
@@ -1707,7 +1710,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
                 .addGap(15, 15, 15)
                 .addGroup(tab_arrayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1299, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1323, Short.MAX_VALUE))
                 .addGap(24, 24, 24)
                 .addGroup(tab_arrayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2088,7 +2091,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(tab_fishLayout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 181, Short.MAX_VALUE))))
+                        .addGap(0, 205, Short.MAX_VALUE))))
         );
         tab_fishLayout.setVerticalGroup(
             tab_fishLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2442,7 +2445,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
                 .addGap(15, 15, 15)
                 .addGroup(tab_ZGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(tab_ZGLayout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1083, Short.MAX_VALUE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1107, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(25, 25, 25))
@@ -2668,7 +2671,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
         jPanel19.setBackground(new java.awt.Color(102, 153, 255));
         jPanel19.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        ComboBox_projPat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MS_ALL_Array_Diagnostics", "TEST" }));
+        ComboBox_projPat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MS_ALL_Array_Diagnostics", "no project assigned" }));
 
         rbtn_onlyPat.setText("only patients from project ...");
         rbtn_onlyPat.setToolTipText("select to get results from patients in a certain study (select from below)");
@@ -2676,7 +2679,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
         rbtn_onlyPat1.setText("only patients from study ...");
         rbtn_onlyPat1.setToolTipText("select to get results from patients in a certain project (select from below)");
 
-        ComboBox_stdyPat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALL BFM 2009", "TEST" }));
+        ComboBox_stdyPat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALL BFM 2009", "Register paedMyLeu BMF-A 2014", "no study assigned" }));
 
         rbtn_SB.setText("use SampleBrowse ");
         rbtn_SB.setToolTipText("select to get IDs from window SampleBrowse");
@@ -2697,26 +2700,29 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
             .addGroup(jPanel19Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rbtn_PB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel19Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel19Layout.createSequentialGroup()
                         .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(rbtn_onlyPat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(rbtn_onlyPat1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ComboBox_projPat, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ComboBox_stdyPat, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(rbtn_SB, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(rbtn_ST, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(rbtn_ArrQuery, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(rbtn_ArrQuery, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rbtn_ST, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rbtn_SB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rbtn_PB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rbtn_onlyPat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rbtn_onlyPat1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 1, Short.MAX_VALUE))
+                    .addGroup(jPanel19Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ComboBox_projPat, 0, 0, Short.MAX_VALUE)
+                            .addComponent(ComboBox_stdyPat, 0, 0, Short.MAX_VALUE))))
                 .addGap(10, 10, 10))
         );
 
-        jPanel19Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {rbtn_onlyPat, rbtn_onlyPat1});
+        jPanel19Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {rbtn_ArrQuery, rbtn_PB, rbtn_SB, rbtn_ST});
 
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel19Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(10, Short.MAX_VALUE)
                 .addComponent(rbtn_onlyPat)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ComboBox_projPat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2724,7 +2730,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
                 .addComponent(rbtn_onlyPat1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ComboBox_stdyPat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 4, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rbtn_PB)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(rbtn_SB)
@@ -2777,7 +2783,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
                         .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel19, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel19, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(10, 10, 10))
         );
@@ -2880,7 +2886,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_Emergency)
                     .addComponent(lbl_rowsReturned))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(7, 7, 7))
         );
 
         getAccessibleContext().setAccessibleName("SearchResult");
@@ -3644,7 +3650,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
                         ZI_txt_mat_1.setBackground(java.awt.Color.yellow);
                         ZI_txt_stim_1.setBackground(java.awt.Color.yellow);
                         
-                        if (ZI_txt_resId_1 != null && !ZI_txt_resId_1.getText().isEmpty()) {    sql = sql + " AND result_id NOT IN (" + resID_1 + ")"; }
+                        if (ZI_txt_resId_1 != null && !ZI_txt_resId_1.getText().isEmpty()) {    sql = sql + " AND i.result_id NOT IN (" + resID_1 + ")"; }
                         if (ZI_txt_chr_1 != null && !ZI_txt_chr_1.getText().isEmpty()) { sql = sql + " AND chr_cnt " + chr_1; }
                         if (ZI_txt_mitos_1 != null && !ZI_txt_mitos_1.getText().isEmpty()) { sql = sql + " AND mitos_cnt " + mitos_1; }
                         if (ZI_txt_cp_1 != null && !ZI_txt_cp_1.getText().isEmpty()) { sql = sql + " AND cp LIKE '%" + cp_1 + "%'"; }
@@ -3674,7 +3680,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
                         ZI_txt_mat_1.setBackground(java.awt.Color.white);
                         ZI_txt_stim_1.setBackground(java.awt.Color.white);
 
-                        if (ZI_txt_resId_1 != null && !ZI_txt_resId_1.getText().isEmpty()) { sql = sql + " AND result_id " + resID_1; }
+                        if (ZI_txt_resId_1 != null && !ZI_txt_resId_1.getText().isEmpty()) { sql = sql + " AND i.result_id IN (" + resID_1 + ")";}
                         if (ZI_txt_chr_1 != null && !ZI_txt_chr_1.getText().isEmpty()) { sql = sql + " AND chr_cnt " + chr_1; }
                         if (ZI_txt_mitos_1 != null && !ZI_txt_mitos_1.getText().isEmpty()) { sql = sql + " AND mitos_cnt " + mitos_1; }
                         if (ZI_txt_cp_1 != null && !ZI_txt_cp_1.getText().isEmpty()) { sql = sql + " AND cp LIKE '%" + cp_1 + "%'"; }
@@ -3717,7 +3723,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
                         ZI_txt_mat_1.setBackground(java.awt.Color.yellow);
                         ZI_txt_stim_1.setBackground(java.awt.Color.yellow);
 
-                        if (ZI_txt_resId_1 != null && !ZI_txt_resId_1.getText().isEmpty()) {    sql = sql + " AND result_id NOT IN (" + resID_1 + ")"; }
+                        if (ZI_txt_resId_1 != null && !ZI_txt_resId_1.getText().isEmpty()) {    sql = sql + " AND i.result_id NOT IN (" + resID_1 + ")"; }
                         if (ZI_txt_chr_1 != null && !ZI_txt_chr_1.getText().isEmpty()) { sql = sql + " AND chr_cnt " + chr_1; }
                         if (ZI_txt_mitos_1 != null && !ZI_txt_mitos_1.getText().isEmpty()) { sql = sql + " AND mitos_cnt " + mitos_1; }
                         if (ZI_txt_cp_1 != null && !ZI_txt_cp_1.getText().isEmpty()) { sql = sql + " AND cp LIKE '%" + cp_1 + "%'"; }
@@ -3748,7 +3754,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
                         ZI_txt_mat_1.setBackground(java.awt.Color.white);
                         ZI_txt_stim_1.setBackground(java.awt.Color.white);
 
-                        if (ZI_txt_resId_1 != null && !ZI_txt_resId_1.getText().isEmpty()) { sql = sql + " AND result_id " + resID_1; }
+                        if (ZI_txt_resId_1 != null && !ZI_txt_resId_1.getText().isEmpty()) { sql = sql + " AND i.result_id IN (" + resID_1 + ")"; }
                         if (ZI_txt_chr_1 != null && !ZI_txt_chr_1.getText().isEmpty()) { sql = sql + " AND chr_cnt " + chr_1; }
                         if (ZI_txt_mitos_1 != null && !ZI_txt_mitos_1.getText().isEmpty()) { sql = sql + " AND mitos_cnt " + mitos_1; }
                         if (ZI_txt_cp_1 != null && !ZI_txt_cp_1.getText().isEmpty()) { sql = sql + " AND cp LIKE '%" + cp_1 + "%'"; }

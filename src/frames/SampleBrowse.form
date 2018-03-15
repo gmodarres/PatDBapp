@@ -243,7 +243,11 @@
                       </Group>
                       <Component id="txt_refDiag" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="448" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="rbtn_study" pref="179" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="ComboBox_stdyPat" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                   <Component id="btn_Search" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               </Group>
@@ -260,6 +264,8 @@
                       <Component id="txt_date2" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="rbtn_corr" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btn_Search" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="rbtn_study" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="ComboBox_stdyPat" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -434,6 +440,37 @@
               <StringArray count="2">
                 <StringItem index="0" value="N"/>
                 <StringItem index="1" value="Y"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JRadioButton" name="rbtn_study">
+          <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="buttonGroup1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="sample taken for study"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+                <BevelBorder/>
+              </Border>
+            </Property>
+            <Property name="borderPainted" type="boolean" value="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtn_studyActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="ComboBox_stdyPat">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="3">
+                <StringItem index="0" value="ALL BFM 2009"/>
+                <StringItem index="1" value="Register paedMyLeu BMF-A 2014"/>
+                <StringItem index="2" value="no study assigned"/>
               </StringArray>
             </Property>
           </Properties>

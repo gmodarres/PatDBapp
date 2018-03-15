@@ -784,9 +784,9 @@ public class PatientBrowse extends javax.swing.JFrame {
                     table_patient.getColumnModel().getColumn(8).setPreferredWidth(60); // MDown
                     table_patient.getColumnModel().getColumn(8).setMaxWidth(60);
                     table_patient.getColumnModel().getColumn(10).setPreferredWidth(70); // stdy_ID
-                    table_patient.getColumnModel().getColumn(10).setMaxWidth(100);
+                    table_patient.getColumnModel().getColumn(10).setMaxWidth(120);
                     table_patient.getColumnModel().getColumn(11).setPreferredWidth(80); // stdy_group
-                    table_patient.getColumnModel().getColumn(11).setMaxWidth(100);   
+                    table_patient.getColumnModel().getColumn(11).setMaxWidth(120);   
                     table_patient.getColumnModel().getColumn(12).setPreferredWidth(60); // monitoring
                     table_patient.getColumnModel().getColumn(12).setMaxWidth(100);                   
                 }

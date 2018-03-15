@@ -25,6 +25,8 @@ private ImageIcon format = null;
      */
     public ViewKaryoWG() {
         initComponents();
+        ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_small.png"));
+        this.setIconImage(img.getImage());
         this.setTitle(SearchMainResult.click_lID);
         get_image();
     }

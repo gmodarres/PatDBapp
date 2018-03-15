@@ -169,7 +169,7 @@
                   <Component id="btn_Emergency" min="-2" max="-2" attributes="0"/>
                   <Component id="lbl_rowsReturned" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -214,7 +214,7 @@
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jPanel6" max="32767" attributes="0"/>
-                          <Component id="jScrollPane1" pref="1299" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" pref="1323" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -501,12 +501,12 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           <Component id="jPanel13" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="A_txt_nom" pref="298" max="32767" attributes="0"/>
                               <Component id="A_txt_nom_1" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="A_txt_resID" pref="52" max="32767" attributes="0"/>
                               <Component id="A_txt_resID_1" max="32767" attributes="0"/>
@@ -997,7 +997,7 @@
                           <Component id="jPanel4" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="jScrollPane2" min="-2" pref="1323" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="181" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="205" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -1610,7 +1610,7 @@
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="jScrollPane3" pref="1083" max="32767" attributes="0"/>
+                              <Component id="jScrollPane3" pref="1107" max="32767" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jScrollPane4" min="-2" pref="378" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
@@ -2239,7 +2239,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jScrollPane10" pref="0" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="jPanel19" alignment="1" max="32767" attributes="0"/>
+                      <Component id="jPanel19" alignment="1" max="-2" attributes="0"/>
                       <Component id="jPanel17" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
@@ -2613,19 +2613,24 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="rbtn_PB" max="32767" attributes="0"/>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="rbtn_onlyPat" linkSize="1" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="rbtn_onlyPat1" linkSize="1" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="ComboBox_projPat" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="ComboBox_stdyPat" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="rbtn_ArrQuery" linkSize="4" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="rbtn_ST" linkSize="4" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="rbtn_SB" linkSize="4" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="rbtn_PB" linkSize="4" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="rbtn_onlyPat" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="rbtn_onlyPat1" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="1" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="24" pref="24" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="ComboBox_projPat" pref="0" max="32767" attributes="0"/>
+                                  <Component id="ComboBox_stdyPat" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="rbtn_SB" alignment="1" max="32767" attributes="0"/>
-                          <Component id="rbtn_ST" alignment="0" max="32767" attributes="0"/>
-                          <Component id="rbtn_ArrQuery" alignment="1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   </Group>
@@ -2633,16 +2638,16 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace pref="10" max="32767" attributes="0"/>
                       <Component id="rbtn_onlyPat" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="ComboBox_projPat" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="rbtn_onlyPat1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="ComboBox_stdyPat" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="4" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="rbtn_PB" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="rbtn_SB" min="-2" max="-2" attributes="0"/>
@@ -2661,7 +2666,7 @@
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="2">
                     <StringItem index="0" value="MS_ALL_Array_Diagnostics"/>
-                    <StringItem index="1" value="TEST"/>
+                    <StringItem index="1" value="no project assigned"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -2684,9 +2689,10 @@
             <Component class="javax.swing.JComboBox" name="ComboBox_stdyPat">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="2">
+                  <StringArray count="3">
                     <StringItem index="0" value="ALL BFM 2009"/>
-                    <StringItem index="1" value="TEST"/>
+                    <StringItem index="1" value="Register paedMyLeu BMF-A 2014"/>
+                    <StringItem index="2" value="no study assigned"/>
                   </StringArray>
                 </Property>
               </Properties>

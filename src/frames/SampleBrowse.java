@@ -68,8 +68,7 @@ public class SampleBrowse extends javax.swing.JFrame {
         }
     }
     
-    private void initial_table_sample(){
-    
+    private void initial_table_sample(){    
         Connection conn = DBconnect.ConnecrDb();
         ResultSet rs = null;
         PreparedStatement pst = null;
@@ -116,8 +115,7 @@ public class SampleBrowse extends javax.swing.JFrame {
         }
     }
     
-     private void initial_table_resultID(){
-    
+     private void initial_table_resultID(){    
         Connection conn = DBconnect.ConnecrDb();
         ResultSet rs = null;
         PreparedStatement pst = null;
@@ -235,6 +233,8 @@ public class SampleBrowse extends javax.swing.JFrame {
         rbtn_NOT = new javax.swing.JRadioButton();
         rbtn_MDown = new javax.swing.JRadioButton();
         CB_MDown = new javax.swing.JComboBox<>();
+        rbtn_study = new javax.swing.JRadioButton();
+        ComboBox_stdyPat = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         table_resultID = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -357,6 +357,18 @@ public class SampleBrowse extends javax.swing.JFrame {
 
         CB_MDown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N", "Y" }));
 
+        buttonGroup1.add(rbtn_study);
+        rbtn_study.setText("sample taken for study");
+        rbtn_study.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        rbtn_study.setBorderPainted(true);
+        rbtn_study.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtn_studyActionPerformed(evt);
+            }
+        });
+
+        ComboBox_stdyPat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALL BFM 2009", "Register paedMyLeu BMF-A 2014", "no study assigned" }));
+
         javax.swing.GroupLayout Info_top4Layout = new javax.swing.GroupLayout(Info_top4);
         Info_top4.setLayout(Info_top4Layout);
         Info_top4Layout.setHorizontalGroup(
@@ -390,7 +402,11 @@ public class SampleBrowse extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txt_date2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txt_refDiag))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 448, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rbtn_study, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ComboBox_stdyPat, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(40, 40, 40)
                 .addComponent(btn_Search)
                 .addGap(21, 21, 21))
         );
@@ -404,7 +420,9 @@ public class SampleBrowse extends javax.swing.JFrame {
                     .addComponent(txt_date1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_date2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rbtn_corr)
-                    .addComponent(btn_Search))
+                    .addComponent(btn_Search)
+                    .addComponent(rbtn_study)
+                    .addComponent(ComboBox_stdyPat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(4, 4, 4)
                 .addGroup(Info_top4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rbtn_patID)
@@ -887,7 +905,67 @@ public class SampleBrowse extends javax.swing.JFrame {
                 } catch (Exception e) {
                 }
             }
+        }else if (rbtn_study.isSelected()) {
+            Connection conn = DBconnect.ConnecrDb();
+            ResultSet rs = null;
+            PreparedStatement pst = null;
+            String stdy_id = "";
+            //String projPat = (String) ComboBox_projPat.getSelectedItem();
+            if (ComboBox_stdyPat.getSelectedItem().toString().equals("ALL BFM 2009")) {
+                stdy_id = "1";
+            } else if (ComboBox_stdyPat.getSelectedItem().toString().equals("Register paedMyLeu BMF-A 2014")) {
+                stdy_id = "2";
+            } else { // no study assigned
+                stdy_id = "0";
+            }
+            
+            String sql = "SELECT s.pat_id, s.fm_sample_no as 'FM sample', s.lab_id, s.corr_lab_id, s.comm as comment, s.material, s.punct_date, s.rec_date, s.ref_diag FROM sample s, patient p"
+                    + " where s.pat_id=p.pat_id"
+                    + " and sample_forstudy = '" + stdy_id + "'";
+            my_log.logger.info("SQL:  " + sql);
+            
+            try {
+                pst = conn.prepareStatement(sql);
+                rs = pst.executeQuery();
+
+                table_sample.setModel(DbUtils.resultSetToTableModel(rs));
+                CustomSorter.table_customRowSort(table_sample);
+                if (table_sample.getColumnModel().getColumnCount() > 0) {
+                    table_sample.getColumnModel().getColumn(0).setPreferredWidth(60);
+                    table_sample.getColumnModel().getColumn(0).setMaxWidth(60);
+                    table_sample.getColumnModel().getColumn(1).setPreferredWidth(80);
+                    table_sample.getColumnModel().getColumn(1).setMaxWidth(100);
+                    table_sample.getColumnModel().getColumn(2).setPreferredWidth(90);   // 80
+                    table_sample.getColumnModel().getColumn(2).setMaxWidth(100);        //100
+                    table_sample.getColumnModel().getColumn(3).setPreferredWidth(90);   // 80
+                    table_sample.getColumnModel().getColumn(3).setMaxWidth(100);
+                    table_sample.getColumnModel().getColumn(4).setPreferredWidth(120);
+                    table_sample.getColumnModel().getColumn(4).setMaxWidth(300);
+                    table_sample.getColumnModel().getColumn(5).setPreferredWidth(90);
+                    table_sample.getColumnModel().getColumn(5).setMaxWidth(120);
+                    table_sample.getColumnModel().getColumn(6).setPreferredWidth(90);   // 80
+                    table_sample.getColumnModel().getColumn(6).setMaxWidth(90);         // 80
+                    table_sample.getColumnModel().getColumn(7).setPreferredWidth(90);   // 80
+                    table_sample.getColumnModel().getColumn(7).setMaxWidth(90);         // 80  
+                }
+            
+                //get_ids(sql, pst, rs, conn);
+                this.ids = IdManagement.get_ids(sql, pst, rs, conn, "lab_id");
+                update_table_resultID();
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+                my_log.logger.warning("ERROR: " + e);
+            } finally {
+                try {
+                    if (rs != null) { rs.close();}
+                    if (pst != null) { pst.close();}
+                    if (conn != null) { conn.close();}
+                } catch (Exception e) {
+                }
+            }
         }
+
     }//GEN-LAST:event_btn_SearchActionPerformed
 
     private void table_resultIDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_resultIDMouseClicked
@@ -926,6 +1004,10 @@ public class SampleBrowse extends javax.swing.JFrame {
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents( 
                 new StringSelection(IDs), null);
     }//GEN-LAST:event_cpLabIdsActionPerformed
+
+    private void rbtn_studyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_studyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbtn_studyActionPerformed
 
     /**
      * @param args the command line arguments
@@ -967,6 +1049,7 @@ public class SampleBrowse extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CB_MDown;
+    private javax.swing.JComboBox<String> ComboBox_stdyPat;
     private javax.swing.JPanel Info_top4;
     private javax.swing.JButton bnt_test;
     private javax.swing.JButton btn_Search;
@@ -994,6 +1077,7 @@ public class SampleBrowse extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbtn_male;
     private javax.swing.JRadioButton rbtn_patID;
     private javax.swing.JRadioButton rbtn_refDiag;
+    private javax.swing.JRadioButton rbtn_study;
     private javax.swing.JTable table_resultID;
     private javax.swing.JTable table_sample;
     private javax.swing.JTextArea txtArea_test;

@@ -282,7 +282,11 @@ public class StartFrame extends javax.swing.JFrame {
         //TODO
         //AdminTools s = new AdminTools();
         //s.setVisible(true);
-        JOptionPane.showMessageDialog(null, "What? ... Nope!");
+        if (DBconnect.USER.equals("root") || DBconnect.USER.equals("ccri_pat")){
+            JOptionPane.showMessageDialog(null, "Not implemented yet.");
+        }else{
+            JOptionPane.showMessageDialog(null, "What? ... Nope!");
+        }
     }//GEN-LAST:event_btn_adminActionPerformed
 
     private void btn_sqlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sqlActionPerformed
