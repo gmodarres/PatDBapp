@@ -15,7 +15,7 @@ import static frames.PatientBrowse.PB_resultIDs;
 import static frames.ResultWindow.*;
 import static frames.SetConnection.personalConfig;
 import static frames.SampleBrowse.SB_resultIDs;
-import static frames.SubtypeBrowse.ST_resultIDs;
+import static frames.ClassificationBrowse.ST_resultIDs;
 import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.event.InputEvent;
@@ -752,7 +752,7 @@ public class SearchResult extends javax.swing.JFrame {
         }
     }
     
-    private void deliver_ST_ids(String caller, String sql) {    // ids from SubtypeBrowse
+    private void deliver_ST_ids(String caller, String sql) {    // ids from ClassificationBrowse
         // to extend sql in Array search
         try {
             String ids = ST_resultIDs;
@@ -775,7 +775,7 @@ public class SearchResult extends javax.swing.JFrame {
         }
     }
     
-    private void deliver_PB_ids(String caller, String sql) {    // ids from SubtypeBrowse
+    private void deliver_PB_ids(String caller, String sql) {    // ids from ClassificationBrowse
         // to extend sql in Array search
         try {
             String ids = PB_resultIDs;
@@ -2684,7 +2684,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
         rbtn_SB.setText("use SampleBrowse ");
         rbtn_SB.setToolTipText("select to get IDs from window SampleBrowse");
 
-        rbtn_ST.setText("use SubtypeBrowse");
+        rbtn_ST.setText("use ClassificationBrowse");
         rbtn_ST.setToolTipText("get IDs from window SubtypeBrowse");
 
         rbtn_ArrQuery.setText("use ArrayGeneQuery");

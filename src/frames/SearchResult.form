@@ -2708,7 +2708,7 @@
             </Component>
             <Component class="javax.swing.JRadioButton" name="rbtn_ST">
               <Properties>
-                <Property name="text" type="java.lang.String" value="use SubtypeBrowse"/>
+                <Property name="text" type="java.lang.String" value="use ClassificationBrowse"/>
                 <Property name="toolTipText" type="java.lang.String" value="get IDs from window SubtypeBrowse"/>
               </Properties>
             </Component>

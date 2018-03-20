@@ -116,15 +116,15 @@
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="btn_browse_sample" max="32767" attributes="0"/>
                           <Component id="btn_browse_result" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btn_browse_subtypes" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btn_browse_classification" linkSize="2" alignment="0" max="32767" attributes="0"/>
                           <Component id="btn_query_results" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="btn_sql" pref="143" max="32767" attributes="0"/>
                           <Component id="btn_admin" max="32767" attributes="0"/>
                           <Component id="btn_browse_patient" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btn_test" max="32767" attributes="0"/>
+                          <Component id="btn_test" linkSize="2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btn_sql" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                   </Group>
@@ -145,7 +145,7 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btn_browse_subtypes" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btn_browse_classification" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btn_test" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -206,12 +206,12 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_query_resultsActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btn_browse_subtypes">
+            <Component class="javax.swing.JButton" name="btn_browse_classification">
               <Properties>
-                <Property name="text" type="java.lang.String" value="browse subtypes"/>
+                <Property name="text" type="java.lang.String" value="browse classification"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_browse_subtypesActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_browse_classificationActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btn_sql">
