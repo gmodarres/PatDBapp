@@ -42,6 +42,14 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="popUpMenu_intrprWinActionPerformed"/>
           </Events>
         </MenuItem>
+        <MenuItem class="javax.swing.JMenuItem" name="popUpMenu_cpResultIds">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="copy result_ids ..."/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="popUpMenu_cpResultIdsActionPerformed"/>
+          </Events>
+        </MenuItem>
       </SubComponents>
     </Container>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
@@ -2691,7 +2699,7 @@
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="3">
                     <StringItem index="0" value="ALL BFM 2009"/>
-                    <StringItem index="1" value="Register paedMyLeu BMF-A 2014"/>
+                    <StringItem index="1" value="Register paedMyLeu BFM-A 2012"/>
                     <StringItem index="2" value="no study assigned"/>
                   </StringArray>
                 </Property>

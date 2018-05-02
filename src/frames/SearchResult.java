@@ -18,6 +18,8 @@ import static frames.SampleBrowse.SB_resultIDs;
 import static frames.ClassificationBrowse.ST_resultIDs;
 import java.awt.Color;
 import java.awt.Desktop;
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -1028,6 +1030,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
         popUpMenu_selectAll = new javax.swing.JMenuItem();
         popUpMenu_moveTbl = new javax.swing.JMenuItem();
         popUpMenu_intrprWin = new javax.swing.JMenuItem();
+        popUpMenu_cpResultIds = new javax.swing.JMenuItem();
         tab_main = new javax.swing.JTabbedPane();
         tab_array = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -1261,6 +1264,14 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
             }
         });
         popUpSave.add(popUpMenu_intrprWin);
+
+        popUpMenu_cpResultIds.setText("copy result_ids ...");
+        popUpMenu_cpResultIds.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                popUpMenu_cpResultIdsActionPerformed(evt);
+            }
+        });
+        popUpSave.add(popUpMenu_cpResultIds);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Linked Results Analysis Tool - result search");
@@ -2679,7 +2690,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
         rbtn_onlyPat1.setText("only patients from study ...");
         rbtn_onlyPat1.setToolTipText("select to get results from patients in a certain project (select from below)");
 
-        ComboBox_stdyPat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALL BFM 2009", "Register paedMyLeu BMF-A 2014", "no study assigned" }));
+        ComboBox_stdyPat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALL BFM 2009", "Register paedMyLeu BFM-A 2012", "no study assigned" }));
 
         rbtn_SB.setText("use SampleBrowse ");
         rbtn_SB.setToolTipText("select to get IDs from window SampleBrowse");
@@ -5958,6 +5969,35 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
         }
     }//GEN-LAST:event_btn_saveQueryActionPerformed
 
+    private void popUpMenu_cpResultIdsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popUpMenu_cpResultIdsActionPerformed
+        JTable OT = this.outTable;
+        String tableSource = OT.getAccessibleContext().getAccessibleName();
+        String IDs = "";
+        int resultL = OT.getRowCount();
+        if (tableSource.equals("table_queryIDs")){
+            for(int i = 0; i < resultL; i++) {
+                String tmp = OT.getValueAt(i, 1).toString();
+                IDs = IDs + tmp + ", ";
+            }
+        } else if (tableSource.equals("table_array")){
+            String tmpRem="";
+            for(int i = 0; i < resultL; i++) {
+                String tmp = OT.getValueAt(i, 2).toString();
+                if (tmp.equals(tmpRem)){
+                    //JOptionPane.showMessageDialog(null, "EQUAL: "+tmp+" - "+tmpRem);
+                }else {
+                    //JOptionPane.showMessageDialog(null, "not equal --> write "+tmp+" - "+tmpRem);
+                    IDs = IDs + tmp + ", ";
+                }
+                tmpRem = tmp;
+            }
+        }
+        
+        IDs = IDs.substring(0, (IDs.length() - 2));
+        StringSelection somestring = new StringSelection(IDs);
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(somestring, null);
+    }//GEN-LAST:event_popUpMenu_cpResultIdsActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -6182,6 +6222,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
     private javax.swing.JLabel lbl_fish_signal;
     private javax.swing.JLabel lbl_rowsReturned;
     private javax.swing.JLabel lbl_zg_signal;
+    private javax.swing.JMenuItem popUpMenu_cpResultIds;
     private javax.swing.JMenuItem popUpMenu_intrprWin;
     private javax.swing.JMenuItem popUpMenu_moveTbl;
     private javax.swing.JMenuItem popUpMenu_save;

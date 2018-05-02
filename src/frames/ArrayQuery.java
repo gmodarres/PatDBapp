@@ -13,6 +13,8 @@ package frames;
 import static frames.ResultWindow.updateIntrpr;
 import static frames.SetConnection.personalConfig;
 import java.awt.Desktop;
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -416,6 +418,7 @@ public class ArrayQuery extends javax.swing.JFrame {
         popUpMenu_save = new javax.swing.JMenuItem();
         popUpMenu_selectAll = new javax.swing.JMenuItem();
         popUpMenu_moveTbl = new javax.swing.JMenuItem();
+        popUpMenu_cpResultIds = new javax.swing.JMenuItem();
         jToolBar1 = new javax.swing.JToolBar();
         bnt_test = new javax.swing.JButton();
         Info_top = new javax.swing.JPanel();
@@ -504,6 +507,14 @@ public class ArrayQuery extends javax.swing.JFrame {
             }
         });
         popUpSave.add(popUpMenu_moveTbl);
+
+        popUpMenu_cpResultIds.setText("copy result_ids ...");
+        popUpMenu_cpResultIds.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                popUpMenu_cpResultIdsActionPerformed(evt);
+            }
+        });
+        popUpSave.add(popUpMenu_cpResultIds);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Linked Results Analysis Tool - array gene query");
@@ -1900,6 +1911,35 @@ public class ArrayQuery extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_loadQueryActionPerformed
 
+    private void popUpMenu_cpResultIdsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popUpMenu_cpResultIdsActionPerformed
+JTable OT = this.outTable;
+        String tableSource = OT.getAccessibleContext().getAccessibleName();
+        String IDs = "";
+        int resultL = OT.getRowCount();
+        if (tableSource.equals("table_queryIDs")){
+            for(int i = 0; i < resultL; i++) {
+                String tmp = OT.getValueAt(i, 1).toString();
+                IDs = IDs + tmp + ", ";
+            }
+        } else if (tableSource.equals("table_array")){
+            String tmpRem="";
+            for(int i = 0; i < resultL; i++) {
+                String tmp = OT.getValueAt(i, 2).toString();
+                if (tmp.equals(tmpRem)){
+                    //JOptionPane.showMessageDialog(null, "EQUAL: "+tmp+" - "+tmpRem);
+                }else {
+                    //JOptionPane.showMessageDialog(null, "not equal --> write "+tmp+" - "+tmpRem);
+                    IDs = IDs + tmp + ", ";
+                }
+                tmpRem = tmp;
+            }
+        }
+        
+        IDs = IDs.substring(0, (IDs.length() - 2));
+        StringSelection somestring = new StringSelection(IDs);
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(somestring, null);
+    }//GEN-LAST:event_popUpMenu_cpResultIdsActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1978,6 +2018,7 @@ public class ArrayQuery extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_or1;
     private javax.swing.JLabel lbl_or2;
     private javax.swing.JLabel lbl_or3;
+    private javax.swing.JMenuItem popUpMenu_cpResultIds;
     private javax.swing.JMenuItem popUpMenu_moveTbl;
     private javax.swing.JMenuItem popUpMenu_save;
     private javax.swing.JMenuItem popUpMenu_selectAll;

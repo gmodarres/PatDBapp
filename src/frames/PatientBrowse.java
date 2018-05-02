@@ -536,10 +536,32 @@ public class PatientBrowse extends javax.swing.JFrame {
             Connection conn = DBconnect.ConnecrDb();
             ResultSet rs = null;
             PreparedStatement pst = null;          
+            
             String sql = "SELECT p.pat_id, fm_pat_no, fname, surname, surname_old, sex, b_date, dg_date, mb_down as MDown, stdy_name, pat_study_id as stdy_ID, stdy_group, mon_pat as monitor, proj_name"
                     + " FROM patient p, pat_instudy ps, pat_inproject pj, study s, project j"
                     + " WHERE p.pat_id=ps.pat_id and p.pat_id=pj.pat_id "
                     + " AND s.stdy_id=ps.stdy_id and j.proj_id=pj.proj_id ";
+            
+            /*//?? ... some idea to sort out problem of multiple lines, if patient in more studies and projects
+            String sql="";
+            if (rbtn_studyAndProject.isSelected()){
+            sql = "SELECT p.pat_id, fm_pat_no, fname, surname, surname_old, sex, b_date, dg_date, mb_down as MDown, stdy_name, pat_study_id as stdy_ID, stdy_group, mon_pat as monitor, proj_name"
+                    + " FROM patient p, pat_instudy ps, pat_inproject pj, study s, project j"
+                    + " WHERE p.pat_id=ps.pat_id and p.pat_id=pj.pat_id "
+                    + " AND s.stdy_id=ps.stdy_id and j.proj_id=pj.proj_id ";
+            } else if (rbtn_studyInfo.isSelected()){
+            sql = "SELECT p.pat_id, fm_pat_no, fname, surname, surname_old, sex, b_date, dg_date, mb_down as MDown, stdy_name, pat_study_id as stdy_ID, stdy_group, mon_pat as monitor"
+                    + " FROM patient p, pat_instudy ps, study s"
+                    + " WHERE p.pat_id=ps.pat_id"
+                    + " AND s.stdy_id=ps.stdy_id";
+            }else if (rbtn_projInfo.isSelected()){
+            sql = "SELECT p.pat_id, fm_pat_no, fname, surname, surname_old, sex, b_date, dg_date, mb_down as MDown, proj_name"
+                    + " FROM patient p, pat_inproject pj, project j"
+                    + " WHERE p.pat_id=pj.pat_id "
+                    + " AND j.proj_id=pj.proj_id ";
+            }*/
+                    
+                    
             
             if (rbtn_searchCrit1.isSelected()) {
                 String searchCrit1_select = CB_searchCrit1.getSelectedItem().toString();
