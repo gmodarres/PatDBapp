@@ -172,6 +172,7 @@ public class PatientBrowse_mod extends javax.swing.JFrame {
                 //get_r_ids(sql,pst,rs,conn);
                 //this.PB_resultIDs = IdManagement.get_r_ids(sql, pst, rs, conn);
                 this.PB_resultIDs = IdManagement.get_ids(sql, pst, rs, conn, "result_id");
+                //txtArea_test.setText("PB_result:   "+PB_resultIDs);  //TEST
                 //showRows(rs);
 
             } catch (Exception e) {
@@ -187,11 +188,20 @@ public class PatientBrowse_mod extends javax.swing.JFrame {
         }
     }
     
-    private void fillTable_patient(String sql) {
+    private void fillTable_patient(String sql, String moreIds) {
         Connection conn = DBconnect.ConnecrDb();
         ResultSet rs = null;
         PreparedStatement pst = null;
         String pat_ids = "";
+              
+        if (rbtn_searchCrit2.isSelected()){
+            if (moreIds.length() > 1){
+                sql = sql + " AND p.pat_id in (" + moreIds + ")";
+            } else {
+                sql = sql + " AND p.pat_id in (0)";
+            }       
+        }
+        //txtArea_test.append("\nfillTPat:  "+sql);
         try {
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
@@ -228,8 +238,12 @@ public class PatientBrowse_mod extends javax.swing.JFrame {
 
             // get pat_ids from sql
             pat_ids = this.ids;
+            //JOptionPane.showMessageDialog(null, "pat_ids:  "+pat_ids);  //TEST
             if (pat_ids.length() > 1) {
                 pat_ids = pat_ids.substring(0, (pat_ids.length() - 1));
+            } else {
+                //JOptionPane.showMessageDialog(null, "nix drin:  "+pat_ids);  // TEST
+                pat_ids = "0";
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -237,11 +251,14 @@ public class PatientBrowse_mod extends javax.swing.JFrame {
         }
 
 /////// table study
-        String sql2 = "SELECT p.pat_id, stdy_name, pat_study_id as stdy_ID, stdy_group, mon_pat as monitor"
+            String sql2 = "SELECT p.pat_id, stdy_name, pat_study_id as stdy_ID, stdy_group, mon_pat as monitor"
                 + " FROM patient p, pat_instudy ps, study s"
                 + " WHERE p.pat_id=ps.pat_id"
-                + " AND s.stdy_id=ps.stdy_id";
-        sql2 = sql2 + " AND p.pat_id in (" + pat_ids + ")";
+                + " AND s.stdy_id=ps.stdy_id"
+                + " AND p.pat_id in (" + pat_ids + ")";
+        
+        //txtArea_test.append("\nTPat...sql2:  "+sql2);  // TEST
+        
         try {
             pst = conn.prepareStatement(sql2);
             rs = pst.executeQuery();
@@ -270,8 +287,7 @@ public class PatientBrowse_mod extends javax.swing.JFrame {
                 + " FROM patient p, pat_inproject pj, project j"
                 + " WHERE p.pat_id=pj.pat_id "
                 + " AND j.proj_id=pj.proj_id "
-                + " AND p.pat_id in (" + pat_ids + ")";
-        sql3 = sql3 + " AND p.pat_id in (" + pat_ids + ")";
+                + " AND p.pat_id in (" + pat_ids + ")";       
         try {
             pst = conn.prepareStatement(sql3);
             rs = pst.executeQuery();
@@ -297,11 +313,21 @@ public class PatientBrowse_mod extends javax.swing.JFrame {
             }
     }
     
-    private void fillTable_study(String sql2){
+    private void fillTable_study(String sql2, String moreIds){
         Connection conn = DBconnect.ConnecrDb();
         ResultSet rs = null;
         PreparedStatement pst = null;
         String pat_ids = "";
+        if (rbtn_searchCrit2.isSelected()){
+            if (moreIds.length() > 1){
+                sql2 = sql2 + " AND p.pat_id in (" + moreIds + ")";
+            } else {
+                sql2 = sql2 + " AND p.pat_id in (0)";
+            }       
+        }
+        //txtArea_test.append("\nfillTStu:  "+sql2);  //TEST
+        
+        
         try {
             pst = conn.prepareStatement(sql2);
             rs = pst.executeQuery();
@@ -326,6 +352,8 @@ public class PatientBrowse_mod extends javax.swing.JFrame {
             pat_ids = this.ids;
             if (pat_ids.length() > 1) {
                 pat_ids = pat_ids.substring(0, (pat_ids.length() - 1));
+            }else{
+                pat_ids = "0";
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -334,7 +362,8 @@ public class PatientBrowse_mod extends javax.swing.JFrame {
 /////// table patient
         String sql = "SELECT p.pat_id, fm_pat_no, fname, surname, surname_old, sex, b_date, dg_date, mb_down as MDown FROM patient p"
                 + " WHERE p.pat_id in (" + pat_ids + ")";
-        txtArea_test.setText(sql);  ///TEST
+        
+        //txtArea_test.append("\nTStu...sql:  "+sql);  // TEST
         try {
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
@@ -399,35 +428,138 @@ public class PatientBrowse_mod extends javax.swing.JFrame {
     
     }
     
-    private void fillTable_project(String sql3){
+    private void fillTable_project(String sql3, String moreIds) {
         Connection conn = DBconnect.ConnecrDb();
         ResultSet rs = null;
         PreparedStatement pst = null;
+        String pat_ids = "";
+        if (rbtn_searchCrit2.isSelected()){
+            if (moreIds.length() > 1){
+                sql3 = sql3 + " AND p.pat_id in (" + moreIds + ")";
+            } else {
+                sql3 = sql3 + " AND p.pat_id in (0)";
+            }       
+        }
+        //txtArea_test.append("\n2-fillTProj:  "+sql3);  //TEST
         try {
-                pst = conn.prepareStatement(sql3);
-                rs = pst.executeQuery();
-                
-                my_log.logger.info("SQL3:  " + sql3);
-                table_patinproject.setModel(DbUtils.resultSetToTableModel(rs));
-                CustomSorter.table_customRowSort(table_patinproject);
-                if (table_patinproject.getColumnModel().getColumnCount() > 0) {
-                    table_patinproject.getColumnModel().getColumn(0).setPreferredWidth(60);
-                    table_patinproject.getColumnModel().getColumn(0).setMaxWidth(100);
-                }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e);
-                my_log.logger.warning("ERROR: " + e);
-            }finally {
-                try {
-                    if (rs != null) { rs.close();}
-                    if (pst != null) { pst.close();}
-                    if (conn != null) { conn.close();}
-                } catch (Exception e) {
-                }
+            pst = conn.prepareStatement(sql3);
+            rs = pst.executeQuery();
+
+            my_log.logger.info("SQL3:  " + sql3);
+            table_patinproject.setModel(DbUtils.resultSetToTableModel(rs));
+            CustomSorter.table_customRowSort(table_patinproject);
+            if (table_patinproject.getColumnModel().getColumnCount() > 0) {
+                table_patinproject.getColumnModel().getColumn(0).setPreferredWidth(60);
+                table_patinproject.getColumnModel().getColumn(0).setMaxWidth(100);
             }
+            //get_ids(sql, pst, rs, conn);
+            this.ids = IdManagement.get_ids(sql3, pst, rs, conn, "pat_id");
+            get_resultIDs();
+            // get pat_ids from sql
+            pat_ids = this.ids;
+            if (pat_ids.length() > 1) {
+                pat_ids = pat_ids.substring(0, (pat_ids.length() - 1));
+            }else {
+                //JOptionPane.showMessageDialog(null, "nix drin:  "+pat_ids);  // TEST
+                pat_ids = "0";
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            my_log.logger.warning("ERROR: " + e);
+        }
+
+        /////// table patient
+        String sql = "SELECT p.pat_id, fm_pat_no, fname, surname, surname_old, sex, b_date, dg_date, mb_down as MDown FROM patient p"
+                + " WHERE p.pat_id in (" + pat_ids + ")";
+        //txtArea_test.append("\nTProj...sql:  "+sql);  // TEST
+        try {
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+
+            my_log.logger.info("SQL:  " + sql);
+            table_patient.setModel(DbUtils.resultSetToTableModel(rs));
+            CustomSorter.table_customRowSort(table_patient);
+            if (table_patient.getColumnModel().getColumnCount() > 0) {
+                table_patient.getColumnModel().getColumn(0).setPreferredWidth(60);
+                table_patient.getColumnModel().getColumn(0).setMaxWidth(100);
+                table_patient.getColumnModel().getColumn(1).setPreferredWidth(80);
+                table_patient.getColumnModel().getColumn(1).setMaxWidth(100);
+                table_patient.getColumnModel().getColumn(2).setPreferredWidth(140);
+                table_patient.getColumnModel().getColumn(2).setMaxWidth(170);
+                table_patient.getColumnModel().getColumn(3).setPreferredWidth(140);
+                table_patient.getColumnModel().getColumn(3).setMaxWidth(170);
+                table_patient.getColumnModel().getColumn(4).setPreferredWidth(120);
+                table_patient.getColumnModel().getColumn(4).setMaxWidth(170);
+                table_patient.getColumnModel().getColumn(5).setPreferredWidth(60); // Sex
+                table_patient.getColumnModel().getColumn(5).setMaxWidth(60);
+                table_patient.getColumnModel().getColumn(6).setPreferredWidth(90);
+                table_patient.getColumnModel().getColumn(6).setMaxWidth(120);
+                table_patient.getColumnModel().getColumn(7).setPreferredWidth(90);
+                table_patient.getColumnModel().getColumn(7).setMaxWidth(120);
+                table_patient.getColumnModel().getColumn(8).setPreferredWidth(60); // MDown
+                table_patient.getColumnModel().getColumn(8).setMaxWidth(60);
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            my_log.logger.warning("ERROR: " + e);
+        }
+
+/////// table study
+        String sql2 = "SELECT p.pat_id, stdy_name, pat_study_id as stdy_ID, stdy_group, mon_pat as monitor"
+                + " FROM patient p, pat_instudy ps, study s"
+                + " WHERE p.pat_id=ps.pat_id"
+                + " AND s.stdy_id=ps.stdy_id"
+                + " AND p.pat_id in (" + pat_ids + ")";
+        try {
+            pst = conn.prepareStatement(sql2);
+            rs = pst.executeQuery();
+
+            my_log.logger.info("SQL2:  " + sql2);
+            table_patinstudy.setModel(DbUtils.resultSetToTableModel(rs));
+            CustomSorter.table_customRowSort(table_patinstudy);
+            if (table_patinstudy.getColumnModel().getColumnCount() > 0) {
+                table_patinstudy.getColumnModel().getColumn(0).setPreferredWidth(60);
+                table_patinstudy.getColumnModel().getColumn(0).setMaxWidth(100);
+                table_patinstudy.getColumnModel().getColumn(2).setPreferredWidth(70); // stdy_ID
+                table_patinstudy.getColumnModel().getColumn(2).setMaxWidth(100);
+                table_patinstudy.getColumnModel().getColumn(3).setPreferredWidth(80); // stdy_group
+                table_patinstudy.getColumnModel().getColumn(3).setMaxWidth(100);
+                table_patinstudy.getColumnModel().getColumn(4).setPreferredWidth(60); // monitoring
+                table_patinstudy.getColumnModel().getColumn(4).setMaxWidth(100);
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            my_log.logger.warning("ERROR: " + e);
+        } finally {
+            try {
+                if (rs != null) { rs.close();}
+                if (pst != null) { pst.close();}
+                if (conn != null) { conn.close();}
+            } catch (Exception e) {
+            }
+        }
 
     }
 
+    // TODO: source not necessary?
+    private String getIdsIn(String sqlAdd, Integer source){     // integer corresponding to sql part requested (1=patient, 2=study, 3=project) 
+        Connection conn = DBconnect.ConnecrDb();
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+        String all_ids ="";
+        
+        //JOptionPane.showMessageDialog(null,"sqlAdd:   "+ sqlAdd); //TSET
+        // get ID list from SQL
+        this.ids = IdManagement.get_ids(sqlAdd, pst, rs, conn, "pat_id");
+        all_ids = this.ids;
+        if (all_ids.length() > 1) {
+            all_ids = all_ids.substring(0, (all_ids.length() - 1));
+        }
+        //txtArea_test.setText("START\ngetIdsIn():   "+sqlAdd+"\nIds:   "+all_ids);   //TEST
+        return all_ids;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -895,20 +1027,25 @@ public class PatientBrowse_mod extends javax.swing.JFrame {
             
             // table patient
             String sql = "SELECT p.pat_id, fm_pat_no, fname, surname, surname_old, sex, b_date, dg_date, mb_down as MDown FROM patient p WHERE 1=1";
+            String sqlAdd = "";
             
             // table study
             String sql2 = "SELECT p.pat_id, stdy_name, pat_study_id as stdy_ID, stdy_group, mon_pat as monitor"
                     + " FROM patient p, pat_instudy ps, study s"
                     + " WHERE p.pat_id=ps.pat_id"
                     + " AND s.stdy_id=ps.stdy_id";
+            String sql2Add = "";
             
             // table project
             String sql3 = "SELECT p.pat_id, proj_name"
                     + " FROM patient p, pat_inproject pj, project j"
                     + " WHERE p.pat_id=pj.pat_id "
                     + " AND j.proj_id=pj.proj_id ";
+            String sql3Add = "";
             
-            Integer sqlStart = 0;
+            Integer sqlStart1 = 0;
+            Integer sqlFollow = 0;
+            String IdsIn = "NOTSET";
             
             if (rbtn_searchCrit1.isSelected()) {
                 String searchCrit1_select = CB_searchCrit1.getSelectedItem().toString();
@@ -919,142 +1056,155 @@ public class PatientBrowse_mod extends javax.swing.JFrame {
                     case "pat_id":
                         searchCrit1 = "p.pat_id";
                         select1 = "ID";
-                        sqlStart = 1;
+                        sqlStart1 = 1;
                         break;
                     case "fm_pat_no":
                         searchCrit1 = "fm_pat_no";
                         select1 = "ID";
-                        sqlStart = 1;
+                        sqlStart1 = 1;
                         break;
                     case "fname":
                         searchCrit1 = "fname";
                         select1 = "TXT";
-                        sqlStart = 1;
+                        sqlStart1 = 1;
                         break;
                     case "surname":
                         searchCrit1 = "surname";
                         select1 = "TXT";
-                        sqlStart = 1;
+                        sqlStart1 = 1;
                         break;
                     case "surname old":
                         searchCrit1 = "surname_old";
                         select1 = "TXT";
-                        sqlStart = 1;
+                        sqlStart1 = 1;
                         break;
                     case "sex":
                         searchCrit1 = "sex";
                         select1 = "TXT";
-                        sqlStart = 1;
+                        sqlStart1 = 1;
                         break;
                     case "birth date":
                         searchCrit1 = "b_date";
                         select1 ="DATE";
-                        sqlStart = 1;
+                        sqlStart1 = 1;
                         break;
                     case "diagnosis date":
                         searchCrit1 = "dg_date";
                         select1 = "DATE";
-                        sqlStart = 1;
+                        sqlStart1 = 1;
                         break;
                     case "mb. down":
                         searchCrit1 = "mb_down";
                         select1 = "TXT";
-                        sqlStart = 1;
+                        sqlStart1 = 1;
                         break;
                     case "study":
                         searchCrit1 = "stdy_name";
                         select1 = "TXT";
-                        sqlStart = 2;
+                        sqlStart1 = 2;
                         break;
                     case "study_id":
                         searchCrit1 = "pat_study_id";
                         select1 = "TXT";
-                        sqlStart = 2;
+                        sqlStart1 = 2;
                         break;
                     case "stdy_group":
                         searchCrit1 = "stdy_group";
                         select1 = "NULLable";
-                        sqlStart = 2;
+                        sqlStart1 = 2;
                         break; 
                     case "monitoring":
                         searchCrit1 = "mon_pat";
                         select1 = "NULLable";
-                        sqlStart = 2;
+                        sqlStart1 = 2;
                         break;
                     case "project":
                         searchCrit1 = "proj_name";
                         select1 = "TXT";
-                        sqlStart = 3;
+                        sqlStart1 = 3;
                         break;
                     default:
                         break;
                 }
 
-                if (sqlStart==1){       // patient
-                if (select1.equals("ID")) {
-                    if (rbtn_NOT1.isSelected()) {
-                        sql = sql + " and (" + searchCrit1 + " not in ( " + sCrit1_txt + " )";
-                    } else {
-                        sql = sql + " and (" + searchCrit1 + " in ( " + sCrit1_txt + " )";
-                    }
-                } else if (select1.equals("TXT")) {
-                    if (rbtn_NOT1.isSelected()) {
-                        sql = sql + " and (" + searchCrit1 + " NOT like '%" + sCrit1_txt + "%'";
-                    } else {
-                        sql = sql + " and (" + searchCrit1 + " like '%" + sCrit1_txt + "%'";
-                    }
-                } else if (select1.equals("DATE")) {
-                    String splitDate[] = sCrit1_txt.split(",");          //  >=,2009-01-01   between,2009-01-01;2012-01-01
-                    
-                    if (splitDate[0].equals("between")){
-                        //JOptionPane.showMessageDialog(null, "1;2;3 " +splitDate[2]);
-                        sql = sql + " and (" + searchCrit1 + " " + splitDate[0] +" '"+splitDate[1]+"' and '" + splitDate[2] +"'" ;
-                    }else if (splitDate[0].equals(">") || splitDate[0].equals("<") || splitDate[0].equals("=") ) {
-                        //JOptionPane.showMessageDialog(null, "1;2 " +splitDate[1]);
-                        sql = sql + " and (" + searchCrit1 +" " +splitDate[0] +" '"+splitDate[1]+"'" ;
-                    }
-                    //sql = sql + " and " + searchCrit1 + " " + sCrit1_txt;
-                } else if (select1.equals("NULLable")){
-                    if (rbtn_NOT1.isSelected()) {
-                        if (sCrit1_txt.equals("null") || sCrit1_txt.equals("NULL")) {
-                            sql = sql + " and (" + searchCrit1 + " IS NOT NULL";
+                if (sqlStart1 == 1) {       // patient
+                    if (select1.equals("ID")) {
+                        if (rbtn_NOT1.isSelected()) {
+                            sql = sql + " and (" + searchCrit1 + " not in ( " + sCrit1_txt + " )";
                         } else {
-                            sql = sql + " and (" + searchCrit1 + " NOT like '%" + sCrit1_txt + "%'";
+                            sql = sql + " and (" + searchCrit1 + " in ( " + sCrit1_txt + " )";
                         }
-                    }else {
-                        if (sCrit1_txt.equals("null") || sCrit1_txt.equals("NULL")) {
-                            sql = sql + " and (" + searchCrit1 + " IS NULL";
+                    } else if (select1.equals("TXT")) {
+                        if (rbtn_NOT1.isSelected()) {
+                            sql = sql + " and (" + searchCrit1 + " NOT like '%" + sCrit1_txt + "%'";
                         } else {
                             sql = sql + " and (" + searchCrit1 + " like '%" + sCrit1_txt + "%'";
                         }
-                    }
-                }
-            }else if (sqlStart==2){         // study
-                if (select1.equals("TXT")) {
-                    if (rbtn_NOT1.isSelected()) {
-                        sql2 = sql2 + " and (" + searchCrit1 + " NOT like '%" + sCrit1_txt + "%'";
-                    } else {
-                        sql2 = sql2 + " and (" + searchCrit1 + " like '%" + sCrit1_txt + "%'";
-                    }
-            
-                }else if (select1.equals("NULLable")){
-                    if (rbtn_NOT1.isSelected()) {
-                        if (sCrit1_txt.equals("null") || sCrit1_txt.equals("NULL")) {
-                            sql2 = sql2 + " and (" + searchCrit1 + " IS NOT NULL";
-                        } else {
-                            sql2 = sql2 + " and (" + searchCrit1 + " NOT like '%" + sCrit1_txt + "%'";
+                    } else if (select1.equals("DATE")) {
+                        String splitDate[] = sCrit1_txt.split(",");          //  >=,2009-01-01   between,2009-01-01;2012-01-01
+
+                        if (splitDate[0].equals("between")) {
+                            //JOptionPane.showMessageDialog(null, "1;2;3 " +splitDate[2]);
+                            sql = sql + " and (" + searchCrit1 + " " + splitDate[0] + " '" + splitDate[1] + "' and '" + splitDate[2] + "'";
+                        } else if (splitDate[0].equals(">") || splitDate[0].equals("<") || splitDate[0].equals("=")) {
+                            //JOptionPane.showMessageDialog(null, "1;2 " +splitDate[1]);
+                            sql = sql + " and (" + searchCrit1 + " " + splitDate[0] + " '" + splitDate[1] + "'";
                         }
-                    }else {
-                        if (sCrit1_txt.equals("null") || sCrit1_txt.equals("NULL")) {
-                            sql2 = sql2 + " and (" + searchCrit1 + " IS NULL";
+                        //sql = sql + " and " + searchCrit1 + " " + sCrit1_txt;
+                    } else if (select1.equals("NULLable")) {
+                        if (rbtn_NOT1.isSelected()) {
+                            if (sCrit1_txt.equals("null") || sCrit1_txt.equals("NULL")) {
+                                sql = sql + " and (" + searchCrit1 + " IS NOT NULL";
+                            } else {
+                                sql = sql + " and (" + searchCrit1 + " NOT like '%" + sCrit1_txt + "%'";
+                            }
+                        } else {
+                            if (sCrit1_txt.equals("null") || sCrit1_txt.equals("NULL")) {
+                                sql = sql + " and (" + searchCrit1 + " IS NULL";
+                            } else {
+                                sql = sql + " and (" + searchCrit1 + " like '%" + sCrit1_txt + "%'";
+                            }
+                        }
+                    }
+                    sql = sql +")";
+                } else if (sqlStart1 == 2) {         // study
+                    if (select1.equals("TXT")) {
+                        if (rbtn_NOT1.isSelected()) {
+                            sql2 = sql2 + " and (" + searchCrit1 + " NOT like '%" + sCrit1_txt + "%'";
                         } else {
                             sql2 = sql2 + " and (" + searchCrit1 + " like '%" + sCrit1_txt + "%'";
                         }
+
+                    } else if (select1.equals("NULLable")) {
+                        if (rbtn_NOT1.isSelected()) {
+                            if (sCrit1_txt.equals("null") || sCrit1_txt.equals("NULL")) {
+                                sql2 = sql2 + " and (" + searchCrit1 + " IS NOT NULL";
+                            } else {
+                                sql2 = sql2 + " and (" + searchCrit1 + " NOT like '%" + sCrit1_txt + "%'";
+                            }
+                        } else {
+                            if (sCrit1_txt.equals("null") || sCrit1_txt.equals("NULL")) {
+                                sql2 = sql2 + " and (" + searchCrit1 + " IS NULL";
+                            } else {
+                                sql2 = sql2 + " and (" + searchCrit1 + " like '%" + sCrit1_txt + "%'";
+                            }
+                        }
                     }
+                    sql2 = sql2 +")";
+                } else if (sqlStart1 == 3) {        // project
+                    if (select1.equals("TXT")) {
+                        if (rbtn_NOT1.isSelected()) {
+                            sql3 = sql3 + " and (" + searchCrit1 + " NOT like '%" + sCrit1_txt + "%'";
+                        } else {
+                            sql3 = sql3 + " and (" + searchCrit1 + " like '%" + sCrit1_txt + "%'";
+                        }
+                    }
+                    sql3 = sql3 +")";
                 }
-            }  
-                
-            }
+                //sql = sql +")";
+                //sql2 = sql2 +")";
+                //sql3 = sql3 +")";
+            } // END if(rbtn_searchCrit1.isSelected())
             
             if (rbtn_searchCrit2.isSelected()) {
                 String andor1 = CB_andor.getSelectedItem().toString();
@@ -1066,226 +1216,181 @@ public class PatientBrowse_mod extends javax.swing.JFrame {
                     case "pat_id":
                         searchCrit2 = "p.pat_id";
                         select2 = "ID";
+                        sqlFollow = 1;
                         break;
                     case "fm_pat_no":
                         searchCrit2 = "fm_pat_no";
                         select2 = "ID";
+                        sqlFollow = 1;
                         break;
                     case "fname":
                         searchCrit2 = "fname";
                         select2 = "TXT";
+                        sqlFollow = 1;
                         break;
                     case "surname":
                         searchCrit2 = "surname";
                         select2 = "TXT";
+                        sqlFollow = 1;
                         break;
                     case "surname old":
                         searchCrit2 = "surname_old";
                         select2 = "TXT";
+                        sqlFollow = 1;
                         break;
                     case "sex":
                         searchCrit2 = "sex";
                         select2 = "TXT";
+                        sqlFollow = 1;
                         break;
                     case "birth date":
                         searchCrit2 = "b_date";
                         select2 ="DATE";
+                        sqlFollow = 1;
                         break;
                     case "diagnosis date":
                         searchCrit2 = "dg_date";
                         select2 = "DATE";
+                        sqlFollow = 1;
                         break;
                     case "mb. down":
                         searchCrit2 = "mb_down";
                         select2 = "TXT";
+                        sqlFollow = 1;
                         break;
                     case "study":
                         searchCrit2 = "stdy_name";
                         select2 = "TXT";
+                        sqlFollow = 2;
                         break;
                     case "study_id":
                         searchCrit2 = "pat_study_id";
                         select2 = "TXT";
+                        sqlFollow = 2;
                         break;
                     case "stdy_group":
                         searchCrit2 = "stdy_group";
                         select2 = "NULLable";
+                        sqlFollow = 2;
                         break; 
                     case "monitoring":
                         searchCrit2 = "mon_pat";
                         select2 = "NULLable";
+                        sqlFollow = 2;
                         break;
                     case "project":
                         searchCrit2 = "proj_name";
                         select2 = "TXT";
+                        sqlFollow = 3;
                         break;
                     default:
                         break;
                 }
-
-                if (select2.equals("ID")) {
-                    if (rbtn_NOT2.isSelected()) {
-                        sql = sql +  " " + andor1 + " "+ searchCrit2 + " not in ( " + sCrit2_txt + " ))";
-                    } else {
-                        sql = sql +  " " + andor1 + " " + searchCrit2 + " in ( " + sCrit2_txt + " ))";
-                    }
-                } else if (select2.equals("TXT")) {
-                    if (rbtn_NOT2.isSelected()) {
-                        sql = sql + " " + andor1 + " "+ searchCrit2 + " NOT like '%" + sCrit2_txt + "%')";
-                    } else {
-                        sql = sql +  " " + andor1 + " "+ searchCrit2 + " like '%" + sCrit2_txt + "%')";
-                    }
-                } else if (select2.equals("DATE")) {
-                    String splitDate[] = sCrit2_txt.split(",");          //  >=,2009-01-01   between,2009-01-01;2012-01-01
-                    
-                    if (splitDate[0].equals("between")){
-                        //JOptionPane.showMessageDialog(null, "1;2;3 " +splitDate[2]);
-                        sql = sql + " " + andor1 + " "+ searchCrit2 + " " + splitDate[0] +" '"+splitDate[1]+"' and '" + splitDate[2] +"')" ;
-                    }else if (splitDate[0].equals(">") || splitDate[0].equals("<") || splitDate[0].equals("=") ) {
-                        //JOptionPane.showMessageDialog(null, "1;2 " +splitDate[1]);
-                        sql = sql + " " + andor1 + " "+ searchCrit2 +" " +splitDate[0] +" '"+splitDate[1]+"')" ;
-                    }
-                } else if (select2.equals("NULLable")){
-                    if (rbtn_NOT2.isSelected()) {
-                        if (sCrit2_txt.equals("null") || sCrit2_txt.equals("NULL")) {
-                            sql = sql +" " + andor1 + " "+ searchCrit2 + " IS NOT NULL)";
+                
+                if (sqlFollow == 1) {       // patient
+                    if (select2.equals("ID")) {
+                        if (rbtn_NOT2.isSelected()) {
+                            sqlAdd = sql + " " + andor1 + " (" + searchCrit2 + " not in ( " + sCrit2_txt + " ))";
                         } else {
-                            sql = sql + " " + andor1 + " " + searchCrit2 + " NOT like '%" + sCrit2_txt + "%')";
+                            sqlAdd = sql + " " + andor1 + " (" + searchCrit2 + " in ( " + sCrit2_txt + " ))";
                         }
-                        
-                    }else {
-                        if (sCrit2_txt.equals("null") || sCrit2_txt.equals("NULL")) {
-                            sql = sql + " " + andor1 + " " + searchCrit2 + " IS NULL)";
+                    } else if (select2.equals("TXT")) {
+                        if (rbtn_NOT2.isSelected()) {
+                            sqlAdd = sql + " " + andor1 + " (" + searchCrit2 + " NOT like '%" + sCrit2_txt + "%')";
                         } else {
-                            sql = sql +" " + andor1 + " " + searchCrit2 + " like '%" + sCrit2_txt + "%')";
+                            sqlAdd = sql + " " + andor1 + " (" + searchCrit2 + " like '%" + sCrit2_txt + "%')";
+                        }
+                    } else if (select2.equals("DATE")) {
+                        String splitDate[] = sCrit2_txt.split(",");          //  >=,2009-01-01   between,2009-01-01;2012-01-01
+
+                        if (splitDate[0].equals("between")) {
+                            //JOptionPane.showMessageDialog(null, "1;2;3 " +splitDate[2]);
+                            sqlAdd = sql + " " + andor1 + " (" + searchCrit2 + " " + splitDate[0] + " '" + splitDate[1] + "' and '" + splitDate[2] + "')";
+                        } else if (splitDate[0].equals(">") || splitDate[0].equals("<") || splitDate[0].equals("=")) {
+                            //JOptionPane.showMessageDialog(null, "1;2 " +splitDate[1]);
+                            sqlAdd = sql + " " + andor1 + " (" + searchCrit2 + " " + splitDate[0] + " '" + splitDate[1] + "')";
+                        }
+                    } else if (select2.equals("NULLable")) {
+                        if (rbtn_NOT2.isSelected()) {
+                            if (sCrit2_txt.equals("null") || sCrit2_txt.equals("NULL")) {
+                                sqlAdd = sql + " " + andor1 + " (" + searchCrit2 + " IS NOT NULL)";
+                            } else {
+                                sqlAdd = sql + " " + andor1 + " (" + searchCrit2 + " NOT like '%" + sCrit2_txt + "%')";
+                            }
+
+                        } else {
+                            if (sCrit2_txt.equals("null") || sCrit2_txt.equals("NULL")) {
+                                sqlAdd = sql + " " + andor1 + " (" + searchCrit2 + " IS NULL)";
+                            } else {
+                                sqlAdd = sql + " " + andor1 + " (" + searchCrit2 + " like '%" + sCrit2_txt + "%')";
+                            }
+                        }
+                    }
+                } else if (sqlFollow == 2) {
+                    if (select2.equals("TXT")) {
+                        if (rbtn_NOT2.isSelected()) {
+                            sql2Add = sql2 + " " + andor1 + " (" + searchCrit2 + " NOT like '%" + sCrit2_txt + "%')";
+                        } else {
+                            sql2Add = sql2 + " " + andor1 + " (" + searchCrit2 + " like '%" + sCrit2_txt + "%')";
+                        }
+                    } else if (select2.equals("NULLable")) {
+                        if (rbtn_NOT2.isSelected()) {
+                            if (sCrit2_txt.equals("null") || sCrit2_txt.equals("NULL")) {
+                                sql2Add = sql2 + " " + andor1 + " (" + searchCrit2 + " IS NOT NULL)";
+                            } else {
+                                sql2Add = sql2 + " " + andor1 + " (" + searchCrit2 + " NOT like '%" + sCrit2_txt + "%')";
+                            }
+                        } else {
+                            if (sCrit2_txt.equals("null") || sCrit2_txt.equals("NULL")) {
+                                sql2Add = sql2 + " " + andor1 + " (" + searchCrit2 + " IS NULL)";
+                            } else {
+                                sql2Add = sql2 + " " + andor1 + " (" + searchCrit2 + " like '%" + sCrit2_txt + "%')";
+                            }
+                        }
+                    }
+
+                } else if (sqlFollow == 3) {
+                    if (select2.equals("TXT")) {
+                        if (rbtn_NOT2.isSelected()) {
+                            sql3Add = sql3 + " " + andor1 + " (" + searchCrit2 + " NOT like '%" + sCrit2_txt + "%')";
+                        } else {
+                            sql3Add = sql3 + " " + andor1 + " (" + searchCrit2 + " like '%" + sCrit2_txt + "%')";
                         }
                     }
                 }
-            } else {
+
+            } /*else {        // no second criteria chosen
                 sql = sql +")";
                 sql2 = sql2 +")";
                 sql3 = sql3 +")";
+            }*/
+           
+            // SECOND QUERY  ... get Ids to pass to first query
+            if (sqlFollow == 1) {
+                IdsIn = getIdsIn(sqlAdd, 1); 
+                //JOptionPane.showMessageDialog(null, "follow1-IdsIn:  "+IdsIn);
+                //txtArea_test.append("\nfollow=1-IdsIn:  "+IdsIn);   //TEST
+            } else if (sqlFollow == 2){
+                IdsIn = getIdsIn(sql2Add, 2);
+                //txtArea_test.append("\nfollow=2-IdsIn:  "+IdsIn);   //TEST
+            } else if (sqlFollow == 3){
+                IdsIn = getIdsIn(sql3Add, 3);
+                //txtArea_test.setText("SQL3:  "+IdsIn);   //TEST
+            } //else {txtArea_test.setText("__");}
+            
+            // FIRST QUERY
+            if (sqlStart1==1){
+                //txtArea_test.append("\nsqlStart=1-sql:  "+sql);   //TEST
+                fillTable_patient(sql, IdsIn);
+                
+            } else if (sqlStart1==2){
+                //txtArea_test.append("\nsqlStart=2-sql:  "+sql2);   //TEST
+                fillTable_study (sql2, IdsIn);
+                
+            } else if (sqlStart1 ==3){
+                //txtArea_test.append("\nsqlStart=3-sql:  "+sql3);   //TEST
+                fillTable_project(sql3, IdsIn);  
             }
-
-            //txtArea_test.setText(sql +"\n"+sql2+"\n"+sql3);  //TEST
-            
-            if (sqlStart==1){
-                fillTable_patient(sql);
-                
-            } else if (sqlStart==2){
-                fillTable_study (sql2);
-                
-            } else if (sqlStart ==3){
-                fillTable_project(sql3);
-                
-            }
-            
-            
-            /*try {
-                pst = conn.prepareStatement(sql);
-                rs = pst.executeQuery();
-
-                my_log.logger.info("SQL:  " + sql);
-                table_patient.setModel(DbUtils.resultSetToTableModel(rs));
-                CustomSorter.table_customRowSort(table_patient);
-                if (table_patient.getColumnModel().getColumnCount() > 0) {
-                    table_patient.getColumnModel().getColumn(0).setPreferredWidth(60);
-                    table_patient.getColumnModel().getColumn(0).setMaxWidth(100);
-                    table_patient.getColumnModel().getColumn(1).setPreferredWidth(80);
-                    table_patient.getColumnModel().getColumn(1).setMaxWidth(100);
-                    table_patient.getColumnModel().getColumn(2).setPreferredWidth(140);
-                    table_patient.getColumnModel().getColumn(2).setMaxWidth(170);
-                    table_patient.getColumnModel().getColumn(3).setPreferredWidth(140);
-                    table_patient.getColumnModel().getColumn(3).setMaxWidth(170);
-                    table_patient.getColumnModel().getColumn(4).setPreferredWidth(120);
-                    table_patient.getColumnModel().getColumn(4).setMaxWidth(170);
-                    table_patient.getColumnModel().getColumn(5).setPreferredWidth(60); // Sex
-                    table_patient.getColumnModel().getColumn(5).setMaxWidth(60);
-                    table_patient.getColumnModel().getColumn(6).setPreferredWidth(90);
-                    table_patient.getColumnModel().getColumn(6).setMaxWidth(120);
-                    table_patient.getColumnModel().getColumn(7).setPreferredWidth(90);
-                    table_patient.getColumnModel().getColumn(7).setMaxWidth(120);
-                    table_patient.getColumnModel().getColumn(8).setPreferredWidth(60); // MDown
-                    table_patient.getColumnModel().getColumn(8).setMaxWidth(60);
-                }
-
-                //get_ids(sql, pst, rs, conn);
-                this.ids = IdManagement.get_ids(sql, pst, rs, conn, "pat_id");
-                get_resultIDs();
-                //get_r_ids(sql,pst,rs,conn); 
-                showRows(rs);
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e);
-                my_log.logger.warning("ERROR: " + e);
-            }*/
-            
-// -->     fillTable_patient(sql);       
-
-            /*// get pat_ids from sql
-            String pat_ids = this.ids;                             
-            if (pat_ids.length() > 1) {
-                pat_ids = pat_ids.substring(0, (pat_ids.length() - 1));
-            }
- 
-            if (sqlStart==1){
-                sql2 = sql2 + " AND p.pat_id in (" + pat_ids + ")"; 
-            }*/
-            
-            /*try {
-                pst = conn.prepareStatement(sql2);
-                rs = pst.executeQuery();
-
-                my_log.logger.info("SQL2:  " + sql2);
-                table_patinstudy.setModel(DbUtils.resultSetToTableModel(rs));
-                CustomSorter.table_customRowSort(table_patinstudy);
-                if (table_patinstudy.getColumnModel().getColumnCount() > 0) {
-                    table_patinstudy.getColumnModel().getColumn(0).setPreferredWidth(60);
-                    table_patinstudy.getColumnModel().getColumn(0).setMaxWidth(100);
-                    table_patinstudy.getColumnModel().getColumn(2).setPreferredWidth(70); // stdy_ID
-                    table_patinstudy.getColumnModel().getColumn(2).setMaxWidth(100);
-                    table_patinstudy.getColumnModel().getColumn(3).setPreferredWidth(80); // stdy_group
-                    table_patinstudy.getColumnModel().getColumn(3).setMaxWidth(100);
-                    table_patinstudy.getColumnModel().getColumn(4).setPreferredWidth(60); // monitoring
-                    table_patinstudy.getColumnModel().getColumn(4).setMaxWidth(100);
-                }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e);
-                my_log.logger.warning("ERROR: " + e);
-            }*/
-//-->           fillTable_study(sql2);
-            
-            // table pat_inproject
-            //String sql3 = "SELECT p.pat_id, proj_name"
-            //        + " FROM patient p, pat_inproject pj, project j"
-            //        + " WHERE p.pat_id=pj.pat_id "
-            //        + " AND j.proj_id=pj.proj_id "
-            //        + " AND p.pat_id in (" + pat_ids + ")";       
-            
-            
-            /*try {
-                pst = conn.prepareStatement(sql3);
-                rs = pst.executeQuery();
-                
-                my_log.logger.info("SQL3:  " + sql3);
-                table_patinproject.setModel(DbUtils.resultSetToTableModel(rs));
-                CustomSorter.table_customRowSort(table_patinproject);
-                if (table_patinproject.getColumnModel().getColumnCount() > 0) {
-                    table_patinproject.getColumnModel().getColumn(0).setPreferredWidth(60);
-                    table_patinproject.getColumnModel().getColumn(0).setMaxWidth(100);
-                }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e);
-                my_log.logger.warning("ERROR: " + e);
-            } finally {
-                try {
-                    if (rs != null) { rs.close();}
-                    if (pst != null) { pst.close();}
-                    if (conn != null) { conn.close();}
-                } catch (Exception e) {
-                }
-            }*/
-            
- //-->           fillTable_project(sql3);
  
         }         
     }//GEN-LAST:event_btn_SearchActionPerformed

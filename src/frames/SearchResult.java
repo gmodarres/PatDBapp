@@ -11,7 +11,7 @@
 package frames;
 
 import static frames.ArrayQuery.AQ_resultIDs;
-import static frames.PatientBrowse.PB_resultIDs;
+import static frames.PatientBrowse_mod.PB_resultIDs;
 import static frames.ResultWindow.*;
 import static frames.SetConnection.personalConfig;
 import static frames.SampleBrowse.SB_resultIDs;
@@ -3825,11 +3825,11 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
                 sql = this.mod_sql;
             }
             
-            // only for the set of patient browse result
-            if (rbtn_PB.isSelected()) {     
-                deliver_PB_ids(method_name,sql);
-                sql = this.mod_sql;
-            }
+            // only for the set of patient browse result  // TODO:  DOPPELTer code ...?   --> test: auskommentieren 
+            //if (rbtn_PB.isSelected()) {     
+            //    deliver_PB_ids(method_name,sql);
+            //    sql = this.mod_sql;
+            //}
 
             // only for the set of sample browse result
             if (rbtn_SB.isSelected()) {     
