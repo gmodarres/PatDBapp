@@ -11,6 +11,7 @@
 package frames;
 
 import static frames.ResultWindow.updateIntrpr;
+import static frames.SetConnection.PresentMode;
 import static frames.SetConnection.personalConfig;
 import java.awt.Desktop;
 import java.awt.Toolkit;
@@ -72,6 +73,8 @@ public class ArrayQuery extends javax.swing.JFrame {
     String click_result = null;
     static String click_lID = null;
     
+    boolean Present = PresentMode;
+        
     Log my_log;
     
     /**
@@ -300,6 +303,10 @@ public class ArrayQuery extends javax.swing.JFrame {
                 all_ids = all_ids.substring(0, (all_ids.length() - 1));
                 String sql2 = "SELECT distinct s.lab_id, result_id, p.pat_id, fname, surname, sex, b_date from main_result m, patient p, sample s "
                         + "Where p.pat_id=s.pat_id AND m.lab_id=s.lab_id AND result_id IN ( " + all_ids + " )";
+                if (Present == true) { // PRESENT
+                    sql2 =  "SELECT distinct s.lab_id, result_id, p.pat_id, present as fname, present as surname, sex, b_date from main_result m, patient p, sample s "
+                        + "Where p.pat_id=s.pat_id AND m.lab_id=s.lab_id AND result_id IN ( " + all_ids + " )";
+                }
                 
                 pst = conn.prepareStatement(sql2);
                 rs = pst.executeQuery();
@@ -354,6 +361,10 @@ public class ArrayQuery extends javax.swing.JFrame {
 
                 String sql2 = "SELECT distinct s.lab_id, result_id, p.pat_id, fname, surname, sex, b_date from main_result m, patient p, sample s "
                         + "Where p.pat_id=s.pat_id AND m.lab_id=s.lab_id AND result_id IN ( " + all_ids + " )";
+                if (Present == true) { // PRESENT
+                    sql2 =  "SELECT distinct s.lab_id, result_id, p.pat_id, present as fname, present as surname, sex, b_date from main_result m, patient p, sample s "
+                        + "Where p.pat_id=s.pat_id AND m.lab_id=s.lab_id AND result_id IN ( " + all_ids + " )";
+                }
                 
                 pst = conn.prepareStatement(sql2);
                 rs = pst.executeQuery();

@@ -962,20 +962,18 @@ public class ClassificationBrowse extends javax.swing.JFrame {
             .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Info_top4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(lbl_rowsReturned, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Info_top4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jScrollPane1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(12, 12, 12))))
+                        .addComponent(jScrollPane1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(lbl_rowsReturned, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(12, 12, 12))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -987,9 +985,9 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(8, 8, 8)
+                .addGap(2, 2, 2)
                 .addComponent(lbl_rowsReturned)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(8, 8, 8)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -1079,7 +1077,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                     sql = sql + " " + andor1 + " " + specST1 + " like '%" + spec_txt1 + "%'";
                 }
             }
-            //txtArea_test.setText(sql);
+            //txtArea_test.setText(sql);    //TEST
 
             try {
                 pst = conn.prepareStatement(sql);
@@ -1182,17 +1180,25 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                         break;
                 }
                 String class_txt = txt_class.getText();
-                if (classRG.equals("fcm_mrd")){
-                    sql = sql + " and " + classRG + " " + class_txt ;
+                if (classRG.equals("fcm_mrd")) {
+                    sql = sql + " and " + classRG + " " + class_txt;
                 } else {
                     if (rbtn_NOT2_1.isSelected()) {
-                        sql = sql + " and " + classRG + " NOT like '%" + class_txt + "%'";
+                        if (class_txt.equals("null") || class_txt.equals("NULL")) {
+                            sql = sql + " and " + classRG + " IS NOT NULL";
+                        } else {
+                            sql = sql + " and " + classRG + " NOT like '%" + class_txt + "%'";
+                        }
                     } else {
-                        sql = sql + " and " + classRG + " like '%" + class_txt + "%'";
+                        if (class_txt.equals("null") || class_txt.equals("NULL")) {
+                            sql = sql + " and " + classRG + " IS NULL";
+                        } else {
+                            sql = sql + " and " + classRG + " like '%" + class_txt + "%'";
+                        }
                     }
                 }
             }
-           
+
             if (rbtn_RG1.isSelected()) {
                 String andor2 = CB_andor2.getSelectedItem().toString();
                 String class_select1 = CB_class1.getSelectedItem().toString();
@@ -1223,19 +1229,28 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                     default:
                         break;
                 }
-                String class_txt1 = txt_class1.getText();
+                String class_txt1 = txt_class1.getText();            
                 
-                if (classRG1.equals("fcm_mrd")){
-                    sql = sql + " and " + classRG1 + " " + class_txt1 ;
+                if (classRG1.equals("fcm_mrd")) {
+                    sql = sql + " "+ andor2 + " " + classRG1 + " " + class_txt1;
                 } else {
                     if (rbtn_NOT2_2.isSelected()) {
-                        sql = sql + " " + andor2 + " " + classRG1 + " NOT like '%" + class_txt1 + "%'";
+                        if (class_txt1.equals("null") || class_txt1.equals("NULL")) {
+                            sql = sql + " " + andor2 + " " + classRG1 + " IS NOT NULL";
+                        } else {
+                            sql = sql + " " + andor2 + " " + classRG1 + " NOT like '%" + class_txt1 + "%'";
+                        }
                     } else {
-                        sql = sql + " " + andor2 + " " + classRG1 + " like '%" + class_txt1 + "%'";
+                        if (class_txt1.equals("null") || class_txt1.equals("NULL")) {
+                            sql = sql + " " + andor2 + " " + classRG1 + " IS NULL";
+                        } else {
+                            sql = sql + " " + andor2 + " " + classRG1 + " like '%" + class_txt1 + "%'";
+                        }
                     }
                 }
+    
             }
-            //txtArea_test.setText(sql);
+            //txtArea_test.setText(sql);    //TEST
 
             try {
                 pst = conn.prepareStatement(sql);
@@ -1310,48 +1325,56 @@ public class ClassificationBrowse extends javax.swing.JFrame {
             }
             update_table_resultID();
         }else if (rbtn_cytology.isSelected()) {
-            Connection conn = DBconnect.ConnecrDb();
-            ResultSet rs = null;
-            PreparedStatement pst = null;
+             Connection conn = DBconnect.ConnecrDb();
+             ResultSet rs = null;
+             PreparedStatement pst = null;
 
              String sql = "SELECT pat_id, cyto_auto_ID as cytoID, fab_class, prcnt_blast_km as `% blast BM`, prcnt_blast_pb as `% blast PB`, eval, summ FROM cytology_result c, main_result m, sample s"
                      + " WHERE c.result_id=m.result_id "
                      + " AND s.lab_id=m.lab_id";
 
-            if (rbtn_CYT.isSelected()) {
-                String cyt_select = CB_cytology.getSelectedItem().toString();
-                String cytology = "";
-                switch (cyt_select) { 
-                    case "fab_class":
-                        cytology = "fab_class";
-                        break;
-                    case "% blast PB":
-                        cytology = "prcnt_blast_pb";
-                        break;
-                    case "% blast BM":
-                        cytology = "prcnt_blast_km";
-                        break;
-                    case "eval":
-                        cytology = "eval";
-                        break;
-                    case "summary":
-                        cytology = "summ";
-                        break;
-                    default:
-                        break;
-                }
-                String CYT_txt = txt_cytology.getText();
-                if (cytology.equals("prcnt_blast_pb")|| cytology.equals("prcnt_blast_km") ){
-                    sql = sql + " and " + cytology + " " + CYT_txt ;
-                } else {
-                    if (rbtn_NOT3_1.isSelected()) {
-                        sql = sql + " and " + cytology + " NOT like '%" + CYT_txt + "%'";
-                    } else {
-                        sql = sql + " and " + cytology + " like '%" + CYT_txt + "%'";
-                    }
-                }
-            }
-
+             if (rbtn_CYT.isSelected()) {
+                 String cyt_select = CB_cytology.getSelectedItem().toString();
+                 String cytology = "";
+                 switch (cyt_select) {
+                     case "fab_class":
+                         cytology = "fab_class";
+                         break;
+                     case "% blast PB":
+                         cytology = "prcnt_blast_pb";
+                         break;
+                     case "% blast BM":
+                         cytology = "prcnt_blast_km";
+                         break;
+                     case "eval":
+                         cytology = "eval";
+                         break;
+                     case "summary":
+                         cytology = "summ";
+                         break;
+                     default:
+                         break;
+                 }
+                 String CYT_txt = txt_cytology.getText();
+                 if (cytology.equals("prcnt_blast_pb") || cytology.equals("prcnt_blast_km")) {
+                     sql = sql + " and " + cytology + " " + CYT_txt;
+                 } else {
+                     if (rbtn_NOT3_1.isSelected()) {
+                         if (CYT_txt.equals("null") || CYT_txt.equals("NULL")) {
+                             sql = sql + " and " + cytology + " IS NOT NULL";
+                         } else {
+                             sql = sql + " and " + cytology + " NOT like '%" + CYT_txt + "%'";
+                         }
+                     } else {
+                         if (CYT_txt.equals("null") || CYT_txt.equals("NULL")) {
+                             sql = sql + " and " + cytology + " IS NULL";
+                         } else {
+                             sql = sql + " and " + cytology + " like '%" + CYT_txt + "%'";
+                         }
+                     }
+                 }
+             }
+                          
             if (rbtn_CYT1.isSelected()) {
                 String andor3 = CB_andor3.getSelectedItem().toString();
                 String cyt_select1 = CB_cytology1.getSelectedItem().toString();
@@ -1375,19 +1398,29 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                     default:
                         break;
                 }
-                String cytology_txt1 = txt_cytology1.getText();
+                String CYT_txt1 = txt_cytology1.getText();
                 
                 if (cytology1.equals("prcnt_blast_pb")|| cytology1.equals("prcnt_blast_km") ){
-                    sql = sql + " and " + cytology1 + " " + cytology_txt1 ;
+                    sql = sql + " " + andor3 + " " + cytology1 + " " + CYT_txt1 ;
                 } else {
+                    
                     if (rbtn_NOT3_2.isSelected()) {
-                        sql = sql + " " + andor3 + " " + cytology1 + " NOT like '%" + cytology_txt1 + "%'";
-                    } else {
-                        sql = sql + " " + andor3 + " " + cytology1 + " like '%" + cytology_txt1 + "%'";
-                    }
+                         if (CYT_txt1.equals("null") || CYT_txt1.equals("NULL")) {
+                             sql = sql + " " + andor3 + " " + cytology1 + " IS NOT NULL";
+                         } else {
+                             sql = sql + " " + andor3 + " " + cytology1 + " NOT like '%" + CYT_txt1 + "%'";
+                         }
+                     } else {
+                         if (CYT_txt1.equals("null") || CYT_txt1.equals("NULL")) {
+                             sql = sql + " " + andor3 + " " + cytology1 + " IS NULL";
+                         } else {
+                             sql = sql + " " + andor3 + " " + cytology1 + " like '%" + CYT_txt1 + "%'";
+                         }
+                     }
+                    
                 }
             }
-            txtArea_test.setText(sql);
+            //txtArea_test.setText(sql);    //TEST
 
             try {
                 pst = conn.prepareStatement(sql);
@@ -1448,7 +1481,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
             IDs = IDs + tmp + ", "; 
         }
         IDs = IDs.substring(0, (IDs.length() - 2));
-        //txtArea_test.setText(IDs);  // test
+        //txtArea_test.setText(IDs);    //TEST
         
         //Toolkit.getDefaultToolkit().getSystemClipboard().setContents( 
         //        new StringSelection(IDs), null);
@@ -1469,7 +1502,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
             IDs = IDs + tmp + ", "; 
         }
         IDs = IDs.substring(0, (IDs.length() - 2));
-        //txtArea_test.setText(IDs);  // test
+            //txtArea_test.setText(IDs);    //TEST
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents( 
                 new StringSelection(IDs), null);       
     }//GEN-LAST:event_cpLabIdsActionPerformed
@@ -1877,16 +1910,10 @@ public class ClassificationBrowse extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CB_RG4;
     private javax.swing.JComboBox<String> CB_RG5;
-    private javax.swing.JComboBox<String> CB_RG6;
-    private javax.swing.JComboBox<String> CB_RG7;
-    private javax.swing.JComboBox<String> CB_RG8;
-    private javax.swing.JComboBox<String> CB_RG9;
     private javax.swing.JComboBox<String> CB_andor1;
     private javax.swing.JComboBox<String> CB_andor2;
     private javax.swing.JComboBox<String> CB_andor3;
     private javax.swing.JComboBox<String> CB_andor4;
-    private javax.swing.JComboBox<String> CB_andor5;
-    private javax.swing.JComboBox<String> CB_andor6;
     private javax.swing.JComboBox<String> CB_class;
     private javax.swing.JComboBox<String> CB_class1;
     private javax.swing.JComboBox<String> CB_cytology;
@@ -1902,8 +1929,6 @@ public class ClassificationBrowse extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -1914,16 +1939,12 @@ public class ClassificationBrowse extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTP_LAB;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JLabel lbl_rowsReturned;
     private javax.swing.JPopupMenu popUpResult;
@@ -1932,11 +1953,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbtn_NOT1_1;
     private javax.swing.JRadioButton rbtn_NOT1_2;
     private javax.swing.JRadioButton rbtn_NOT2_1;
-    private javax.swing.JRadioButton rbtn_NOT2_10;
     private javax.swing.JRadioButton rbtn_NOT2_2;
-    private javax.swing.JRadioButton rbtn_NOT2_7;
-    private javax.swing.JRadioButton rbtn_NOT2_8;
-    private javax.swing.JRadioButton rbtn_NOT2_9;
     private javax.swing.JRadioButton rbtn_NOT3_1;
     private javax.swing.JRadioButton rbtn_NOT3_2;
     private javax.swing.JRadioButton rbtn_NOT4_1;
@@ -1944,34 +1961,22 @@ public class ClassificationBrowse extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbtn_RG;
     private javax.swing.JRadioButton rbtn_RG1;
     private javax.swing.JRadioButton rbtn_TODO;
-    private javax.swing.JRadioButton rbtn_all_5;
-    private javax.swing.JRadioButton rbtn_all_6;
     private javax.swing.JRadioButton rbtn_all_TODO;
     private javax.swing.JRadioButton rbtn_all_class;
     private javax.swing.JRadioButton rbtn_all_cytology;
     private javax.swing.JRadioButton rbtn_all_subtypes;
     private javax.swing.JRadioButton rbtn_class;
     private javax.swing.JRadioButton rbtn_cytology;
-    private javax.swing.JRadioButton rbtn_group1;
-    private javax.swing.JRadioButton rbtn_group2;
     private javax.swing.JRadioButton rbtn_specST;
     private javax.swing.JRadioButton rbtn_specST1;
-    private javax.swing.JRadioButton rbtn_specST10;
-    private javax.swing.JRadioButton rbtn_specST11;
     private javax.swing.JRadioButton rbtn_specST6;
     private javax.swing.JRadioButton rbtn_specST7;
-    private javax.swing.JRadioButton rbtn_specST8;
-    private javax.swing.JRadioButton rbtn_specST9;
     private javax.swing.JRadioButton rbtn_subtype;
     private javax.swing.JTable table_RgClassLab;
     private javax.swing.JTable table_resultID;
     private javax.swing.JTextArea txtArea_test;
     private javax.swing.JTextField txt_RG4;
     private javax.swing.JTextField txt_RG5;
-    private javax.swing.JTextField txt_RG6;
-    private javax.swing.JTextField txt_RG7;
-    private javax.swing.JTextField txt_RG8;
-    private javax.swing.JTextField txt_RG9;
     private javax.swing.JTextField txt_class;
     private javax.swing.JTextField txt_class1;
     private javax.swing.JTextField txt_cytology;

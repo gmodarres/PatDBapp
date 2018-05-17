@@ -10,6 +10,7 @@
  */
 package frames;
 
+import static frames.SetConnection.PresentMode;
 import myClass.DBconnect;
 import java.sql.*;
 import javax.swing.*;
@@ -29,6 +30,8 @@ public class SearchMainResult extends javax.swing.JFrame {
     private ImageIcon format = null;
     String click_result = null;
     static String click_lID = null;
+    
+    boolean Present = PresentMode;
     
     Log my_log;
        
@@ -84,6 +87,11 @@ public class SearchMainResult extends javax.swing.JFrame {
                 all_ids = all_ids.substring(0, (all_ids.length() - 1));
                 String sql2 = "SELECT distinct s.lab_id, result_id, fname, surname, sex, b_date from main_result m, patient p, sample s "
                         + "Where p.pat_id=s.pat_id AND m.lab_id=s.lab_id AND result_id IN ( " + all_ids + " )";
+                if (Present == true) { // PRESENT
+                    sql2 = "SELECT distinct s.lab_id, result_id, present as fname, present as surname, sex, b_date from main_result m, patient p, sample s "
+                        + "Where p.pat_id=s.pat_id AND m.lab_id=s.lab_id AND result_id IN ( " + all_ids + " )";
+                }
+                
                 pst = conn.prepareStatement(sql2);
                 rs = pst.executeQuery();
 
@@ -137,6 +145,10 @@ public class SearchMainResult extends javax.swing.JFrame {
                 all_ids = all_ids.substring(0, (all_ids.length() - 1));
                 String sql2 = "SELECT distinct s.lab_id, result_id, fname, surname, sex, b_date from main_result m, patient p, sample s "
                         + "Where p.pat_id=s.pat_id AND m.lab_id=s.lab_id AND result_id IN ( " + all_ids + " )";
+                if (Present == true) { // PRESENT
+                    sql2 = "SELECT distinct s.lab_id, result_id, present as fname, present as surname, sex, b_date from main_result m, patient p, sample s "
+                        + "Where p.pat_id=s.pat_id AND m.lab_id=s.lab_id AND result_id IN ( " + all_ids + " )";
+                }
                 pst = conn.prepareStatement(sql2);
                 rs = pst.executeQuery();
 
@@ -225,7 +237,29 @@ public class SearchMainResult extends javax.swing.JFrame {
 
         }catch(Exception e){
         }    
-    }      
+    }    
+    
+    private void highlight_txt_zg(String word){ 
+        try{
+            String text  = ZG_txtArea_intrpr.getText().toLowerCase();
+            String findWord = word.toLowerCase();
+            int index = text.indexOf(findWord);
+            
+            Highlighter highlighter = ZG_txtArea_intrpr.getHighlighter();
+            HighlightPainter painter = new DefaultHighlighter.DefaultHighlightPainter(java.awt.Color.yellow);
+            
+            while (index >= 0) {  // indexOf returns -1 if no match found
+                //JOptionPane.showMessageDialog(null, "index: "+ index);
+                int p0 = index;
+                int p1 = p0 + findWord.length();
+                highlighter.addHighlight(p0, p1, painter);
+                index = text.indexOf(findWord, index + 1);
+            }
+
+        }catch(Exception e){
+        }    
+    }    
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -1275,7 +1309,7 @@ public class SearchMainResult extends javax.swing.JFrame {
 
                     if (txtArea_search_zg !=null && !txtArea_search_zg.getText().isEmpty()){
                         String zg_HL = txtArea_search_zg.getText();
-                        highlight_txt_fish(zg_HL);
+                        highlight_txt_zg(zg_HL);
                     }
 
                     String karyoview = rs.getString("ar_karyoview");
@@ -1370,7 +1404,7 @@ public class SearchMainResult extends javax.swing.JFrame {
 
                     if (txtArea_search_zg !=null && !txtArea_search_zg.getText().isEmpty()){
                         String zg_HL = txtArea_search_zg.getText();
-                        highlight_txt_fish(zg_HL);
+                        highlight_txt_zg(zg_HL);
                     }
 
                     String karyoview = rs.getString("ar_karyoview");

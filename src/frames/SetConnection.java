@@ -50,7 +50,10 @@ public class SetConnection extends javax.swing.JFrame {
     public static String personalConfig = null;
     public static String currentUser = null;
     public static String devmode = null;
-
+    
+    //public static boolean PresentMode = true;
+    public static boolean PresentMode = false;
+    
     Log my_log;
         
     /**

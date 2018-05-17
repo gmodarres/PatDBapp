@@ -10,6 +10,7 @@
  */
 package frames;
 
+import static frames.SetConnection.PresentMode;
 import java.awt.Desktop;
 import java.io.File;
 import java.sql.Connection;
@@ -35,6 +36,8 @@ public class PatientBrowse_mod extends javax.swing.JFrame {
     
     String ids = null;
     static String PB_resultIDs = null;
+    
+    boolean Present = PresentMode;
         
     Log my_log;
 
@@ -45,19 +48,25 @@ public class PatientBrowse_mod extends javax.swing.JFrame {
         initComponents();
         ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_small.png"));
         this.setIconImage(img.getImage());
-        initial_table_patient();
+        initial_tables();
         
         Info_top4.getRootPane().setDefaultButton(btn_Search);
         
         my_log.logger.info("open PatientBrowse()");
     }
 
-    private void showRows(ResultSet rs) {
+    private void showRows(ResultSet rs, String table) {
         try {
             if (rs.last()) {
                 int rows = rs.getRow();
                 String getRows = String.valueOf(rows);
-                lbl_rowsReturned.setText(getRows + " row(s) returned");
+                if (table.equals("patient")){
+                    lbl_patient_rowsReturned.setText(getRows + " row(s) returned");
+                } else if (table.equals("study")){
+                    lbl_study_rowsReturned.setText(getRows + " row(s) returned");
+                } else if (table.equals("project")){
+                    lbl_project_rowsReturned.setText(getRows + " row(s) returned");
+                } 
                 my_log.logger.info(getRows+" row(s) returned");
             }
         } catch (SQLException ex) {
@@ -65,40 +74,25 @@ public class PatientBrowse_mod extends javax.swing.JFrame {
         }
     }
          
-    private void initial_table_patient() {
+    private void initial_tables() {
 
         Connection conn = DBconnect.ConnecrDb();
         ResultSet rs = null;
         PreparedStatement pst = null;
         String sql = "SELECT p.pat_id, fm_pat_no, fname, surname, surname_old, sex, b_date, dg_date, mb_down as MDown FROM patient p";
-
+        if (Present == true) { // PRESENT
+            sql = "SELECT p.pat_id, fm_pat_no, present as fname, present as surname, present as surname_old, sex, b_date, dg_date, mb_down as MDown FROM patient p";
+        }
+        
         try {
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
             table_patient.setModel(DbUtils.resultSetToTableModel(rs));
 
-            CustomSorter.table_customRowSort(table_patient);      
-            if (table_patient.getColumnModel().getColumnCount() > 0) {
-                table_patient.getColumnModel().getColumn(0).setPreferredWidth(60);
-                table_patient.getColumnModel().getColumn(0).setMaxWidth(100);
-                table_patient.getColumnModel().getColumn(1).setPreferredWidth(80);
-                table_patient.getColumnModel().getColumn(1).setMaxWidth(100);
-                table_patient.getColumnModel().getColumn(2).setPreferredWidth(140);
-                table_patient.getColumnModel().getColumn(2).setMaxWidth(170);
-                table_patient.getColumnModel().getColumn(3).setPreferredWidth(140);
-                table_patient.getColumnModel().getColumn(3).setMaxWidth(170);
-                table_patient.getColumnModel().getColumn(4).setPreferredWidth(120);
-                table_patient.getColumnModel().getColumn(4).setMaxWidth(170);
-                table_patient.getColumnModel().getColumn(5).setPreferredWidth(60); // Sex
-                table_patient.getColumnModel().getColumn(5).setMaxWidth(60);
-                table_patient.getColumnModel().getColumn(6).setPreferredWidth(90);
-                table_patient.getColumnModel().getColumn(6).setMaxWidth(120);
-                table_patient.getColumnModel().getColumn(7).setPreferredWidth(90);
-                table_patient.getColumnModel().getColumn(7).setMaxWidth(120);
-                table_patient.getColumnModel().getColumn(8).setPreferredWidth(60); // MDown
-                table_patient.getColumnModel().getColumn(8).setMaxWidth(60);
-            }
-            showRows(rs);
+            CustomSorter.table_customRowSort(table_patient);   
+            setLookTable_patient(table_patient);
+
+            showRows(rs, "patient");
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -112,17 +106,11 @@ public class PatientBrowse_mod extends javax.swing.JFrame {
             pst = conn.prepareStatement(sql2);
             rs = pst.executeQuery();
             table_patinstudy.setModel(DbUtils.resultSetToTableModel(rs));
-            CustomSorter.table_customRowSort(table_patinstudy);     
-            if (table_patinstudy.getColumnModel().getColumnCount() > 0) {
-                table_patinstudy.getColumnModel().getColumn(0).setPreferredWidth(60);
-                table_patinstudy.getColumnModel().getColumn(0).setMaxWidth(60);
-                table_patinstudy.getColumnModel().getColumn(2).setPreferredWidth(70); // stdy_ID
-                table_patinstudy.getColumnModel().getColumn(2).setMaxWidth(100);
-                table_patinstudy.getColumnModel().getColumn(3).setPreferredWidth(80); // stdy_group
-                table_patinstudy.getColumnModel().getColumn(3).setMaxWidth(100);
-                table_patinstudy.getColumnModel().getColumn(4).setPreferredWidth(60); // monitoring
-                table_patinstudy.getColumnModel().getColumn(4).setMaxWidth(100);   
-            }            
+            CustomSorter.table_customRowSort(table_patinstudy);  
+            setLookTable_study(table_patinstudy);
+            
+            showRows(rs, "study");
+                  
         }catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         } 
@@ -135,11 +123,11 @@ public class PatientBrowse_mod extends javax.swing.JFrame {
             pst = conn.prepareStatement(sql3);
             rs = pst.executeQuery();
             table_patinproject.setModel(DbUtils.resultSetToTableModel(rs));
-            CustomSorter.table_customRowSort(table_patinproject);      
-            if (table_patinproject.getColumnModel().getColumnCount() > 0) {
-                table_patinproject.getColumnModel().getColumn(0).setPreferredWidth(60);
-                table_patinproject.getColumnModel().getColumn(0).setMaxWidth(100);            
-            }            
+            CustomSorter.table_customRowSort(table_patinproject);   
+            setLookTable_project(table_patinproject);
+            
+            showRows(rs, "project");
+                     
         }catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         } finally {
@@ -209,32 +197,13 @@ public class PatientBrowse_mod extends javax.swing.JFrame {
             my_log.logger.info("SQL:  " + sql);
             table_patient.setModel(DbUtils.resultSetToTableModel(rs));
             CustomSorter.table_customRowSort(table_patient);
-            if (table_patient.getColumnModel().getColumnCount() > 0) {
-                table_patient.getColumnModel().getColumn(0).setPreferredWidth(60);
-                table_patient.getColumnModel().getColumn(0).setMaxWidth(100);
-                table_patient.getColumnModel().getColumn(1).setPreferredWidth(80);
-                table_patient.getColumnModel().getColumn(1).setMaxWidth(100);
-                table_patient.getColumnModel().getColumn(2).setPreferredWidth(140);
-                table_patient.getColumnModel().getColumn(2).setMaxWidth(170);
-                table_patient.getColumnModel().getColumn(3).setPreferredWidth(140);
-                table_patient.getColumnModel().getColumn(3).setMaxWidth(170);
-                table_patient.getColumnModel().getColumn(4).setPreferredWidth(120);
-                table_patient.getColumnModel().getColumn(4).setMaxWidth(170);
-                table_patient.getColumnModel().getColumn(5).setPreferredWidth(60); // Sex
-                table_patient.getColumnModel().getColumn(5).setMaxWidth(60);
-                table_patient.getColumnModel().getColumn(6).setPreferredWidth(90);
-                table_patient.getColumnModel().getColumn(6).setMaxWidth(120);
-                table_patient.getColumnModel().getColumn(7).setPreferredWidth(90);
-                table_patient.getColumnModel().getColumn(7).setMaxWidth(120);
-                table_patient.getColumnModel().getColumn(8).setPreferredWidth(60); // MDown
-                table_patient.getColumnModel().getColumn(8).setMaxWidth(60);
-            }
+            setLookTable_patient(table_patient);
 
             //get_ids(sql, pst, rs, conn);
             this.ids = IdManagement.get_ids(sql, pst, rs, conn, "pat_id");
             get_resultIDs();
             //get_r_ids(sql,pst,rs,conn); 
-            showRows(rs);
+            showRows(rs, "patient");
 
             // get pat_ids from sql
             pat_ids = this.ids;
@@ -266,16 +235,9 @@ public class PatientBrowse_mod extends javax.swing.JFrame {
             my_log.logger.info("SQL2:  " + sql2);
             table_patinstudy.setModel(DbUtils.resultSetToTableModel(rs));
             CustomSorter.table_customRowSort(table_patinstudy);
-            if (table_patinstudy.getColumnModel().getColumnCount() > 0) {
-                table_patinstudy.getColumnModel().getColumn(0).setPreferredWidth(60);
-                table_patinstudy.getColumnModel().getColumn(0).setMaxWidth(100);
-                table_patinstudy.getColumnModel().getColumn(2).setPreferredWidth(70); // stdy_ID
-                table_patinstudy.getColumnModel().getColumn(2).setMaxWidth(100);
-                table_patinstudy.getColumnModel().getColumn(3).setPreferredWidth(80); // stdy_group
-                table_patinstudy.getColumnModel().getColumn(3).setMaxWidth(100);
-                table_patinstudy.getColumnModel().getColumn(4).setPreferredWidth(60); // monitoring
-                table_patinstudy.getColumnModel().getColumn(4).setMaxWidth(100);
-            }
+            setLookTable_study(table_patinstudy);
+            
+            showRows(rs, "study");
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -295,10 +257,9 @@ public class PatientBrowse_mod extends javax.swing.JFrame {
             my_log.logger.info("SQL3:  " + sql3);
             table_patinproject.setModel(DbUtils.resultSetToTableModel(rs));
             CustomSorter.table_customRowSort(table_patinproject);
-            if (table_patinproject.getColumnModel().getColumnCount() > 0) {
-                table_patinproject.getColumnModel().getColumn(0).setPreferredWidth(60);
-                table_patinproject.getColumnModel().getColumn(0).setMaxWidth(100);
-            }
+            setLookTable_project(table_patinproject);
+            
+            showRows(rs, "project");
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -335,16 +296,10 @@ public class PatientBrowse_mod extends javax.swing.JFrame {
             my_log.logger.info("SQL2:  " + sql2);
             table_patinstudy.setModel(DbUtils.resultSetToTableModel(rs));
             CustomSorter.table_customRowSort(table_patinstudy);
-            if (table_patinstudy.getColumnModel().getColumnCount() > 0) {
-                table_patinstudy.getColumnModel().getColumn(0).setPreferredWidth(60);
-                table_patinstudy.getColumnModel().getColumn(0).setMaxWidth(100);
-                table_patinstudy.getColumnModel().getColumn(2).setPreferredWidth(70); // stdy_ID
-                table_patinstudy.getColumnModel().getColumn(2).setMaxWidth(100);
-                table_patinstudy.getColumnModel().getColumn(3).setPreferredWidth(80); // stdy_group
-                table_patinstudy.getColumnModel().getColumn(3).setMaxWidth(100);
-                table_patinstudy.getColumnModel().getColumn(4).setPreferredWidth(60); // monitoring
-                table_patinstudy.getColumnModel().getColumn(4).setMaxWidth(100);
-            }
+            setLookTable_study(table_patinstudy);
+            
+            showRows(rs, "study");
+            
             //get_ids(sql, pst, rs, conn);
             this.ids = IdManagement.get_ids(sql2, pst, rs, conn, "pat_id");
             get_resultIDs();
@@ -362,6 +317,10 @@ public class PatientBrowse_mod extends javax.swing.JFrame {
 /////// table patient
         String sql = "SELECT p.pat_id, fm_pat_no, fname, surname, surname_old, sex, b_date, dg_date, mb_down as MDown FROM patient p"
                 + " WHERE p.pat_id in (" + pat_ids + ")";
+        if (Present == true) { // PRESENT
+            sql = "SELECT p.pat_id, fm_pat_no, present as fname, present as surname, present as surname_old, sex, b_date, dg_date, mb_down as MDown FROM patient p"
+                + " WHERE p.pat_id in (" + pat_ids + ")";
+        }
         
         //txtArea_test.append("\nTStu...sql:  "+sql);  // TEST
         try {
@@ -371,26 +330,9 @@ public class PatientBrowse_mod extends javax.swing.JFrame {
             my_log.logger.info("SQL:  " + sql);
             table_patient.setModel(DbUtils.resultSetToTableModel(rs));
             CustomSorter.table_customRowSort(table_patient);
-            if (table_patient.getColumnModel().getColumnCount() > 0) {
-                table_patient.getColumnModel().getColumn(0).setPreferredWidth(60);
-                table_patient.getColumnModel().getColumn(0).setMaxWidth(100);
-                table_patient.getColumnModel().getColumn(1).setPreferredWidth(80);
-                table_patient.getColumnModel().getColumn(1).setMaxWidth(100);
-                table_patient.getColumnModel().getColumn(2).setPreferredWidth(140);
-                table_patient.getColumnModel().getColumn(2).setMaxWidth(170);
-                table_patient.getColumnModel().getColumn(3).setPreferredWidth(140);
-                table_patient.getColumnModel().getColumn(3).setMaxWidth(170);
-                table_patient.getColumnModel().getColumn(4).setPreferredWidth(120);
-                table_patient.getColumnModel().getColumn(4).setMaxWidth(170);
-                table_patient.getColumnModel().getColumn(5).setPreferredWidth(60); // Sex
-                table_patient.getColumnModel().getColumn(5).setMaxWidth(60);
-                table_patient.getColumnModel().getColumn(6).setPreferredWidth(90);
-                table_patient.getColumnModel().getColumn(6).setMaxWidth(120);
-                table_patient.getColumnModel().getColumn(7).setPreferredWidth(90);
-                table_patient.getColumnModel().getColumn(7).setMaxWidth(120);
-                table_patient.getColumnModel().getColumn(8).setPreferredWidth(60); // MDown
-                table_patient.getColumnModel().getColumn(8).setMaxWidth(60);
-            }
+            setLookTable_patient(table_patient);
+            
+            showRows(rs, "patient");
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -410,10 +352,10 @@ public class PatientBrowse_mod extends javax.swing.JFrame {
             my_log.logger.info("SQL3:  " + sql3);
             table_patinproject.setModel(DbUtils.resultSetToTableModel(rs));
             CustomSorter.table_customRowSort(table_patinproject);
-            if (table_patinproject.getColumnModel().getColumnCount() > 0) {
-                table_patinproject.getColumnModel().getColumn(0).setPreferredWidth(60);
-                table_patinproject.getColumnModel().getColumn(0).setMaxWidth(100);
-            }
+            setLookTable_project(table_patinproject);
+            
+            showRows(rs, "project");
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
             my_log.logger.warning("ERROR: " + e);
@@ -448,10 +390,10 @@ public class PatientBrowse_mod extends javax.swing.JFrame {
             my_log.logger.info("SQL3:  " + sql3);
             table_patinproject.setModel(DbUtils.resultSetToTableModel(rs));
             CustomSorter.table_customRowSort(table_patinproject);
-            if (table_patinproject.getColumnModel().getColumnCount() > 0) {
-                table_patinproject.getColumnModel().getColumn(0).setPreferredWidth(60);
-                table_patinproject.getColumnModel().getColumn(0).setMaxWidth(100);
-            }
+            setLookTable_project(table_patinproject);
+            
+            showRows(rs, "project");
+            
             //get_ids(sql, pst, rs, conn);
             this.ids = IdManagement.get_ids(sql3, pst, rs, conn, "pat_id");
             get_resultIDs();
@@ -471,6 +413,10 @@ public class PatientBrowse_mod extends javax.swing.JFrame {
         /////// table patient
         String sql = "SELECT p.pat_id, fm_pat_no, fname, surname, surname_old, sex, b_date, dg_date, mb_down as MDown FROM patient p"
                 + " WHERE p.pat_id in (" + pat_ids + ")";
+        if (Present == true) { // PRESENT
+            sql = "SELECT p.pat_id, fm_pat_no, present as fname, present as surname, present as surname_old, sex, b_date, dg_date, mb_down as MDown FROM patient p"
+                + " WHERE p.pat_id in (" + pat_ids + ")";
+        }
         //txtArea_test.append("\nTProj...sql:  "+sql);  // TEST
         try {
             pst = conn.prepareStatement(sql);
@@ -479,26 +425,9 @@ public class PatientBrowse_mod extends javax.swing.JFrame {
             my_log.logger.info("SQL:  " + sql);
             table_patient.setModel(DbUtils.resultSetToTableModel(rs));
             CustomSorter.table_customRowSort(table_patient);
-            if (table_patient.getColumnModel().getColumnCount() > 0) {
-                table_patient.getColumnModel().getColumn(0).setPreferredWidth(60);
-                table_patient.getColumnModel().getColumn(0).setMaxWidth(100);
-                table_patient.getColumnModel().getColumn(1).setPreferredWidth(80);
-                table_patient.getColumnModel().getColumn(1).setMaxWidth(100);
-                table_patient.getColumnModel().getColumn(2).setPreferredWidth(140);
-                table_patient.getColumnModel().getColumn(2).setMaxWidth(170);
-                table_patient.getColumnModel().getColumn(3).setPreferredWidth(140);
-                table_patient.getColumnModel().getColumn(3).setMaxWidth(170);
-                table_patient.getColumnModel().getColumn(4).setPreferredWidth(120);
-                table_patient.getColumnModel().getColumn(4).setMaxWidth(170);
-                table_patient.getColumnModel().getColumn(5).setPreferredWidth(60); // Sex
-                table_patient.getColumnModel().getColumn(5).setMaxWidth(60);
-                table_patient.getColumnModel().getColumn(6).setPreferredWidth(90);
-                table_patient.getColumnModel().getColumn(6).setMaxWidth(120);
-                table_patient.getColumnModel().getColumn(7).setPreferredWidth(90);
-                table_patient.getColumnModel().getColumn(7).setMaxWidth(120);
-                table_patient.getColumnModel().getColumn(8).setPreferredWidth(60); // MDown
-                table_patient.getColumnModel().getColumn(8).setMaxWidth(60);
-            }
+            setLookTable_patient(table_patient);
+            
+            showRows(rs, "patient");
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -518,16 +447,9 @@ public class PatientBrowse_mod extends javax.swing.JFrame {
             my_log.logger.info("SQL2:  " + sql2);
             table_patinstudy.setModel(DbUtils.resultSetToTableModel(rs));
             CustomSorter.table_customRowSort(table_patinstudy);
-            if (table_patinstudy.getColumnModel().getColumnCount() > 0) {
-                table_patinstudy.getColumnModel().getColumn(0).setPreferredWidth(60);
-                table_patinstudy.getColumnModel().getColumn(0).setMaxWidth(100);
-                table_patinstudy.getColumnModel().getColumn(2).setPreferredWidth(70); // stdy_ID
-                table_patinstudy.getColumnModel().getColumn(2).setMaxWidth(100);
-                table_patinstudy.getColumnModel().getColumn(3).setPreferredWidth(80); // stdy_group
-                table_patinstudy.getColumnModel().getColumn(3).setMaxWidth(100);
-                table_patinstudy.getColumnModel().getColumn(4).setPreferredWidth(60); // monitoring
-                table_patinstudy.getColumnModel().getColumn(4).setMaxWidth(100);
-            }
+            setLookTable_study(table_patinstudy);
+            
+            showRows(rs, "study");
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -560,6 +482,54 @@ public class PatientBrowse_mod extends javax.swing.JFrame {
         //txtArea_test.setText("START\ngetIdsIn():   "+sqlAdd+"\nIds:   "+all_ids);   //TEST
         return all_ids;
     }
+    
+    private void setLookTable_patient(javax.swing.JTable table) {
+        if (table_patient.getColumnModel().getColumnCount() > 0) {
+            table_patient.getColumnModel().getColumn(0).setPreferredWidth(60);
+            table_patient.getColumnModel().getColumn(0).setMaxWidth(100);
+            table_patient.getColumnModel().getColumn(1).setPreferredWidth(80);
+            table_patient.getColumnModel().getColumn(1).setMaxWidth(100);
+            table_patient.getColumnModel().getColumn(2).setPreferredWidth(140);
+            table_patient.getColumnModel().getColumn(2).setMaxWidth(170);
+            table_patient.getColumnModel().getColumn(3).setPreferredWidth(140); // surname
+            table_patient.getColumnModel().getColumn(3).setMaxWidth(300);
+            table_patient.getColumnModel().getColumn(4).setPreferredWidth(120);
+            table_patient.getColumnModel().getColumn(4).setMaxWidth(170);
+            table_patient.getColumnModel().getColumn(5).setPreferredWidth(60); // Sex
+            table_patient.getColumnModel().getColumn(5).setMaxWidth(60);
+            table_patient.getColumnModel().getColumn(6).setPreferredWidth(100);
+            table_patient.getColumnModel().getColumn(6).setMaxWidth(120);
+            table_patient.getColumnModel().getColumn(7).setPreferredWidth(100);
+            table_patient.getColumnModel().getColumn(7).setMaxWidth(120);
+            table_patient.getColumnModel().getColumn(8).setPreferredWidth(60); // MDown
+            table_patient.getColumnModel().getColumn(8).setMaxWidth(60);
+        }
+    }
+    
+    private void setLookTable_study(javax.swing.JTable table) {
+        if (table_patinstudy.getColumnModel().getColumnCount() > 0) {
+            table_patinstudy.getColumnModel().getColumn(0).setPreferredWidth(60);
+            table_patinstudy.getColumnModel().getColumn(0).setMaxWidth(60);
+            table_patinstudy.getColumnModel().getColumn(1).setPreferredWidth(200);
+            table_patinstudy.getColumnModel().getColumn(1).setMaxWidth(500);
+            table_patinstudy.getColumnModel().getColumn(2).setPreferredWidth(100); // stdy_ID
+            table_patinstudy.getColumnModel().getColumn(2).setMaxWidth(100);
+            table_patinstudy.getColumnModel().getColumn(3).setPreferredWidth(120); // stdy_group
+            table_patinstudy.getColumnModel().getColumn(3).setMaxWidth(300);
+            table_patinstudy.getColumnModel().getColumn(4).setPreferredWidth(60); // monitoring
+            table_patinstudy.getColumnModel().getColumn(4).setMaxWidth(100);
+        }
+    }
+    
+    private void setLookTable_project(javax.swing.JTable table) {
+        if (table_patinproject.getColumnModel().getColumnCount() > 0) {
+            table_patinproject.getColumnModel().getColumn(0).setPreferredWidth(60);
+            table_patinproject.getColumnModel().getColumn(0).setMaxWidth(100);
+            table_patinproject.getColumnModel().getColumn(1).setPreferredWidth(200);
+            table_patinproject.getColumnModel().getColumn(1).setMaxWidth(500);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -590,7 +560,7 @@ public class PatientBrowse_mod extends javax.swing.JFrame {
         bnt_test = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         table_patient = new javax.swing.JTable();
-        lbl_rowsReturned = new javax.swing.JLabel();
+        lbl_patient_rowsReturned = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         table_patinstudy = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -598,6 +568,8 @@ public class PatientBrowse_mod extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        lbl_study_rowsReturned = new javax.swing.JLabel();
+        lbl_project_rowsReturned = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
@@ -675,7 +647,6 @@ public class PatientBrowse_mod extends javax.swing.JFrame {
         txt_searchCrit2.setEnabled(false);
 
         buttonGroup1.add(rbtn_all);
-        rbtn_all.setSelected(true);
         rbtn_all.setText("all patients");
         rbtn_all.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         rbtn_all.setBorderPainted(true);
@@ -758,8 +729,8 @@ public class PatientBrowse_mod extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Info_top4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 27, Short.MAX_VALUE)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 721, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 828, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_Search)
                 .addGap(21, 21, 21))
@@ -805,7 +776,7 @@ public class PatientBrowse_mod extends javax.swing.JFrame {
         jScrollPane1.setViewportView(table_patient);
         table_patient.getAccessibleContext().setAccessibleName("table_patient");
 
-        lbl_rowsReturned.setText(" ");
+        lbl_patient_rowsReturned.setText(" ");
 
         table_patinstudy.setAutoCreateRowSorter(true);
         table_patinstudy.setModel(new javax.swing.table.DefaultTableModel(
@@ -854,6 +825,10 @@ public class PatientBrowse_mod extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("project");
         jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+
+        lbl_study_rowsReturned.setText(" ");
+
+        lbl_project_rowsReturned.setText(" ");
 
         jMenu4.setBorder(null);
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_Font_small07_web.png"))); // NOI18N
@@ -908,18 +883,30 @@ public class PatientBrowse_mod extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(Info_top4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(lbl_patient_rowsReturned, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(530, 530, 530)))
+                        .addGap(7, 7, 7)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbl_rowsReturned, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane2)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(lbl_study_rowsReturned, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(347, 347, 347)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(lbl_project_rowsReturned, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -933,13 +920,20 @@ public class PatientBrowse_mod extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
-                .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbl_rowsReturned)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                .addGap(2, 2, 2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_patient_rowsReturned)
+                    .addComponent(lbl_study_rowsReturned)
+                    .addComponent(lbl_project_rowsReturned))
                 .addContainerGap())
         );
 
@@ -1014,7 +1008,7 @@ public class PatientBrowse_mod extends javax.swing.JFrame {
 
     private void btn_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SearchActionPerformed
         if(rbtn_all.isSelected()){
-            initial_table_patient();
+            initial_tables();
             
         } else if (rbtn_searchCritMain.isSelected()){
             Connection conn = DBconnect.ConnecrDb();
@@ -1028,6 +1022,9 @@ public class PatientBrowse_mod extends javax.swing.JFrame {
             // table patient
             String sql = "SELECT p.pat_id, fm_pat_no, fname, surname, surname_old, sex, b_date, dg_date, mb_down as MDown FROM patient p WHERE 1=1";
             String sqlAdd = "";
+            if (Present == true) { // PRESENT
+                sql = "SELECT p.pat_id, fm_pat_no, present as fname, present as surname, present as surname_old, sex, b_date, dg_date, mb_down as MDown FROM patient p WHERE 1=1";
+            }
             
             // table study
             String sql2 = "SELECT p.pat_id, stdy_name, pat_study_id as stdy_ID, stdy_group, mon_pat as monitor"
@@ -1476,7 +1473,9 @@ public class PatientBrowse_mod extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JToolBar jToolBar1;
-    private javax.swing.JLabel lbl_rowsReturned;
+    private javax.swing.JLabel lbl_patient_rowsReturned;
+    private javax.swing.JLabel lbl_project_rowsReturned;
+    private javax.swing.JLabel lbl_study_rowsReturned;
     private javax.swing.JRadioButton rbtn_NOT1;
     private javax.swing.JRadioButton rbtn_NOT2;
     private javax.swing.JRadioButton rbtn_all;

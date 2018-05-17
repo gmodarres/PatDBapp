@@ -14,6 +14,7 @@ import static frames.ArrayQuery.AQ_resultIDs;
 import static frames.PatientBrowse_mod.PB_resultIDs;
 import static frames.ResultWindow.*;
 import static frames.SetConnection.personalConfig;
+import static frames.SetConnection.PresentMode;
 import static frames.SampleBrowse.SB_resultIDs;
 import static frames.ClassificationBrowse.ST_resultIDs;
 import java.awt.Color;
@@ -39,7 +40,9 @@ import org.ini4j.Ini;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import myClass.ColoredTableCellRenderer;
 import myClass.CustomSorter;
 import myClass.IdManagement;
 import myClass.Log;
@@ -69,6 +72,10 @@ public class SearchResult extends javax.swing.JFrame {
     
     String click_result = null;
     static String click_lID = null;
+    
+    public static String customColor = null;
+    
+    boolean Present = PresentMode;
     
     Log my_log;
     
@@ -100,9 +107,11 @@ public class SearchResult extends javax.swing.JFrame {
         ComboBox_stdyPat.setPrototypeDisplayValue("ItemWWW");
 
         ToolTipManager.sharedInstance().setEnabled(false);
+
         
         my_log.logger.info("open SearchResult()");
      }
+    
     
     private void invokeTabs(){
         tab_array.getRootPane().setDefaultButton(A_btn_search);
@@ -397,8 +406,8 @@ public class SearchResult extends javax.swing.JFrame {
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
             table_zg_iscn.setModel(DbUtils.resultSetToTableModel(rs));
-            CustomSorter.table_customRowSort(table_zg_iscn);
-
+            
+            CustomSorter.table_customRowSort(table_zg_iscn);          
             // resize column width
             jScrollPane3.setViewportView(table_zg_iscn);
             if (table_zg_iscn.getColumnModel().getColumnCount() > 0) {
@@ -444,9 +453,9 @@ public class SearchResult extends javax.swing.JFrame {
             pst = conn.prepareStatement(sql);
             pst.setString(1, Z_txt_lab_id.getText());
             rs = pst.executeQuery();
-            table_zg_iscn.setModel(DbUtils.resultSetToTableModel(rs));
-            CustomSorter.table_customRowSort(table_zg_iscn);
 
+            table_zg_iscn.setModel(DbUtils.resultSetToTableModel(rs));
+            CustomSorter.table_customRowSort(table_zg_iscn);           
             // resize column width
             jScrollPane3.setViewportView(table_zg_iscn);
             if (table_zg_iscn.getColumnModel().getColumnCount() > 0) {
@@ -603,8 +612,8 @@ public class SearchResult extends javax.swing.JFrame {
         ResultSet rs = null;
         PreparedStatement pst = null;
         String sql = "SELECT distinct s.lab_id, result_id, fname, surname, sex, b_date from main_result m, patient p, sample s "
-                        + "Where p.pat_id=s.pat_id AND m.lab_id=s.lab_id";
-
+                        + "Where p.pat_id=s.pat_id AND m.lab_id=s.lab_id";       
+        
         try{         
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
@@ -619,7 +628,10 @@ public class SearchResult extends javax.swing.JFrame {
                 all_ids = all_ids.substring(0, (all_ids.length() - 1));
                 String sql2 = "SELECT distinct s.lab_id, result_id, p.pat_id, fname, surname, sex, b_date from main_result m, patient p, sample s "
                         + "Where p.pat_id=s.pat_id AND m.lab_id=s.lab_id AND result_id IN ( " + all_ids + " )";
-                
+                if (Present == true) { // PRESENT
+                    sql2 =  "SELECT distinct s.lab_id, result_id, p.pat_id, present as fname, present as surname, sex, b_date from main_result m, patient p, sample s "
+                        + "Where p.pat_id=s.pat_id AND m.lab_id=s.lab_id AND result_id IN ( " + all_ids + " )";
+                }
                 pst = conn.prepareStatement(sql2);
                 rs = pst.executeQuery();
 
@@ -674,13 +686,15 @@ public class SearchResult extends javax.swing.JFrame {
 
                 String sql2 = "SELECT distinct s.lab_id, result_id, p.pat_id, fname, surname, sex, b_date from main_result m, patient p, sample s "
                         + "Where p.pat_id=s.pat_id AND m.lab_id=s.lab_id AND result_id IN ( " + all_ids + " )";
+                if (Present == true) { // PRESENT
+                    sql2 = "SELECT distinct s.lab_id, result_id, p.pat_id, present as fname, present as surname, sex, b_date from main_result m, patient p, sample s "
+                            + "Where p.pat_id=s.pat_id AND m.lab_id=s.lab_id AND result_id IN ( " + all_ids + " )";
+                }
                 
                 pst = conn.prepareStatement(sql2);
                 rs = pst.executeQuery();
-
                 table_queryIDs.setModel(DbUtils.resultSetToTableModel(rs));
                 CustomSorter.table_customRowSort(table_queryIDs);
-                
                 if (table_queryIDs.getColumnModel().getColumnCount() > 0) {
                     table_queryIDs.getColumnModel().getColumn(0).setPreferredWidth(85);      // 75
                     table_queryIDs.getColumnModel().getColumn(0).setMaxWidth(120);           // 80
@@ -857,9 +871,9 @@ public class SearchResult extends javax.swing.JFrame {
 
         String stdy_id = "";
         //String projPat = (String) ComboBox_projPat.getSelectedItem();
-        if(ComboBox_stdyPat.getSelectedItem().toString().equals("ALL BFM 2009")){
+        if(ComboBox_stdyPat.getSelectedItem().toString().equals("ALL BFM 2009")){       // ev.  ComboBox_stdyPat.getSelectedIndex() ... um Fehler bei Namensänderung zu vermeiden
             stdy_id = "1";
-        }else if(ComboBox_stdyPat.getSelectedItem().toString().equals("Register paedMyLeu BMF-A 2014")){
+        }else if(ComboBox_stdyPat.getSelectedItem().toString().equals("Register paedMyLeu BFM-A 2014")){
             stdy_id = "2";
         }else{ // no study assigned
             stdy_id = "0";
@@ -1159,6 +1173,8 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
         ZG_rbtn_sort = new javax.swing.JRadioButton();
         ZG_ComboBox_sort = new javax.swing.JComboBox<>();
         ZG_txt_sort = new javax.swing.JTextField();
+        ZG_txt_colorComp = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
         Z_btn_clear = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         ZI_txt_mitos = new javax.swing.JTextField();
@@ -2187,6 +2203,8 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
         ZG_txt_sort.setText("asc");
         ZG_txt_sort.setToolTipText("asc, desc");
 
+        jLabel2.setText("show me: ");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -2207,8 +2225,11 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
                             .addComponent(Z_txt_result_id, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(ZG_ComboBox_sort, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ZG_txt_sort)
+                    .addComponent(ZG_txt_colorComp)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(ZG_rbtn_sort)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ZG_rbtn_sort)
+                            .addComponent(jLabel2))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -2227,6 +2248,10 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Z_txt_result_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Z_lab_result_id))
+                .addGap(29, 29, 29)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ZG_txt_colorComp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(ZG_rbtn_sort)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2690,7 +2715,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
         rbtn_onlyPat1.setText("only patients from study ...");
         rbtn_onlyPat1.setToolTipText("select to get results from patients in a certain project (select from below)");
 
-        ComboBox_stdyPat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALL BFM 2009", "Register paedMyLeu BFM-A 2012", "no study assigned" }));
+        ComboBox_stdyPat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALL BFM 2009", "Register paedMyLeu BFM-A 2014", "no study assigned" }));
 
         rbtn_SB.setText("use SampleBrowse ");
         rbtn_SB.setToolTipText("select to get IDs from window SampleBrowse");
@@ -2921,7 +2946,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
 
             try {
                 int row = table_zg_iscn.getSelectedRow();
-                //String Table_click = (table_zg_iscn.getModel().getValueAt(row, 0).toString());    // values not correct anymore, if auto table rowsorter is used -->
+                //String Table_click = (table_zg_iscn.getModel().getValueAt(row, 0).toString());    // NONO: values not correct anymore, if auto table rowsorter is used -->
                 String Table_click = (table_zg_iscn.getValueAt(row, 0).toString());
                 click_result = (table_zg_iscn.getValueAt(row, 1).toString());
                 click_lID = Table_click;
@@ -3116,6 +3141,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
         
         // unselect rbtn
         ZG_rbtn_NOT.setSelected(false);
+        ZG_txt_ANDOR.setText("");
         ZG_rbtn_sort.setSelected(false);
         rbtn_ZGdetailResult.setSelected(false);
         rbtn_onlyPat.setSelected(false);
@@ -3871,6 +3897,12 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
             table_zg_iscn.setModel(DbUtils.resultSetToTableModel(rs));
+            
+            customColor = ZG_txt_colorComp.getText();
+            DefaultTableCellRenderer ren = new ColoredTableCellRenderer();
+            table_zg_iscn.setDefaultRenderer(Object.class , ren);
+            table_zg_iscn.setSelectionForeground(Color.white);
+            
             CustomSorter.table_customRowSort(table_zg_iscn);
 
             // resize column width
@@ -6138,6 +6170,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
     private javax.swing.JRadioButton ZG_rbtn_NOT;
     private javax.swing.JRadioButton ZG_rbtn_sort;
     private javax.swing.JTextField ZG_txt_ANDOR;
+    private javax.swing.JTextField ZG_txt_colorComp;
     private javax.swing.JTextField ZG_txt_sort;
     private javax.swing.JTextField ZI_txt_chr;
     private javax.swing.JTextField ZI_txt_chr_1;
@@ -6180,6 +6213,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
     private javax.swing.JRadioButton btn_selPat;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;

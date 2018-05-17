@@ -361,13 +361,8 @@ public class SampleBrowse extends javax.swing.JFrame {
         rbtn_study.setText("sample taken for study");
         rbtn_study.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         rbtn_study.setBorderPainted(true);
-        rbtn_study.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtn_studyActionPerformed(evt);
-            }
-        });
 
-        ComboBox_stdyPat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALL BFM 2009", "Register paedMyLeu BFM-A 2012", "no study assigned" }));
+        ComboBox_stdyPat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALL BFM 2009", "Register paedMyLeu BFM-A 2014", "no study assigned" }));
 
         javax.swing.GroupLayout Info_top4Layout = new javax.swing.GroupLayout(Info_top4);
         Info_top4.setLayout(Info_top4Layout);
@@ -509,7 +504,7 @@ public class SampleBrowse extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(Info_top4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jScrollPane1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -525,7 +520,7 @@ public class SampleBrowse extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(2, 2, 2)
                 .addComponent(lbl_rowsReturned)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -913,7 +908,7 @@ public class SampleBrowse extends javax.swing.JFrame {
             //String projPat = (String) ComboBox_projPat.getSelectedItem();
             if (ComboBox_stdyPat.getSelectedItem().toString().equals("ALL BFM 2009")) {
                 stdy_id = "1";
-            } else if (ComboBox_stdyPat.getSelectedItem().toString().equals("Register paedMyLeu BMF-A 2014")) {
+            } else if (ComboBox_stdyPat.getSelectedItem().toString().equals("Register paedMyLeu BFM-A 2014")) {
                 stdy_id = "2";
             } else { // no study assigned
                 stdy_id = "0";
@@ -923,7 +918,7 @@ public class SampleBrowse extends javax.swing.JFrame {
                     + " where s.pat_id=p.pat_id"
                     + " and sample_forstudy = '" + stdy_id + "'";
             my_log.logger.info("SQL:  " + sql);
-            
+            //txtArea_test.setText(sql);  //TEST
             try {
                 pst = conn.prepareStatement(sql);
                 rs = pst.executeQuery();
@@ -1004,10 +999,6 @@ public class SampleBrowse extends javax.swing.JFrame {
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents( 
                 new StringSelection(IDs), null);
     }//GEN-LAST:event_cpLabIdsActionPerformed
-
-    private void rbtn_studyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_studyActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rbtn_studyActionPerformed
 
     /**
      * @param args the command line arguments

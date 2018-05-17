@@ -105,7 +105,7 @@
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="Info_top4" max="32767" attributes="0"/>
                           <Component id="jScrollPane3" alignment="0" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
                               <Component id="jScrollPane1" max="32767" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jScrollPane2" min="-2" pref="269" max="-2" attributes="0"/>
@@ -128,7 +128,7 @@
                   <Component id="jScrollPane1" pref="316" max="32767" attributes="0"/>
                   <Component id="jScrollPane2" pref="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
               <Component id="lbl_rowsReturned" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane3" min="-2" pref="73" max="-2" attributes="0"/>
@@ -460,16 +460,13 @@
             </Property>
             <Property name="borderPainted" type="boolean" value="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtn_studyActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="ComboBox_stdyPat">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="3">
                 <StringItem index="0" value="ALL BFM 2009"/>
-                <StringItem index="1" value="Register paedMyLeu BFM-A 2012"/>
+                <StringItem index="1" value="Register paedMyLeu BFM-A 2014"/>
                 <StringItem index="2" value="no study assigned"/>
               </StringArray>
             </Property>
