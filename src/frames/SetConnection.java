@@ -51,8 +51,8 @@ public class SetConnection extends javax.swing.JFrame {
     public static String currentUser = null;
     public static String devmode = null;
     
-    //public static boolean PresentMode = true;
-    public static boolean PresentMode = false;
+    public static boolean PresentMode = true;       // patien name is not being displayed
+    //public static boolean PresentMode = false;
     
     Log my_log;
         

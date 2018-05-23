@@ -2261,8 +2261,12 @@
                           <Component id="jScrollPane7" min="-2" pref="48" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jScrollPane10" pref="0" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jPanel19" alignment="1" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="jPanel19" max="-2" attributes="0"/>
+                      </Group>
                       <Component id="jPanel17" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
