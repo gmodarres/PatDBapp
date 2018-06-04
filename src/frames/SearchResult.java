@@ -11,7 +11,7 @@
 package frames;
 
 import static frames.ArrayQuery.AQ_resultIDs;
-import static frames.PatientBrowse_mod.PB_resultIDs;
+import static frames.PatientBrowse.PB_resultIDs;
 import static frames.ResultWindow.*;
 import static frames.SetConnection.personalConfig;
 import static frames.SetConnection.PresentMode;
@@ -3109,6 +3109,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
         F_txt_result.setText("");
         F_txt_material.setText("");
         
+        F_txt_ANDOR.setText("");
         F_txt_resID_1.setText("");
         F_txt_kerne_1.setText("");
         F_txt_mitos_1.setText("");

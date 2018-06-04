@@ -49,7 +49,7 @@ import org.ini4j.Ini;
  *
  * @author gerda.modarres
  */
-public class ArrayQuery extends javax.swing.JFrame {
+public class ArrayQuery_copy extends javax.swing.JFrame {
 
     static String AQ_resultIDs = null;
     
@@ -80,7 +80,7 @@ public class ArrayQuery extends javax.swing.JFrame {
     /**
      * Creates new form ArrayQuery
      */
-    public ArrayQuery() {
+    public ArrayQuery_copy() {
         initComponents();
         ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_small.png"));
         //ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/patIGUS.png"));
@@ -474,21 +474,6 @@ public class ArrayQuery extends javax.swing.JFrame {
         txt_genes2 = new javax.swing.JTextField();
         jCombo_gene3const = new javax.swing.JComboBox<>();
         jCombo_gene5const = new javax.swing.JComboBox<>();
-        lbl_Genes1 = new javax.swing.JLabel();
-        toggleBrace_2open = new javax.swing.JToggleButton();
-        toggleBrace_3open = new javax.swing.JToggleButton();
-        toggleBrace_4open = new javax.swing.JToggleButton();
-        toggleBrace_1close = new javax.swing.JToggleButton();
-        toggleBrace_3close = new javax.swing.JToggleButton();
-        toggleBrace_4close = new javax.swing.JToggleButton();
-        toggleBrace_1open = new javax.swing.JToggleButton();
-        toggleBrace_2close = new javax.swing.JToggleButton();
-        txt_AndorInside1 = new javax.swing.JTextField();
-        txt_AndorInside2 = new javax.swing.JTextField();
-        txt_AndorInside3 = new javax.swing.JTextField();
-        txt_AndorOutside1 = new javax.swing.JTextField();
-        txt_AndorOutside2 = new javax.swing.JTextField();
-        txt_AndorOutside3 = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         txt_const1_2 = new javax.swing.JTextField();
         lbl_or2 = new javax.swing.JLabel();
@@ -499,7 +484,6 @@ public class ArrayQuery extends javax.swing.JFrame {
         txt_const1_1 = new javax.swing.JTextField();
         lbl_or1 = new javax.swing.JLabel();
         jCombo_const2 = new javax.swing.JComboBox<>();
-        lbl_Genes2 = new javax.swing.JLabel();
         btn_clear = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
@@ -823,125 +807,55 @@ public class ArrayQuery extends javax.swing.JFrame {
 
         jCombo_gene5const.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "type", "cnst", "size", "call", "chr" }));
 
-        lbl_Genes1.setText("AND/OR");
-
-        toggleBrace_2open.setText("(");
-        toggleBrace_2open.setPreferredSize(new java.awt.Dimension(20, 20));
-
-        toggleBrace_3open.setText("(");
-        toggleBrace_3open.setPreferredSize(new java.awt.Dimension(20, 20));
-
-        toggleBrace_4open.setText("(");
-        toggleBrace_4open.setPreferredSize(new java.awt.Dimension(20, 20));
-
-        toggleBrace_1close.setText(")");
-        toggleBrace_1close.setPreferredSize(new java.awt.Dimension(20, 20));
-        toggleBrace_1close.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                toggleBrace_1closeActionPerformed(evt);
-            }
-        });
-
-        toggleBrace_3close.setText(")");
-        toggleBrace_3close.setPreferredSize(new java.awt.Dimension(20, 20));
-
-        toggleBrace_4close.setText(")");
-        toggleBrace_4close.setPreferredSize(new java.awt.Dimension(20, 20));
-
-        toggleBrace_1open.setText("(");
-        toggleBrace_1open.setPreferredSize(new java.awt.Dimension(20, 20));
-
-        toggleBrace_2close.setText(")");
-        toggleBrace_2close.setPreferredSize(new java.awt.Dimension(20, 20));
-        toggleBrace_2close.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                toggleBrace_2closeActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(119, 119, 119)
-                                .addComponent(lbl_NOT, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txt_genes5, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addGap(60, 60, 60)
-                                .addComponent(txt_AndorInside3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(toggleBrace_4open, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txt_genes4, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jCombo_gene4const, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txt_gene4const, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jCombo_gene5const, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txt_gene5const, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(lbl_Genes, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addComponent(txt_AndorInside2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(toggleBrace_3open, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txt_genes3, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jCombo_gene3const, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txt_gene3const, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                    .addComponent(txt_AndorInside1)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(toggleBrace_2open, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txt_genes2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jCombo_gene2const, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txt_gene2const, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addComponent(lbl_Genes1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(toggleBrace_1open, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txt_genes1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jCombo_gene1const, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txt_gene1const, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(toggleBrace_2close, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                        .addComponent(txt_AndorOutside2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(toggleBrace_1close, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txt_AndorOutside1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(toggleBrace_4close, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(toggleBrace_3close, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txt_AndorOutside3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txt_genes4, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(lbl_NOT, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txt_genes5, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jCombo_gene4const, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txt_gene4const, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jCombo_gene5const, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txt_gene5const, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(lbl_Genes, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txt_genes1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jCombo_gene1const, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txt_gene1const, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                            .addGap(62, 62, 62)
+                            .addComponent(txt_genes2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jCombo_gene2const, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txt_gene2const, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -950,40 +864,25 @@ public class ArrayQuery extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_Genes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txt_genes1)
-                    .addComponent(jCombo_gene1const)
-                    .addComponent(txt_gene1const)
-                    .addComponent(lbl_Genes1)
-                    .addComponent(toggleBrace_1open, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(toggleBrace_1close, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_AndorOutside1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_genes1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCombo_gene1const, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_gene1const, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(3, 3, 3)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCombo_gene2const, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_gene2const, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_genes2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(toggleBrace_2open, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(toggleBrace_2close, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_AndorInside1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_AndorOutside2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_genes2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(3, 3, 3)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCombo_gene3const, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_gene3const, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_genes3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(toggleBrace_3open, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(toggleBrace_3close, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_AndorInside2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_AndorOutside3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_genes3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(3, 3, 3)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCombo_gene4const, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_gene4const, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_genes4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(toggleBrace_4open, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(toggleBrace_4close, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_AndorInside3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(2, 2, 2)
+                    .addComponent(txt_genes4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(3, 3, 3)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_genes5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCombo_gene5const, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1063,8 +962,6 @@ public class ArrayQuery extends javax.swing.JFrame {
 
         jPanel4Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lbl_mainConst, lbl_or1});
 
-        lbl_Genes2.setText("AND/OR");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -1078,24 +975,18 @@ public class ArrayQuery extends javax.swing.JFrame {
                         .addComponent(lbl_or3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(15, 15, 15)
                         .addComponent(rbtn_const2)
-                        .addGap(187, 187, 187))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(76, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(lbl_Genes2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(85, 85, 85))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbl_Genes2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(4, 4, 4)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -1125,7 +1016,7 @@ public class ArrayQuery extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btn_Search, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
                     .addComponent(btn_clear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1219,7 +1110,7 @@ public class ArrayQuery extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1577,39 +1468,9 @@ public class ArrayQuery extends javax.swing.JFrame {
                     sql = sql + ")\n";
                 }
             }
-
-            // switch for braces
-            boolean brace1open = false; boolean brace1close = false;
-            boolean brace2open = false; boolean brace2close = false;
-            boolean brace3open = false; boolean brace3close = false;
-            boolean brace4open = false; boolean brace4close = false;
             
-            if (toggleBrace_1open.isSelected()){ brace1open = true; }
-            if (toggleBrace_1close.isSelected()){ brace1close = true; }
-            if (toggleBrace_2open.isSelected()){ brace2open = true; }
-            if (toggleBrace_2close.isSelected()){ brace2close = true; }
-            if (toggleBrace_3open.isSelected()){ brace3open = true; }
-            if (toggleBrace_3close.isSelected()){ brace3close = true; }
-            if (toggleBrace_4open.isSelected()){ brace4open = true; }
-            if (toggleBrace_4close.isSelected()){ brace4close = true; }
-        
-            // switch for AND/OR outside braces
-            String ANDOR1 = ""; String ANDOR2 = ""; String ANDOR3 = "";
-            if(txt_AndorOutside1 != null && !txt_AndorOutside1.getText().isEmpty()){ ANDOR1 = txt_AndorOutside1.getText(); }
-            if(txt_AndorOutside2 != null && !txt_AndorOutside2.getText().isEmpty()){ ANDOR2 = txt_AndorOutside2.getText(); }
-            if(txt_AndorOutside3 != null && !txt_AndorOutside3.getText().isEmpty()){ ANDOR3 = txt_AndorOutside3.getText(); }
-            
-            // switch for AND/OR inside braces
-            String ANDOR_IN1 = ""; String ANDOR_IN2 = ""; String ANDOR_IN3 = ""; 
-            if(txt_AndorInside1 != null && !txt_AndorInside1.getText().isEmpty()){ ANDOR_IN1 = txt_AndorInside1.getText(); }
-            if(txt_AndorInside2 != null && !txt_AndorInside2.getText().isEmpty()){ ANDOR_IN2 = txt_AndorInside2.getText(); }
-            if(txt_AndorInside3 != null && !txt_AndorInside3.getText().isEmpty()){ ANDOR_IN3 = txt_AndorInside3.getText(); }
-            
-
             // at lest one gene has to be set --> sql continues like this:
-            sql = sql + " AND"; 
-            if (brace1open==true){ sql = sql + " (";}
-            sql = sql + " a.result_id in \n(SELECT result_id from arr_result b WHERE";
+            sql = sql + " AND a.result_id in \n(SELECT result_id from arr_result b WHERE";
 
             if(txt_gene1const != null && !txt_gene1const.getText().isEmpty()){
                 String gen1C = txt_gene1const.getText();
@@ -1640,14 +1501,10 @@ public class ArrayQuery extends javax.swing.JFrame {
             }else{
                 sql = sql + " b.genes like '%" + gen1 + "%')\n" ;
             }
-            if (brace1close==true){ sql = sql + " )";}
 
             // need to check, if a 2nd, 3rd or 4th gene has been entered ...
-            if (txt_genes2 != null && !txt_genes2.getText().isEmpty()) {                
-                sql = sql + " " + ANDOR1 ; 
-                if (brace2open==true){ sql = sql + " ( "; }
-                sql = sql + " " + ANDOR_IN1;
-                sql = sql + " a.result_id in \n(SELECT result_id from arr_result b WHERE";
+            if (txt_genes2 != null && !txt_genes2.getText().isEmpty()) {
+                sql = sql + " AND a.result_id in \n(SELECT result_id from arr_result b WHERE";
 
                 if (txt_gene2const != null && !txt_gene2const.getText().isEmpty()) {
                     String gen2C = txt_gene2const.getText();
@@ -1677,14 +1534,10 @@ public class ArrayQuery extends javax.swing.JFrame {
                 } else {
                     sql = sql + " b.genes like '%" + gen2 + "%')\n";
                 }
-                if (brace2close==true){ sql = sql + " )";}
             }
             
             if (txt_genes3 != null && !txt_genes3.getText().isEmpty()) {
-                sql = sql + " " + ANDOR2 ; 
-                if (brace3open==true){ sql = sql + " ( "; }
-                sql = sql + " " + ANDOR_IN2;
-                sql = sql + " a.result_id in \n(SELECT result_id from arr_result b WHERE";
+                sql = sql + " AND a.result_id in \n(SELECT result_id from arr_result b WHERE";
 
                 if (txt_gene3const != null && !txt_gene3const.getText().isEmpty()) {
                     String gen3C = txt_gene3const.getText();
@@ -1714,14 +1567,10 @@ public class ArrayQuery extends javax.swing.JFrame {
                 } else {
                     sql = sql + " b.genes like '%" + gen3 + "%')\n";
                 }
-                if (brace3close==true){ sql = sql + " )";}
             }
             
             if (txt_genes4 != null && !txt_genes4.getText().isEmpty()) {
-                sql = sql + " " + ANDOR3; 
-                if (brace4open==true){ sql = sql + " ( "; }
-                sql = sql + " " + ANDOR_IN3;
-                sql = sql + " a.result_id in \n(SELECT result_id from arr_result b WHERE";
+                sql = sql + " AND a.result_id in \n(SELECT result_id from arr_result b WHERE";
 
                 if (txt_gene4const != null && !txt_gene4const.getText().isEmpty()) {
                     String gen4C = txt_gene4const.getText();
@@ -1751,7 +1600,6 @@ public class ArrayQuery extends javax.swing.JFrame {
                 } else {
                     sql = sql + " b.genes like '%" + gen4 + "%')\n";
                 }
-                if (brace4close==true){ sql = sql + " )";}
             }
             
             if (txt_genes5 != null && !txt_genes5.getText().isEmpty()) {
@@ -1786,7 +1634,7 @@ public class ArrayQuery extends javax.swing.JFrame {
                 }
             }
 
-            //txtArea_genes.setText(sql); // TEST    
+            txtArea_genes.setText(sql); // TEST    
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
             
@@ -2103,14 +1951,6 @@ JTable OT = this.outTable;
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(somestring, null);
     }//GEN-LAST:event_popUpMenu_cpResultIdsActionPerformed
 
-    private void toggleBrace_1closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toggleBrace_1closeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_toggleBrace_1closeActionPerformed
-
-    private void toggleBrace_2closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toggleBrace_2closeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_toggleBrace_2closeActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -2128,20 +1968,21 @@ JTable OT = this.outTable;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ArrayQuery.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ArrayQuery_copy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ArrayQuery.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ArrayQuery_copy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ArrayQuery.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ArrayQuery_copy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ArrayQuery.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ArrayQuery_copy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ArrayQuery().setVisible(true);
+                new ArrayQuery_copy().setVisible(true);
             }
         });
     }
@@ -2184,8 +2025,6 @@ JTable OT = this.outTable;
     private javax.swing.JLabel lab_Creg;
     private javax.swing.JLabel lab_Genes;
     private javax.swing.JLabel lbl_Genes;
-    private javax.swing.JLabel lbl_Genes1;
-    private javax.swing.JLabel lbl_Genes2;
     private javax.swing.JLabel lbl_NOT;
     private javax.swing.JLabel lbl_mainConst;
     private javax.swing.JLabel lbl_or1;
@@ -2202,22 +2041,8 @@ JTable OT = this.outTable;
     private javax.swing.JTable table_array;
     private javax.swing.JTable table_queryIDs;
     private javax.swing.JTable table_statistics;
-    private javax.swing.JToggleButton toggleBrace_1close;
-    private javax.swing.JToggleButton toggleBrace_1open;
-    private javax.swing.JToggleButton toggleBrace_2close;
-    private javax.swing.JToggleButton toggleBrace_2open;
-    private javax.swing.JToggleButton toggleBrace_3close;
-    private javax.swing.JToggleButton toggleBrace_3open;
-    private javax.swing.JToggleButton toggleBrace_4close;
-    private javax.swing.JToggleButton toggleBrace_4open;
     private javax.swing.JTextArea txtArea_Creg;
     private javax.swing.JTextArea txtArea_genes;
-    private javax.swing.JTextField txt_AndorInside1;
-    private javax.swing.JTextField txt_AndorInside2;
-    private javax.swing.JTextField txt_AndorInside3;
-    private javax.swing.JTextField txt_AndorOutside1;
-    private javax.swing.JTextField txt_AndorOutside2;
-    private javax.swing.JTextField txt_AndorOutside3;
     private javax.swing.JTextField txt_const1_1;
     private javax.swing.JTextField txt_const1_2;
     private javax.swing.JTextField txt_const2_1;

@@ -317,7 +317,7 @@ public class StartFrame extends javax.swing.JFrame {
     private void btn_browse_patientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_browse_patientActionPerformed
         //PatientBrowse s = new PatientBrowse();
         // TEST new version
-        PatientBrowse_mod s = new PatientBrowse_mod();
+        PatientBrowse s = new PatientBrowse();
         s.setVisible(true);        
     }//GEN-LAST:event_btn_browse_patientActionPerformed
 
