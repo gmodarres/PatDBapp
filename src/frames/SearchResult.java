@@ -16,7 +16,6 @@ import static frames.ResultWindow.*;
 import static frames.SetConnection.personalConfig;
 import static frames.SetConnection.PresentMode;
 import static frames.SampleBrowse.SB_resultIDs;
-import static frames.ClassificationBrowse.ST_resultIDs;
 import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Toolkit;
@@ -48,6 +47,7 @@ import myClass.IdManagement;
 import myClass.Log;
 import myClass.OSDetector;
 import myClass.saveTable;
+import static frames.ClassificationBrowse.CB_resultIDs;
 
 public class SearchResult extends javax.swing.JFrame {
 
@@ -768,10 +768,10 @@ public class SearchResult extends javax.swing.JFrame {
         }
     }
     
-    private void deliver_ST_ids(String caller, String sql) {    // ids from ClassificationBrowse
+    private void deliver_CB_ids(String caller, String sql) {    // ids from ClassificationBrowse
         // to extend sql in Array search
         try {
-            String ids = ST_resultIDs;
+            String ids = CB_resultIDs;
 
             if (ids == null) {
                 JOptionPane.showMessageDialog(null, "Why would you do that? ... there's nothing in there!");
@@ -1233,7 +1233,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
         rbtn_onlyPat1 = new javax.swing.JRadioButton();
         ComboBox_stdyPat = new javax.swing.JComboBox<>();
         rbtn_SB = new javax.swing.JRadioButton();
-        rbtn_ST = new javax.swing.JRadioButton();
+        rbtn_CB = new javax.swing.JRadioButton();
         rbtn_ArrQuery = new javax.swing.JRadioButton();
         rbtn_PB = new javax.swing.JRadioButton();
         jToolBar1 = new javax.swing.JToolBar();
@@ -1244,6 +1244,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
         jMenu4 = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1_openModel = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1_HowTo = new javax.swing.JMenuItem();
@@ -2720,8 +2721,8 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
         rbtn_SB.setText("use SampleBrowse ");
         rbtn_SB.setToolTipText("select to get IDs from window SampleBrowse");
 
-        rbtn_ST.setText("use ClassificationBrowse");
-        rbtn_ST.setToolTipText("get IDs from window SubtypeBrowse");
+        rbtn_CB.setText("use ClassificationBrowse");
+        rbtn_CB.setToolTipText("get IDs from window SubtypeBrowse");
 
         rbtn_ArrQuery.setText("use ArrayGeneQuery");
         rbtn_ArrQuery.setToolTipText("select to get IDs from window ArrayQuery");
@@ -2739,7 +2740,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
                     .addGroup(jPanel19Layout.createSequentialGroup()
                         .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(rbtn_ArrQuery, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(rbtn_ST, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rbtn_CB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(rbtn_SB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(rbtn_PB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(rbtn_onlyPat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -2753,7 +2754,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
                 .addGap(10, 10, 10))
         );
 
-        jPanel19Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {rbtn_ArrQuery, rbtn_PB, rbtn_SB, rbtn_ST});
+        jPanel19Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {rbtn_ArrQuery, rbtn_CB, rbtn_PB, rbtn_SB});
 
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2771,7 +2772,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(rbtn_SB)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rbtn_ST)
+                .addComponent(rbtn_CB)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(rbtn_ArrQuery)
                 .addContainerGap())
@@ -2868,6 +2869,14 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
             }
         });
         jMenu1.add(jMenuItem1_openModel);
+
+        jMenuItem1.setText("showSQL");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
 
         jMenuBar1.add(jMenu1);
 
@@ -3084,7 +3093,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
         rbtn_onlyPat1.setSelected(false);
         rbtn_PB.setSelected(false);
         rbtn_SB.setSelected(false);
-        rbtn_ST.setSelected(false);
+        rbtn_CB.setSelected(false);
         rbtn_ArrQuery.setSelected(false);
         btn_selCol.setSelected(false);
         btn_selPat.setSelected(false);
@@ -3152,7 +3161,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
         rbtn_onlyPat1.setSelected(false);
         rbtn_PB.setSelected(false);
         rbtn_SB.setSelected(false);
-        rbtn_ST.setSelected(false);
+        rbtn_CB.setSelected(false);
         rbtn_ArrQuery.setSelected(false);
         btn_selCol.setSelected(false);
         btn_selPat.setSelected(false);
@@ -3445,8 +3454,8 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
             }
             
             // only for the set of subtypes result
-            if (rbtn_ST.isSelected()) {     
-                deliver_ST_ids(method_name,sql);
+            if (rbtn_CB.isSelected()) {     
+                deliver_CB_ids(method_name,sql);
                 sql = this.mod_sql;
             }
             
@@ -3868,8 +3877,8 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
             }
             
             // only for the set of subtypes result
-            if (rbtn_ST.isSelected()) {     
-                deliver_ST_ids(method_name,sql);
+            if (rbtn_CB.isSelected()) {     
+                deliver_CB_ids(method_name,sql);
                 sql = this.mod_sql;
             }
             
@@ -4216,8 +4225,8 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
             }
             
             // only for the set of subtypes result
-            if (rbtn_ST.isSelected()) {     
-                deliver_ST_ids(method_name,sql);
+            if (rbtn_CB.isSelected()) {     
+                deliver_CB_ids(method_name,sql);
                 sql = this.mod_sql;
             }
 
@@ -4333,7 +4342,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
         rbtn_onlyPat1.setSelected(false);
         rbtn_PB.setSelected(false);
         rbtn_SB.setSelected(false);
-        rbtn_ST.setSelected(false);
+        rbtn_CB.setSelected(false);
         rbtn_ArrQuery.setSelected(false);
         btn_selCol.setSelected(false);
         btn_selPat.setSelected(false);
@@ -5567,9 +5576,9 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
                     SB_resultIDs = ini.get("IDs","SB_resultIDs"); //TEST
                 }
                 boolean btn_ST = Boolean.parseBoolean(ini.get("btn", "btn4"));
-                rbtn_ST.setSelected(btn_ST);
+                rbtn_CB.setSelected(btn_ST);
                 if (btn_ST == true){
-                    ST_resultIDs = ini.get("IDs","ST_resultIDs"); //TEST
+                    CB_resultIDs = ini.get("IDs","ST_resultIDs"); //TEST
                 }
                 boolean btn_AQ = Boolean.parseBoolean(ini.get("btn", "btn5"));
                 rbtn_ArrQuery.setSelected(btn_AQ);
@@ -5808,10 +5817,10 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
                 String SB_IDs = SB_resultIDs;
                 ini.put("IDs","SB_resultIDs",SB_IDs);
             }
-            boolean btn_ST = rbtn_ST.isSelected();
+            boolean btn_ST = rbtn_CB.isSelected();
             ini.put("btn", "btn4", btn_ST);
-            if (rbtn_ST.isSelected()){
-                String ST_IDs = ST_resultIDs;
+            if (rbtn_CB.isSelected()){
+                String ST_IDs = CB_resultIDs;
                 ini.put("IDs","SB_resultIDs",ST_IDs);
             }
             boolean btn_AQ = rbtn_ArrQuery.isSelected();
@@ -6034,6 +6043,11 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(somestring, null);
     }//GEN-LAST:event_popUpMenu_cpResultIdsActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        ShowSQL s = new ShowSQL();
+        s.setVisible(true);        
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -6223,6 +6237,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem1_HowTo;
     private javax.swing.JMenuItem jMenuItem1_openModel;
     private javax.swing.JMenuItem jMenuItem2_Info;
@@ -6267,9 +6282,9 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
     private javax.swing.JMenuItem popUpMenu_selectAll;
     private javax.swing.JPopupMenu popUpSave;
     private javax.swing.JRadioButton rbtn_ArrQuery;
+    private javax.swing.JRadioButton rbtn_CB;
     private javax.swing.JRadioButton rbtn_PB;
     private javax.swing.JRadioButton rbtn_SB;
-    private javax.swing.JRadioButton rbtn_ST;
     private javax.swing.JRadioButton rbtn_ZGdetailResult;
     private javax.swing.JRadioButton rbtn_nyd;
     private javax.swing.JRadioButton rbtn_onlyPat;

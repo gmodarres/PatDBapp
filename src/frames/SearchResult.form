@@ -83,6 +83,14 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1_openModelActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="showSQL"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
+              </Events>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu2">
@@ -2643,7 +2651,7 @@
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="rbtn_ArrQuery" linkSize="4" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="rbtn_ST" linkSize="4" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="rbtn_CB" linkSize="4" alignment="0" max="32767" attributes="0"/>
                                   <Component id="rbtn_SB" linkSize="4" alignment="0" max="32767" attributes="0"/>
                                   <Component id="rbtn_PB" linkSize="4" alignment="0" max="32767" attributes="0"/>
                                   <Component id="rbtn_onlyPat" alignment="0" max="32767" attributes="0"/>
@@ -2679,7 +2687,7 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="rbtn_SB" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="rbtn_ST" min="-2" max="-2" attributes="0"/>
+                      <Component id="rbtn_CB" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="rbtn_ArrQuery" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -2733,7 +2741,7 @@
                 <Property name="toolTipText" type="java.lang.String" value="select to get IDs from window SampleBrowse"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="rbtn_ST">
+            <Component class="javax.swing.JRadioButton" name="rbtn_CB">
               <Properties>
                 <Property name="text" type="java.lang.String" value="use ClassificationBrowse"/>
                 <Property name="toolTipText" type="java.lang.String" value="get IDs from window SubtypeBrowse"/>

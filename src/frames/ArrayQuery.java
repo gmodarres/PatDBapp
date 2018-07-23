@@ -13,6 +13,7 @@ package frames;
 import static frames.ResultWindow.updateIntrpr;
 import static frames.SetConnection.PresentMode;
 import static frames.SetConnection.personalConfig;
+import static frames.ShowSQL.txtArea_showSQL;
 import java.awt.Desktop;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
@@ -475,14 +476,14 @@ public class ArrayQuery extends javax.swing.JFrame {
         jCombo_gene3const = new javax.swing.JComboBox<>();
         jCombo_gene5const = new javax.swing.JComboBox<>();
         lbl_Genes1 = new javax.swing.JLabel();
-        toggleBrace_2open = new javax.swing.JToggleButton();
-        toggleBrace_3open = new javax.swing.JToggleButton();
-        toggleBrace_4open = new javax.swing.JToggleButton();
-        toggleBrace_1close = new javax.swing.JToggleButton();
-        toggleBrace_3close = new javax.swing.JToggleButton();
-        toggleBrace_4close = new javax.swing.JToggleButton();
-        toggleBrace_1open = new javax.swing.JToggleButton();
-        toggleBrace_2close = new javax.swing.JToggleButton();
+        toggleBracket_2open = new javax.swing.JToggleButton();
+        toggleBracket_3open = new javax.swing.JToggleButton();
+        toggleBracket_4open = new javax.swing.JToggleButton();
+        toggleBracket_1close = new javax.swing.JToggleButton();
+        toggleBracket_3close = new javax.swing.JToggleButton();
+        toggleBracket_4close = new javax.swing.JToggleButton();
+        toggleBracket_1open = new javax.swing.JToggleButton();
+        toggleBracket_2close = new javax.swing.JToggleButton();
         txt_AndorInside1 = new javax.swing.JTextField();
         txt_AndorInside2 = new javax.swing.JTextField();
         txt_AndorInside3 = new javax.swing.JTextField();
@@ -825,37 +826,37 @@ public class ArrayQuery extends javax.swing.JFrame {
 
         lbl_Genes1.setText("AND/OR");
 
-        toggleBrace_2open.setText("(");
-        toggleBrace_2open.setPreferredSize(new java.awt.Dimension(20, 20));
+        toggleBracket_2open.setText("(");
+        toggleBracket_2open.setPreferredSize(new java.awt.Dimension(20, 20));
 
-        toggleBrace_3open.setText("(");
-        toggleBrace_3open.setPreferredSize(new java.awt.Dimension(20, 20));
+        toggleBracket_3open.setText("(");
+        toggleBracket_3open.setPreferredSize(new java.awt.Dimension(20, 20));
 
-        toggleBrace_4open.setText("(");
-        toggleBrace_4open.setPreferredSize(new java.awt.Dimension(20, 20));
+        toggleBracket_4open.setText("(");
+        toggleBracket_4open.setPreferredSize(new java.awt.Dimension(20, 20));
 
-        toggleBrace_1close.setText(")");
-        toggleBrace_1close.setPreferredSize(new java.awt.Dimension(20, 20));
-        toggleBrace_1close.addActionListener(new java.awt.event.ActionListener() {
+        toggleBracket_1close.setText(")");
+        toggleBracket_1close.setPreferredSize(new java.awt.Dimension(20, 20));
+        toggleBracket_1close.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                toggleBrace_1closeActionPerformed(evt);
+                toggleBracket_1closeActionPerformed(evt);
             }
         });
 
-        toggleBrace_3close.setText(")");
-        toggleBrace_3close.setPreferredSize(new java.awt.Dimension(20, 20));
+        toggleBracket_3close.setText(")");
+        toggleBracket_3close.setPreferredSize(new java.awt.Dimension(20, 20));
 
-        toggleBrace_4close.setText(")");
-        toggleBrace_4close.setPreferredSize(new java.awt.Dimension(20, 20));
+        toggleBracket_4close.setText(")");
+        toggleBracket_4close.setPreferredSize(new java.awt.Dimension(20, 20));
 
-        toggleBrace_1open.setText("(");
-        toggleBrace_1open.setPreferredSize(new java.awt.Dimension(20, 20));
+        toggleBracket_1open.setText("(");
+        toggleBracket_1open.setPreferredSize(new java.awt.Dimension(20, 20));
 
-        toggleBrace_2close.setText(")");
-        toggleBrace_2close.setPreferredSize(new java.awt.Dimension(20, 20));
-        toggleBrace_2close.addActionListener(new java.awt.event.ActionListener() {
+        toggleBracket_2close.setText(")");
+        toggleBracket_2close.setPreferredSize(new java.awt.Dimension(20, 20));
+        toggleBracket_2close.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                toggleBrace_2closeActionPerformed(evt);
+                toggleBracket_2closeActionPerformed(evt);
             }
         });
 
@@ -876,7 +877,7 @@ public class ArrayQuery extends javax.swing.JFrame {
                                 .addGap(60, 60, 60)
                                 .addComponent(txt_AndorInside3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(toggleBrace_4open, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(toggleBracket_4open, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txt_genes4, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -897,7 +898,7 @@ public class ArrayQuery extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addComponent(txt_AndorInside2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(toggleBrace_3open, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(toggleBracket_3open, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txt_genes3, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -908,7 +909,7 @@ public class ArrayQuery extends javax.swing.JFrame {
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                     .addComponent(txt_AndorInside1)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(toggleBrace_2open, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(toggleBracket_2open, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(txt_genes2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -918,7 +919,7 @@ public class ArrayQuery extends javax.swing.JFrame {
                                 .addGroup(jPanel3Layout.createSequentialGroup()
                                     .addComponent(lbl_Genes1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(toggleBrace_1open, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(toggleBracket_1open, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(txt_genes1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -928,18 +929,18 @@ public class ArrayQuery extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(toggleBrace_2close, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(toggleBracket_2close, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                         .addComponent(txt_AndorOutside2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(toggleBrace_1close, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(toggleBracket_1close, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txt_AndorOutside1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(toggleBrace_4close, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(toggleBracket_4close, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(toggleBrace_3close, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(toggleBracket_3close, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txt_AndorOutside3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -954,16 +955,16 @@ public class ArrayQuery extends javax.swing.JFrame {
                     .addComponent(jCombo_gene1const)
                     .addComponent(txt_gene1const)
                     .addComponent(lbl_Genes1)
-                    .addComponent(toggleBrace_1open, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(toggleBrace_1close, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(toggleBracket_1open, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(toggleBracket_1close, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_AndorOutside1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(3, 3, 3)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCombo_gene2const, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_gene2const, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_genes2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(toggleBrace_2open, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(toggleBrace_2close, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(toggleBracket_2open, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(toggleBracket_2close, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_AndorInside1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_AndorOutside2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(3, 3, 3)
@@ -971,8 +972,8 @@ public class ArrayQuery extends javax.swing.JFrame {
                     .addComponent(jCombo_gene3const, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_gene3const, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_genes3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(toggleBrace_3open, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(toggleBrace_3close, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(toggleBracket_3open, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(toggleBracket_3close, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_AndorInside2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_AndorOutside3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(3, 3, 3)
@@ -980,8 +981,8 @@ public class ArrayQuery extends javax.swing.JFrame {
                     .addComponent(jCombo_gene4const, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_gene4const, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_genes4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(toggleBrace_4open, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(toggleBrace_4close, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(toggleBracket_4open, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(toggleBracket_4close, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_AndorInside3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1584,14 +1585,14 @@ public class ArrayQuery extends javax.swing.JFrame {
             boolean brace3open = false; boolean brace3close = false;
             boolean brace4open = false; boolean brace4close = false;
             
-            if (toggleBrace_1open.isSelected()){ brace1open = true; }
-            if (toggleBrace_1close.isSelected()){ brace1close = true; }
-            if (toggleBrace_2open.isSelected()){ brace2open = true; }
-            if (toggleBrace_2close.isSelected()){ brace2close = true; }
-            if (toggleBrace_3open.isSelected()){ brace3open = true; }
-            if (toggleBrace_3close.isSelected()){ brace3close = true; }
-            if (toggleBrace_4open.isSelected()){ brace4open = true; }
-            if (toggleBrace_4close.isSelected()){ brace4close = true; }
+            if (toggleBracket_1open.isSelected()){ brace1open = true; }
+            if (toggleBracket_1close.isSelected()){ brace1close = true; }
+            if (toggleBracket_2open.isSelected()){ brace2open = true; }
+            if (toggleBracket_2close.isSelected()){ brace2close = true; }
+            if (toggleBracket_3open.isSelected()){ brace3open = true; }
+            if (toggleBracket_3close.isSelected()){ brace3close = true; }
+            if (toggleBracket_4open.isSelected()){ brace4open = true; }
+            if (toggleBracket_4close.isSelected()){ brace4close = true; }
         
             // switch for AND/OR outside braces
             String ANDOR1 = ""; String ANDOR2 = ""; String ANDOR3 = "";
@@ -1786,7 +1787,10 @@ public class ArrayQuery extends javax.swing.JFrame {
                 }
             }
 
-            //txtArea_genes.setText(sql); // TEST    
+            //txtArea_genes.setText(sql); // TEST  
+            //TODO: if ShowSQL is visible...
+            //txtArea_showSQL.setText(sql);
+            
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
             
@@ -1898,6 +1902,25 @@ public class ArrayQuery extends javax.swing.JFrame {
         txt_gene3const.setText("");
         txt_gene4const.setText("");
         txt_gene5const.setText("");        
+ 
+        // Brackets
+        toggleBracket_1open.setSelected(false);
+        toggleBracket_2open.setSelected(false);
+        toggleBracket_3open.setSelected(false);
+        toggleBracket_4open.setSelected(false);
+
+        toggleBracket_1close.setSelected(false);
+        toggleBracket_2close.setSelected(false);
+        toggleBracket_3close.setSelected(false);
+        toggleBracket_4close.setSelected(false);
+
+        txt_AndorInside1.setText("");
+        txt_AndorInside2.setText("");
+        txt_AndorInside3.setText("");
+        txt_AndorOutside1.setText("");
+        txt_AndorOutside2.setText("");
+        txt_AndorOutside3.setText("");
+                
     }//GEN-LAST:event_btn_clearActionPerformed
 
     private void btn_saveQueryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_saveQueryActionPerformed
@@ -1978,6 +2001,39 @@ public class ArrayQuery extends javax.swing.JFrame {
             ini.put("genes", "gene5", gene5);
             ini.put("gene_combo", "combo5", gene5_combo);
             ini.put("gene_const", "const5", gene5_const);
+            
+            // Braces
+            boolean bracket1_open = toggleBracket_1open.isSelected();
+            ini.put("brackets", "bracket1_open", bracket1_open);
+            boolean bracket2_open = toggleBracket_2open.isSelected();
+            ini.put("brackets", "bracket2_open", bracket2_open);
+            boolean bracket3_open = toggleBracket_3open.isSelected();
+            ini.put("brackets", "bracket3_open", bracket3_open);
+            boolean bracket4_open = toggleBracket_4open.isSelected();
+            ini.put("brackets", "bracket4_open", bracket4_open);
+            
+            boolean bracket1_close = toggleBracket_1close.isSelected();
+            ini.put("brackets", "bracket1_close", bracket1_close);
+            boolean bracket2_close = toggleBracket_2close.isSelected();
+            ini.put("brackets", "bracket2_close", bracket2_close);
+            boolean bracket3_close = toggleBracket_3close.isSelected();
+            ini.put("brackets", "bracket3_close", bracket3_close);
+            boolean bracket4_close = toggleBracket_4close.isSelected();
+            ini.put("brackets", "bracket4_close", bracket4_close);
+            
+            String AndOrInside1 = txt_AndorInside1.getText();
+            ini.put("Andor", "AndOrInside1", AndOrInside1);
+            String AndOrInside2 = txt_AndorInside2.getText();
+            ini.put("Andor", "AndOrInside2", AndOrInside2);
+            String AndOrInside3 = txt_AndorInside3.getText();
+            ini.put("Andor", "AndOrInside3", AndOrInside3);
+            
+            String AndOrOutside1 = txt_AndorOutside1.getText();
+            ini.put("Andor", "AndOrOutside1", AndOrOutside1);
+            String AndOrOutside2 = txt_AndorOutside2.getText();
+            ini.put("Andor", "AndOrOutside2", AndOrOutside2);
+            String AndOrOutside3 = txt_AndorOutside3.getText();
+            ini.put("Andor", "AndOrOutside3", AndOrOutside3);          
 
             ini.store();
             
@@ -2064,6 +2120,39 @@ public class ArrayQuery extends javax.swing.JFrame {
                 String gene5_const = ini.get("gene_const", "const5");
                 txt_gene5const.setText(gene5_const);
                 
+                // Brackets
+                boolean bracket1_open = Boolean.parseBoolean(ini.get("brackets", "bracket1_open"));
+                toggleBracket_1open.setSelected(bracket1_open);
+                boolean bracket2_open = Boolean.parseBoolean(ini.get("brackets", "bracket2_open"));
+                toggleBracket_2open.setSelected(bracket2_open);
+                boolean bracket3_open = Boolean.parseBoolean(ini.get("brackets", "bracket3_open"));
+                toggleBracket_3open.setSelected(bracket3_open);
+                boolean bracket4_open = Boolean.parseBoolean(ini.get("brackets", "bracket4_open"));
+                toggleBracket_4open.setSelected(bracket4_open);
+
+                boolean bracket1_close = Boolean.parseBoolean(ini.get("brackets", "bracket1_close"));
+                toggleBracket_1close.setSelected(bracket1_close);
+                boolean bracket2_close = Boolean.parseBoolean(ini.get("brackets", "bracket2_close"));
+                toggleBracket_2close.setSelected(bracket2_close);
+                boolean bracket3_close = Boolean.parseBoolean(ini.get("brackets", "bracket3_close"));
+                toggleBracket_3close.setSelected(bracket3_close);
+                boolean bracket4_close = Boolean.parseBoolean(ini.get("brackets", "bracket4_close"));
+                toggleBracket_4close.setSelected(bracket4_close);
+
+                String AndOrInside1 = ini.get("Andor", "AndOrInside1");
+                txt_AndorInside1.setText(AndOrInside1);
+                String AndOrInside2 = ini.get("Andor", "AndOrInside2");
+                txt_AndorInside2.setText(AndOrInside2);
+                String AndOrInside3 = ini.get("Andor", "AndOrInside3");
+                txt_AndorInside3.setText(AndOrInside3);
+
+                String AndOrOutside1 = ini.get("Andor", "AndOrOutside1");
+                txt_AndorOutside1.setText(AndOrOutside1);
+                String AndOrOutside2 = ini.get("Andor", "AndOrOutside2");
+                txt_AndorOutside2.setText(AndOrOutside2);
+                String AndOrOutside3 = ini.get("Andor", "AndOrOutside3");
+                txt_AndorOutside3.setText(AndOrOutside3);
+
             } else {
                 JOptionPane.showMessageDialog(null, "You are trying to load a wrong frame format!");
                 my_log.logger.warning("ERROR: trying to load wrong frame format!");
@@ -2103,13 +2192,13 @@ JTable OT = this.outTable;
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(somestring, null);
     }//GEN-LAST:event_popUpMenu_cpResultIdsActionPerformed
 
-    private void toggleBrace_1closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toggleBrace_1closeActionPerformed
+    private void toggleBracket_1closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toggleBracket_1closeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_toggleBrace_1closeActionPerformed
+    }//GEN-LAST:event_toggleBracket_1closeActionPerformed
 
-    private void toggleBrace_2closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toggleBrace_2closeActionPerformed
+    private void toggleBracket_2closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toggleBracket_2closeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_toggleBrace_2closeActionPerformed
+    }//GEN-LAST:event_toggleBracket_2closeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2202,14 +2291,14 @@ JTable OT = this.outTable;
     private javax.swing.JTable table_array;
     private javax.swing.JTable table_queryIDs;
     private javax.swing.JTable table_statistics;
-    private javax.swing.JToggleButton toggleBrace_1close;
-    private javax.swing.JToggleButton toggleBrace_1open;
-    private javax.swing.JToggleButton toggleBrace_2close;
-    private javax.swing.JToggleButton toggleBrace_2open;
-    private javax.swing.JToggleButton toggleBrace_3close;
-    private javax.swing.JToggleButton toggleBrace_3open;
-    private javax.swing.JToggleButton toggleBrace_4close;
-    private javax.swing.JToggleButton toggleBrace_4open;
+    private javax.swing.JToggleButton toggleBracket_1close;
+    private javax.swing.JToggleButton toggleBracket_1open;
+    private javax.swing.JToggleButton toggleBracket_2close;
+    private javax.swing.JToggleButton toggleBracket_2open;
+    private javax.swing.JToggleButton toggleBracket_3close;
+    private javax.swing.JToggleButton toggleBracket_3open;
+    private javax.swing.JToggleButton toggleBracket_4close;
+    private javax.swing.JToggleButton toggleBracket_4open;
     private javax.swing.JTextArea txtArea_Creg;
     private javax.swing.JTextArea txtArea_genes;
     private javax.swing.JTextField txt_AndorInside1;

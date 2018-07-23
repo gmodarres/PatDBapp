@@ -684,7 +684,7 @@
                                           <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                                           <Component id="txt_AndorInside3" max="32767" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="toggleBrace_4open" min="-2" pref="38" max="-2" attributes="0"/>
+                                          <Component id="toggleBracket_4open" min="-2" pref="38" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="txt_genes4" min="-2" pref="104" max="-2" attributes="0"/>
                                       </Group>
@@ -711,7 +711,7 @@
                                       <Group type="102" alignment="1" attributes="0">
                                           <Component id="txt_AndorInside2" max="32767" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="toggleBrace_3open" min="-2" pref="38" max="-2" attributes="0"/>
+                                          <Component id="toggleBracket_3open" min="-2" pref="38" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="txt_genes3" min="-2" pref="104" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
@@ -723,7 +723,7 @@
                                           <Group type="102" alignment="1" attributes="0">
                                               <Component id="txt_AndorInside1" max="32767" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="toggleBrace_2open" min="-2" pref="38" max="-2" attributes="0"/>
+                                              <Component id="toggleBracket_2open" min="-2" pref="38" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="txt_genes2" linkSize="5" min="-2" pref="104" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
@@ -734,7 +734,7 @@
                                           <Group type="102" attributes="0">
                                               <Component id="lbl_Genes1" min="-2" pref="50" max="-2" attributes="0"/>
                                               <EmptySpace min="-2" max="-2" attributes="0"/>
-                                              <Component id="toggleBrace_1open" min="-2" pref="38" max="-2" attributes="0"/>
+                                              <Component id="toggleBracket_1open" min="-2" pref="38" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="txt_genes1" min="-2" pref="104" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
@@ -749,21 +749,21 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="toggleBrace_2close" min="-2" pref="38" max="-2" attributes="0"/>
+                                  <Component id="toggleBracket_2close" min="-2" pref="38" max="-2" attributes="0"/>
                                   <EmptySpace pref="10" max="32767" attributes="0"/>
                                   <Component id="txt_AndorOutside2" min="-2" pref="48" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
-                                  <Component id="toggleBrace_1close" min="-2" pref="38" max="-2" attributes="0"/>
+                                  <Component id="toggleBracket_1close" min="-2" pref="38" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="txt_AndorOutside1" min="-2" pref="48" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
-                                  <Component id="toggleBrace_4close" min="-2" pref="38" max="-2" attributes="0"/>
+                                  <Component id="toggleBracket_4close" min="-2" pref="38" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="toggleBrace_3close" min="-2" pref="38" max="-2" attributes="0"/>
+                                  <Component id="toggleBracket_3close" min="-2" pref="38" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="txt_AndorOutside3" min="-2" pref="48" max="-2" attributes="0"/>
                               </Group>
@@ -782,8 +782,8 @@
                               <Component id="jCombo_gene1const" alignment="3" max="32767" attributes="0"/>
                               <Component id="txt_gene1const" alignment="3" max="32767" attributes="0"/>
                               <Component id="lbl_Genes1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="toggleBrace_1open" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="toggleBrace_1close" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="toggleBracket_1open" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="toggleBracket_1close" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txt_AndorOutside1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
@@ -791,8 +791,8 @@
                               <Component id="jCombo_gene2const" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                               <Component id="txt_gene2const" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txt_genes2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="toggleBrace_2open" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="toggleBrace_2close" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="toggleBracket_2open" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="toggleBracket_2close" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txt_AndorInside1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txt_AndorOutside2" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -801,8 +801,8 @@
                               <Component id="jCombo_gene3const" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                               <Component id="txt_gene3const" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txt_genes3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="toggleBrace_3open" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="toggleBrace_3close" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="toggleBracket_3open" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="toggleBracket_3close" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txt_AndorInside2" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txt_AndorOutside3" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -811,8 +811,8 @@
                               <Component id="jCombo_gene4const" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                               <Component id="txt_gene4const" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txt_genes4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="toggleBrace_4open" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="toggleBrace_4close" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="toggleBracket_4open" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="toggleBracket_4close" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txt_AndorInside3" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
@@ -971,7 +971,7 @@
                     <Property name="text" type="java.lang.String" value="AND/OR"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JToggleButton" name="toggleBrace_2open">
+                <Component class="javax.swing.JToggleButton" name="toggleBracket_2open">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="("/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -979,7 +979,7 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JToggleButton" name="toggleBrace_3open">
+                <Component class="javax.swing.JToggleButton" name="toggleBracket_3open">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="("/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -987,7 +987,7 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JToggleButton" name="toggleBrace_4open">
+                <Component class="javax.swing.JToggleButton" name="toggleBracket_4open">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="("/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -995,7 +995,7 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JToggleButton" name="toggleBrace_1close">
+                <Component class="javax.swing.JToggleButton" name="toggleBracket_1close">
                   <Properties>
                     <Property name="text" type="java.lang.String" value=")"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -1003,10 +1003,10 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="toggleBrace_1closeActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="toggleBracket_1closeActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JToggleButton" name="toggleBrace_3close">
+                <Component class="javax.swing.JToggleButton" name="toggleBracket_3close">
                   <Properties>
                     <Property name="text" type="java.lang.String" value=")"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -1014,7 +1014,7 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JToggleButton" name="toggleBrace_4close">
+                <Component class="javax.swing.JToggleButton" name="toggleBracket_4close">
                   <Properties>
                     <Property name="text" type="java.lang.String" value=")"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -1022,7 +1022,7 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JToggleButton" name="toggleBrace_1open">
+                <Component class="javax.swing.JToggleButton" name="toggleBracket_1open">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="("/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -1030,7 +1030,7 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JToggleButton" name="toggleBrace_2close">
+                <Component class="javax.swing.JToggleButton" name="toggleBracket_2close">
                   <Properties>
                     <Property name="text" type="java.lang.String" value=")"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -1038,7 +1038,7 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="toggleBrace_2closeActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="toggleBracket_2closeActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txt_AndorInside1">

@@ -36,8 +36,11 @@ import myClass.IdManagement;
 public class ClassificationBrowse extends javax.swing.JFrame {
 
     String ids = null;
+    String mod_sql = null;
+        
     JTable outTable = null;  
-    static String ST_resultIDs = null;
+    static String CB_resultIDs = null;
+    static String CB_patIDs = null;
         
     Log my_log;
         
@@ -53,6 +56,9 @@ public class ClassificationBrowse extends javax.swing.JFrame {
         Info_top4.getRootPane().setDefaultButton(btn_Search);
         
         my_log.logger.info("open SubtypeBrowse()");
+        
+        rbtn_onlyPat1.setEnabled(false);
+        ComboBox_stdyPat.setEnabled(false);
     }
 
      private void showRows(ResultSet rs){
@@ -143,41 +149,58 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                                        
         if (all_ids.length() > 1) {
             all_ids = all_ids.substring(0, (all_ids.length() - 1));
+        } else {
+            //JOptionPane.showMessageDialog(null, "no IDs");
+            all_ids = "0";
+        }
 
-            String sql = "SELECT p.pat_id, m.result_id, m.lab_id FROM main_result m, sample s, patient p"
-                    + " Where m.lab_id=s.lab_id and s.pat_id=p.pat_id"
-                    //+ " AND m.lab_id in (" + all_ids + ")";         
-                    + " AND p.pat_id in (" + all_ids + ")";   
+        String sql = "SELECT p.pat_id, m.result_id, m.lab_id FROM main_result m, sample s, patient p"
+                + " Where m.lab_id=s.lab_id and s.pat_id=p.pat_id"
+                //+ " AND m.lab_id in (" + all_ids + ")";         
+                + " AND p.pat_id in (" + all_ids + ")";
+
+        // only for a selected patient group
+        if (rbtn_onlyPat.isSelected()) {
+            deliver_Proj_ids(sql, "F");
+            sql = this.mod_sql;
+        }
+        //TODO
+        //if (rbtn_onlyPat1.isSelected()){
+        //    deliver_Stdy_ids(sql, "F");
+        //    sql = this.mod_sql;
+        //} 
+        
+        try {
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+
+            table_resultID.setModel(DbUtils.resultSetToTableModel(rs));
+            CustomSorter.table_customRowSort(table_resultID);
+
+            if (table_resultID.getColumnModel().getColumnCount() > 0) {
+                table_resultID.getColumnModel().getColumn(0).setPreferredWidth(80);
+                table_resultID.getColumnModel().getColumn(0).setMaxWidth(100);
+                table_resultID.getColumnModel().getColumn(1).setPreferredWidth(80);
+                table_resultID.getColumnModel().getColumn(1).setMaxWidth(100);
+            }
+
+            //get_r_ids(sql,pst,rs,conn);   // old --> substitute:
+            //this.CB_resultIDs = IdManagement.get_r_ids(sql,pst,rs,conn); // TEST classIdManagement
+            this.CB_resultIDs = IdManagement.get_ids(sql, pst, rs, conn, "result_id");
+            this.CB_patIDs = IdManagement.get_ids(sql, pst, rs, conn, "pat_id");
+            showRows(rs);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        } finally {
             try {
-                pst = conn.prepareStatement(sql);
-                rs = pst.executeQuery();
-
-                table_resultID.setModel(DbUtils.resultSetToTableModel(rs));
-                CustomSorter.table_customRowSort(table_resultID);
-                
-                if (table_resultID.getColumnModel().getColumnCount() > 0) {
-                    table_resultID.getColumnModel().getColumn(0).setPreferredWidth(80);
-                    table_resultID.getColumnModel().getColumn(0).setMaxWidth(100);
-                    table_resultID.getColumnModel().getColumn(1).setPreferredWidth(80);
-                    table_resultID.getColumnModel().getColumn(1).setMaxWidth(100);
-                }
-                
-                //get_r_ids(sql,pst,rs,conn);   // old --> substitute:
-                //this.ST_resultIDs = IdManagement.get_r_ids(sql,pst,rs,conn); // TEST classIdManagement
-                this.ST_resultIDs = IdManagement.get_ids(sql, pst, rs, conn, "result_id");
-                showRows(rs);
-
+                if (rs != null) { rs.close();}
+                if (pst != null) { pst.close();}
+                if (conn != null) { conn.close();}
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e);
-            } finally {
-                try {
-                    if (rs != null) { rs.close();}
-                    if (pst != null) { pst.close();}
-                    if (conn != null) { conn.close();}
-                } catch (Exception e) {
-                }
             }
         }
+        //}
     }
         
     private static boolean isRightClick(MouseEvent e) {
@@ -185,6 +208,113 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 || (System.getProperty("os.name").contains("Mac OS X")
                 && (e.getModifiers() & InputEvent.BUTTON1_MASK) != 0
                 && (e.getModifiers() & InputEvent.CTRL_MASK) != 0));
+    }
+    
+    private void deliver_Proj_ids(String sql, String set){ 
+        Connection conn = DBconnect.ConnecrDb();
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+
+        String proj_id = "";
+        //String projPat = (String) ComboBox_projPat.getSelectedItem();
+        if(ComboBox_projPat.getSelectedItem().toString().equals("MS_ALL_Array_Diagnostics")){
+            proj_id = "1";
+        }else if(ComboBox_projPat.getSelectedItem().toString().equals("TEST")){
+            proj_id = "2";
+        }else{
+            proj_id = "0";
+        }
+        try {
+            String sql2 = "SELECT m.*, s.pat_id, p.pat_id FROM main_result m, sample s, pat_inproject p"
+                    + " where m.lab_id=s.lab_id"
+                    + " and s.pat_id=p.pat_id"
+                    + " and p.proj_id='" + proj_id + "'";
+
+            pst = conn.prepareStatement(sql2);
+            rs = pst.executeQuery();
+
+            //get_ids(sql2, pst, rs, conn);
+            this.ids = IdManagement.get_ids(sql2, pst, rs, conn, "result_id");   
+            
+            if (ids.length() > 1){
+                ids = ids.substring(0, (ids.length() - 1));
+                if (set.equals("A")){
+                    this.mod_sql = sql + " AND m.result_id in(" + ids + ")";   
+                } else if (set.equals("F")){
+                    this.mod_sql = sql + " AND result_id in(" + ids + ")";     
+                }
+            } else{
+                JOptionPane.showMessageDialog(null, "Something is wrong with project patient's id list!");
+            }
+            //display_ids();
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        } finally {
+            try {
+                if (rs != null) { rs.close();}
+                if (pst != null) { pst.close();}
+                if (conn != null) { conn.close();}
+            } catch (Exception e) {
+            }
+        }    
+    }
+        
+    private void update_table_RgClassLab(String sqlDropped, String prefix) {
+        Connection conn = DBconnect.ConnecrDb();
+        ResultSet rs = null;
+        PreparedStatement pst = null;
+        String sql = sqlDropped;
+        
+        String SelectedPat_ids = this.CB_patIDs;
+        if (SelectedPat_ids.length() < 1) {
+            SelectedPat_ids = "0,";
+        }
+
+        boolean bPrefix = false;
+        switch (prefix) {
+            case "true":
+                bPrefix = true;
+                break;
+            case "false":
+                bPrefix = false;
+                break;
+            default:
+                break;
+        }
+
+        if (bPrefix==true){
+            SelectedPat_ids = SelectedPat_ids.substring(0, (SelectedPat_ids.length() - 1));
+            sql = sql + " and p.pat_id in ( " + SelectedPat_ids + " );";
+        }else if (bPrefix==false){
+            SelectedPat_ids = SelectedPat_ids.substring(0, (SelectedPat_ids.length() - 1));
+            sql = sql + " and pat_id in ( " + SelectedPat_ids + " );";
+        }
+        //txtArea_test.setText(sql);        //TEST
+        
+        try {
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            table_RgClassLab.setModel(DbUtils.resultSetToTableModel(rs));
+            CustomSorter.table_customRowSort(table_RgClassLab);
+
+            if (table_RgClassLab.getColumnModel().getColumnCount() > 0) {
+                table_RgClassLab.getColumnModel().getColumn(0).setPreferredWidth(60);
+                table_RgClassLab.getColumnModel().getColumn(0).setMaxWidth(60);
+                table_RgClassLab.getColumnModel().getColumn(1).setPreferredWidth(80);
+                table_RgClassLab.getColumnModel().getColumn(1).setMaxWidth(100);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            my_log.logger.warning("ERROR: " + e);
+        } finally {
+            try {
+                if (rs != null) { rs.close();}
+                if (pst != null) { pst.close();}
+                if (conn != null) { conn.close();}
+            } catch (Exception e) {
+            }
+        }      
     }
     
     /**
@@ -206,7 +336,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
         table_RgClassLab = new javax.swing.JTable();
         Info_top4 = new javax.swing.JPanel();
         btn_Search = new javax.swing.JButton();
-        jTP_LAB = new javax.swing.JTabbedPane();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
         rbtn_cytology = new javax.swing.JRadioButton();
         rbtn_NOT3_1 = new javax.swing.JRadioButton();
@@ -260,6 +390,11 @@ public class ClassificationBrowse extends javax.swing.JFrame {
         txt_class1 = new javax.swing.JTextField();
         rbtn_all_class = new javax.swing.JRadioButton();
         jLabel7 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        rbtn_onlyPat = new javax.swing.JRadioButton();
+        ComboBox_projPat = new javax.swing.JComboBox<>();
+        rbtn_onlyPat1 = new javax.swing.JRadioButton();
+        ComboBox_stdyPat = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         table_resultID = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -336,8 +471,8 @@ public class ClassificationBrowse extends javax.swing.JFrame {
             }
         });
 
-        jTP_LAB.setBackground(new java.awt.Color(102, 153, 255));
-        jTP_LAB.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTabbedPane2.setBackground(new java.awt.Color(102, 153, 255));
+        jTabbedPane2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jPanel3.setBackground(new java.awt.Color(102, 153, 255));
 
@@ -472,7 +607,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
 
         jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {CB_andor3, CB_cytology, CB_cytology1, rbtn_CYT, rbtn_CYT1, rbtn_NOT3_1, rbtn_NOT3_2});
 
-        jTP_LAB.addTab("cytology", jPanel3);
+        jTabbedPane2.addTab("cytology", jPanel3);
 
         jPanel4.setBackground(new java.awt.Color(102, 153, 255));
 
@@ -597,7 +732,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
 
         jPanel4Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {CB_RG4, CB_RG5, CB_andor4, rbtn_NOT4_1, rbtn_NOT4_2, rbtn_specST6, rbtn_specST7});
 
-        jTP_LAB.addTab("someLab", jPanel4);
+        jTabbedPane2.addTab("someLab", jPanel4);
 
         jTabbedPane1.setBackground(new java.awt.Color(102, 153, 255));
         jTabbedPane1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -876,6 +1011,49 @@ public class ClassificationBrowse extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("classification", jPanel7);
 
+        jPanel2.setBackground(new java.awt.Color(102, 153, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        rbtn_onlyPat.setText("only patients from project ...");
+        rbtn_onlyPat.setToolTipText("select to get results from patients in a certain study (select from below)");
+
+        ComboBox_projPat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MS_ALL_Array_Diagnostics", "TEST", "no project assigned" }));
+
+        rbtn_onlyPat1.setText("only patients from study ...");
+        rbtn_onlyPat1.setToolTipText("select to get results from patients in a certain project (select from below)");
+
+        ComboBox_stdyPat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALL BFM 2009", "Register paedMyLeu BFM-A 2014", "no study assigned" }));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(rbtn_onlyPat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ComboBox_projPat, 0, 0, Short.MAX_VALUE)
+                            .addComponent(ComboBox_stdyPat, 0, 0, Short.MAX_VALUE)))
+                    .addComponent(rbtn_onlyPat1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(rbtn_onlyPat)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ComboBox_projPat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rbtn_onlyPat1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ComboBox_stdyPat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout Info_top4Layout = new javax.swing.GroupLayout(Info_top4);
         Info_top4.setLayout(Info_top4Layout);
         Info_top4Layout.setHorizontalGroup(
@@ -884,20 +1062,26 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(jTP_LAB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(77, 77, 77)
                 .addComponent(btn_Search)
                 .addGap(21, 21, 21))
         );
         Info_top4Layout.setVerticalGroup(
             Info_top4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Info_top4Layout.createSequentialGroup()
+            .addGroup(Info_top4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(Info_top4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTP_LAB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(Info_top4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btn_Search)
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(Info_top4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(Info_top4Layout.createSequentialGroup()
+                        .addGroup(Info_top4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTabbedPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Info_top4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btn_Search)
+                                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -1005,7 +1189,12 @@ public class ClassificationBrowse extends javax.swing.JFrame {
             //rbtn_specST.setEnabled(false);
             initial_table_subtypes();
             update_table_resultID();
-            
+            if (rbtn_onlyPat.isSelected()){
+                String sql = "SELECT distinct t.auto_id, t.pat_id, major_subtype, bother_subtype, spec_sub1, spec_sub2, spec_sub3, ngs_sub1, ngs_sub2 FROM sample s, patient p, subtypes t"
+                    + " where s.pat_id=p.pat_id"
+                    + " and t.pat_id=p.pat_id";
+                update_table_RgClassLab(sql,"true");          // Test second table - only project
+            } 
         } else if (rbtn_subtype.isSelected()){
             Connection conn = DBconnect.ConnecrDb();
             ResultSet rs = null;
@@ -1077,8 +1266,8 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                     sql = sql + " " + andor1 + " " + specST1 + " like '%" + spec_txt1 + "%'";
                 }
             }
-            //txtArea_test.setText(sql);    //TEST
 
+            //txtArea_test.setText(sql);    //TEST
             try {
                 pst = conn.prepareStatement(sql);
                 rs = pst.executeQuery();
@@ -1093,27 +1282,31 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                     table_RgClassLab.getColumnModel().getColumn(1).setPreferredWidth(80);
                     table_RgClassLab.getColumnModel().getColumn(1).setMaxWidth(100);
                 }
-
+//XXX
                 //get_ids(sql, pst, rs, conn);
                 this.ids=IdManagement.get_ids(sql, pst, rs, conn,"pat_id");
                 update_table_resultID();
+
+                if (rbtn_onlyPat.isSelected()){
+                    update_table_RgClassLab(sql,"true");          // Test second table - only project
+                }
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e);
                 my_log.logger.warning("ERROR: " + e);
             } finally {
-                try {
+                 try {
                     if (rs != null) { rs.close();}
                     if (pst != null) { pst.close();}
                     if (conn != null) { conn.close();}
-                } catch (Exception e) {
-                }
-            }
-        } else if (rbtn_all_class.isSelected()) {
+                 } catch (Exception e) {
+                 }
+             }
+         } else if (rbtn_all_class.isSelected()) {
              Connection conn = DBconnect.ConnecrDb();
              ResultSet rs = null;
              PreparedStatement pst = null;
-             String sql = "SELECT auto_id, pat_id, rg, mrd_rg, prd, fcm_mrd, immuno_pickl, immuno_dworzak, FAB FROM pat_instudy";
+             String sql = "SELECT auto_id, pat_id, rg, mrd_rg, prd, fcm_mrd, immuno_pickl, immuno_dworzak, FAB FROM pat_instudy where 1=1";
 
              try {
                  pst = conn.prepareStatement(sql);
@@ -1131,6 +1324,11 @@ public class ClassificationBrowse extends javax.swing.JFrame {
             
                 //get_ids(sql,pst,rs,conn);
                 this.ids=IdManagement.get_ids(sql, pst, rs, conn,"pat_id");
+                update_table_resultID();
+
+                if (rbtn_onlyPat.isSelected()) {
+                    update_table_RgClassLab(sql,"false");          // Test second table - only project
+                }
                 
              } catch (Exception e) {
                  JOptionPane.showMessageDialog(null, e);
@@ -1142,7 +1340,6 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 } catch (Exception e) {
                 }
             }
-            update_table_resultID();
         } else if (rbtn_class.isSelected()) {
             Connection conn = DBconnect.ConnecrDb();
             ResultSet rs = null;
@@ -1249,7 +1446,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                     }
                 }
     
-            }
+            }            
             //txtArea_test.setText(sql);    //TEST
 
             try {
@@ -1269,6 +1466,10 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 //get_ids(sql, pst, rs, conn);
                 this.ids=IdManagement.get_ids(sql, pst, rs, conn,"pat_id");
                 update_table_resultID();
+
+                if (rbtn_onlyPat.isSelected()) {
+                    update_table_RgClassLab(sql,"false");          // Test second table - only project
+                }
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e);
@@ -1312,6 +1513,11 @@ public class ClassificationBrowse extends javax.swing.JFrame {
             
                 //get_ids(sql,pst,rs,conn);
                 this.ids=IdManagement.get_ids(sql, pst, rs, conn,"pat_id");
+                update_table_resultID();
+
+                if (rbtn_onlyPat.isSelected()) {
+                    update_table_RgClassLab(sql,"false");          // Test second table - only project
+                }
                 
              } catch (Exception e) {
                  JOptionPane.showMessageDialog(null, e);
@@ -1323,7 +1529,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 } catch (Exception e) {
                 }
             }
-            update_table_resultID();
+            //update_table_resultID();
         }else if (rbtn_cytology.isSelected()) {
              Connection conn = DBconnect.ConnecrDb();
              ResultSet rs = null;
@@ -1446,6 +1652,10 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 this.ids = IdManagement.get_ids(sql, pst, rs, conn, "pat_id");
                 update_table_resultID();
 
+                if (rbtn_onlyPat.isSelected()) {
+                    update_table_RgClassLab(sql,"false");          // Test second table - only project
+                }
+
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e);
                 my_log.logger.warning("ERROR: " + e);
@@ -1459,7 +1669,6 @@ public class ClassificationBrowse extends javax.swing.JFrame {
             }  
         }
   
-         
     }//GEN-LAST:event_btn_SearchActionPerformed
 
     private void table_resultIDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_resultIDMouseClicked
@@ -1502,7 +1711,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
             IDs = IDs + tmp + ", "; 
         }
         IDs = IDs.substring(0, (IDs.length() - 2));
-            //txtArea_test.setText(IDs);    //TEST
+        //txtArea_test.setText(IDs);    //TEST
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents( 
                 new StringSelection(IDs), null);       
     }//GEN-LAST:event_cpLabIdsActionPerformed
@@ -1770,134 +1979,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ClassificationBrowse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -1920,6 +2002,8 @@ public class ClassificationBrowse extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> CB_cytology1;
     private javax.swing.JComboBox<String> CB_specST;
     private javax.swing.JComboBox<String> CB_specST1;
+    private javax.swing.JComboBox<String> ComboBox_projPat;
+    private javax.swing.JComboBox<String> ComboBox_stdyPat;
     private javax.swing.JPanel Info_top4;
     private javax.swing.JButton bnt_test;
     private javax.swing.JButton btn_Search;
@@ -1937,14 +2021,15 @@ public class ClassificationBrowse extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTabbedPane jTP_LAB;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JLabel lbl_rowsReturned;
     private javax.swing.JPopupMenu popUpResult;
@@ -1967,6 +2052,8 @@ public class ClassificationBrowse extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbtn_all_subtypes;
     private javax.swing.JRadioButton rbtn_class;
     private javax.swing.JRadioButton rbtn_cytology;
+    private javax.swing.JRadioButton rbtn_onlyPat;
+    private javax.swing.JRadioButton rbtn_onlyPat1;
     private javax.swing.JRadioButton rbtn_specST;
     private javax.swing.JRadioButton rbtn_specST1;
     private javax.swing.JRadioButton rbtn_specST6;
