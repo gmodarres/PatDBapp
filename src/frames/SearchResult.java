@@ -48,6 +48,8 @@ import myClass.Log;
 import myClass.OSDetector;
 import myClass.saveTable;
 import static frames.ClassificationBrowse.CB_resultIDs;
+import myClass.ShowSqlSelector;
+import static myClass.ShowSqlSelector.showSqlInWindow;
 
 public class SearchResult extends javax.swing.JFrame {
 
@@ -69,6 +71,9 @@ public class SearchResult extends javax.swing.JFrame {
     static boolean IntrprWindowIsOpen = false;
     static boolean SegIntrprIsOpen = false;
     static String segIntrpr = null;
+    
+    //static boolean ShowSqlIsOpen = false;
+    //static String sqlShowWindow = null;
     
     String click_result = null;
     static String click_lID = null;
@@ -1028,6 +1033,23 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
         lbl_fish_signal.setBackground(Color.getColor("6699FF"));
         lbl_zg_signal.setBackground(Color.getColor("6699FF"));
     }
+    
+    /*
+    private void showSqlInWindow(String sql, String source) {
+        //XXX
+        //String SI = mod_sql;
+        if (ShowSqlIsOpen == true) {
+            //sqlShowWindow = SI;
+            sqlShowWindow =sql;
+            //ShowSQL.txtArea_showSQL.setText(sqlShowWindow);
+            ShowSQL.txtArea_showSQL.append(source+"  :   "+sqlShowWindow+"\n");
+            
+            
+        } else {
+            //new ShowSQL().setVisible(true);
+            //ShowSqlIsOpen = true;
+        }
+    }*/
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -1244,7 +1266,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
         jMenu4 = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1_openModel = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2_showSql = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1_HowTo = new javax.swing.JMenuItem();
@@ -2870,13 +2892,13 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
         });
         jMenu1.add(jMenuItem1_openModel);
 
-        jMenuItem1.setText("showSQL");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem2_showSql.setText("showSQL");
+        jMenuItem2_showSql.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jMenuItem2_showSqlActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(jMenuItem2_showSql);
 
         jMenuBar1.add(jMenu1);
 
@@ -3550,7 +3572,8 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
 
             get_queryLabIDs(sql, pst, rs, conn);
             get_statistics(sql);
-            
+            showSqlInWindow(sql, "SR_fish");
+                        
             display_ids();
             
         } catch (Exception e) {
@@ -3962,6 +3985,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
             get_statistics(sql);
             get_queryLabIDs(sql, pst, rs, conn);
             //txtArea_genes.setText(sql);   //TEST
+            showSqlInWindow(sql, "SR_cytogen.");
             
         }catch (Exception e) {
             //JOptionPane.showMessageDialog(null, "Something is wrong ...");
@@ -4310,6 +4334,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
             
             get_statistics(sql);
             get_queryLabIDs(sql, pst, rs, conn);
+            showSqlInWindow(sql, "SR_array");
 
         } catch (Exception e) {
             //JOptionPane.showMessageDialog(null, "Something is wrong ...");
@@ -6043,10 +6068,11 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(somestring, null);
     }//GEN-LAST:event_popUpMenu_cpResultIdsActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jMenuItem2_showSqlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2_showSqlActionPerformed
         ShowSQL s = new ShowSQL();
-        s.setVisible(true);        
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+        s.setVisible(true);     
+        ShowSqlSelector.ShowSqlIsOpen = true;
+    }//GEN-LAST:event_jMenuItem2_showSqlActionPerformed
 
     /**
      * @param args the command line arguments
@@ -6237,10 +6263,10 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem1_HowTo;
     private javax.swing.JMenuItem jMenuItem1_openModel;
     private javax.swing.JMenuItem jMenuItem2_Info;
+    private javax.swing.JMenuItem jMenuItem2_showSql;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;

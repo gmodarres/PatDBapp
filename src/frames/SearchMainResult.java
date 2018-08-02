@@ -968,9 +968,12 @@ public class SearchMainResult extends javax.swing.JFrame {
         ResultSet rs = null;
         PreparedStatement pst = null;
         //JOptionPane.showMessageDialog(null, click_result);
+        
+        String result_idFromField = txt_searchResultId.getText();
 
         try {
-            String sql = "SELECT ar_wgview FROM main_result WHERE result_id= "+ click_result ;
+            //String sql = "SELECT ar_wgview FROM main_result WHERE result_id= "+ click_result ;
+            String sql = "SELECT ar_wgview FROM main_result WHERE result_id= "+ result_idFromField ;
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
 
@@ -999,8 +1002,11 @@ public class SearchMainResult extends javax.swing.JFrame {
         PreparedStatement pst = null;
         //JOptionPane.showMessageDialog(null, click_result);
 
+        String result_idFromField = txt_searchResultId.getText();
+        
         try {
-            String sql = "SELECT ar_karyoview FROM main_result WHERE result_id= "+ click_result ;
+            //String sql = "SELECT ar_karyoview FROM main_result WHERE result_id= "+ click_result ;
+            String sql = "SELECT ar_karyoview FROM main_result WHERE result_id= "+ result_idFromField;
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
             //JOptionPane.showMessageDialog(null, sql);
@@ -1225,7 +1231,17 @@ public class SearchMainResult extends javax.swing.JFrame {
                 lbl_showResultId2.setText(r_id);
                 lbl_showLabId3.setText(l_id);
                 lbl_showResultId3.setText(r_id);
+                
+                //TODO: color buttons wgv & karyoview, if picture is available
+                String karyoview = rs.getString("ar_karyoview");
+                String wgview = rs.getString("ar_wgview");
+                
+                if (karyoview !=null && !karyoview.isEmpty()){ btn_Karyoview.setBackground(Color.blue);btn_Karyoview.setForeground(Color.WHITE);}
+                else{ btn_Karyoview.setBackground(Color.gray); btn_Karyoview.setForeground(Color.WHITE); }
+                if (wgview !=null && !wgview.isEmpty()){ btn_WGV.setBackground(Color.blue);btn_WGV.setForeground(Color.WHITE);}
+                else{ btn_WGV.setBackground(Color.gray); btn_WGV.setForeground(Color.WHITE); }
 
+                
                 rs.close();
                 pst.close();
 
@@ -1324,7 +1340,7 @@ public class SearchMainResult extends javax.swing.JFrame {
                     else{ btn_zg.setBackground(Color.gray); btn_zg.setForeground(Color.WHITE); }
                     if (karyoview !=null && !karyoview.isEmpty()){ btn_Karyoview.setBackground(Color.blue);btn_Karyoview.setForeground(Color.WHITE);}
                     else{ btn_Karyoview.setBackground(Color.gray); btn_Karyoview.setForeground(Color.WHITE); }
-                    if (karyoview !=null && !karyoview.isEmpty()){ btn_WGV.setBackground(Color.blue);btn_WGV.setForeground(Color.WHITE);}
+                    if (wgview !=null && !wgview.isEmpty()){ btn_WGV.setBackground(Color.blue);btn_WGV.setForeground(Color.WHITE);}
                     else{ btn_WGV.setBackground(Color.gray); btn_WGV.setForeground(Color.WHITE); }
                 }
             }

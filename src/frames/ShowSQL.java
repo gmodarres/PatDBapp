@@ -6,6 +6,7 @@
 package frames;
 
 import javax.swing.ImageIcon;
+import myClass.ShowSqlSelector;
 
 /**
  *
@@ -21,6 +22,15 @@ public class ShowSQL extends javax.swing.JFrame {
                 
         ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_small.png"));
         this.setIconImage(img.getImage());
+        
+         this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                //SearchResult.ShowSqlIsOpen = false;
+                ShowSqlSelector.ShowSqlIsOpen = false;
+                //JOptionPane.showMessageDialog(null, "closing, boolean is " + IntrprWindowIsOpen);
+            }
+        }); 
 
     }
 
@@ -36,6 +46,7 @@ public class ShowSQL extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtArea_showSQL = new javax.swing.JTextArea();
         rbtn_alwaysOnTop = new javax.swing.JRadioButton();
+        btn_clear = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("SQL");
@@ -54,6 +65,13 @@ public class ShowSQL extends javax.swing.JFrame {
             }
         });
 
+        btn_clear.setText("clear");
+        btn_clear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_clearActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -63,7 +81,8 @@ public class ShowSQL extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(rbtn_alwaysOnTop)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_clear, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 908, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -71,7 +90,9 @@ public class ShowSQL extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(3, 3, 3)
-                .addComponent(rbtn_alwaysOnTop)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbtn_alwaysOnTop)
+                    .addComponent(btn_clear))
                 .addGap(3, 3, 3)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
                 .addGap(5, 5, 5))
@@ -87,6 +108,10 @@ public class ShowSQL extends javax.swing.JFrame {
             this.setAlwaysOnTop(false);
         }
     }//GEN-LAST:event_rbtn_alwaysOnTopActionPerformed
+
+    private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
+        txtArea_showSQL.setText("");       
+    }//GEN-LAST:event_btn_clearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -124,6 +149,7 @@ public class ShowSQL extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_clear;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton rbtn_alwaysOnTop;
     public static javax.swing.JTextArea txtArea_showSQL;

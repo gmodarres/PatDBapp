@@ -28,6 +28,7 @@ import myClass.DBconnect;
 import myClass.Log;
 import net.proteanit.sql.DbUtils;
 import myClass.IdManagement;
+import static myClass.ShowSqlSelector.showSqlInWindow;
 
 /**
  *
@@ -41,6 +42,8 @@ public class ClassificationBrowse extends javax.swing.JFrame {
     JTable outTable = null;  
     static String CB_resultIDs = null;
     static String CB_patIDs = null;
+    
+    static String sqlShowWindow_CB = null;
         
     Log my_log;
         
@@ -1063,9 +1066,9 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addGap(10, 10, 10)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(77, 77, 77)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addComponent(btn_Search)
                 .addGap(21, 21, 21))
         );
@@ -1651,6 +1654,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 //get_ids(sql, pst, rs, conn);
                 this.ids = IdManagement.get_ids(sql, pst, rs, conn, "pat_id");
                 update_table_resultID();
+                showSqlInWindow(sql, "SR_Class.Browse");
 
                 if (rbtn_onlyPat.isSelected()) {
                     update_table_RgClassLab(sql,"false");          // Test second table - only project

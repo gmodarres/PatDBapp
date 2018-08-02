@@ -27,6 +27,7 @@ import myClass.CustomSorter;
 import myClass.DBconnect;
 import myClass.IdManagement;
 import myClass.Log;
+import static myClass.ShowSqlSelector.showSqlInWindow;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -398,10 +399,10 @@ public class SampleBrowse extends javax.swing.JFrame {
                         .addComponent(txt_date2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txt_refDiag))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rbtn_study, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                .addComponent(rbtn_study, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ComboBox_stdyPat, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(40, 40, 40)
+                .addComponent(ComboBox_stdyPat, 0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addComponent(btn_Search)
                 .addGap(21, 21, 21))
         );
@@ -947,6 +948,7 @@ public class SampleBrowse extends javax.swing.JFrame {
                 //get_ids(sql, pst, rs, conn);
                 this.ids = IdManagement.get_ids(sql, pst, rs, conn, "lab_id");
                 update_table_resultID();
+                showSqlInWindow(sql, "SR_SampleBrowse");
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
