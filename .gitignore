@@ -1,3 +1,6 @@
 /LOG/
 /users/
 /hosts.ini
+/nbproject/private/
+/build/
+/dist/
