@@ -581,6 +581,7 @@ public class SampleBrowse extends javax.swing.JFrame {
                 //get_ids(sql, pst, rs, conn);
                 this.ids = IdManagement.get_ids(sql, pst, rs, conn, "lab_id");
                 update_table_resultID();
+                showSqlInWindow(sql, "SampleBrowse");
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
@@ -630,6 +631,7 @@ public class SampleBrowse extends javax.swing.JFrame {
                 //get_ids(sql, pst, rs, conn);
                 this.ids = IdManagement.get_ids(sql, pst, rs, conn, "lab_id");
                 update_table_resultID();
+                showSqlInWindow(sql, "SampleBrowse");
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
@@ -679,6 +681,7 @@ public class SampleBrowse extends javax.swing.JFrame {
                 //get_ids(sql, pst, rs, conn);
                 this.ids = IdManagement.get_ids(sql, pst, rs, conn, "lab_id");
                 update_table_resultID();
+                showSqlInWindow(sql, "SampleBrowse");
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
@@ -731,6 +734,7 @@ public class SampleBrowse extends javax.swing.JFrame {
                 //get_ids(sql, pst, rs, conn);
                 this.ids = IdManagement.get_ids(sql, pst, rs, conn, "lab_id");
                 update_table_resultID();
+                showSqlInWindow(sql, "SampleBrowse");
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e);
@@ -782,6 +786,7 @@ public class SampleBrowse extends javax.swing.JFrame {
                 //get_ids(sql, pst, rs, conn);
                 this.ids = IdManagement.get_ids(sql, pst, rs, conn, "lab_id");
                 update_table_resultID();
+                showSqlInWindow(sql, "SampleBrowse");
 
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, e.getMessage());
@@ -837,6 +842,7 @@ public class SampleBrowse extends javax.swing.JFrame {
                 //get_ids(sql, pst, rs, conn);
                 this.ids = IdManagement.get_ids(sql, pst, rs, conn, "lab_id");
                 update_table_resultID();
+                showSqlInWindow(sql, "SampleBrowse");
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
@@ -889,6 +895,7 @@ public class SampleBrowse extends javax.swing.JFrame {
                 //get_ids(sql, pst, rs, conn);
                 this.ids = IdManagement.get_ids(sql, pst, rs, conn, "lab_id");
                 update_table_resultID();
+                showSqlInWindow(sql, "SampleBrowse");
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
@@ -948,7 +955,7 @@ public class SampleBrowse extends javax.swing.JFrame {
                 //get_ids(sql, pst, rs, conn);
                 this.ids = IdManagement.get_ids(sql, pst, rs, conn, "lab_id");
                 update_table_resultID();
-                showSqlInWindow(sql, "SR_SampleBrowse");
+                showSqlInWindow(sql, "SampleBrowse");
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());

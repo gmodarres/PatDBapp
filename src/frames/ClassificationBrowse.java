@@ -1188,7 +1188,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
     }//GEN-LAST:event_bnt_testActionPerformed
 
     private void btn_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SearchActionPerformed
-         if(rbtn_all_subtypes.isSelected()){
+        if(rbtn_all_subtypes.isSelected()){
             //rbtn_specST.setEnabled(false);
             initial_table_subtypes();
             update_table_resultID();
@@ -1289,7 +1289,8 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 //get_ids(sql, pst, rs, conn);
                 this.ids=IdManagement.get_ids(sql, pst, rs, conn,"pat_id");
                 update_table_resultID();
-
+                showSqlInWindow(sql, "CB_subtypes");
+                
                 if (rbtn_onlyPat.isSelected()){
                     update_table_RgClassLab(sql,"true");          // Test second table - only project
                 }
@@ -1328,7 +1329,8 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 //get_ids(sql,pst,rs,conn);
                 this.ids=IdManagement.get_ids(sql, pst, rs, conn,"pat_id");
                 update_table_resultID();
-
+                showSqlInWindow(sql, "CB_classification");
+                
                 if (rbtn_onlyPat.isSelected()) {
                     update_table_RgClassLab(sql,"false");          // Test second table - only project
                 }
@@ -1469,6 +1471,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 //get_ids(sql, pst, rs, conn);
                 this.ids=IdManagement.get_ids(sql, pst, rs, conn,"pat_id");
                 update_table_resultID();
+                showSqlInWindow(sql, "CB_classification");
 
                 if (rbtn_onlyPat.isSelected()) {
                     update_table_RgClassLab(sql,"false");          // Test second table - only project
@@ -1517,6 +1520,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 //get_ids(sql,pst,rs,conn);
                 this.ids=IdManagement.get_ids(sql, pst, rs, conn,"pat_id");
                 update_table_resultID();
+                showSqlInWindow(sql, "CB_cytology");
 
                 if (rbtn_onlyPat.isSelected()) {
                     update_table_RgClassLab(sql,"false");          // Test second table - only project
@@ -1654,7 +1658,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 //get_ids(sql, pst, rs, conn);
                 this.ids = IdManagement.get_ids(sql, pst, rs, conn, "pat_id");
                 update_table_resultID();
-                showSqlInWindow(sql, "SR_Class.Browse");
+                showSqlInWindow(sql, "CB_cytology");
 
                 if (rbtn_onlyPat.isSelected()) {
                     update_table_RgClassLab(sql,"false");          // Test second table - only project

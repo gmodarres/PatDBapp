@@ -19,7 +19,7 @@ public class ShowSqlSelector {
     public static void showSqlInWindow(String sql, String source) {
         if (ShowSqlIsOpen == true) {
             sqlShowWindow = sql;
-            ShowSQL.txtArea_showSQL.append(source + "  :   " + sqlShowWindow + "\n");
+            ShowSQL.txtArea_showSQL.append(source + ":\t" + sqlShowWindow + "\n");
 
         } else {
             //new ShowSQL().setVisible(true);
