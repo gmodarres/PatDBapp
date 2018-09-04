@@ -238,8 +238,6 @@ public class SampleBrowse extends javax.swing.JFrame {
         ComboBox_stdyPat = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         table_resultID = new javax.swing.JTable();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        txtArea_test = new javax.swing.JTextArea();
         lbl_rowsReturned = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
@@ -363,7 +361,7 @@ public class SampleBrowse extends javax.swing.JFrame {
         rbtn_study.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         rbtn_study.setBorderPainted(true);
 
-        ComboBox_stdyPat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALL BFM 2009", "Register paedMyLeu BFM-A 2014", "no study assigned" }));
+        ComboBox_stdyPat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALL BFM 2009", "Register paedMyLeu BFM-A 2014", "ALL BFM 2000", "ALL Rezidiv", "no study assigned" }));
 
         javax.swing.GroupLayout Info_top4Layout = new javax.swing.GroupLayout(Info_top4);
         Info_top4.setLayout(Info_top4Layout);
@@ -463,10 +461,6 @@ public class SampleBrowse extends javax.swing.JFrame {
         jScrollPane2.setViewportView(table_resultID);
         table_resultID.getAccessibleContext().setAccessibleName("table_resultID");
 
-        txtArea_test.setColumns(20);
-        txtArea_test.setRows(5);
-        jScrollPane3.setViewportView(txtArea_test);
-
         lbl_rowsReturned.setText(" ");
 
         jMenu4.setBorder(null);
@@ -504,7 +498,6 @@ public class SampleBrowse extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(Info_top4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jScrollPane1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -523,9 +516,7 @@ public class SampleBrowse extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(2, 2, 2)
                 .addComponent(lbl_rowsReturned)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(11, 11, 11))
         );
 
         Info_top4.getAccessibleContext().setAccessibleName("samples");
@@ -918,6 +909,10 @@ public class SampleBrowse extends javax.swing.JFrame {
                 stdy_id = "1";
             } else if (ComboBox_stdyPat.getSelectedItem().toString().equals("Register paedMyLeu BFM-A 2014")) {
                 stdy_id = "2";
+            } else if(ComboBox_stdyPat.getSelectedItem().toString().equals("ALL BFM 2000")){
+                stdy_id = "3";
+            } else if(ComboBox_stdyPat.getSelectedItem().toString().equals("ALL Rezidiv")){
+                stdy_id = "4";
             } else { // no study assigned
                 stdy_id = "0";
             }
@@ -1064,7 +1059,6 @@ public class SampleBrowse extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JLabel lbl_rowsReturned;
     private javax.swing.JPopupMenu popUpResult;
@@ -1080,7 +1074,6 @@ public class SampleBrowse extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbtn_study;
     private javax.swing.JTable table_resultID;
     private javax.swing.JTable table_sample;
-    private javax.swing.JTextArea txtArea_test;
     private javax.swing.JTextField txt_date1;
     private javax.swing.JTextField txt_date2;
     private javax.swing.JTextField txt_patID;

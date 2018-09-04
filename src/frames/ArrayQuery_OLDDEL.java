@@ -49,7 +49,7 @@ import org.ini4j.Ini;
  *
  * @author gerda.modarres
  */
-public class ArrayQuery_copy extends javax.swing.JFrame {
+public class ArrayQuery_OLDDEL extends javax.swing.JFrame {
 
     static String AQ_resultIDs = null;
     
@@ -80,7 +80,7 @@ public class ArrayQuery_copy extends javax.swing.JFrame {
     /**
      * Creates new form ArrayQuery
      */
-    public ArrayQuery_copy() {
+    public ArrayQuery_OLDDEL() {
         initComponents();
         ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_small.png"));
         //ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/patIGUS.png"));
@@ -1968,21 +1968,23 @@ JTable OT = this.outTable;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ArrayQuery_copy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ArrayQuery_OLDDEL.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ArrayQuery_copy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ArrayQuery_OLDDEL.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ArrayQuery_copy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ArrayQuery_OLDDEL.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ArrayQuery_copy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ArrayQuery_OLDDEL.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ArrayQuery_copy().setVisible(true);
+                new ArrayQuery_OLDDEL().setVisible(true);
             }
         });
     }

@@ -60,6 +60,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
         
         my_log.logger.info("open SubtypeBrowse()");
         
+        // TODO enable function for study patients (probably not necessary?)
         rbtn_onlyPat1.setEnabled(false);
         ComboBox_stdyPat.setEnabled(false);
     }
@@ -222,8 +223,10 @@ public class ClassificationBrowse extends javax.swing.JFrame {
         //String projPat = (String) ComboBox_projPat.getSelectedItem();
         if(ComboBox_projPat.getSelectedItem().toString().equals("MS_ALL_Array_Diagnostics")){
             proj_id = "1";
-        }else if(ComboBox_projPat.getSelectedItem().toString().equals("TEST")){
+        }else if(ComboBox_projPat.getSelectedItem().toString().equals("Paper Dworzak Pickl")){
             proj_id = "2";
+        }else if(ComboBox_projPat.getSelectedItem().toString().equals("TEST")){
+            proj_id = "3";
         }else{
             proj_id = "0";
         }
@@ -294,6 +297,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
             sql = sql + " and pat_id in ( " + SelectedPat_ids + " );";
         }
         //txtArea_test.setText(sql);        //TEST
+        showSqlInWindow(sql, "Classification_ProjPat");
         
         try {
             pst = conn.prepareStatement(sql);
@@ -400,8 +404,6 @@ public class ClassificationBrowse extends javax.swing.JFrame {
         ComboBox_stdyPat = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         table_resultID = new javax.swing.JTable();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        txtArea_test = new javax.swing.JTextArea();
         lbl_rowsReturned = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
@@ -899,7 +901,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
 
         rbtn_RG.setEnabled(false);
 
-        CB_class.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "riskgroup", "mrd riskgroup", "prd", "fcm mrd", "immuno pickl", "immuno dworzak", "FAB" }));
+        CB_class.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "riskgroup", "mrd riskgroup", "prd", "fcm mrd", "immuno pickl", "immuno dworzak", "BAL dworzak", "MPAL dworzak", "MPAL pickl", "FAB" }));
         CB_class.setEnabled(false);
         CB_class.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -912,7 +914,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
 
         rbtn_RG1.setEnabled(false);
 
-        CB_class1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "riskgroup", "mrd riskgroup", "prd", "fcm mrd", "immuno pickl", "immuno dworzak", "FAB" }));
+        CB_class1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "riskgroup", "mrd riskgroup", "prd", "fcm mrd", "immuno pickl", "immuno dworzak", "BAL dworzak", "MPAL dworzak", "MPAL pickl", "FAB" }));
         CB_class1.setEnabled(false);
         CB_class1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1020,12 +1022,12 @@ public class ClassificationBrowse extends javax.swing.JFrame {
         rbtn_onlyPat.setText("only patients from project ...");
         rbtn_onlyPat.setToolTipText("select to get results from patients in a certain study (select from below)");
 
-        ComboBox_projPat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MS_ALL_Array_Diagnostics", "TEST", "no project assigned" }));
+        ComboBox_projPat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MS_ALL_Array_Diagnostics", "Paper Dworzak Pickl", "TEST", "no project assigned" }));
 
         rbtn_onlyPat1.setText("only patients from study ...");
         rbtn_onlyPat1.setToolTipText("select to get results from patients in a certain project (select from below)");
 
-        ComboBox_stdyPat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALL BFM 2009", "Register paedMyLeu BFM-A 2014", "no study assigned" }));
+        ComboBox_stdyPat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALL BFM 2009", "Register paedMyLeu BFM-A 2014", "ALL BFM 2000", "ALL Rezidiv", "no study assigned" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -1116,10 +1118,6 @@ public class ClassificationBrowse extends javax.swing.JFrame {
         jScrollPane2.setViewportView(table_resultID);
         table_resultID.getAccessibleContext().setAccessibleName("table_resultID");
 
-        txtArea_test.setColumns(20);
-        txtArea_test.setRows(5);
-        jScrollPane3.setViewportView(txtArea_test);
-
         lbl_rowsReturned.setText(" ");
 
         jMenu4.setBorder(null);
@@ -1151,7 +1149,6 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(Info_top4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1174,9 +1171,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(2, 2, 2)
                 .addComponent(lbl_rowsReturned)
-                .addGap(8, 8, 8)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(11, 11, 11))
         );
 
         pack();
@@ -1232,9 +1227,9 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 String spec_txt = txt_specST.getText();
                 
                 if (rbtn_NOT1_1.isSelected()) {
-                    sql = sql + " and " + specST + " NOT like '%" + spec_txt + "%'";
+                    sql = sql + " and (" + specST + " NOT like '%" + spec_txt + "%'";
                 } else {               
-                    sql = sql + " and " + specST + " like '%" + spec_txt + "%'";
+                    sql = sql + " and (" + specST + " like '%" + spec_txt + "%'";
                 }
             }
            
@@ -1264,12 +1259,14 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 String spec_txt1 = txt_specST1.getText();
                 
                 if (rbtn_NOT1_2.isSelected()) {
-                    sql = sql + " " + andor1 + " " + specST1 + " NOT like '%" + spec_txt1 + "%'";
+                    sql = sql + " " + andor1 + " " + specST1 + " NOT like '%" + spec_txt1 + "%')";
                 } else {               
-                    sql = sql + " " + andor1 + " " + specST1 + " like '%" + spec_txt1 + "%'";
+                    sql = sql + " " + andor1 + " " + specST1 + " like '%" + spec_txt1 + "%')";
                 }
-            }
-
+            }else {
+                sql = sql + ")"; 
+            }    
+           
             //txtArea_test.setText(sql);    //TEST
             try {
                 pst = conn.prepareStatement(sql);
@@ -1310,7 +1307,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
              Connection conn = DBconnect.ConnecrDb();
              ResultSet rs = null;
              PreparedStatement pst = null;
-             String sql = "SELECT auto_id, pat_id, rg, mrd_rg, prd, fcm_mrd, immuno_pickl, immuno_dworzak, FAB FROM pat_instudy where 1=1";
+             String sql = "SELECT auto_id, pat_id, rg, mrd_rg, prd, fcm_mrd, immuno_pickl, immuno_dworzak, BAL_dworzak as BAL, MPAL_dworzak as MPAL, MPAL_pickl, FAB FROM pat_instudy where 1=1";
 
              try {
                  pst = conn.prepareStatement(sql);
@@ -1350,7 +1347,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
             ResultSet rs = null;
             PreparedStatement pst = null;
 
-            String sql = "SELECT auto_id, pat_id, rg, mrd_rg, prd, fcm_mrd, immuno_pickl, immuno_dworzak, FAB FROM pat_instudy where 1=1";
+            String sql = "SELECT auto_id, pat_id, rg, mrd_rg, prd, fcm_mrd, immuno_pickl, immuno_dworzak ,BAL_dworzak as BAL, MPAL_dworzak as MPAL, MPAL_pickl, FAB FROM pat_instudy where 1=1";
 
             if (rbtn_RG.isSelected()) {
                 String class_select = CB_class.getSelectedItem().toString();
@@ -1375,6 +1372,15 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                     case "immuno dworzak":
                         classRG = "immuno_dworzak";
                         break;
+                    case "BAL dworzak":
+                        classRG = "BAL_dworzak";
+                        break;    
+                    case "MPAL dworzak":
+                        classRG = "MPAL_dworzak";
+                        break;     
+                    case "MPAL pickl":
+                        classRG = "MPAL_pickl";
+                        break; 
                     case "FAB":
                         classRG = "FAB";
                         break;
@@ -1383,19 +1389,19 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 }
                 String class_txt = txt_class.getText();
                 if (classRG.equals("fcm_mrd")) {
-                    sql = sql + " and " + classRG + " " + class_txt;
+                    sql = sql + " and (" + classRG + " " + class_txt;
                 } else {
                     if (rbtn_NOT2_1.isSelected()) {
                         if (class_txt.equals("null") || class_txt.equals("NULL")) {
-                            sql = sql + " and " + classRG + " IS NOT NULL";
+                            sql = sql + " and (" + classRG + " IS NOT NULL";
                         } else {
-                            sql = sql + " and " + classRG + " NOT like '%" + class_txt + "%'";
+                            sql = sql + " and (" + classRG + " NOT like '%" + class_txt + "%'";
                         }
                     } else {
                         if (class_txt.equals("null") || class_txt.equals("NULL")) {
-                            sql = sql + " and " + classRG + " IS NULL";
+                            sql = sql + " and (" + classRG + " IS NULL";
                         } else {
-                            sql = sql + " and " + classRG + " like '%" + class_txt + "%'";
+                            sql = sql + " and (" + classRG + " like '%" + class_txt + "%'";
                         }
                     }
                 }
@@ -1425,6 +1431,15 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                     case "immuno dworzak":
                         classRG1 = "immuno_dworzak";
                         break;
+                        case "BAL dworzak":
+                        classRG1 = "BAL_dworzak";
+                        break;    
+                    case "MPAL dworzak":
+                        classRG1 = "MPAL_dworzak";
+                        break;     
+                    case "MPAL pickl":
+                        classRG1 = "MPAL_pickl";
+                        break; 
                     case "FAB":
                         classRG1 = "FAB";
                         break;
@@ -1434,24 +1449,26 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 String class_txt1 = txt_class1.getText();            
                 
                 if (classRG1.equals("fcm_mrd")) {
-                    sql = sql + " "+ andor2 + " " + classRG1 + " " + class_txt1;
+                    sql = sql + " "+ andor2 + " " + classRG1 + " " + class_txt1 +")";
                 } else {
                     if (rbtn_NOT2_2.isSelected()) {
                         if (class_txt1.equals("null") || class_txt1.equals("NULL")) {
-                            sql = sql + " " + andor2 + " " + classRG1 + " IS NOT NULL";
+                            sql = sql + " " + andor2 + " " + classRG1 + " IS NOT NULL)";
                         } else {
-                            sql = sql + " " + andor2 + " " + classRG1 + " NOT like '%" + class_txt1 + "%'";
+                            sql = sql + " " + andor2 + " " + classRG1 + " NOT like '%" + class_txt1 + "%')";
                         }
                     } else {
                         if (class_txt1.equals("null") || class_txt1.equals("NULL")) {
-                            sql = sql + " " + andor2 + " " + classRG1 + " IS NULL";
+                            sql = sql + " " + andor2 + " " + classRG1 + " IS NULL)";
                         } else {
-                            sql = sql + " " + andor2 + " " + classRG1 + " like '%" + class_txt1 + "%'";
+                            sql = sql + " " + andor2 + " " + classRG1 + " like '%" + class_txt1 + "%')";
                         }
                     }
                 }
     
-            }            
+            } else {
+                sql = sql + ")"; 
+            }           
             //txtArea_test.setText(sql);    //TEST
 
             try {
@@ -1570,19 +1587,19 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                  }
                  String CYT_txt = txt_cytology.getText();
                  if (cytology.equals("prcnt_blast_pb") || cytology.equals("prcnt_blast_km")) {
-                     sql = sql + " and " + cytology + " " + CYT_txt;
+                     sql = sql + " and (" + cytology + " " + CYT_txt;
                  } else {
                      if (rbtn_NOT3_1.isSelected()) {
                          if (CYT_txt.equals("null") || CYT_txt.equals("NULL")) {
-                             sql = sql + " and " + cytology + " IS NOT NULL";
+                             sql = sql + " and (" + cytology + " IS NOT NULL";
                          } else {
-                             sql = sql + " and " + cytology + " NOT like '%" + CYT_txt + "%'";
+                             sql = sql + " and (" + cytology + " NOT like '%" + CYT_txt + "%'";
                          }
                      } else {
                          if (CYT_txt.equals("null") || CYT_txt.equals("NULL")) {
-                             sql = sql + " and " + cytology + " IS NULL";
+                             sql = sql + " and (" + cytology + " IS NULL";
                          } else {
-                             sql = sql + " and " + cytology + " like '%" + CYT_txt + "%'";
+                             sql = sql + " and (" + cytology + " like '%" + CYT_txt + "%'";
                          }
                      }
                  }
@@ -1614,24 +1631,26 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 String CYT_txt1 = txt_cytology1.getText();
                 
                 if (cytology1.equals("prcnt_blast_pb")|| cytology1.equals("prcnt_blast_km") ){
-                    sql = sql + " " + andor3 + " " + cytology1 + " " + CYT_txt1 ;
+                    sql = sql + " " + andor3 + " " + cytology1 + " " + CYT_txt1 +")" ;
                 } else {
                     
                     if (rbtn_NOT3_2.isSelected()) {
                          if (CYT_txt1.equals("null") || CYT_txt1.equals("NULL")) {
-                             sql = sql + " " + andor3 + " " + cytology1 + " IS NOT NULL";
+                             sql = sql + " " + andor3 + " " + cytology1 + " IS NOT NULL)";
                          } else {
-                             sql = sql + " " + andor3 + " " + cytology1 + " NOT like '%" + CYT_txt1 + "%'";
+                             sql = sql + " " + andor3 + " " + cytology1 + " NOT like '%" + CYT_txt1 + "%')";
                          }
                      } else {
                          if (CYT_txt1.equals("null") || CYT_txt1.equals("NULL")) {
-                             sql = sql + " " + andor3 + " " + cytology1 + " IS NULL";
+                             sql = sql + " " + andor3 + " " + cytology1 + " IS NULL)";
                          } else {
-                             sql = sql + " " + andor3 + " " + cytology1 + " like '%" + CYT_txt1 + "%'";
+                             sql = sql + " " + andor3 + " " + cytology1 + " like '%" + CYT_txt1 + "%')";
                          }
                      }
                     
                 }
+            } else {
+                sql = sql + ")";
             }
             //txtArea_test.setText(sql);    //TEST
 
@@ -2035,7 +2054,6 @@ public class ClassificationBrowse extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JToolBar jToolBar1;
@@ -2069,7 +2087,6 @@ public class ClassificationBrowse extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbtn_subtype;
     private javax.swing.JTable table_RgClassLab;
     private javax.swing.JTable table_resultID;
-    private javax.swing.JTextArea txtArea_test;
     private javax.swing.JTextField txt_RG4;
     private javax.swing.JTextField txt_RG5;
     private javax.swing.JTextField txt_class;

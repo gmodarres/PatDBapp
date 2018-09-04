@@ -1241,7 +1241,6 @@ public class SearchMainResult extends javax.swing.JFrame {
                 if (wgview !=null && !wgview.isEmpty()){ btn_WGV.setBackground(Color.blue);btn_WGV.setForeground(Color.WHITE);}
                 else{ btn_WGV.setBackground(Color.gray); btn_WGV.setForeground(Color.WHITE); }
 
-                
                 rs.close();
                 pst.close();
 
@@ -1435,9 +1434,8 @@ public class SearchMainResult extends javax.swing.JFrame {
                     else{ btn_zg.setBackground(Color.gray); btn_zg.setForeground(Color.WHITE); }
                     if (karyoview !=null && !karyoview.isEmpty()){ btn_Karyoview.setBackground(Color.blue);btn_Karyoview.setForeground(Color.WHITE);}
                     else{ btn_Karyoview.setBackground(Color.gray); btn_Karyoview.setForeground(Color.WHITE); }
-                    if (karyoview !=null && !karyoview.isEmpty()){ btn_WGV.setBackground(Color.blue);btn_WGV.setForeground(Color.WHITE);}
+                    if (wgview !=null && !wgview.isEmpty()){ btn_WGV.setBackground(Color.blue);btn_WGV.setForeground(Color.WHITE);}
                     else{ btn_WGV.setBackground(Color.gray); btn_WGV.setForeground(Color.WHITE); }
-
                 }
             }
         }catch (Exception e) {

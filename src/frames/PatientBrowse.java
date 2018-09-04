@@ -26,6 +26,7 @@ import myClass.DBconnect;
 import myClass.IdManagement;
 import myClass.Log;
 import myClass.OSDetector;
+import static myClass.ShowSqlSelector.showSqlInWindow;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -198,6 +199,7 @@ public class PatientBrowse extends javax.swing.JFrame {
             table_patient.setModel(DbUtils.resultSetToTableModel(rs));
             CustomSorter.table_customRowSort(table_patient);
             setLookTable_patient(table_patient);
+            showSqlInWindow(sql, "PatientBrowse/filltable_patient patient");
 
             //get_ids(sql, pst, rs, conn);
             this.ids = IdManagement.get_ids(sql, pst, rs, conn, "pat_id");
@@ -236,6 +238,7 @@ public class PatientBrowse extends javax.swing.JFrame {
             table_patinstudy.setModel(DbUtils.resultSetToTableModel(rs));
             CustomSorter.table_customRowSort(table_patinstudy);
             setLookTable_study(table_patinstudy);
+            showSqlInWindow(sql2, "PatientBrowse/filltable_patient pat_instudy");
             
             showRows(rs, "study");
 
@@ -258,6 +261,7 @@ public class PatientBrowse extends javax.swing.JFrame {
             table_patinproject.setModel(DbUtils.resultSetToTableModel(rs));
             CustomSorter.table_customRowSort(table_patinproject);
             setLookTable_project(table_patinproject);
+            showSqlInWindow(sql3, "PatientBrowse/filltable_patient pat_inproject");
             
             showRows(rs, "project");
 
@@ -297,6 +301,7 @@ public class PatientBrowse extends javax.swing.JFrame {
             table_patinstudy.setModel(DbUtils.resultSetToTableModel(rs));
             CustomSorter.table_customRowSort(table_patinstudy);
             setLookTable_study(table_patinstudy);
+            showSqlInWindow(sql2, "PatientBrowse/filltable_study pat_instudy");
             
             showRows(rs, "study");
             
@@ -331,6 +336,7 @@ public class PatientBrowse extends javax.swing.JFrame {
             table_patient.setModel(DbUtils.resultSetToTableModel(rs));
             CustomSorter.table_customRowSort(table_patient);
             setLookTable_patient(table_patient);
+            showSqlInWindow(sql, "PatientBrowse/filltable_study patient");
             
             showRows(rs, "patient");
             
@@ -353,6 +359,7 @@ public class PatientBrowse extends javax.swing.JFrame {
             table_patinproject.setModel(DbUtils.resultSetToTableModel(rs));
             CustomSorter.table_customRowSort(table_patinproject);
             setLookTable_project(table_patinproject);
+            showSqlInWindow(sql3, "PatientBrowse/filltable_study pat_inproject");
             
             showRows(rs, "project");
             
@@ -391,6 +398,7 @@ public class PatientBrowse extends javax.swing.JFrame {
             table_patinproject.setModel(DbUtils.resultSetToTableModel(rs));
             CustomSorter.table_customRowSort(table_patinproject);
             setLookTable_project(table_patinproject);
+            showSqlInWindow(sql3, "PatientBrowse/filltable_project pat_inproject");
             
             showRows(rs, "project");
             
@@ -426,6 +434,7 @@ public class PatientBrowse extends javax.swing.JFrame {
             table_patient.setModel(DbUtils.resultSetToTableModel(rs));
             CustomSorter.table_customRowSort(table_patient);
             setLookTable_patient(table_patient);
+            showSqlInWindow(sql, "PatientBrowse/filltable_project patient"); 
             
             showRows(rs, "patient");
 
@@ -448,6 +457,7 @@ public class PatientBrowse extends javax.swing.JFrame {
             table_patinstudy.setModel(DbUtils.resultSetToTableModel(rs));
             CustomSorter.table_customRowSort(table_patinstudy);
             setLookTable_study(table_patinstudy);
+            showSqlInWindow(sql2, "PatientBrowse/filltable_project pat_instudy"); 
             
             showRows(rs, "study");
 

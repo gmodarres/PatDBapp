@@ -205,7 +205,7 @@
                           <Component id="btn_array" alignment="0" max="32767" attributes="0"/>
                           <Component id="btn_fish" alignment="0" max="32767" attributes="0"/>
                           <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btn_getResults" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btn_getResults" alignment="0" pref="119" max="32767" attributes="0"/>
                           <Component id="btn_TTT" alignment="0" max="32767" attributes="0"/>
                           <Component id="lbl_rowsReturned" alignment="0" max="32767" attributes="0"/>
                       </Group>

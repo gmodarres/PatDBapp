@@ -97,7 +97,6 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="Info_top4" max="32767" attributes="0"/>
-                  <Component id="jScrollPane3" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jScrollPane1" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -127,9 +126,7 @@
               </Group>
               <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
               <Component id="lbl_rowsReturned" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-              <Component id="jScrollPane3" min="-2" pref="81" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -1152,14 +1149,17 @@
                 <Component class="javax.swing.JComboBox" name="CB_class">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="7">
+                      <StringArray count="10">
                         <StringItem index="0" value="riskgroup"/>
                         <StringItem index="1" value="mrd riskgroup"/>
                         <StringItem index="2" value="prd"/>
                         <StringItem index="3" value="fcm mrd"/>
                         <StringItem index="4" value="immuno pickl"/>
                         <StringItem index="5" value="immuno dworzak"/>
-                        <StringItem index="6" value="FAB"/>
+                        <StringItem index="6" value="BAL dworzak"/>
+                        <StringItem index="7" value="MPAL dworzak"/>
+                        <StringItem index="8" value="MPAL pickl"/>
+                        <StringItem index="9" value="FAB"/>
                       </StringArray>
                     </Property>
                     <Property name="enabled" type="boolean" value="false"/>
@@ -1193,14 +1193,17 @@
                 <Component class="javax.swing.JComboBox" name="CB_class1">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="7">
+                      <StringArray count="10">
                         <StringItem index="0" value="riskgroup"/>
                         <StringItem index="1" value="mrd riskgroup"/>
                         <StringItem index="2" value="prd"/>
                         <StringItem index="3" value="fcm mrd"/>
                         <StringItem index="4" value="immuno pickl"/>
                         <StringItem index="5" value="immuno dworzak"/>
-                        <StringItem index="6" value="FAB"/>
+                        <StringItem index="6" value="BAL dworzak"/>
+                        <StringItem index="7" value="MPAL dworzak"/>
+                        <StringItem index="8" value="MPAL pickl"/>
+                        <StringItem index="9" value="FAB"/>
                       </StringArray>
                     </Property>
                     <Property name="enabled" type="boolean" value="false"/>
@@ -1317,10 +1320,11 @@
             <Component class="javax.swing.JComboBox" name="ComboBox_projPat">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="3">
+                  <StringArray count="4">
                     <StringItem index="0" value="MS_ALL_Array_Diagnostics"/>
-                    <StringItem index="1" value="TEST"/>
-                    <StringItem index="2" value="no project assigned"/>
+                    <StringItem index="1" value="Paper Dworzak Pickl"/>
+                    <StringItem index="2" value="TEST"/>
+                    <StringItem index="3" value="no project assigned"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -1337,10 +1341,12 @@
             <Component class="javax.swing.JComboBox" name="ComboBox_stdyPat">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="3">
+                  <StringArray count="5">
                     <StringItem index="0" value="ALL BFM 2009"/>
                     <StringItem index="1" value="Register paedMyLeu BFM-A 2014"/>
-                    <StringItem index="2" value="no study assigned"/>
+                    <StringItem index="2" value="ALL BFM 2000"/>
+                    <StringItem index="3" value="ALL Rezidiv"/>
+                    <StringItem index="4" value="no study assigned"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -1376,21 +1382,6 @@
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="table_resultIDMouseClicked"/>
           </Events>
-        </Component>
-      </SubComponents>
-    </Container>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane3">
-      <AuxValues>
-        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-      </AuxValues>
-
-      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-      <SubComponents>
-        <Component class="javax.swing.JTextArea" name="txtArea_test">
-          <Properties>
-            <Property name="columns" type="int" value="20"/>
-            <Property name="rows" type="int" value="5"/>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>

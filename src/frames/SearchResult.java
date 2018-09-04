@@ -827,8 +827,10 @@ public class SearchResult extends javax.swing.JFrame {
         //String projPat = (String) ComboBox_projPat.getSelectedItem();
         if(ComboBox_projPat.getSelectedItem().toString().equals("MS_ALL_Array_Diagnostics")){
             proj_id = "1";
-        }else if(ComboBox_projPat.getSelectedItem().toString().equals("TEST")){
+        }else if(ComboBox_projPat.getSelectedItem().toString().equals("Paper Dworzak Pickl")){
             proj_id = "2";
+        }else if(ComboBox_projPat.getSelectedItem().toString().equals("TEST")){
+            proj_id = "3";
         }else{
             proj_id = "0";
         }
@@ -880,6 +882,10 @@ public class SearchResult extends javax.swing.JFrame {
             stdy_id = "1";
         }else if(ComboBox_stdyPat.getSelectedItem().toString().equals("Register paedMyLeu BFM-A 2014")){
             stdy_id = "2";
+        }else if(ComboBox_stdyPat.getSelectedItem().toString().equals("ALL BFM 2000")){
+            stdy_id = "3";
+        }else if(ComboBox_stdyPat.getSelectedItem().toString().equals("ALL Rezidiv")){
+            stdy_id = "4";
         }else{ // no study assigned
             stdy_id = "0";
         }
@@ -1389,8 +1395,6 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
             }
         });
 
-        txt_fullLoc.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -1719,7 +1723,6 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
                 .addGap(0, 0, 0))
         );
 
-        txt_genOnc.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         txt_genOnc.setToolTipText("copy & paste gene name here");
 
         btn_openGenOnc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/open_web2.png"))); // NOI18N
@@ -2730,7 +2733,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
         jPanel19.setBackground(new java.awt.Color(102, 153, 255));
         jPanel19.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        ComboBox_projPat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MS_ALL_Array_Diagnostics", "no project assigned" }));
+        ComboBox_projPat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MS_ALL_Array_Diagnostics", "Paper Dworzak Pickl", "no project assigned" }));
 
         rbtn_onlyPat.setText("only patients from project ...");
         rbtn_onlyPat.setToolTipText("select to get results from patients in a certain study (select from below)");
@@ -2738,7 +2741,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
         rbtn_onlyPat1.setText("only patients from study ...");
         rbtn_onlyPat1.setToolTipText("select to get results from patients in a certain project (select from below)");
 
-        ComboBox_stdyPat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALL BFM 2009", "Register paedMyLeu BFM-A 2014", "no study assigned" }));
+        ComboBox_stdyPat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALL BFM 2009", "Register paedMyLeu BFM-A 2014", "ALL BFM 2000", "ALL Rezidiv", "no study assigned" }));
 
         rbtn_SB.setText("use SampleBrowse ");
         rbtn_SB.setToolTipText("select to get IDs from window SampleBrowse");
