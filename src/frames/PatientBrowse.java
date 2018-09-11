@@ -21,6 +21,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableCellRenderer;
+import myClass.ColoredTableCellRenderer2;
 import myClass.CustomSorter;
 import myClass.DBconnect;
 import myClass.IdManagement;
@@ -107,6 +109,8 @@ public class PatientBrowse extends javax.swing.JFrame {
             pst = conn.prepareStatement(sql2);
             rs = pst.executeQuery();
             table_patinstudy.setModel(DbUtils.resultSetToTableModel(rs));
+            DefaultTableCellRenderer ren = new ColoredTableCellRenderer2();  
+            table_patinstudy.setDefaultRenderer(Object.class , ren); 
             CustomSorter.table_customRowSort(table_patinstudy);  
             setLookTable_study(table_patinstudy);
             
@@ -124,6 +128,8 @@ public class PatientBrowse extends javax.swing.JFrame {
             pst = conn.prepareStatement(sql3);
             rs = pst.executeQuery();
             table_patinproject.setModel(DbUtils.resultSetToTableModel(rs));
+            DefaultTableCellRenderer ren = new ColoredTableCellRenderer2();  
+            table_patinproject.setDefaultRenderer(Object.class , ren);
             CustomSorter.table_customRowSort(table_patinproject);   
             setLookTable_project(table_patinproject);
             
@@ -531,7 +537,7 @@ public class PatientBrowse extends javax.swing.JFrame {
         }
     }
     
-    private void setLookTable_project(javax.swing.JTable table) {
+    private void setLookTable_project(javax.swing.JTable table) { 
         if (table_patinproject.getColumnModel().getColumnCount() > 0) {
             table_patinproject.getColumnModel().getColumn(0).setPreferredWidth(60);
             table_patinproject.getColumnModel().getColumn(0).setMaxWidth(100);
@@ -946,6 +952,8 @@ public class PatientBrowse extends javax.swing.JFrame {
                     .addComponent(lbl_project_rowsReturned))
                 .addContainerGap())
         );
+
+        getAccessibleContext().setAccessibleName("PatientBrowse");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

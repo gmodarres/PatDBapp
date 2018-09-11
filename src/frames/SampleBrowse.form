@@ -72,6 +72,9 @@
     <Property name="defaultCloseOperation" type="int" value="2"/>
     <Property name="title" type="java.lang.String" value="Linked Results Analysis Tool - browse samples"/>
   </Properties>
+  <AccessibilityProperties>
+    <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="SampleBrowse"/>
+  </AccessibilityProperties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -213,14 +216,17 @@
                   </Group>
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="rbtn_corr" min="-2" pref="150" max="-2" attributes="0"/>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="rbtn_MDown" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="rbtn_MDown" min="-2" pref="96" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="CB_MDown" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <Component id="rbtn_labID" alignment="0" max="32767" attributes="0"/>
+                      <Component id="rbtn_corr" alignment="0" pref="150" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="txt_labID" min="-2" pref="126" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="rbtn_patID" max="32767" attributes="0"/>
                       <Component id="rbtn_bdate" max="32767" attributes="0"/>
@@ -244,7 +250,7 @@
                   <Component id="rbtn_study" min="-2" pref="179" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="ComboBox_stdyPat" max="-2" attributes="0"/>
-                  <EmptySpace pref="40" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="btn_Search" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               </Group>
@@ -259,25 +265,31 @@
                       <Component id="rbtn_bdate" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txt_date1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txt_date2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="rbtn_corr" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btn_Search" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="rbtn_study" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="ComboBox_stdyPat" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="rbtn_MDown" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="CB_MDown" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="rbtn_patID" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txt_patID" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="rbtn_male" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="rbtn_MDown" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="CB_MDown" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="rbtn_corr" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="rbtn_refDiag" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txt_refDiag" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="rbtn_female" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="rbtn_NOT" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                          <Component id="rbtn_labID" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txt_labID" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="rbtn_refDiag" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txt_refDiag" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="rbtn_female" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="rbtn_NOT" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -446,9 +458,6 @@
         </Component>
         <Component class="javax.swing.JRadioButton" name="rbtn_study">
           <Properties>
-            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-              <ComponentRef name="buttonGroup1"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="sample taken for study"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
@@ -473,6 +482,22 @@
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
+        </Component>
+        <Component class="javax.swing.JRadioButton" name="rbtn_labID">
+          <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="buttonGroup1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="lab_id in"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+                <BevelBorder/>
+              </Border>
+            </Property>
+            <Property name="borderPainted" type="boolean" value="true"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txt_labID">
         </Component>
       </SubComponents>
     </Container>
