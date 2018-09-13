@@ -23,6 +23,8 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
+import myClass.ColoredTableCellRenderer2;
 import myClass.CustomSorter;
 import myClass.DBconnect;
 import myClass.Log;
@@ -179,6 +181,8 @@ public class ClassificationBrowse extends javax.swing.JFrame {
             rs = pst.executeQuery();
 
             table_resultID.setModel(DbUtils.resultSetToTableModel(rs));
+            DefaultTableCellRenderer ren = new ColoredTableCellRenderer2();  
+            table_resultID.setDefaultRenderer(Object.class , ren); 
             CustomSorter.table_customRowSort(table_resultID);
 
             if (table_resultID.getColumnModel().getColumnCount() > 0) {
@@ -384,6 +388,23 @@ public class ClassificationBrowse extends javax.swing.JFrame {
         txt_specST1 = new javax.swing.JTextField();
         rbtn_all_subtypes = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        rbtn_subtype1 = new javax.swing.JRadioButton();
+        rbtn_all_subtypes1 = new javax.swing.JRadioButton();
+        jLabel2 = new javax.swing.JLabel();
+        txt_subA = new javax.swing.JTextField();
+        jCheckBox_majS = new javax.swing.JCheckBox();
+        jLabel5 = new javax.swing.JLabel();
+        jCheckBox_bothS = new javax.swing.JCheckBox();
+        jCheckBox_specS1 = new javax.swing.JCheckBox();
+        jCheckBox4 = new javax.swing.JCheckBox();
+        jCheckBox_specS3 = new javax.swing.JCheckBox();
+        jCheckBox_specS2 = new javax.swing.JCheckBox();
+        jCheckBox7 = new javax.swing.JCheckBox();
+        jCheckBox_ngsS1 = new javax.swing.JCheckBox();
+        jCheckBox_ngsS2 = new javax.swing.JCheckBox();
+        txt_subB = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         rbtn_class = new javax.swing.JRadioButton();
         rbtn_NOT2_1 = new javax.swing.JRadioButton();
@@ -549,37 +570,36 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 .addGap(5, 5, 5)
                 .addComponent(CB_andor3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(rbtn_NOT3_2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_cytology1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(rbtn_all_cytology, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(rbtn_all_cytology, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(rbtn_CYT, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(rbtn_CYT1, javax.swing.GroupLayout.Alignment.TRAILING))
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(rbtn_CYT, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(rbtn_CYT1, javax.swing.GroupLayout.Alignment.TRAILING))
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(CB_cytology, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                            .addGap(3, 3, 3)
-                                            .addComponent(CB_cytology1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addComponent(rbtn_cytology, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(CB_cytology, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                    .addGap(3, 3, 3)
+                                    .addComponent(CB_cytology1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(rbtn_cytology, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 5, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(rbtn_NOT3_2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rbtn_NOT3_1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(5, 5, 5)
-                                .addComponent(rbtn_NOT3_1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txt_cytology, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txt_cytology, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(142, 142, 142)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(5, 5, 5))
+                                .addGap(2, 2, 2)
+                                .addComponent(txt_cytology1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -605,7 +625,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                             .addComponent(txt_cytology1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(CB_cytology1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(80, 80, 80)
                         .addComponent(CB_andor3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(5, 5, 5))
         );
@@ -674,37 +694,38 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 .addGap(5, 5, 5)
                 .addComponent(CB_andor4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(rbtn_NOT4_2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_RG5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(rbtn_all_TODO, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(rbtn_all_TODO, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(rbtn_specST6, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(rbtn_specST7, javax.swing.GroupLayout.Alignment.TRAILING))
                             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel4Layout.createSequentialGroup()
-                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(rbtn_specST6, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(rbtn_specST7, javax.swing.GroupLayout.Alignment.TRAILING))
-                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel4Layout.createSequentialGroup()
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(CB_RG4, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                            .addGap(3, 3, 3)
-                                            .addComponent(CB_RG5, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addComponent(rbtn_TODO, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(CB_RG4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(jPanel4Layout.createSequentialGroup()
+                                    .addGap(3, 3, 3)
+                                    .addComponent(CB_RG5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(rbtn_TODO, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(rbtn_NOT4_2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rbtn_NOT4_1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(5, 5, 5)
-                                .addComponent(rbtn_NOT4_1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txt_RG4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txt_RG4))
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(131, 131, 131)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(5, 5, 5))
+                                .addGap(2, 2, 2)
+                                .addComponent(txt_RG5))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -730,7 +751,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                             .addComponent(txt_RG5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(CB_RG5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(80, 80, 80)
                         .addComponent(CB_andor4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(5, 5, 5))
         );
@@ -756,10 +777,16 @@ public class ClassificationBrowse extends javax.swing.JFrame {
 
         rbtn_NOT1_1.setText("NOT");
         rbtn_NOT1_1.setEnabled(false);
+        rbtn_NOT1_1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtn_NOT1_1ActionPerformed(evt);
+            }
+        });
 
         txt_specST.setBackground(new java.awt.Color(204, 204, 204));
         txt_specST.setEnabled(false);
 
+        rbtn_specST.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         rbtn_specST.setEnabled(false);
 
         CB_specST.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "maj. subtype", "b-oth. subtype", "spec. subt. 1", "spec. subt. 2", "spec. subt. 3" }));
@@ -778,9 +805,13 @@ public class ClassificationBrowse extends javax.swing.JFrame {
 
         txt_specST1.setBackground(new java.awt.Color(204, 204, 204));
         txt_specST1.setEnabled(false);
+        txt_specST1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_specST1ActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(rbtn_all_subtypes);
-        rbtn_all_subtypes.setSelected(true);
         rbtn_all_subtypes.setText("all samples");
         rbtn_all_subtypes.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         rbtn_all_subtypes.setBorderPainted(true);
@@ -800,86 +831,200 @@ public class ClassificationBrowse extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(5, 5, 5)
+                .addGap(4, 4, 4)
                 .addComponent(CB_andor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(rbtn_subtype, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(rbtn_specST, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(rbtn_specST1, javax.swing.GroupLayout.Alignment.TRAILING))
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(CB_specST, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                                .addGap(3, 3, 3)
-                                                .addComponent(CB_specST1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addComponent(rbtn_subtype, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(5, 5, 5)
-                                .addComponent(rbtn_NOT1_1)
+                            .addComponent(rbtn_specST, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(rbtn_specST1, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txt_specST, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(rbtn_NOT1_2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txt_specST1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(5, 5, 5))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(rbtn_all_subtypes, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10))))
+                                .addComponent(CB_specST, 0, 159, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addComponent(CB_specST1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(rbtn_all_subtypes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rbtn_NOT1_1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rbtn_NOT1_2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txt_specST1, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                            .addComponent(txt_specST)))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {rbtn_specST, rbtn_specST1});
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {rbtn_all_subtypes, rbtn_subtype});
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txt_specST, txt_specST1});
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {CB_specST, CB_specST1});
-
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(5, 5, 5)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(CB_andor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(rbtn_all_subtypes)
                             .addComponent(jLabel1))
                         .addGap(4, 4, 4)
                         .addComponent(rbtn_subtype)
                         .addGap(3, 3, 3)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rbtn_NOT1_1)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(rbtn_specST)
-                            .addComponent(txt_specST, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CB_specST, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txt_specST, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(CB_specST, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(rbtn_NOT1_1)))
                         .addGap(3, 3, 3)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rbtn_NOT1_2)
-                            .addComponent(rbtn_specST1)
-                            .addComponent(txt_specST1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CB_specST1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(CB_andor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rbtn_specST1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(rbtn_NOT1_2)
+                                .addComponent(txt_specST1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(CB_specST1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(5, 5, 5))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {CB_specST, rbtn_specST});
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {CB_andor1, CB_specST1, rbtn_specST1});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {CB_andor1, CB_specST, CB_specST1, rbtn_NOT1_1, rbtn_NOT1_2, rbtn_specST, rbtn_specST1});
 
         rbtn_subtype.getAccessibleContext().setAccessibleName("subtypes");
 
         jTabbedPane1.addTab("subtypes", jPanel1);
+
+        jPanel5.setBackground(new java.awt.Color(102, 153, 255));
+
+        buttonGroup1.add(rbtn_subtype1);
+        rbtn_subtype1.setText("s. with subtype");
+        rbtn_subtype1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        rbtn_subtype1.setBorderPainted(true);
+
+        buttonGroup1.add(rbtn_all_subtypes1);
+        rbtn_all_subtypes1.setText("all samples");
+        rbtn_all_subtypes1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        rbtn_all_subtypes1.setBorderPainted(true);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel2.setText("subtypes");
+
+        jCheckBox_majS.setText("major subtype");
+
+        jLabel5.setText("search in:");
+
+        jCheckBox_bothS.setText("b-other subtype");
+
+        jCheckBox_specS1.setText("spec. subtype1");
+
+        jCheckBox4.setText("todo");
+
+        jCheckBox_specS3.setText("spec. subtype3");
+
+        jCheckBox_specS2.setText("spec. subtype2");
+
+        jCheckBox7.setText("todo");
+
+        jCheckBox_ngsS1.setText("ngs subtype1");
+
+        jCheckBox_ngsS2.setText("ngs subtype2");
+
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("OR");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jCheckBox_bothS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jCheckBox_majS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jCheckBox_specS1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jCheckBox_specS2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jCheckBox_specS3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jCheckBox4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jCheckBox7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jCheckBox_ngsS1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jCheckBox_ngsS2))
+                        .addGap(0, 73, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(rbtn_all_subtypes1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rbtn_subtype1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(txt_subA, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txt_subB, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap())
+        );
+
+        jPanel5Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jCheckBox4, jCheckBox7, jCheckBox_bothS, jCheckBox_majS, jCheckBox_ngsS1, jCheckBox_ngsS2, jCheckBox_specS1, jCheckBox_specS2, jCheckBox_specS3});
+
+        jPanel5Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txt_subA, txt_subB});
+
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbtn_all_subtypes1)
+                    .addComponent(jLabel2))
+                .addGap(4, 4, 4)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbtn_subtype1)
+                    .addComponent(txt_subA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_subB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addGap(3, 3, 3)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(16, 16, 16)
+                        .addComponent(jCheckBox_specS1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel5Layout.createSequentialGroup()
+                            .addComponent(jCheckBox7, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jCheckBox_ngsS1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jCheckBox_ngsS2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel5Layout.createSequentialGroup()
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jCheckBox_specS2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jCheckBox_majS, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jCheckBox_specS3, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jCheckBox_bothS, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jCheckBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(10, Short.MAX_VALUE))
+        );
+
+        jPanel5Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jCheckBox4, jCheckBox7, jCheckBox_bothS, jCheckBox_majS, jCheckBox_ngsS1, jCheckBox_ngsS2, jCheckBox_specS1, jCheckBox_specS2, jCheckBox_specS3, jLabel5});
+
+        jTabbedPane1.addTab("subtypes 2", jPanel5);
 
         jPanel7.setBackground(new java.awt.Color(102, 153, 255));
 
@@ -895,6 +1040,11 @@ public class ClassificationBrowse extends javax.swing.JFrame {
 
         rbtn_NOT2_1.setText("NOT");
         rbtn_NOT2_1.setEnabled(false);
+        rbtn_NOT2_1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtn_NOT2_1ActionPerformed(evt);
+            }
+        });
 
         txt_class.setBackground(new java.awt.Color(204, 204, 204));
         txt_class.setEnabled(false);
@@ -911,6 +1061,11 @@ public class ClassificationBrowse extends javax.swing.JFrame {
 
         CB_andor2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AND", "OR" }));
         CB_andor2.setEnabled(false);
+        CB_andor2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CB_andor2ActionPerformed(evt);
+            }
+        });
 
         rbtn_RG1.setEnabled(false);
 
@@ -924,6 +1079,11 @@ public class ClassificationBrowse extends javax.swing.JFrame {
 
         rbtn_NOT2_2.setText("NOT");
         rbtn_NOT2_2.setEnabled(false);
+        rbtn_NOT2_2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtn_NOT2_2ActionPerformed(evt);
+            }
+        });
 
         txt_class1.setBackground(new java.awt.Color(204, 204, 204));
         txt_class1.setEnabled(false);
@@ -948,68 +1108,57 @@ public class ClassificationBrowse extends javax.swing.JFrame {
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(5, 5, 5)
+                .addGap(4, 4, 4)
                 .addComponent(CB_andor2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                        .addComponent(rbtn_NOT2_2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_class1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(rbtn_all_class, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(rbtn_class, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(rbtn_all_class, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel7Layout.createSequentialGroup()
-                                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(rbtn_RG, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(rbtn_RG1, javax.swing.GroupLayout.Alignment.TRAILING))
-                                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel7Layout.createSequentialGroup()
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(CB_class, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                                            .addGap(3, 3, 3)
-                                            .addComponent(CB_class1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addComponent(rbtn_class, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(rbtn_RG)
+                            .addComponent(rbtn_RG1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addGap(5, 5, 5)
-                                .addComponent(rbtn_NOT2_1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txt_class, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addGap(107, 107, 107)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(5, 5, 5))
+                            .addComponent(CB_class, 0, 159, Short.MAX_VALUE)
+                            .addComponent(CB_class1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rbtn_NOT2_1)
+                            .addComponent(rbtn_NOT2_2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txt_class, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                            .addComponent(txt_class1)))
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rbtn_all_class)
-                            .addComponent(jLabel7))
-                        .addGap(4, 4, 4)
-                        .addComponent(rbtn_class)
-                        .addGap(3, 3, 3)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rbtn_NOT2_1)
-                            .addComponent(rbtn_RG)
-                            .addComponent(txt_class, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CB_class, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(3, 3, 3)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rbtn_NOT2_2)
-                            .addComponent(rbtn_RG1)
-                            .addComponent(txt_class1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CB_class1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(CB_andor2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(5, 5, 5))
+                .addGap(5, 5, 5)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbtn_all_class)
+                    .addComponent(jLabel7))
+                .addGap(4, 4, 4)
+                .addComponent(rbtn_class)
+                .addGap(3, 3, 3)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbtn_NOT2_1)
+                    .addComponent(rbtn_RG)
+                    .addComponent(txt_class, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CB_class, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(3, 3, 3)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(rbtn_NOT2_2)
+                        .addComponent(txt_class1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(CB_class1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(CB_andor2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(rbtn_RG1))
+                .addGap(0, 5, Short.MAX_VALUE))
         );
 
         jPanel7Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {CB_andor2, CB_class, CB_class1, rbtn_NOT2_1, rbtn_NOT2_2, rbtn_RG, rbtn_RG1});
@@ -1070,7 +1219,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addComponent(btn_Search)
                 .addGap(21, 21, 21))
         );
@@ -1078,16 +1227,12 @@ public class ClassificationBrowse extends javax.swing.JFrame {
             Info_top4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Info_top4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(Info_top4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(Info_top4Layout.createSequentialGroup()
-                        .addGroup(Info_top4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTabbedPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Info_top4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(btn_Search)
-                                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addGroup(Info_top4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btn_Search)
+                    .addComponent(jTabbedPane2)
+                    .addComponent(jTabbedPane1)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         table_resultID.setAutoCreateRowSorter(true);
@@ -1167,7 +1312,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 .addComponent(Info_top4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(2, 2, 2)
                 .addComponent(lbl_rowsReturned)
@@ -1183,7 +1328,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
     }//GEN-LAST:event_bnt_testActionPerformed
 
     private void btn_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SearchActionPerformed
-        if(rbtn_all_subtypes.isSelected()){
+        if(rbtn_all_subtypes.isSelected() || rbtn_all_subtypes1.isSelected()){
             //rbtn_specST.setEnabled(false);
             initial_table_subtypes();
             update_table_resultID();
@@ -1193,7 +1338,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                     + " and t.pat_id=p.pat_id";
                 update_table_RgClassLab(sql,"true");          // Test second table - only project
             } 
-        } else if (rbtn_subtype.isSelected()){
+        } else if (rbtn_subtype.isSelected()){          // subtypes
             Connection conn = DBconnect.ConnecrDb();
             ResultSet rs = null;
             PreparedStatement pst = null;
@@ -1303,17 +1448,98 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                  } catch (Exception e) {
                  }
              }
-         } else if (rbtn_all_class.isSelected()) {
+        } else if (rbtn_subtype1.isSelected()) {        // subtypes2
+            Connection conn = DBconnect.ConnecrDb();
+            ResultSet rs = null;
+            PreparedStatement pst = null;
+
+            String sql = "SELECT distinct t.auto_id, t.pat_id, major_subtype, bother_subtype, spec_sub1, spec_sub2, spec_sub3, ngs_sub1, ngs_sub2 FROM sample s, patient p, subtypes t"
+                    + " where s.pat_id=p.pat_id"
+                    + " and t.pat_id=p.pat_id";
+
+            String subA = txt_subA.getText();
+            String subB = txt_subB.getText();
+
+            sql = sql + " and (";
+            
+            
+            if (jCheckBox_majS.isSelected()){ 
+                if (txt_subA !=null && !txt_subA.getText().isEmpty()) {sql = sql + " major_subtype like '%" + subA +"%'"; }
+                if (txt_subB !=null && !txt_subB.getText().isEmpty()) {sql = sql + " or major_subtype like '%" + subB +"%'"; }
+                sql = sql + " or";
+            }
+            if (jCheckBox_bothS.isSelected()){ 
+                if (txt_subA !=null && !txt_subA.getText().isEmpty()) {sql = sql + " bother_subtype like '%" + subA +"%'"; }
+                if (txt_subB !=null && !txt_subB.getText().isEmpty()) {sql = sql + " or bother_subtype like '%" + subB +"%'"; }
+                sql = sql + " or";
+            }
+            if (jCheckBox_specS1.isSelected()){ 
+                if (txt_subA !=null && !txt_subA.getText().isEmpty()) {sql = sql + " spec_sub1 like '%" + subA +"%'"; }
+                if (txt_subB !=null && !txt_subB.getText().isEmpty()) {sql = sql + " or spec_sub1 like '%" + subB +"%'"; }
+                sql = sql + " or";
+            }
+            if (jCheckBox_specS2.isSelected()){ 
+                if (txt_subA !=null && !txt_subA.getText().isEmpty()) {sql = sql + " spec_sub2 like '%" + subA +"%'"; }
+                if (txt_subB !=null && !txt_subB.getText().isEmpty()) {sql = sql + " or spec_sub2 like '%" + subB +"%'"; }
+                sql = sql + " or";
+            }
+            if (jCheckBox_specS3.isSelected()){ 
+                if (txt_subA !=null && !txt_subA.getText().isEmpty()) {sql = sql + " spec_sub3 like '%" + subA +"%'"; }
+                if (txt_subB !=null && !txt_subB.getText().isEmpty()) {sql = sql + " or spec_sub3 like '%" + subB +"%'"; }
+                sql = sql + " or";
+            }      
+            sql = sql.substring(0, (sql.length() - 3));
+            sql = sql + " )";
+                        
+            try {
+                pst = conn.prepareStatement(sql);
+                rs = pst.executeQuery();
+
+                my_log.logger.info("SQL:  " + sql);
+                table_RgClassLab.setModel(DbUtils.resultSetToTableModel(rs));
+                
+                CustomSorter.table_customRowSort(table_RgClassLab);
+
+                if (table_RgClassLab.getColumnModel().getColumnCount() > 0) {
+                    table_RgClassLab.getColumnModel().getColumn(0).setPreferredWidth(60);
+                    table_RgClassLab.getColumnModel().getColumn(0).setMaxWidth(60);
+                    table_RgClassLab.getColumnModel().getColumn(1).setPreferredWidth(80);
+                    table_RgClassLab.getColumnModel().getColumn(1).setMaxWidth(100);
+                }
+
+                //get_ids(sql, pst, rs, conn);
+                this.ids = IdManagement.get_ids(sql, pst, rs, conn, "pat_id");
+                update_table_resultID();
+                showSqlInWindow(sql, "CB_subtypes");
+
+                if (rbtn_onlyPat.isSelected()) {
+                    update_table_RgClassLab(sql, "true");          // Test second table - only project
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+                my_log.logger.warning("ERROR: " + e);
+            } finally {
+                try {
+                    if (rs != null) { rs.close(); }
+                    if (pst != null) { pst.close(); }
+                    if (conn != null) { conn.close(); }
+                } catch (Exception e) {
+                }
+            }
+        } else if (rbtn_all_class.isSelected()) {       // classification
              Connection conn = DBconnect.ConnecrDb();
              ResultSet rs = null;
              PreparedStatement pst = null;
-             String sql = "SELECT auto_id, pat_id, rg, mrd_rg, prd, fcm_mrd, immuno_pickl, immuno_dworzak, BAL_dworzak as BAL, MPAL_dworzak as MPAL, MPAL_pickl, FAB FROM pat_instudy where 1=1";
+             String sql = "SELECT auto_id, pat_id, rg, mrd_rg, prd, fcm_mrd, immuno_pickl, immuno_dworzak, BAL_dworzak as BAL, MPAL_dworzak as MPAL, MPAL_pickl, FAB, chng_info as I FROM pat_instudy where 1=1";
 
              try {
                  pst = conn.prepareStatement(sql);
                  rs = pst.executeQuery();
 
                  table_RgClassLab.setModel(DbUtils.resultSetToTableModel(rs));
+                 DefaultTableCellRenderer ren = new ColoredTableCellRenderer2();  
+                 table_RgClassLab.setDefaultRenderer(Object.class , ren); 
                  CustomSorter.table_customRowSort(table_RgClassLab);
 
                  if (table_RgClassLab.getColumnModel().getColumnCount() > 0) {
@@ -1342,12 +1568,12 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 } catch (Exception e) {
                 }
             }
-        } else if (rbtn_class.isSelected()) {
+        } else if (rbtn_class.isSelected()) {              // classification
             Connection conn = DBconnect.ConnecrDb();
             ResultSet rs = null;
             PreparedStatement pst = null;
 
-            String sql = "SELECT auto_id, pat_id, rg, mrd_rg, prd, fcm_mrd, immuno_pickl, immuno_dworzak ,BAL_dworzak as BAL, MPAL_dworzak as MPAL, MPAL_pickl, FAB FROM pat_instudy where 1=1";
+            String sql = "SELECT auto_id, pat_id, rg, mrd_rg, prd, fcm_mrd, immuno_pickl, immuno_dworzak ,BAL_dworzak as BAL, MPAL_dworzak as MPAL, MPAL_pickl, FAB, chng_info as I FROM pat_instudy where 1=1";
 
             if (rbtn_RG.isSelected()) {
                 String class_select = CB_class.getSelectedItem().toString();
@@ -1477,6 +1703,8 @@ public class ClassificationBrowse extends javax.swing.JFrame {
 
                 my_log.logger.info("SQL:  " + sql);
                 table_RgClassLab.setModel(DbUtils.resultSetToTableModel(rs));
+                DefaultTableCellRenderer ren = new ColoredTableCellRenderer2();  
+                table_RgClassLab.setDefaultRenderer(Object.class , ren);
                 CustomSorter.table_customRowSort(table_RgClassLab);
 
                 if (table_RgClassLab.getColumnModel().getColumnCount() > 0) {
@@ -1505,7 +1733,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 } catch (Exception e) {
                 }
             }  
-        } else if (rbtn_all_cytology.isSelected()) {
+        } else if (rbtn_all_cytology.isSelected()) {               // cytology
              Connection conn = DBconnect.ConnecrDb();
              ResultSet rs = null;
              PreparedStatement pst = null;
@@ -1554,7 +1782,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 }
             }
             //update_table_resultID();
-        }else if (rbtn_cytology.isSelected()) {
+        }else if (rbtn_cytology.isSelected()) {               // cytology
              Connection conn = DBconnect.ConnecrDb();
              ResultSet rs = null;
              PreparedStatement pst = null;
@@ -1660,6 +1888,9 @@ public class ClassificationBrowse extends javax.swing.JFrame {
 
                 my_log.logger.info("SQL:  " + sql);
                 table_RgClassLab.setModel(DbUtils.resultSetToTableModel(rs));
+                DefaultTableCellRenderer ren = new ColoredTableCellRenderer2();  
+                table_RgClassLab.setDefaultRenderer(Object.class , ren);
+                
                 CustomSorter.table_customRowSort(table_RgClassLab);
 
                 if (table_RgClassLab.getColumnModel().getColumnCount() > 0) {
@@ -1743,40 +1974,6 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 new StringSelection(IDs), null);       
     }//GEN-LAST:event_cpLabIdsActionPerformed
 
-    private void rbtn_subtypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_subtypeActionPerformed
-        if (rbtn_subtype.isSelected()){            
-            rbtn_specST.setEnabled(true);
-            rbtn_NOT1_1.setEnabled(true);
-            txt_specST.setEnabled(true);
-            txt_specST.setBackground(new java.awt.Color(255, 255, 255));
-            CB_specST.setEnabled(true);
-            
-            rbtn_specST1.setEnabled(true);
-            rbtn_NOT1_2.setEnabled(true);
-            txt_specST1.setEnabled(true);
-            txt_specST1.setBackground(new java.awt.Color(255, 255, 255));
-            CB_specST1.setEnabled(true);
-            CB_andor1.setEnabled(true);
-        }
-    }//GEN-LAST:event_rbtn_subtypeActionPerformed
-
-    private void rbtn_all_subtypesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_all_subtypesActionPerformed
-        if (rbtn_all_subtypes.isSelected()){            
-            rbtn_specST.setEnabled(false);
-            rbtn_NOT1_1.setEnabled(false);
-            txt_specST.setEnabled(false);
-            txt_specST.setBackground(new java.awt.Color(204, 204, 204));
-            CB_specST.setEnabled(false);
-            
-            rbtn_specST1.setEnabled(false);
-            rbtn_NOT1_2.setEnabled(false);
-            txt_specST1.setEnabled(false);
-            txt_specST1.setBackground(new java.awt.Color(204, 204, 204));
-            CB_specST1.setEnabled(false);
-            CB_andor1.setEnabled(false);
-        }
-    }//GEN-LAST:event_rbtn_all_subtypesActionPerformed
-
     private void rbtn_all_TODOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_all_TODOActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rbtn_all_TODOActionPerformed
@@ -1818,110 +2015,6 @@ public class ClassificationBrowse extends javax.swing.JFrame {
             CB_andor3.setEnabled(true);
         }
     }//GEN-LAST:event_rbtn_cytologyActionPerformed
-
-    private void rbtn_all_classActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_all_classActionPerformed
-        if (rbtn_all_class.isSelected()){            
-            rbtn_RG.setEnabled(false);
-            rbtn_NOT2_1.setEnabled(false);
-            txt_class.setEnabled(false);
-            txt_class.setBackground(new java.awt.Color(204, 204, 204));
-            CB_class.setEnabled(false);
-            
-            rbtn_RG1.setEnabled(false);
-            rbtn_NOT2_2.setEnabled(false);
-            txt_class1.setEnabled(false);
-            txt_class1.setBackground(new java.awt.Color(204, 204, 204));
-            CB_class1.setEnabled(false);
-            CB_andor2.setEnabled(false);
-        }
-    }//GEN-LAST:event_rbtn_all_classActionPerformed
-
-    private void rbtn_classActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_classActionPerformed
-        if (rbtn_class.isSelected()){            
-            rbtn_RG.setEnabled(true);
-            rbtn_NOT2_1.setEnabled(true);
-            txt_class.setEnabled(true);
-            txt_class.setBackground(new java.awt.Color(255, 255, 255));
-            CB_class.setEnabled(true);
-            
-            rbtn_RG1.setEnabled(true);
-            rbtn_NOT2_2.setEnabled(true);
-            txt_class1.setEnabled(true);
-            txt_class1.setBackground(new java.awt.Color(255, 255, 255));
-            CB_class1.setEnabled(true);
-            CB_andor2.setEnabled(true);
-        }
-    }//GEN-LAST:event_rbtn_classActionPerformed
-
-    private void CB_classActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_classActionPerformed
-        String class_select = CB_class.getSelectedItem().toString();
-        String classRG = "";
-        switch (class_select) {
-            case "riskgroup":
-                classRG = "rg";
-                break;
-            case "mrd riskgroup":
-                classRG = "mrd_rg";
-                break;
-            case "prd":
-                classRG = "prd";
-                break;
-            case "fcm mrd":
-                classRG = "fcm_mrd";
-                break;
-            case "immuno pickl":
-                classRG = "immuno_pickl";
-                break;
-            case "immuno dworzak":
-                classRG = "immuno_dworzak";
-                break;
-            case "FAB":
-                classRG = "FAB";
-                break;
-            default:
-                break;
-        }
-        if (classRG.equals("fcm_mrd")) {
-            rbtn_NOT2_1.setEnabled(false);
-        } else {
-            rbtn_NOT2_1.setEnabled(true);
-        }
-    }//GEN-LAST:event_CB_classActionPerformed
-
-    private void CB_class1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_class1ActionPerformed
-        String class_select1 = CB_class1.getSelectedItem().toString();
-        String classRG1 = "";
-        switch (class_select1) {
-            case "riskgroup":
-                classRG1 = "rg";
-                break;
-            case "mrd riskgroup":
-                classRG1 = "mrd_rg";
-                break;
-            case "prd":
-                classRG1 = "prd";
-                break;
-            case "fcm mrd":
-                classRG1 = "fcm_mrd";
-                break;
-            case "immuno pickl":
-                classRG1 = "immuno_pickl";
-                break;
-            case "immuno dworzak":
-                classRG1 = "immuno_dworzak";
-                break;
-            case "FAB":
-                classRG1 = "FAB";
-                break;
-            default:
-                break;
-        }
-        if (classRG1.equals("fcm_mrd")) {
-            rbtn_NOT2_2.setEnabled(false);
-        } else {
-            rbtn_NOT2_2.setEnabled(true);
-        }
-    }//GEN-LAST:event_CB_class1ActionPerformed
 
     private void CB_cytologyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_cytologyActionPerformed
         String cyt_select = CB_cytology.getSelectedItem().toString();
@@ -1981,6 +2074,164 @@ public class ClassificationBrowse extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_CB_cytology1ActionPerformed
 
+    private void rbtn_all_classActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_all_classActionPerformed
+        if (rbtn_all_class.isSelected()){
+            rbtn_RG.setEnabled(false);
+            rbtn_NOT2_1.setEnabled(false);
+            txt_class.setEnabled(false);
+            txt_class.setBackground(new java.awt.Color(204, 204, 204));
+            CB_class.setEnabled(false);
+
+            rbtn_RG1.setEnabled(false);
+            rbtn_NOT2_2.setEnabled(false);
+            txt_class1.setEnabled(false);
+            txt_class1.setBackground(new java.awt.Color(204, 204, 204));
+            CB_class1.setEnabled(false);
+            CB_andor2.setEnabled(false);
+        }
+    }//GEN-LAST:event_rbtn_all_classActionPerformed
+
+    private void CB_class1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_class1ActionPerformed
+        String class_select1 = CB_class1.getSelectedItem().toString();
+        String classRG1 = "";
+        switch (class_select1) {
+            case "riskgroup":
+            classRG1 = "rg";
+            break;
+            case "mrd riskgroup":
+            classRG1 = "mrd_rg";
+            break;
+            case "prd":
+            classRG1 = "prd";
+            break;
+            case "fcm mrd":
+            classRG1 = "fcm_mrd";
+            break;
+            case "immuno pickl":
+            classRG1 = "immuno_pickl";
+            break;
+            case "immuno dworzak":
+            classRG1 = "immuno_dworzak";
+            break;
+            case "FAB":
+            classRG1 = "FAB";
+            break;
+            default:
+            break;
+        }
+        if (classRG1.equals("fcm_mrd")) {
+            rbtn_NOT2_2.setEnabled(false);
+        } else {
+            rbtn_NOT2_2.setEnabled(true);
+        }
+    }//GEN-LAST:event_CB_class1ActionPerformed
+
+    private void CB_classActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_classActionPerformed
+        String class_select = CB_class.getSelectedItem().toString();
+        String classRG = "";
+        switch (class_select) {
+            case "riskgroup":
+            classRG = "rg";
+            break;
+            case "mrd riskgroup":
+            classRG = "mrd_rg";
+            break;
+            case "prd":
+            classRG = "prd";
+            break;
+            case "fcm mrd":
+            classRG = "fcm_mrd";
+            break;
+            case "immuno pickl":
+            classRG = "immuno_pickl";
+            break;
+            case "immuno dworzak":
+            classRG = "immuno_dworzak";
+            break;
+            case "FAB":
+            classRG = "FAB";
+            break;
+            default:
+            break;
+        }
+        if (classRG.equals("fcm_mrd")) {
+            rbtn_NOT2_1.setEnabled(false);
+        } else {
+            rbtn_NOT2_1.setEnabled(true);
+        }
+    }//GEN-LAST:event_CB_classActionPerformed
+
+    private void rbtn_classActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_classActionPerformed
+        if (rbtn_class.isSelected()){
+            rbtn_RG.setEnabled(true);
+            rbtn_NOT2_1.setEnabled(true);
+            txt_class.setEnabled(true);
+            txt_class.setBackground(new java.awt.Color(255, 255, 255));
+            CB_class.setEnabled(true);
+
+            rbtn_RG1.setEnabled(true);
+            rbtn_NOT2_2.setEnabled(true);
+            txt_class1.setEnabled(true);
+            txt_class1.setBackground(new java.awt.Color(255, 255, 255));
+            CB_class1.setEnabled(true);
+            CB_andor2.setEnabled(true);
+        }
+    }//GEN-LAST:event_rbtn_classActionPerformed
+
+    private void rbtn_all_subtypesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_all_subtypesActionPerformed
+        if (rbtn_all_subtypes.isSelected()){
+            rbtn_specST.setEnabled(false);
+            rbtn_NOT1_1.setEnabled(false);
+            txt_specST.setEnabled(false);
+            txt_specST.setBackground(new java.awt.Color(204, 204, 204));
+            CB_specST.setEnabled(false);
+
+            rbtn_specST1.setEnabled(false);
+            rbtn_NOT1_2.setEnabled(false);
+            txt_specST1.setEnabled(false);
+            txt_specST1.setBackground(new java.awt.Color(204, 204, 204));
+            CB_specST1.setEnabled(false);
+            CB_andor1.setEnabled(false);
+        }
+    }//GEN-LAST:event_rbtn_all_subtypesActionPerformed
+
+    private void rbtn_subtypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_subtypeActionPerformed
+        if (rbtn_subtype.isSelected()){
+            rbtn_specST.setEnabled(true);
+            rbtn_NOT1_1.setEnabled(true);
+            txt_specST.setEnabled(true);
+            txt_specST.setBackground(new java.awt.Color(255, 255, 255));
+            CB_specST.setEnabled(true);
+
+            rbtn_specST1.setEnabled(true);
+            rbtn_NOT1_2.setEnabled(true);
+            txt_specST1.setEnabled(true);
+            txt_specST1.setBackground(new java.awt.Color(255, 255, 255));
+            CB_specST1.setEnabled(true);
+            CB_andor1.setEnabled(true);
+        }
+    }//GEN-LAST:event_rbtn_subtypeActionPerformed
+
+    private void rbtn_NOT1_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_NOT1_1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbtn_NOT1_1ActionPerformed
+
+    private void rbtn_NOT2_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_NOT2_2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbtn_NOT2_2ActionPerformed
+
+    private void rbtn_NOT2_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_NOT2_1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbtn_NOT2_1ActionPerformed
+
+    private void txt_specST1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_specST1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_specST1ActionPerformed
+
+    private void CB_andor2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_andor2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CB_andor2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2037,9 +2288,21 @@ public class ClassificationBrowse extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JMenuItem cpLabIds;
     private javax.swing.JMenuItem cpResultIds;
+    private javax.swing.JCheckBox jCheckBox4;
+    private javax.swing.JCheckBox jCheckBox7;
+    private javax.swing.JCheckBox jCheckBox_bothS;
+    private javax.swing.JCheckBox jCheckBox_majS;
+    private javax.swing.JCheckBox jCheckBox_ngsS1;
+    private javax.swing.JCheckBox jCheckBox_ngsS2;
+    private javax.swing.JCheckBox jCheckBox_specS1;
+    private javax.swing.JCheckBox jCheckBox_specS2;
+    private javax.swing.JCheckBox jCheckBox_specS3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -2051,6 +2314,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -2076,6 +2340,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbtn_all_class;
     private javax.swing.JRadioButton rbtn_all_cytology;
     private javax.swing.JRadioButton rbtn_all_subtypes;
+    private javax.swing.JRadioButton rbtn_all_subtypes1;
     private javax.swing.JRadioButton rbtn_class;
     private javax.swing.JRadioButton rbtn_cytology;
     private javax.swing.JRadioButton rbtn_onlyPat;
@@ -2085,6 +2350,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbtn_specST6;
     private javax.swing.JRadioButton rbtn_specST7;
     private javax.swing.JRadioButton rbtn_subtype;
+    private javax.swing.JRadioButton rbtn_subtype1;
     private javax.swing.JTable table_RgClassLab;
     private javax.swing.JTable table_resultID;
     private javax.swing.JTextField txt_RG4;
@@ -2095,5 +2361,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
     private javax.swing.JTextField txt_cytology1;
     private javax.swing.JTextField txt_specST;
     private javax.swing.JTextField txt_specST1;
+    private javax.swing.JTextField txt_subA;
+    private javax.swing.JTextField txt_subB;
     // End of variables declaration//GEN-END:variables
 }
