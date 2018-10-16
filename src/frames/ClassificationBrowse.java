@@ -1372,9 +1372,17 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 String spec_txt = txt_specST.getText();
                 
                 if (rbtn_NOT1_1.isSelected()) {
-                    sql = sql + " and (" + specST + " NOT like '%" + spec_txt + "%'";
-                } else {               
-                    sql = sql + " and (" + specST + " like '%" + spec_txt + "%'";
+                    if (spec_txt.equals("null") || spec_txt.equals("NULL")){
+                        sql = sql + " and (" + specST + " IS NOT NULL";
+                    } else {
+                        sql = sql + " and (" + specST + " NOT like '%" + spec_txt + "%'";
+                    }
+                } else {
+                   if (spec_txt.equals("null") || spec_txt.equals("NULL")){
+                        sql = sql + " and (" + specST + " IS NULL";
+                    } else{ 
+                        sql = sql + " and (" + specST + " like '%" + spec_txt + "%'";
+                   }
                 }
             }
            
@@ -1464,7 +1472,14 @@ public class ClassificationBrowse extends javax.swing.JFrame {
             
             
             if (jCheckBox_majS.isSelected()){ 
-                if (txt_subA !=null && !txt_subA.getText().isEmpty()) {sql = sql + " major_subtype like '%" + subA +"%'"; }
+                //if (txt_subA !=null && !txt_subA.getText().isEmpty()) {sql = sql + " major_subtype like '%" + subA +"%'"; }
+                if (txt_subA !=null && !txt_subA.getText().isEmpty()) {
+                    if (txt_subA.getText().equals("null") || txt_subA.getText().equals("NULL")) {
+                        sql = sql + " major_subtype IS NULL";
+                    } else {
+                        sql = sql + " major_subtype like '%" + subA +"%'"; 
+                    }
+                }
                 if (txt_subB !=null && !txt_subB.getText().isEmpty()) {sql = sql + " or major_subtype like '%" + subB +"%'"; }
                 sql = sql + " or";
             }
@@ -1531,7 +1546,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
              Connection conn = DBconnect.ConnecrDb();
              ResultSet rs = null;
              PreparedStatement pst = null;
-             String sql = "SELECT auto_id, pat_id, rg, mrd_rg, prd, fcm_mrd, immuno_pickl, immuno_dworzak, BAL_dworzak as BAL, MPAL_dworzak as MPAL, MPAL_pickl, FAB, chng_info as I FROM pat_instudy where 1=1";
+             String sql = "SELECT auto_id, pat_id, rg, mrd_rg, prd, fcm_mrd, immuno_pickl, immuno_dworzak, FAB, chng_info as I FROM pat_instudy where 1=1";
 
              try {
                  pst = conn.prepareStatement(sql);
@@ -1573,7 +1588,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
             ResultSet rs = null;
             PreparedStatement pst = null;
 
-            String sql = "SELECT auto_id, pat_id, rg, mrd_rg, prd, fcm_mrd, immuno_pickl, immuno_dworzak ,BAL_dworzak as BAL, MPAL_dworzak as MPAL, MPAL_pickl, FAB, chng_info as I FROM pat_instudy where 1=1";
+            String sql = "SELECT auto_id, pat_id, rg, mrd_rg, prd, fcm_mrd, immuno_pickl, immuno_dworzak , FAB, chng_info as I FROM pat_instudy where 1=1";
 
             if (rbtn_RG.isSelected()) {
                 String class_select = CB_class.getSelectedItem().toString();
@@ -1597,16 +1612,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                         break;
                     case "immuno dworzak":
                         classRG = "immuno_dworzak";
-                        break;
-                    case "BAL dworzak":
-                        classRG = "BAL_dworzak";
-                        break;    
-                    case "MPAL dworzak":
-                        classRG = "MPAL_dworzak";
-                        break;     
-                    case "MPAL pickl":
-                        classRG = "MPAL_pickl";
-                        break; 
+                        break;                   
                     case "FAB":
                         classRG = "FAB";
                         break;
@@ -1657,15 +1663,6 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                     case "immuno dworzak":
                         classRG1 = "immuno_dworzak";
                         break;
-                        case "BAL dworzak":
-                        classRG1 = "BAL_dworzak";
-                        break;    
-                    case "MPAL dworzak":
-                        classRG1 = "MPAL_dworzak";
-                        break;     
-                    case "MPAL pickl":
-                        classRG1 = "MPAL_pickl";
-                        break; 
                     case "FAB":
                         classRG1 = "FAB";
                         break;

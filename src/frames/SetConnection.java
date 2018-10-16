@@ -75,7 +75,7 @@ public class SetConnection extends javax.swing.JFrame {
    
     private void identifyUser(){
         currentUser = System.getProperty("user.name");
-        // JOptionPane.showMessageDialog(null, currentUser);
+        //JOptionPane.showMessageDialog(null, currentUser);
         txt_LDAPuser.setText(currentUser);
 
         //jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("settings for:   " + currentUser));
