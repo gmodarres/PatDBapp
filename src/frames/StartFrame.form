@@ -29,8 +29,12 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="lbl_logged1" min="-2" pref="246" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="btn_test" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="lbl_logged1" min="-2" pref="246" max="-2" attributes="0"/>
+                  </Group>
                   <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
@@ -43,8 +47,11 @@
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="lbl_logged1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lbl_logged1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btn_test" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -123,7 +130,7 @@
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="btn_admin" max="32767" attributes="0"/>
                           <Component id="btn_browse_patient" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btn_test" linkSize="2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btn_geneQuery" linkSize="2" alignment="0" max="32767" attributes="0"/>
                           <Component id="btn_sql" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
@@ -146,7 +153,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btn_browse_classification" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btn_test" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btn_geneQuery" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -239,17 +246,25 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_browse_patientActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btn_test">
+            <Component class="javax.swing.JButton" name="btn_geneQuery">
               <Properties>
                 <Property name="text" type="java.lang.String" value="array gene query"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_testActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_geneQueryActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
         </Container>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="btn_test">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Test"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_testActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>

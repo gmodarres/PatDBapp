@@ -50,79 +50,16 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="popUpMenu_cpResultIdsActionPerformed"/>
           </Events>
         </MenuItem>
+        <MenuItem class="javax.swing.JMenuItem" name="cpPatIds">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="copy pat_ids ..."/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cpPatIdsActionPerformed"/>
+          </Events>
+        </MenuItem>
       </SubComponents>
     </Container>
-    <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
-      <SubComponents>
-        <Menu class="javax.swing.JMenu" name="jMenu4">
-          <Properties>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="null"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/ico/LIRA_Font_small07_web.png"/>
-            </Property>
-            <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
-              <Insets value="[0, 0, 0, 5]"/>
-            </Property>
-          </Properties>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="File"/>
-          </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1_openModel">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ico/open-file-icon.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="open DB Model"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1_openModelActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2_showSql">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="showSQL"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem2_showSqlActionPerformed"/>
-              </Events>
-            </MenuItem>
-          </SubComponents>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Edit"/>
-          </Properties>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu3">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Help"/>
-          </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1_HowTo">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="how to use"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1_HowToActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2_Info">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Info"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem2_InfoActionPerformed"/>
-              </Events>
-            </MenuItem>
-          </SubComponents>
-        </Menu>
-      </SubComponents>
-    </Menu>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
@@ -135,7 +72,6 @@
     <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="SearchResult"/>
   </AccessibilityProperties>
   <SyntheticProperties>
-    <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
@@ -230,7 +166,7 @@
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jPanel6" max="32767" attributes="0"/>
-                          <Component id="jScrollPane1" pref="1323" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" pref="1326" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -2227,11 +2163,11 @@
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="lab_Genes" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="lab_Creg" alignment="1" min="-2" pref="79" max="-2" attributes="0"/>
+                      <Component id="lab_Creg" alignment="1" min="-2" pref="67" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jScrollPane5" pref="676" max="32767" attributes="0"/>
+                      <Component id="jScrollPane5" pref="638" max="32767" attributes="0"/>
                       <Component id="jScrollPane8" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -2254,14 +2190,13 @@
                                   <Component id="lab_Creg" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="jScrollPane8" max="32767" attributes="0"/>
+                              <Component id="jScrollPane8" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" attributes="0">
                           <Component id="jScrollPane7" min="-2" pref="48" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jScrollPane10" pref="0" max="32767" attributes="0"/>
-                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -2467,9 +2402,9 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Component id="btn_loadQuery" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                       <Component id="btn_saveQuery" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Component id="btn_selCol" min="-2" max="-2" attributes="0"/>
@@ -2638,35 +2573,42 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="rbtn_ArrQuery" linkSize="5" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="rbtn_PB" linkSize="5" pref="127" max="32767" attributes="0"/>
+                                      <Component id="rbtn_CB" linkSize="5" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="rbtn_ArrQuery" linkSize="4" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="rbtn_CB" linkSize="4" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="rbtn_SB" linkSize="4" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="rbtn_PB" linkSize="4" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="rbtn_onlyPat" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="rbtn_onlyPat1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="rbtn_SB" linkSize="5" pref="130" max="32767" attributes="0"/>
+                                  <Component id="rbtn_idCollected" linkSize="5" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="1" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="24" pref="24" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="ComboBox_projPat" pref="0" max="32767" attributes="0"/>
-                                  <Component id="ComboBox_stdyPat" pref="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="ComboBox_stdyPat" alignment="1" min="-2" pref="149" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="rbtn_onlyPat" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="rbtn_onlyPat1" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="ComboBox_projPat" alignment="1" min="-2" pref="149" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace pref="10" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Component id="rbtn_onlyPat" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="ComboBox_projPat" min="-2" max="-2" attributes="0"/>
@@ -2674,15 +2616,19 @@
                       <Component id="rbtn_onlyPat1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="ComboBox_stdyPat" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="rbtn_PB" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="rbtn_PB" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="rbtn_SB" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="rbtn_SB" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="rbtn_CB" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="rbtn_CB" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="rbtn_idCollected" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="rbtn_ArrQuery" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace pref="17" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -2738,7 +2684,7 @@
             </Component>
             <Component class="javax.swing.JRadioButton" name="rbtn_CB">
               <Properties>
-                <Property name="text" type="java.lang.String" value="use ClassificationBrowse"/>
+                <Property name="text" type="java.lang.String" value="use ClassificationB."/>
                 <Property name="toolTipText" type="java.lang.String" value="get IDs from window SubtypeBrowse"/>
               </Properties>
             </Component>
@@ -2752,6 +2698,12 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="use PatientBrowse "/>
                 <Property name="toolTipText" type="java.lang.String" value="select to get IDs from window SampleBrowse"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="rbtn_idCollected">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="use IDs from collector"/>
+                <Property name="toolTipText" type="java.lang.String" value="select to get results from patients in a certain project (select from below)"/>
               </Properties>
             </Component>
           </SubComponents>

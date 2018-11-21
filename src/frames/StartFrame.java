@@ -97,6 +97,7 @@ public class StartFrame extends javax.swing.JFrame {
         btn_browse_classification = new javax.swing.JButton();
         btn_sql = new javax.swing.JButton();
         btn_browse_patient = new javax.swing.JButton();
+        btn_geneQuery = new javax.swing.JButton();
         btn_test = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -175,10 +176,10 @@ public class StartFrame extends javax.swing.JFrame {
             }
         });
 
-        btn_test.setText("array gene query");
-        btn_test.addActionListener(new java.awt.event.ActionListener() {
+        btn_geneQuery.setText("array gene query");
+        btn_geneQuery.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_testActionPerformed(evt);
+                btn_geneQueryActionPerformed(evt);
             }
         });
 
@@ -197,12 +198,12 @@ public class StartFrame extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btn_admin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_browse_patient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_test, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_geneQuery, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_sql, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(1, 1, 1))
         );
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btn_browse_classification, btn_test});
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btn_browse_classification, btn_geneQuery});
 
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,7 +219,7 @@ public class StartFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_browse_classification)
-                    .addComponent(btn_test))
+                    .addComponent(btn_geneQuery))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_browse_result)
@@ -247,14 +248,24 @@ public class StartFrame extends javax.swing.JFrame {
                 .addGap(10, 10, 10))
         );
 
+        btn_test.setText("Test");
+        btn_test.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_testActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lbl_logged1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btn_test)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbl_logged1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
@@ -264,8 +275,10 @@ public class StartFrame extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbl_logged1)
-                .addGap(10, 10, 10))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_logged1)
+                    .addComponent(btn_test))
+                .addGap(5, 5, 5))
         );
 
         pack();
@@ -302,12 +315,12 @@ public class StartFrame extends javax.swing.JFrame {
         s.setVisible(true);  
     }//GEN-LAST:event_btn_browse_sampleActionPerformed
 
-    private void btn_testActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_testActionPerformed
+    private void btn_geneQueryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_geneQueryActionPerformed
         // TODO add your handling code here:
         ArrayQuery s = new ArrayQuery();
         s.setVisible(true); 
         //JOptionPane.showMessageDialog(null, "Nothing in here yet! \nMaybe you've got an idea what we can put here?");
-    }//GEN-LAST:event_btn_testActionPerformed
+    }//GEN-LAST:event_btn_geneQueryActionPerformed
 
     private void btn_browse_classificationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_browse_classificationActionPerformed
         ClassificationBrowse s = new ClassificationBrowse();
@@ -325,6 +338,12 @@ public class StartFrame extends javax.swing.JFrame {
         ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_web.png"));
         JOptionPane.showMessageDialog(rootPane, "pluck the strings of this app \nto get your results played \n... like music ;-)","play your results ...",HEIGHT,img);
     }//GEN-LAST:event_LOGOMouseClicked
+
+    private void btn_testActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_testActionPerformed
+        // TODO add your handling code here:
+        SaveInitialMenuBar s = new SaveInitialMenuBar();
+        s.setVisible(true);
+    }//GEN-LAST:event_btn_testActionPerformed
 
     /**
      * @param args the command line arguments
@@ -371,6 +390,7 @@ public class StartFrame extends javax.swing.JFrame {
     private javax.swing.JButton btn_browse_patient;
     private javax.swing.JButton btn_browse_result;
     private javax.swing.JButton btn_browse_sample;
+    private javax.swing.JButton btn_geneQuery;
     private javax.swing.JButton btn_query_results;
     private javax.swing.JButton btn_sql;
     private javax.swing.JButton btn_test;

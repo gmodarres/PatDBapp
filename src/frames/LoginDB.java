@@ -10,11 +10,20 @@
  */
 package frames;
 
+import com.google.common.base.Charsets;
+import com.google.common.io.Files;
+import static frames.SetConnection.devmode;
 import myClass.DBconnect;
 import java.awt.*;
 import javax.swing.*;
 import java.sql.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
 
 public class LoginDB extends javax.swing.JFrame {
 
@@ -52,8 +61,19 @@ public class LoginDB extends javax.swing.JFrame {
     } 
     
     public static void getUser(){
-        String tmp = SetConnection.txt_passUser.getText();
-        txt_username.setText(tmp);
+        if (devmode == "ON"){   // automatic password entry for developer
+  
+            try {
+                String pwd = Files.toString(new File("devpwd.txt"), Charsets.UTF_8);
+                txt_password.setText(pwd);
+            } catch (IOException ex) {
+                Logger.getLogger(LoginDB.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        } 
+            String tmp = SetConnection.txt_passUser.getText();
+            txt_username.setText(tmp);
+
     }
     
     /**

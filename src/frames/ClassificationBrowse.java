@@ -10,10 +10,12 @@
  */
 package frames;
 
+import java.awt.Desktop;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -30,6 +32,9 @@ import myClass.DBconnect;
 import myClass.Log;
 import net.proteanit.sql.DbUtils;
 import myClass.IdManagement;
+import myClass.MenuDriver;
+import myClass.OSDetector;
+import myClass.ShowSqlSelector;
 import static myClass.ShowSqlSelector.showSqlInWindow;
 
 /**
@@ -53,6 +58,9 @@ public class ClassificationBrowse extends javax.swing.JFrame {
      * Creates new form PatientBrowse
      */
     public ClassificationBrowse() {
+        MenuDriver menu = new MenuDriver();     // create instance of JMenuBar menuBarGlobal 
+        this.setJMenuBar( menu.getMenuBar() );
+        
         initComponents();
         ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_small.png"));
         this.setIconImage(img.getImage());
@@ -85,8 +93,13 @@ public class ClassificationBrowse extends javax.swing.JFrame {
         ResultSet rs = null;
         PreparedStatement pst = null;
         //String sql = "SELECT * from sample";
-        String sql = "SELECT * FROM subtypes";
+        String sql = "SELECT * FROM subtypes WHERE 1=1";
         
+        // only for the set collected IDs
+        if (rbtn_idCollected.isSelected()) {
+            sql = IdCollector.deliver_collected_ids(sql,"","","");
+        }
+
         try {
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
@@ -341,6 +354,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
         popUpResult = new javax.swing.JPopupMenu();
         cpResultIds = new javax.swing.JMenuItem();
         cpLabIds = new javax.swing.JMenuItem();
+        cpPatIds = new javax.swing.JMenuItem();
         jToolBar1 = new javax.swing.JToolBar();
         bnt_test = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -362,18 +376,31 @@ public class ClassificationBrowse extends javax.swing.JFrame {
         rbtn_all_cytology = new javax.swing.JRadioButton();
         jLabel3 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        rbtn_TODO = new javax.swing.JRadioButton();
+        rbtn_immuno = new javax.swing.JRadioButton();
         rbtn_NOT4_1 = new javax.swing.JRadioButton();
-        txt_RG4 = new javax.swing.JTextField();
-        rbtn_specST6 = new javax.swing.JRadioButton();
-        CB_RG4 = new javax.swing.JComboBox<>();
+        txt_immuno = new javax.swing.JTextField();
+        rbtn_IMM = new javax.swing.JRadioButton();
+        CB_immuno = new javax.swing.JComboBox<>();
         CB_andor4 = new javax.swing.JComboBox<>();
-        rbtn_specST7 = new javax.swing.JRadioButton();
-        CB_RG5 = new javax.swing.JComboBox<>();
+        rbtn_IMM1 = new javax.swing.JRadioButton();
+        CB_immuno1 = new javax.swing.JComboBox<>();
         rbtn_NOT4_2 = new javax.swing.JRadioButton();
-        txt_RG5 = new javax.swing.JTextField();
-        rbtn_all_TODO = new javax.swing.JRadioButton();
+        txt_immuno1 = new javax.swing.JTextField();
+        rbtn_all_immuno = new javax.swing.JRadioButton();
         jLabel4 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        rbtn_TODO1 = new javax.swing.JRadioButton();
+        rbtn_NOT4_3 = new javax.swing.JRadioButton();
+        txt_RG6 = new javax.swing.JTextField();
+        rbtn_specST8 = new javax.swing.JRadioButton();
+        CB_RG6 = new javax.swing.JComboBox<>();
+        CB_andor5 = new javax.swing.JComboBox<>();
+        rbtn_specST9 = new javax.swing.JRadioButton();
+        CB_RG7 = new javax.swing.JComboBox<>();
+        rbtn_NOT4_4 = new javax.swing.JRadioButton();
+        txt_RG7 = new javax.swing.JTextField();
+        rbtn_all_TODO1 = new javax.swing.JRadioButton();
+        jLabel8 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         rbtn_subtype = new javax.swing.JRadioButton();
@@ -395,7 +422,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
         txt_subA = new javax.swing.JTextField();
         jCheckBox_majS = new javax.swing.JCheckBox();
         jLabel5 = new javax.swing.JLabel();
-        jCheckBox_bothS = new javax.swing.JCheckBox();
+        jCheckBox_othS = new javax.swing.JCheckBox();
         jCheckBox_specS1 = new javax.swing.JCheckBox();
         jCheckBox4 = new javax.swing.JCheckBox();
         jCheckBox_specS3 = new javax.swing.JCheckBox();
@@ -423,15 +450,10 @@ public class ClassificationBrowse extends javax.swing.JFrame {
         ComboBox_projPat = new javax.swing.JComboBox<>();
         rbtn_onlyPat1 = new javax.swing.JRadioButton();
         ComboBox_stdyPat = new javax.swing.JComboBox<>();
+        rbtn_idCollected = new javax.swing.JRadioButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         table_resultID = new javax.swing.JTable();
         lbl_rowsReturned = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu4 = new javax.swing.JMenu();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
 
         cpResultIds.setText("copy result_ids ...");
         cpResultIds.addActionListener(new java.awt.event.ActionListener() {
@@ -448,6 +470,14 @@ public class ClassificationBrowse extends javax.swing.JFrame {
             }
         });
         popUpResult.add(cpLabIds);
+
+        cpPatIds.setText("copy pat_ids ...");
+        cpPatIds.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cpPatIdsActionPerformed(evt);
+            }
+        });
+        popUpResult.add(cpPatIds);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Linked Results Analysis Tool - browse classification");
@@ -577,13 +607,10 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(rbtn_CYT, javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(rbtn_CYT1, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(CB_cytology, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addGap(3, 3, 3)
-                                    .addComponent(CB_cytology1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(CB_cytology, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(CB_cytology1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addComponent(rbtn_cytology, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 5, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -636,50 +663,40 @@ public class ClassificationBrowse extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(102, 153, 255));
 
-        buttonGroup1.add(rbtn_TODO);
-        rbtn_TODO.setText("s. with ...");
-        rbtn_TODO.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        rbtn_TODO.setBorderPainted(true);
-        rbtn_TODO.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtn_TODOActionPerformed(evt);
-            }
-        });
+        buttonGroup1.add(rbtn_immuno);
+        rbtn_immuno.setText("s. with ...");
+        rbtn_immuno.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        rbtn_immuno.setBorderPainted(true);
 
         rbtn_NOT4_1.setText("NOT");
         rbtn_NOT4_1.setEnabled(false);
 
-        txt_RG4.setBackground(new java.awt.Color(204, 204, 204));
-        txt_RG4.setEnabled(false);
+        txt_immuno.setBackground(new java.awt.Color(204, 204, 204));
+        txt_immuno.setEnabled(false);
 
-        rbtn_specST6.setEnabled(false);
+        rbtn_IMM.setEnabled(false);
 
-        CB_RG4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "parameter 1", "parameter 2", "parameter 3" }));
-        CB_RG4.setEnabled(false);
+        CB_immuno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "parameter 1", "parameter 2", "parameter 3" }));
+        CB_immuno.setEnabled(false);
 
         CB_andor4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AND", "OR" }));
         CB_andor4.setEnabled(false);
 
-        rbtn_specST7.setEnabled(false);
+        rbtn_IMM1.setEnabled(false);
 
-        CB_RG5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "parameter 1", "parameter 2", "parameter 3" }));
-        CB_RG5.setEnabled(false);
+        CB_immuno1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "parameter 1", "parameter 2", "parameter 3" }));
+        CB_immuno1.setEnabled(false);
 
         rbtn_NOT4_2.setText("NOT");
         rbtn_NOT4_2.setEnabled(false);
 
-        txt_RG5.setBackground(new java.awt.Color(204, 204, 204));
-        txt_RG5.setEnabled(false);
+        txt_immuno1.setBackground(new java.awt.Color(204, 204, 204));
+        txt_immuno1.setEnabled(false);
 
-        buttonGroup1.add(rbtn_all_TODO);
-        rbtn_all_TODO.setText("all samples");
-        rbtn_all_TODO.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        rbtn_all_TODO.setBorderPainted(true);
-        rbtn_all_TODO.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtn_all_TODOActionPerformed(evt);
-            }
-        });
+        buttonGroup1.add(rbtn_all_immuno);
+        rbtn_all_immuno.setText("all samples");
+        rbtn_all_immuno.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        rbtn_all_immuno.setBorderPainted(true);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 255, 255));
@@ -695,20 +712,17 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 .addComponent(CB_andor4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(rbtn_all_TODO, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rbtn_all_immuno, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(jPanel4Layout.createSequentialGroup()
                             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(rbtn_specST6, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(rbtn_specST7, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addComponent(rbtn_IMM, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(rbtn_IMM1, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel4Layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(CB_RG4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(jPanel4Layout.createSequentialGroup()
-                                    .addGap(3, 3, 3)
-                                    .addComponent(CB_RG5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addComponent(rbtn_TODO, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(CB_immuno, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(CB_immuno1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(rbtn_immuno, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(5, 5, 5)
@@ -718,10 +732,10 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txt_RG4))
+                                .addComponent(txt_immuno))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGap(2, 2, 2)
-                                .addComponent(txt_RG5))))
+                                .addComponent(txt_immuno1))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -734,31 +748,142 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(5, 5, 5)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rbtn_all_TODO)
+                            .addComponent(rbtn_all_immuno)
                             .addComponent(jLabel4))
                         .addGap(4, 4, 4)
-                        .addComponent(rbtn_TODO)
+                        .addComponent(rbtn_immuno)
                         .addGap(3, 3, 3)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(rbtn_NOT4_1)
-                            .addComponent(rbtn_specST6)
-                            .addComponent(txt_RG4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CB_RG4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(rbtn_IMM)
+                            .addComponent(txt_immuno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CB_immuno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(3, 3, 3)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(rbtn_NOT4_2)
-                            .addComponent(rbtn_specST7)
-                            .addComponent(txt_RG5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CB_RG5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(rbtn_IMM1)
+                            .addComponent(txt_immuno1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CB_immuno1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addGap(80, 80, 80)
                         .addComponent(CB_andor4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(5, 5, 5))
         );
 
-        jPanel4Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {CB_RG4, CB_RG5, CB_andor4, rbtn_NOT4_1, rbtn_NOT4_2, rbtn_specST6, rbtn_specST7});
+        jPanel4Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {CB_andor4, CB_immuno, CB_immuno1, rbtn_IMM, rbtn_IMM1, rbtn_NOT4_1, rbtn_NOT4_2});
 
-        jTabbedPane2.addTab("someLab", jPanel4);
+        jTabbedPane2.addTab("immunology", jPanel4);
+
+        jPanel6.setBackground(new java.awt.Color(102, 153, 255));
+
+        buttonGroup1.add(rbtn_TODO1);
+        rbtn_TODO1.setText("s. with ...");
+        rbtn_TODO1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        rbtn_TODO1.setBorderPainted(true);
+
+        rbtn_NOT4_3.setText("NOT");
+        rbtn_NOT4_3.setEnabled(false);
+
+        txt_RG6.setBackground(new java.awt.Color(204, 204, 204));
+        txt_RG6.setEnabled(false);
+
+        rbtn_specST8.setEnabled(false);
+
+        CB_RG6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "parameter 1", "parameter 2", "parameter 3" }));
+        CB_RG6.setEnabled(false);
+
+        CB_andor5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AND", "OR" }));
+        CB_andor5.setEnabled(false);
+
+        rbtn_specST9.setEnabled(false);
+
+        CB_RG7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "parameter 1", "parameter 2", "parameter 3" }));
+        CB_RG7.setEnabled(false);
+
+        rbtn_NOT4_4.setText("NOT");
+        rbtn_NOT4_4.setEnabled(false);
+
+        txt_RG7.setBackground(new java.awt.Color(204, 204, 204));
+        txt_RG7.setEnabled(false);
+
+        buttonGroup1.add(rbtn_all_TODO1);
+        rbtn_all_TODO1.setText("all samples");
+        rbtn_all_TODO1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        rbtn_all_TODO1.setBorderPainted(true);
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 255, 255));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel8.setText("someLab");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addComponent(CB_andor5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(rbtn_all_TODO1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel6Layout.createSequentialGroup()
+                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(rbtn_specST8, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(rbtn_specST9, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(CB_RG6, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(CB_RG7, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(rbtn_TODO1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(rbtn_NOT4_4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rbtn_NOT4_3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txt_RG6))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addComponent(txt_RG7))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rbtn_all_TODO1)
+                            .addComponent(jLabel8))
+                        .addGap(4, 4, 4)
+                        .addComponent(rbtn_TODO1)
+                        .addGap(3, 3, 3)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rbtn_NOT4_3)
+                            .addComponent(rbtn_specST8)
+                            .addComponent(txt_RG6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CB_RG6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(3, 3, 3)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rbtn_NOT4_4)
+                            .addComponent(rbtn_specST9)
+                            .addComponent(txt_RG7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CB_RG7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(CB_andor5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(5, 5, 5))
+        );
+
+        jTabbedPane2.addTab("someLab", jPanel6);
 
         jTabbedPane1.setBackground(new java.awt.Color(102, 153, 255));
         jTabbedPane1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -777,11 +902,6 @@ public class ClassificationBrowse extends javax.swing.JFrame {
 
         rbtn_NOT1_1.setText("NOT");
         rbtn_NOT1_1.setEnabled(false);
-        rbtn_NOT1_1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtn_NOT1_1ActionPerformed(evt);
-            }
-        });
 
         txt_specST.setBackground(new java.awt.Color(204, 204, 204));
         txt_specST.setEnabled(false);
@@ -789,7 +909,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
         rbtn_specST.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         rbtn_specST.setEnabled(false);
 
-        CB_specST.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "maj. subtype", "b-oth. subtype", "spec. subt. 1", "spec. subt. 2", "spec. subt. 3" }));
+        CB_specST.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "maj. subtype", "oth. subtype", "spec. subt. 1", "spec. subt. 2", "spec. subt. 3" }));
         CB_specST.setEnabled(false);
 
         CB_andor1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AND", "OR" }));
@@ -797,7 +917,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
 
         rbtn_specST1.setEnabled(false);
 
-        CB_specST1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "maj. subtype", "b-oth. subtype", "spec. subt. 1", "spec. subt. 2", "spec. subt. 3" }));
+        CB_specST1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "maj. subtype", "oth. subtype", "spec. subt. 1", "spec. subt. 2", "spec. subt. 3" }));
         CB_specST1.setEnabled(false);
 
         rbtn_NOT1_2.setText("NOT");
@@ -805,13 +925,9 @@ public class ClassificationBrowse extends javax.swing.JFrame {
 
         txt_specST1.setBackground(new java.awt.Color(204, 204, 204));
         txt_specST1.setEnabled(false);
-        txt_specST1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_specST1ActionPerformed(evt);
-            }
-        });
 
         buttonGroup1.add(rbtn_all_subtypes);
+        rbtn_all_subtypes.setSelected(true);
         rbtn_all_subtypes.setText("all samples");
         rbtn_all_subtypes.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         rbtn_all_subtypes.setBorderPainted(true);
@@ -840,13 +956,10 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(rbtn_specST, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(rbtn_specST1, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(CB_specST, 0, 159, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(CB_specST1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(CB_specST, 0, 159, Short.MAX_VALUE)
+                            .addComponent(CB_specST1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(rbtn_all_subtypes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -917,7 +1030,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
 
         jLabel5.setText("search in:");
 
-        jCheckBox_bothS.setText("b-other subtype");
+        jCheckBox_othS.setText("other subtype");
 
         jCheckBox_specS1.setText("spec. subtype1");
 
@@ -947,7 +1060,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jCheckBox_bothS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jCheckBox_othS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jCheckBox_majS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jCheckBox_specS1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -960,7 +1073,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                             .addComponent(jCheckBox7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jCheckBox_ngsS1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jCheckBox_ngsS2))
-                        .addGap(0, 73, Short.MAX_VALUE))
+                        .addGap(0, 85, Short.MAX_VALUE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(rbtn_all_subtypes1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -979,7 +1092,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel5Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jCheckBox4, jCheckBox7, jCheckBox_bothS, jCheckBox_majS, jCheckBox_ngsS1, jCheckBox_ngsS2, jCheckBox_specS1, jCheckBox_specS2, jCheckBox_specS3});
+        jPanel5Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jCheckBox4, jCheckBox7, jCheckBox_majS, jCheckBox_ngsS1, jCheckBox_ngsS2, jCheckBox_othS, jCheckBox_specS1, jCheckBox_specS2, jCheckBox_specS3});
 
         jPanel5Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txt_subA, txt_subB});
 
@@ -1016,13 +1129,13 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jCheckBox_specS3, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jCheckBox_bothS, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jCheckBox_othS, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jCheckBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(10, Short.MAX_VALUE))
         );
 
-        jPanel5Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jCheckBox4, jCheckBox7, jCheckBox_bothS, jCheckBox_majS, jCheckBox_ngsS1, jCheckBox_ngsS2, jCheckBox_specS1, jCheckBox_specS2, jCheckBox_specS3, jLabel5});
+        jPanel5Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jCheckBox4, jCheckBox7, jCheckBox_majS, jCheckBox_ngsS1, jCheckBox_ngsS2, jCheckBox_othS, jCheckBox_specS1, jCheckBox_specS2, jCheckBox_specS3, jLabel5});
 
         jTabbedPane1.addTab("subtypes 2", jPanel5);
 
@@ -1040,11 +1153,6 @@ public class ClassificationBrowse extends javax.swing.JFrame {
 
         rbtn_NOT2_1.setText("NOT");
         rbtn_NOT2_1.setEnabled(false);
-        rbtn_NOT2_1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtn_NOT2_1ActionPerformed(evt);
-            }
-        });
 
         txt_class.setBackground(new java.awt.Color(204, 204, 204));
         txt_class.setEnabled(false);
@@ -1061,11 +1169,6 @@ public class ClassificationBrowse extends javax.swing.JFrame {
 
         CB_andor2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AND", "OR" }));
         CB_andor2.setEnabled(false);
-        CB_andor2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CB_andor2ActionPerformed(evt);
-            }
-        });
 
         rbtn_RG1.setEnabled(false);
 
@@ -1079,11 +1182,6 @@ public class ClassificationBrowse extends javax.swing.JFrame {
 
         rbtn_NOT2_2.setText("NOT");
         rbtn_NOT2_2.setEnabled(false);
-        rbtn_NOT2_2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtn_NOT2_2ActionPerformed(evt);
-            }
-        });
 
         txt_class1.setBackground(new java.awt.Color(204, 204, 204));
         txt_class1.setEnabled(false);
@@ -1178,6 +1276,9 @@ public class ClassificationBrowse extends javax.swing.JFrame {
 
         ComboBox_stdyPat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALL BFM 2009", "Register paedMyLeu BFM-A 2014", "ALL BFM 2000", "ALL Rezidiv", "no study assigned" }));
 
+        rbtn_idCollected.setText("use IDs from collector");
+        rbtn_idCollected.setToolTipText("select to get results from patients in a certain project (select from below)");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -1191,7 +1292,8 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(ComboBox_projPat, 0, 0, Short.MAX_VALUE)
                             .addComponent(ComboBox_stdyPat, 0, 0, Short.MAX_VALUE)))
-                    .addComponent(rbtn_onlyPat1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(rbtn_onlyPat1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(rbtn_idCollected, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -1205,6 +1307,8 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 .addComponent(rbtn_onlyPat1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ComboBox_stdyPat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rbtn_idCollected)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1265,26 +1369,6 @@ public class ClassificationBrowse extends javax.swing.JFrame {
 
         lbl_rowsReturned.setText(" ");
 
-        jMenu4.setBorder(null);
-        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_Font_small07_web.png"))); // NOI18N
-        jMenu4.setMargin(new java.awt.Insets(0, 0, 0, 5));
-        jMenuBar1.add(jMenu4);
-
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
-
-        jMenu3.setText("Help");
-
-        jMenuItem1.setText("how to use");
-        jMenu3.add(jMenuItem1);
-
-        jMenuBar1.add(jMenu3);
-
-        setJMenuBar(jMenuBar1);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -1312,11 +1396,11 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 .addComponent(Info_top4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(2, 2, 2)
                 .addComponent(lbl_rowsReturned)
-                .addGap(11, 11, 11))
+                .addContainerGap())
         );
 
         pack();
@@ -1333,7 +1417,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
             initial_table_subtypes();
             update_table_resultID();
             if (rbtn_onlyPat.isSelected()){
-                String sql = "SELECT distinct t.auto_id, t.pat_id, major_subtype, bother_subtype, spec_sub1, spec_sub2, spec_sub3, ngs_sub1, ngs_sub2 FROM sample s, patient p, subtypes t"
+                String sql = "SELECT distinct t.auto_id, t.pat_id, major_subtype, other_subtype, spec_sub1, spec_sub2, spec_sub3, ngs_sub1, ngs_sub2 FROM sample s, patient p, subtypes t"
                     + " where s.pat_id=p.pat_id"
                     + " and t.pat_id=p.pat_id";
                 update_table_RgClassLab(sql,"true");          // Test second table - only project
@@ -1343,7 +1427,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
             ResultSet rs = null;
             PreparedStatement pst = null;
             
-            String sql = "SELECT distinct t.auto_id, t.pat_id, major_subtype, bother_subtype, spec_sub1, spec_sub2, spec_sub3, ngs_sub1, ngs_sub2 FROM sample s, patient p, subtypes t"
+            String sql = "SELECT distinct t.auto_id, t.pat_id, major_subtype, other_subtype, spec_sub1, spec_sub2, spec_sub3, ngs_sub1, ngs_sub2 FROM sample s, patient p, subtypes t"
                 + " where s.pat_id=p.pat_id"
                 + " and t.pat_id=p.pat_id";
 
@@ -1354,8 +1438,8 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                     case "maj. subtype":
                         specST = "major_subtype";
                         break;
-                    case "b-oth. subtype":
-                        specST = "bother_subtype";
+                    case "oth. subtype":
+                        specST = "other_subtype";
                         break;
                     case "spec. subt. 1":
                         specST = "spec_sub1";
@@ -1394,8 +1478,8 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                     case "maj. subtype":
                         specST1 = "major_subtype";
                         break;
-                    case "b-oth. subtype":
-                        specST1 = "bother_subtype";
+                    case "oth. subtype":
+                        specST1 = "other_subtype";
                         break;
                     case "spec. subt. 1":
                         specST1 = "spec_sub1";
@@ -1420,6 +1504,13 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 sql = sql + ")"; 
             }    
            
+            // only for the set collected IDs
+            if (rbtn_idCollected.isSelected()) {     
+                //deliver_collected_ids(method_name,sql);
+                //sql = this.mod_sql;
+                sql = IdCollector.deliver_collected_ids(sql,"",".s","t.");  // result_id,lab_id,pat_id
+            }
+            
             //txtArea_test.setText(sql);    //TEST
             try {
                 pst = conn.prepareStatement(sql);
@@ -1435,7 +1526,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                     table_RgClassLab.getColumnModel().getColumn(1).setPreferredWidth(80);
                     table_RgClassLab.getColumnModel().getColumn(1).setMaxWidth(100);
                 }
-//XXX
+
                 //get_ids(sql, pst, rs, conn);
                 this.ids=IdManagement.get_ids(sql, pst, rs, conn,"pat_id");
                 update_table_resultID();
@@ -1461,7 +1552,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
             ResultSet rs = null;
             PreparedStatement pst = null;
 
-            String sql = "SELECT distinct t.auto_id, t.pat_id, major_subtype, bother_subtype, spec_sub1, spec_sub2, spec_sub3, ngs_sub1, ngs_sub2 FROM sample s, patient p, subtypes t"
+            String sql = "SELECT distinct t.auto_id, t.pat_id, major_subtype, other_subtype, spec_sub1, spec_sub2, spec_sub3, ngs_sub1, ngs_sub2 FROM sample s, patient p, subtypes t"
                     + " where s.pat_id=p.pat_id"
                     + " and t.pat_id=p.pat_id";
 
@@ -1469,8 +1560,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
             String subB = txt_subB.getText();
 
             sql = sql + " and (";
-            
-            
+
             if (jCheckBox_majS.isSelected()){ 
                 //if (txt_subA !=null && !txt_subA.getText().isEmpty()) {sql = sql + " major_subtype like '%" + subA +"%'"; }
                 if (txt_subA !=null && !txt_subA.getText().isEmpty()) {
@@ -1483,9 +1573,9 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 if (txt_subB !=null && !txt_subB.getText().isEmpty()) {sql = sql + " or major_subtype like '%" + subB +"%'"; }
                 sql = sql + " or";
             }
-            if (jCheckBox_bothS.isSelected()){ 
-                if (txt_subA !=null && !txt_subA.getText().isEmpty()) {sql = sql + " bother_subtype like '%" + subA +"%'"; }
-                if (txt_subB !=null && !txt_subB.getText().isEmpty()) {sql = sql + " or bother_subtype like '%" + subB +"%'"; }
+            if (jCheckBox_othS.isSelected()){ 
+                if (txt_subA !=null && !txt_subA.getText().isEmpty()) {sql = sql + " other_subtype like '%" + subA +"%'"; }
+                if (txt_subB !=null && !txt_subB.getText().isEmpty()) {sql = sql + " or other_subtype like '%" + subB +"%'"; }
                 sql = sql + " or";
             }
             if (jCheckBox_specS1.isSelected()){ 
@@ -1505,7 +1595,12 @@ public class ClassificationBrowse extends javax.swing.JFrame {
             }      
             sql = sql.substring(0, (sql.length() - 3));
             sql = sql + " )";
-                        
+            
+            // only for the set collected IDs
+            if (rbtn_idCollected.isSelected()) {     
+                sql = IdCollector.deliver_collected_ids(sql,"",".s","t.");
+            }
+            
             try {
                 pst = conn.prepareStatement(sql);
                 rs = pst.executeQuery();
@@ -1543,26 +1638,31 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 }
             }
         } else if (rbtn_all_class.isSelected()) {       // classification
-             Connection conn = DBconnect.ConnecrDb();
-             ResultSet rs = null;
-             PreparedStatement pst = null;
-             String sql = "SELECT auto_id, pat_id, rg, mrd_rg, prd, fcm_mrd, immuno_pickl, immuno_dworzak, FAB, chng_info as I FROM pat_instudy where 1=1";
+            Connection conn = DBconnect.ConnecrDb();
+            ResultSet rs = null;
+            PreparedStatement pst = null;
+            String sql = "SELECT auto_id, pat_id, rg, mrd_rg, prd, fcm_mrd, immuno_pickl, immuno_dworzak, FAB, chng_info as I FROM pat_instudy where 1=1";
 
-             try {
-                 pst = conn.prepareStatement(sql);
-                 rs = pst.executeQuery();
+            // only for the set collected IDs
+            if (rbtn_idCollected.isSelected()) {
+                sql = IdCollector.deliver_collected_ids(sql,"","","");
+            }
 
-                 table_RgClassLab.setModel(DbUtils.resultSetToTableModel(rs));
-                 DefaultTableCellRenderer ren = new ColoredTableCellRenderer2();  
-                 table_RgClassLab.setDefaultRenderer(Object.class , ren); 
-                 CustomSorter.table_customRowSort(table_RgClassLab);
+            try {
+                pst = conn.prepareStatement(sql);
+                rs = pst.executeQuery();
 
-                 if (table_RgClassLab.getColumnModel().getColumnCount() > 0) {
-                     table_RgClassLab.getColumnModel().getColumn(0).setPreferredWidth(60);
-                     table_RgClassLab.getColumnModel().getColumn(0).setMaxWidth(60);
-                     table_RgClassLab.getColumnModel().getColumn(1).setPreferredWidth(80);
-                     table_RgClassLab.getColumnModel().getColumn(1).setMaxWidth(100);
-                 }
+                table_RgClassLab.setModel(DbUtils.resultSetToTableModel(rs));
+                DefaultTableCellRenderer ren = new ColoredTableCellRenderer2();
+                table_RgClassLab.setDefaultRenderer(Object.class, ren);
+                CustomSorter.table_customRowSort(table_RgClassLab);
+
+                if (table_RgClassLab.getColumnModel().getColumnCount() > 0) {
+                    table_RgClassLab.getColumnModel().getColumn(0).setPreferredWidth(60);
+                    table_RgClassLab.getColumnModel().getColumn(0).setMaxWidth(60);
+                    table_RgClassLab.getColumnModel().getColumn(1).setPreferredWidth(80);
+                    table_RgClassLab.getColumnModel().getColumn(1).setMaxWidth(100);
+                }
             
                 //get_ids(sql,pst,rs,conn);
                 this.ids=IdManagement.get_ids(sql, pst, rs, conn,"pat_id");
@@ -1693,7 +1793,12 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 sql = sql + ")"; 
             }           
             //txtArea_test.setText(sql);    //TEST
-
+            
+            // only for the set collected IDs
+            if (rbtn_idCollected.isSelected()) {     
+                sql = IdCollector.deliver_collected_ids(sql,"","","");
+            }
+            
             try {
                 pst = conn.prepareStatement(sql);
                 rs = pst.executeQuery();
@@ -1738,6 +1843,11 @@ public class ClassificationBrowse extends javax.swing.JFrame {
              String sql = "SELECT pat_id, cyto_auto_ID as cytoID, fab_class, prcnt_blast_km as `% blast BM`, prcnt_blast_pb as `% blast PB`, eval, summ FROM cytology_result c, main_result m, sample s"
                      + " WHERE c.result_id=m.result_id "
                      + " AND s.lab_id=m.lab_id";
+            
+            // only for the set collected IDs
+            if (rbtn_idCollected.isSelected()) {     
+                sql = IdCollector.deliver_collected_ids(sql,"c.","m.","s.");  // result_id,lab_id,pat_id
+            }
 
              try {
                  pst = conn.prepareStatement(sql);
@@ -1878,7 +1988,12 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 sql = sql + ")";
             }
             //txtArea_test.setText(sql);    //TEST
-
+            
+            // only for the set collected IDs
+            if (rbtn_idCollected.isSelected()) {     
+                sql = IdCollector.deliver_collected_ids(sql,"c.","m.","s.");
+            }
+            
             try {
                 pst = conn.prepareStatement(sql);
                 rs = pst.executeQuery();
@@ -1922,8 +2037,28 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 } catch (Exception e) {
                 }
             }  
-        }
-  
+        } else if (rbtn_all_immuno.isSelected()) {               // immunology
+            Connection conn = DBconnect.ConnecrDb();
+            ResultSet rs = null;
+            PreparedStatement pst = null;
+            //String sql = "SELECT * from cytology_result";
+            String sql = "";
+
+            try {
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+                my_log.logger.warning("ERROR: " + e);
+            } finally {
+                try {
+                    if (rs != null) { rs.close();}
+                    if (pst != null) { pst.close();}
+                    if (conn != null) { conn.close();}
+                } catch (Exception e) {
+                }
+            }
+        } // end else if ()
+
     }//GEN-LAST:event_btn_SearchActionPerformed
 
     private void table_resultIDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_resultIDMouseClicked
@@ -1970,14 +2105,6 @@ public class ClassificationBrowse extends javax.swing.JFrame {
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents( 
                 new StringSelection(IDs), null);       
     }//GEN-LAST:event_cpLabIdsActionPerformed
-
-    private void rbtn_all_TODOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_all_TODOActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rbtn_all_TODOActionPerformed
-
-    private void rbtn_TODOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_TODOActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rbtn_TODOActionPerformed
 
     private void rbtn_all_cytologyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_all_cytologyActionPerformed
         if (rbtn_all_cytology.isSelected()){            
@@ -2209,25 +2336,19 @@ public class ClassificationBrowse extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_rbtn_subtypeActionPerformed
 
-    private void rbtn_NOT1_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_NOT1_1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rbtn_NOT1_1ActionPerformed
-
-    private void rbtn_NOT2_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_NOT2_2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rbtn_NOT2_2ActionPerformed
-
-    private void rbtn_NOT2_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_NOT2_1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rbtn_NOT2_1ActionPerformed
-
-    private void txt_specST1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_specST1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_specST1ActionPerformed
-
-    private void CB_andor2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_andor2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CB_andor2ActionPerformed
+    private void cpPatIdsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpPatIdsActionPerformed
+        // ... copy pat_ids to clipboard
+        JTable OT = this.outTable;
+        String IDs = "";
+        int resultL = OT.getRowCount();
+        for(int i = 0; i < resultL; i++) {
+            String tmp = OT.getValueAt(i, 0).toString();
+            IDs = IDs + tmp + ", "; 
+        }
+        IDs = IDs.substring(0, (IDs.length() - 2));
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents( 
+                new StringSelection(IDs), null); 
+    }//GEN-LAST:event_cpPatIdsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2265,16 +2386,19 @@ public class ClassificationBrowse extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> CB_RG4;
-    private javax.swing.JComboBox<String> CB_RG5;
+    private javax.swing.JComboBox<String> CB_RG6;
+    private javax.swing.JComboBox<String> CB_RG7;
     private javax.swing.JComboBox<String> CB_andor1;
     private javax.swing.JComboBox<String> CB_andor2;
     private javax.swing.JComboBox<String> CB_andor3;
     private javax.swing.JComboBox<String> CB_andor4;
+    private javax.swing.JComboBox<String> CB_andor5;
     private javax.swing.JComboBox<String> CB_class;
     private javax.swing.JComboBox<String> CB_class1;
     private javax.swing.JComboBox<String> CB_cytology;
     private javax.swing.JComboBox<String> CB_cytology1;
+    private javax.swing.JComboBox<String> CB_immuno;
+    private javax.swing.JComboBox<String> CB_immuno1;
     private javax.swing.JComboBox<String> CB_specST;
     private javax.swing.JComboBox<String> CB_specST1;
     private javax.swing.JComboBox<String> ComboBox_projPat;
@@ -2284,13 +2408,14 @@ public class ClassificationBrowse extends javax.swing.JFrame {
     private javax.swing.JButton btn_Search;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JMenuItem cpLabIds;
+    private javax.swing.JMenuItem cpPatIds;
     private javax.swing.JMenuItem cpResultIds;
     private javax.swing.JCheckBox jCheckBox4;
     private javax.swing.JCheckBox jCheckBox7;
-    private javax.swing.JCheckBox jCheckBox_bothS;
     private javax.swing.JCheckBox jCheckBox_majS;
     private javax.swing.JCheckBox jCheckBox_ngsS1;
     private javax.swing.JCheckBox jCheckBox_ngsS2;
+    private javax.swing.JCheckBox jCheckBox_othS;
     private javax.swing.JCheckBox jCheckBox_specS1;
     private javax.swing.JCheckBox jCheckBox_specS2;
     private javax.swing.JCheckBox jCheckBox_specS3;
@@ -2301,17 +2426,13 @@ public class ClassificationBrowse extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -2322,6 +2443,8 @@ public class ClassificationBrowse extends javax.swing.JFrame {
     private javax.swing.JPopupMenu popUpResult;
     private javax.swing.JRadioButton rbtn_CYT;
     private javax.swing.JRadioButton rbtn_CYT1;
+    private javax.swing.JRadioButton rbtn_IMM;
+    private javax.swing.JRadioButton rbtn_IMM1;
     private javax.swing.JRadioButton rbtn_NOT1_1;
     private javax.swing.JRadioButton rbtn_NOT1_2;
     private javax.swing.JRadioButton rbtn_NOT2_1;
@@ -2330,32 +2453,39 @@ public class ClassificationBrowse extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbtn_NOT3_2;
     private javax.swing.JRadioButton rbtn_NOT4_1;
     private javax.swing.JRadioButton rbtn_NOT4_2;
+    private javax.swing.JRadioButton rbtn_NOT4_3;
+    private javax.swing.JRadioButton rbtn_NOT4_4;
     private javax.swing.JRadioButton rbtn_RG;
     private javax.swing.JRadioButton rbtn_RG1;
-    private javax.swing.JRadioButton rbtn_TODO;
-    private javax.swing.JRadioButton rbtn_all_TODO;
+    private javax.swing.JRadioButton rbtn_TODO1;
+    private javax.swing.JRadioButton rbtn_all_TODO1;
     private javax.swing.JRadioButton rbtn_all_class;
     private javax.swing.JRadioButton rbtn_all_cytology;
+    private javax.swing.JRadioButton rbtn_all_immuno;
     private javax.swing.JRadioButton rbtn_all_subtypes;
     private javax.swing.JRadioButton rbtn_all_subtypes1;
     private javax.swing.JRadioButton rbtn_class;
     private javax.swing.JRadioButton rbtn_cytology;
+    private javax.swing.JRadioButton rbtn_idCollected;
+    private javax.swing.JRadioButton rbtn_immuno;
     private javax.swing.JRadioButton rbtn_onlyPat;
     private javax.swing.JRadioButton rbtn_onlyPat1;
     private javax.swing.JRadioButton rbtn_specST;
     private javax.swing.JRadioButton rbtn_specST1;
-    private javax.swing.JRadioButton rbtn_specST6;
-    private javax.swing.JRadioButton rbtn_specST7;
+    private javax.swing.JRadioButton rbtn_specST8;
+    private javax.swing.JRadioButton rbtn_specST9;
     private javax.swing.JRadioButton rbtn_subtype;
     private javax.swing.JRadioButton rbtn_subtype1;
     private javax.swing.JTable table_RgClassLab;
     private javax.swing.JTable table_resultID;
-    private javax.swing.JTextField txt_RG4;
-    private javax.swing.JTextField txt_RG5;
+    private javax.swing.JTextField txt_RG6;
+    private javax.swing.JTextField txt_RG7;
     private javax.swing.JTextField txt_class;
     private javax.swing.JTextField txt_class1;
     private javax.swing.JTextField txt_cytology;
     private javax.swing.JTextField txt_cytology1;
+    private javax.swing.JTextField txt_immuno;
+    private javax.swing.JTextField txt_immuno1;
     private javax.swing.JTextField txt_specST;
     private javax.swing.JTextField txt_specST1;
     private javax.swing.JTextField txt_subA;

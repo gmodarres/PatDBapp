@@ -10,6 +10,7 @@
  */
 package frames;
 
+import static frames.SaveInitialMenuBar.*;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.InputEvent;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -30,6 +32,7 @@ import myClass.CustomSorter;
 import myClass.DBconnect;
 import myClass.IdManagement;
 import myClass.Log;
+import myClass.MenuDriver;
 import static myClass.ShowSqlSelector.showSqlInWindow;
 import net.proteanit.sql.DbUtils;
 
@@ -49,9 +52,17 @@ public class SampleBrowse extends javax.swing.JFrame {
      * Creates new form PatientBrowse
      */
     public SampleBrowse() {
+        MenuDriver menu = new MenuDriver();     // create instance of JMenuBar menuBarGlobal 
+        this.setJMenuBar( menu.getMenuBar() );
+
         initComponents();
         ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_small.png"));
         this.setIconImage(img.getImage());
+        
+        // TEST MEnuBar ... not working !!
+        //JMenuBar mb = new JMenuBar();
+        
+        
         initial_table_sample();
         initial_table_resultID();
         Info_top4.getRootPane().setDefaultButton(btn_Search);
@@ -272,12 +283,6 @@ public class SampleBrowse extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         table_resultID = new javax.swing.JTable();
         lbl_rowsReturned = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu4 = new javax.swing.JMenu();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
 
         cpResultIds.setText("copy result_ids ...");
         cpResultIds.addActionListener(new java.awt.event.ActionListener() {
@@ -507,26 +512,6 @@ public class SampleBrowse extends javax.swing.JFrame {
 
         lbl_rowsReturned.setText(" ");
 
-        jMenu4.setBorder(null);
-        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_Font_small07_web.png"))); // NOI18N
-        jMenu4.setMargin(new java.awt.Insets(0, 0, 0, 5));
-        jMenuBar1.add(jMenu4);
-
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
-
-        jMenu3.setText("Help");
-
-        jMenuItem1.setText("how to use");
-        jMenu3.add(jMenuItem1);
-
-        jMenuBar1.add(jMenu3);
-
-        setJMenuBar(jMenuBar1);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -556,7 +541,7 @@ public class SampleBrowse extends javax.swing.JFrame {
                 .addComponent(Info_top4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(2, 2, 2)
                 .addComponent(lbl_rowsReturned)
@@ -1120,12 +1105,6 @@ public class SampleBrowse extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JMenuItem cpLabIds;
     private javax.swing.JMenuItem cpResultIds;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JToolBar jToolBar1;

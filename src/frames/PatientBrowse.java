@@ -12,6 +12,10 @@ package frames;
 
 import static frames.SetConnection.PresentMode;
 import java.awt.Desktop;
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.InputEvent;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,12 +25,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import myClass.ColoredTableCellRenderer2;
 import myClass.CustomSorter;
 import myClass.DBconnect;
 import myClass.IdManagement;
 import myClass.Log;
+import myClass.MenuDriver;
 import myClass.OSDetector;
 import static myClass.ShowSqlSelector.showSqlInWindow;
 import net.proteanit.sql.DbUtils;
@@ -40,6 +46,8 @@ public class PatientBrowse extends javax.swing.JFrame {
     String ids = null;
     static String PB_resultIDs = null;
     
+    JTable outTable = null;  
+    
     boolean Present = PresentMode;
         
     Log my_log;
@@ -48,6 +56,9 @@ public class PatientBrowse extends javax.swing.JFrame {
      * Creates new form PatientBrowse
      */
     public PatientBrowse() {
+        MenuDriver menu = new MenuDriver();     // create instance of JMenuBar menuBarGlobal 
+        this.setJMenuBar( menu.getMenuBar() );
+        
         initComponents();
         ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_small.png"));
         this.setIconImage(img.getImage());
@@ -82,9 +93,14 @@ public class PatientBrowse extends javax.swing.JFrame {
         Connection conn = DBconnect.ConnecrDb();
         ResultSet rs = null;
         PreparedStatement pst = null;
-        String sql = "SELECT p.pat_id, fm_pat_no, fname, surname, surname_old, sex, b_date, dg_date, mb_down as MDown FROM patient p";
+        String sql = "SELECT p.pat_id, fm_pat_no, fname, surname, surname_old, sex, b_date, dg_date, mb_down as MDown FROM patient p WHERE 1=1";
         if (Present == true) { // PRESENT
-            sql = "SELECT p.pat_id, fm_pat_no, present as fname, present as surname, present as surname_old, sex, b_date, dg_date, mb_down as MDown FROM patient p";
+            sql = "SELECT p.pat_id, fm_pat_no, present as fname, present as surname, present as surname_old, sex, b_date, dg_date, mb_down as MDown FROM patient p WHERE 1=1";
+        }
+        
+        // only for the set collected IDs
+        if (rbtn_idCollected.isSelected()) {
+            sql = IdCollector.deliver_collected_ids(sql,"","","p.");
         }
         
         try {
@@ -105,6 +121,12 @@ public class PatientBrowse extends javax.swing.JFrame {
                     + " FROM patient p, pat_instudy ps, study s"
                     + " WHERE p.pat_id=ps.pat_id"
                     + " AND s.stdy_id=ps.stdy_id";
+        
+        // only for the set collected IDs
+        if (rbtn_idCollected.isSelected()) {
+            sql2 = IdCollector.deliver_collected_ids(sql2,"","","p.");
+        }
+        
         try {
             pst = conn.prepareStatement(sql2);
             rs = pst.executeQuery();
@@ -124,6 +146,11 @@ public class PatientBrowse extends javax.swing.JFrame {
                     + " FROM patient p, pat_inproject pj, project j"
                     + " WHERE p.pat_id=pj.pat_id "
                     + " AND j.proj_id=pj.proj_id ";
+        // only for the set collected IDs
+        if (rbtn_idCollected.isSelected()) {
+            sql3 = IdCollector.deliver_collected_ids(sql3,"","","p.");
+        }
+        
         try {
             pst = conn.prepareStatement(sql3);
             rs = pst.executeQuery();
@@ -499,6 +526,13 @@ public class PatientBrowse extends javax.swing.JFrame {
         return all_ids;
     }
     
+    private static boolean isRightClick(MouseEvent e) {
+        return (e.getButton() == MouseEvent.BUTTON3
+                || (System.getProperty("os.name").contains("Mac OS X")
+                && (e.getModifiers() & InputEvent.BUTTON1_MASK) != 0
+                && (e.getModifiers() & InputEvent.CTRL_MASK) != 0));
+    }
+
     private void setLookTable_patient(javax.swing.JTable table) {
         if (table_patient.getColumnModel().getColumnCount() > 0) {
             table_patient.getColumnModel().getColumn(0).setPreferredWidth(60);
@@ -556,6 +590,8 @@ public class PatientBrowse extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        popUpResult = new javax.swing.JPopupMenu();
+        cpPatIds = new javax.swing.JMenuItem();
         Info_top4 = new javax.swing.JPanel();
         btn_Search = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -572,6 +608,8 @@ public class PatientBrowse extends javax.swing.JFrame {
         rbtn_all = new javax.swing.JRadioButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         txtArea_test = new javax.swing.JTextArea();
+        jPanel2 = new javax.swing.JPanel();
+        rbtn_idCollected = new javax.swing.JRadioButton();
         jToolBar1 = new javax.swing.JToolBar();
         bnt_test = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -586,14 +624,14 @@ public class PatientBrowse extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         lbl_study_rowsReturned = new javax.swing.JLabel();
         lbl_project_rowsReturned = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu4 = new javax.swing.JMenu();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1_openModel = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem1_HowTo = new javax.swing.JMenuItem();
-        jMenuItem2_Info = new javax.swing.JMenuItem();
+
+        cpPatIds.setText("copy pat_ids ...");
+        cpPatIds.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cpPatIdsActionPerformed(evt);
+            }
+        });
+        popUpResult.add(cpPatIds);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Linked Results Analysis Tool - browse patients");
@@ -663,6 +701,7 @@ public class PatientBrowse extends javax.swing.JFrame {
         txt_searchCrit2.setEnabled(false);
 
         buttonGroup1.add(rbtn_all);
+        rbtn_all.setSelected(true);
         rbtn_all.setText("all patients");
         rbtn_all.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         rbtn_all.setBorderPainted(true);
@@ -738,6 +777,29 @@ public class PatientBrowse extends javax.swing.JFrame {
         txtArea_test.setRows(5);
         jScrollPane4.setViewportView(txtArea_test);
 
+        jPanel2.setBackground(new java.awt.Color(102, 153, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        rbtn_idCollected.setText("use IDs from collector");
+        rbtn_idCollected.setToolTipText("select to get results from patients in a certain project (select from below)");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(rbtn_idCollected, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(rbtn_idCollected)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout Info_top4Layout = new javax.swing.GroupLayout(Info_top4);
         Info_top4.setLayout(Info_top4Layout);
         Info_top4Layout.setHorizontalGroup(
@@ -745,8 +807,10 @@ public class PatientBrowse extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Info_top4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_Search)
                 .addGap(21, 21, 21))
@@ -758,7 +822,8 @@ public class PatientBrowse extends javax.swing.JFrame {
                 .addGroup(Info_top4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane4)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_Search))
+                    .addComponent(btn_Search)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -789,6 +854,11 @@ public class PatientBrowse extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        table_patient.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                table_patientMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(table_patient);
         table_patient.getAccessibleContext().setAccessibleName("table_patient");
 
@@ -846,49 +916,6 @@ public class PatientBrowse extends javax.swing.JFrame {
 
         lbl_project_rowsReturned.setText(" ");
 
-        jMenu4.setBorder(null);
-        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_Font_small07_web.png"))); // NOI18N
-        jMenu4.setMargin(new java.awt.Insets(0, 0, 0, 5));
-        jMenuBar1.add(jMenu4);
-
-        jMenu1.setText("File");
-
-        jMenuItem1_openModel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/open-file-icon.png"))); // NOI18N
-        jMenuItem1_openModel.setText("open DB Model");
-        jMenuItem1_openModel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1_openModelActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem1_openModel);
-
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
-
-        jMenu3.setText("Help");
-
-        jMenuItem1_HowTo.setText("how to use");
-        jMenuItem1_HowTo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1_HowToActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem1_HowTo);
-
-        jMenuItem2_Info.setText("Info");
-        jMenuItem2_Info.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2_InfoActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem2_Info);
-
-        jMenuBar1.add(jMenu3);
-
-        setJMenuBar(jMenuBar1);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -939,7 +966,7 @@ public class PatientBrowse extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(7, 7, 7)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -957,33 +984,6 @@ public class PatientBrowse extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jMenuItem1_openModelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1_openModelActionPerformed
-        File file = new File("model.pdf");
-        //File file = new File("C:\\Users\\gerda.modarres\\Desktop\\pat_DB\\stdpat_db_model.pdf");
-        try {
-            if (OSDetector.isWindows()){
-                //JOptionPane.showMessageDialog(null, OSDetector.isWindows());
-                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + "model.pdf");
-                //Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + "C:\\Users\\gerda.modarres\\Desktop\\pat_DB\\stdpat_db_model.pdf");
-            }else{
-                Desktop desktop = Desktop.getDesktop();
-                desktop.open(file);
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-    }//GEN-LAST:event_jMenuItem1_openModelActionPerformed
-
-    private void jMenuItem1_HowToActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1_HowToActionPerformed
-        ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/Monsters-Snail-icon.png"));
-        JOptionPane.showMessageDialog(rootPane, "... ummmmmm \n... errrrrr \n... pls ask again later", "apparently no useful Info", HEIGHT,img);
-    }//GEN-LAST:event_jMenuItem1_HowToActionPerformed
-
-    private void jMenuItem2_InfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2_InfoActionPerformed
-        ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_med.png"));
-        JOptionPane.showMessageDialog(rootPane, "LInkedResultsAnalysis \nDB-request Tool\nVersion:   1.0.0", "Info", HEIGHT,img);
-    }//GEN-LAST:event_jMenuItem2_InfoActionPerformed
 
     private void bnt_testActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bnt_testActionPerformed
         // TODO add your handling code here:
@@ -1042,6 +1042,11 @@ public class PatientBrowse extends javax.swing.JFrame {
             String sqlAdd = "";
             if (Present == true) { // PRESENT
                 sql = "SELECT p.pat_id, fm_pat_no, present as fname, present as surname, present as surname_old, sex, b_date, dg_date, mb_down as MDown FROM patient p WHERE 1=1";
+            }
+            
+            // only for the set collected IDs
+            if (rbtn_idCollected.isSelected()) {     
+                sql = IdCollector.deliver_collected_ids(sql,"","","p.");
             }
             
             // table study
@@ -1428,6 +1433,29 @@ public class PatientBrowse extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_CB_searchCrit2ActionPerformed
 
+    private void table_patientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_patientMouseClicked
+        if (isRightClick(evt) == true) {
+            //JOptionPane.showMessageDialog(null, "right click");
+            //saveOnRC(evt, table_queryIDs);
+            popUpResult.show(table_patient,evt.getX(),evt.getY());
+            this.outTable = table_patient;
+        }        
+    }//GEN-LAST:event_table_patientMouseClicked
+
+    private void cpPatIdsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpPatIdsActionPerformed
+        // ... copy pat_ids to clipboard
+        JTable OT = this.outTable;
+        String IDs = "";
+        int resultL = OT.getRowCount();
+        for(int i = 0; i < resultL; i++) {
+            String tmp = OT.getValueAt(i, 0).toString();
+            IDs = IDs + tmp + ", "; 
+        }
+        IDs = IDs.substring(0, (IDs.length() - 2));
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents( 
+                new StringSelection(IDs), null); 
+    }//GEN-LAST:event_cpPatIdsActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1478,18 +1506,12 @@ public class PatientBrowse extends javax.swing.JFrame {
     private javax.swing.JButton bnt_test;
     private javax.swing.JButton btn_Search;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JMenuItem cpPatIds;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1_HowTo;
-    private javax.swing.JMenuItem jMenuItem1_openModel;
-    private javax.swing.JMenuItem jMenuItem2_Info;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -1498,9 +1520,11 @@ public class PatientBrowse extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_patient_rowsReturned;
     private javax.swing.JLabel lbl_project_rowsReturned;
     private javax.swing.JLabel lbl_study_rowsReturned;
+    private javax.swing.JPopupMenu popUpResult;
     private javax.swing.JRadioButton rbtn_NOT1;
     private javax.swing.JRadioButton rbtn_NOT2;
     private javax.swing.JRadioButton rbtn_all;
+    private javax.swing.JRadioButton rbtn_idCollected;
     private javax.swing.JRadioButton rbtn_searchCrit1;
     private javax.swing.JRadioButton rbtn_searchCrit2;
     private javax.swing.JRadioButton rbtn_searchCritMain;

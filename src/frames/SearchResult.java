@@ -48,6 +48,7 @@ import myClass.Log;
 import myClass.OSDetector;
 import myClass.saveTable;
 import static frames.ClassificationBrowse.CB_resultIDs;
+import myClass.MenuDriver;
 import myClass.ShowSqlSelector;
 import static myClass.ShowSqlSelector.showSqlInWindow;
 
@@ -88,9 +89,12 @@ public class SearchResult extends javax.swing.JFrame {
      * Creates new form patDB_search_result
      */
     public SearchResult() {
+        MenuDriver menu = new MenuDriver();     // create instance of JMenuBar menuBarGlobal 
+        this.setJMenuBar( menu.getMenuBar() );        
+
         initComponents();
         ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_small.png"));
-        this.setIconImage(img.getImage());
+        this.setIconImage(img.getImage());       
         getIniData();
         setIcons();
         initial_table_array();
@@ -113,7 +117,6 @@ public class SearchResult extends javax.swing.JFrame {
 
         ToolTipManager.sharedInstance().setEnabled(false);
 
-        
         my_log.logger.info("open SearchResult()");
      }
     
@@ -1073,6 +1076,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
         popUpMenu_moveTbl = new javax.swing.JMenuItem();
         popUpMenu_intrprWin = new javax.swing.JMenuItem();
         popUpMenu_cpResultIds = new javax.swing.JMenuItem();
+        cpPatIds = new javax.swing.JMenuItem();
         tab_main = new javax.swing.JTabbedPane();
         tab_array = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -1264,19 +1268,11 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
         rbtn_CB = new javax.swing.JRadioButton();
         rbtn_ArrQuery = new javax.swing.JRadioButton();
         rbtn_PB = new javax.swing.JRadioButton();
+        rbtn_idCollected = new javax.swing.JRadioButton();
         jToolBar1 = new javax.swing.JToolBar();
         bnt_test = new javax.swing.JButton();
         btn_Emergency = new javax.swing.JButton();
         lbl_rowsReturned = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu4 = new javax.swing.JMenu();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1_openModel = new javax.swing.JMenuItem();
-        jMenuItem2_showSql = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem1_HowTo = new javax.swing.JMenuItem();
-        jMenuItem2_Info = new javax.swing.JMenuItem();
 
         popUpMenu_save.setText("save ...");
         popUpMenu_save.addActionListener(new java.awt.event.ActionListener() {
@@ -1317,6 +1313,14 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
             }
         });
         popUpSave.add(popUpMenu_cpResultIds);
+
+        cpPatIds.setText("copy pat_ids ...");
+        cpPatIds.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cpPatIdsActionPerformed(evt);
+            }
+        });
+        popUpSave.add(cpPatIds);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Linked Results Analysis Tool - result search");
@@ -1763,7 +1767,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
                 .addGap(15, 15, 15)
                 .addGroup(tab_arrayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1323, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1326, Short.MAX_VALUE))
                 .addGap(24, 24, 24)
                 .addGroup(tab_arrayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2715,9 +2719,9 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel17Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(10, 10, 10)
                 .addComponent(btn_loadQuery)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(2, 2, 2)
                 .addComponent(btn_saveQuery)
                 .addGap(10, 10, 10)
                 .addComponent(btn_selCol)
@@ -2746,7 +2750,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
         rbtn_SB.setText("use SampleBrowse ");
         rbtn_SB.setToolTipText("select to get IDs from window SampleBrowse");
 
-        rbtn_CB.setText("use ClassificationBrowse");
+        rbtn_CB.setText("use ClassificationB.");
         rbtn_CB.setToolTipText("get IDs from window SubtypeBrowse");
 
         rbtn_ArrQuery.setText("use ArrayGeneQuery");
@@ -2755,36 +2759,43 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
         rbtn_PB.setText("use PatientBrowse ");
         rbtn_PB.setToolTipText("select to get IDs from window SampleBrowse");
 
+        rbtn_idCollected.setText("use IDs from collector");
+        rbtn_idCollected.setToolTipText("select to get results from patients in a certain project (select from below)");
+
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
         jPanel19Layout.setHorizontalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel19Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addContainerGap()
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel19Layout.createSequentialGroup()
+                        .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(rbtn_ArrQuery)
+                            .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(rbtn_PB, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                                .addComponent(rbtn_CB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(9, 9, 9)
                         .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(rbtn_ArrQuery, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(rbtn_CB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(rbtn_SB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(rbtn_PB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(rbtn_onlyPat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(rbtn_onlyPat1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 1, Short.MAX_VALUE))
+                            .addComponent(rbtn_SB, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                            .addComponent(rbtn_idCollected, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(6, 6, 6))
                     .addGroup(jPanel19Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ComboBox_projPat, 0, 0, Short.MAX_VALUE)
-                            .addComponent(ComboBox_stdyPat, 0, 0, Short.MAX_VALUE))))
-                .addGap(10, 10, 10))
+                        .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(ComboBox_stdyPat, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(rbtn_onlyPat, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(rbtn_onlyPat1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(ComboBox_projPat, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
-        jPanel19Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {rbtn_ArrQuery, rbtn_CB, rbtn_PB, rbtn_SB});
+        jPanel19Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {rbtn_ArrQuery, rbtn_CB, rbtn_PB, rbtn_SB, rbtn_idCollected});
 
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel19Layout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+                .addGap(10, 10, 10)
                 .addComponent(rbtn_onlyPat)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ComboBox_projPat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2792,15 +2803,17 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
                 .addComponent(rbtn_onlyPat1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ComboBox_stdyPat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rbtn_PB)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbtn_PB)
+                    .addComponent(rbtn_SB))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rbtn_SB)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rbtn_CB)
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbtn_CB)
+                    .addComponent(rbtn_idCollected))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(rbtn_ArrQuery)
-                .addContainerGap())
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout Info_topLayout = new javax.swing.GroupLayout(Info_top);
@@ -2819,10 +2832,10 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(Info_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lab_Genes, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lab_Creg, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
+                    .addComponent(lab_Creg, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(Info_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
                     .addComponent(jScrollPane8))
                 .addContainerGap())
         );
@@ -2840,12 +2853,11 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
                             .addGroup(Info_topLayout.createSequentialGroup()
                                 .addComponent(lab_Creg)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane8)))
+                            .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                     .addGroup(Info_topLayout.createSequentialGroup()
                         .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addGap(37, 37, 37))
+                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Info_topLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -2878,57 +2890,6 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
         });
 
         lbl_rowsReturned.setText(" ");
-
-        jMenu4.setBorder(null);
-        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_Font_small07_web.png"))); // NOI18N
-        jMenu4.setMargin(new java.awt.Insets(0, 0, 0, 5));
-        jMenuBar1.add(jMenu4);
-
-        jMenu1.setText("File");
-
-        jMenuItem1_openModel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/open-file-icon.png"))); // NOI18N
-        jMenuItem1_openModel.setText("open DB Model");
-        jMenuItem1_openModel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1_openModelActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem1_openModel);
-
-        jMenuItem2_showSql.setText("showSQL");
-        jMenuItem2_showSql.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2_showSqlActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem2_showSql);
-
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
-
-        jMenu3.setText("Help");
-
-        jMenuItem1_HowTo.setText("how to use");
-        jMenuItem1_HowTo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1_HowToActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem1_HowTo);
-
-        jMenuItem2_Info.setText("Info");
-        jMenuItem2_Info.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2_InfoActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem2_Info);
-
-        jMenuBar1.add(jMenu3);
-
-        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -3119,6 +3080,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
         rbtn_PB.setSelected(false);
         rbtn_SB.setSelected(false);
         rbtn_CB.setSelected(false);
+        rbtn_idCollected.setSelected(false);
         rbtn_ArrQuery.setSelected(false);
         btn_selCol.setSelected(false);
         btn_selPat.setSelected(false);
@@ -3187,6 +3149,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
         rbtn_PB.setSelected(false);
         rbtn_SB.setSelected(false);
         rbtn_CB.setSelected(false);
+        rbtn_idCollected.setSelected(false);
         rbtn_ArrQuery.setSelected(false);
         btn_selCol.setSelected(false);
         btn_selPat.setSelected(false);
@@ -3488,6 +3451,11 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
             if (rbtn_ArrQuery.isSelected()) {     
                 deliver_AQ_ids(method_name,sql);
                 sql = this.mod_sql;
+            }
+            
+            // only for the set of IDs from IDcollector
+            if (rbtn_idCollected.isSelected()){
+                sql = IdCollector.deliver_collected_ids(sql,"r.","","");  // result_id,lab_id,pat_id
             }
             
             if (F_rbtn_sort.isSelected()) {
@@ -3914,6 +3882,11 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
                 sql = this.mod_sql;
             }
             
+            // only for the set of IDs from IDcollector
+            if (rbtn_idCollected.isSelected()){
+                sql = IdCollector.deliver_collected_ids(sql,"i.","m.","");  // result_id,lab_id,pat_id          
+            }
+            
             if (ZG_rbtn_sort.isSelected()) {
                 String order = (String) ZG_ComboBox_sort.getSelectedItem();
                 String asdes = ZG_txt_sort.getText();
@@ -4261,6 +4234,11 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
             if (rbtn_ArrQuery.isSelected()) {     
                 deliver_AQ_ids(method_name,sql);
                 sql = this.mod_sql;
+            }
+            
+            // only for the set of IDs from IDcollector
+            if (rbtn_idCollected.isSelected()){
+                sql = IdCollector.deliver_collected_ids(sql,"a.","m.","");  // result_id,lab_id,pat_id   
             }
             
             if (A_rbtn_sort.isSelected()) {
@@ -5379,33 +5357,6 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
         new FreeTable().setVisible(true);        
     }//GEN-LAST:event_popUpMenu_moveTblActionPerformed
 
-    private void jMenuItem2_InfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2_InfoActionPerformed
-        ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_med.png"));
-        JOptionPane.showMessageDialog(rootPane, "LInkedResultsAnalysis \nDB-request Tool\nVersion:   1.0.0", "Info", HEIGHT,img);
-    }//GEN-LAST:event_jMenuItem2_InfoActionPerformed
-
-    private void jMenuItem1_HowToActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1_HowToActionPerformed
-        ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/Monsters-Snail-icon.png"));
-        JOptionPane.showMessageDialog(rootPane, "... ummmmmm \n... errrrrr \n... pls ask again later", "apparently no useful Info", HEIGHT,img);
-    }//GEN-LAST:event_jMenuItem1_HowToActionPerformed
-
-    private void jMenuItem1_openModelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1_openModelActionPerformed
-        File file = new File("model.pdf");
-        //File file = new File("C:\\Users\\gerda.modarres\\Desktop\\pat_DB\\stdpat_db_model.pdf");
-        try {
-            if (OSDetector.isWindows()){
-                //JOptionPane.showMessageDialog(null, OSDetector.isWindows());
-                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + "model.pdf");
-                //Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + "C:\\Users\\gerda.modarres\\Desktop\\pat_DB\\stdpat_db_model.pdf");
-            }else{
-                Desktop desktop = Desktop.getDesktop();
-                desktop.open(file);
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }   
-    }//GEN-LAST:event_jMenuItem1_openModelActionPerformed
-
     private void Z_txt_lab_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Z_txt_lab_idActionPerformed
         // TODO
         update_table_zg_iscn();
@@ -6071,11 +6022,26 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(somestring, null);
     }//GEN-LAST:event_popUpMenu_cpResultIdsActionPerformed
 
-    private void jMenuItem2_showSqlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2_showSqlActionPerformed
-        ShowSQL s = new ShowSQL();
-        s.setVisible(true);     
-        ShowSqlSelector.ShowSqlIsOpen = true;
-    }//GEN-LAST:event_jMenuItem2_showSqlActionPerformed
+    private void cpPatIdsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpPatIdsActionPerformed
+        // ... copy pat_ids to clipboard
+        JTable OT = this.outTable;
+        String tableSource = OT.getAccessibleContext().getAccessibleName();
+        String IDs = "";
+        int resultL = OT.getRowCount();
+        if (tableSource.equals("table_queryIDs")) {
+            for (int i = 0; i < resultL; i++) {
+                String tmp = OT.getValueAt(i, 2).toString();
+                IDs = IDs + tmp + ", ";
+            }
+            IDs = IDs.substring(0, (IDs.length() - 2));
+            Toolkit.getDefaultToolkit().getSystemClipboard().setContents(
+                    new StringSelection(IDs), null);
+        }else {
+           JOptionPane.showMessageDialog(null, "no pat_ids to copy in this table");
+
+        }
+        
+    }//GEN-LAST:event_cpPatIdsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -6259,17 +6225,9 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
     private javax.swing.JRadioButton btn_selCol;
     private javax.swing.JRadioButton btn_selPat;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JMenuItem cpPatIds;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1_HowTo;
-    private javax.swing.JMenuItem jMenuItem1_openModel;
-    private javax.swing.JMenuItem jMenuItem2_Info;
-    private javax.swing.JMenuItem jMenuItem2_showSql;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -6315,6 +6273,7 @@ private void deliver_AQ_ids(String caller, String sql) {  // ids from ArrayQuery
     private javax.swing.JRadioButton rbtn_PB;
     private javax.swing.JRadioButton rbtn_SB;
     private javax.swing.JRadioButton rbtn_ZGdetailResult;
+    private javax.swing.JRadioButton rbtn_idCollected;
     private javax.swing.JRadioButton rbtn_nyd;
     private javax.swing.JRadioButton rbtn_onlyPat;
     private javax.swing.JRadioButton rbtn_onlyPat1;

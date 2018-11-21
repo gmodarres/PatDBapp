@@ -32,6 +32,7 @@ import javax.swing.table.TableModel;
 import myClass.CustomSorter;
 import myClass.IdManagement;
 import myClass.Log;
+import myClass.MenuDriver;
 import myClass.saveTable;
 import net.proteanit.sql.DbUtils;
 import org.ini4j.Ini;
@@ -51,6 +52,9 @@ public class ReadyForSQL extends javax.swing.JFrame {
      * Creates new form patDB_search_result
      */
     public ReadyForSQL() {
+        MenuDriver menu = new MenuDriver();     // create instance of JMenuBar menuBarGlobal 
+        this.setJMenuBar( menu.getMenuBar() );
+        
         initComponents();
         ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_small.png"));
         this.setIconImage(img.getImage());
@@ -395,15 +399,6 @@ public class ReadyForSQL extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         table_SQLresult = new javax.swing.JTable();
         lbl_rowsReturned = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu4 = new javax.swing.JMenu();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1_openModel = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem1_HowTo = new javax.swing.JMenuItem();
-        jMenuItem2_tableStructure = new javax.swing.JMenuItem();
-        jMenuItem1_info = new javax.swing.JMenuItem();
 
         popUpMenu_save.setText("save ...");
         popUpMenu_save.addActionListener(new java.awt.event.ActionListener() {
@@ -558,58 +553,6 @@ public class ReadyForSQL extends javax.swing.JFrame {
 
         lbl_rowsReturned.setText(" ");
 
-        jMenu4.setBorder(null);
-        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_Font_small07_web.png"))); // NOI18N
-        jMenu4.setMargin(new java.awt.Insets(0, 0, 0, 5));
-        jMenuBar1.add(jMenu4);
-
-        jMenu1.setText("File");
-
-        jMenuItem1_openModel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/open-file-icon.png"))); // NOI18N
-        jMenuItem1_openModel.setText("open DB Model");
-        jMenuItem1_openModel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1_openModelActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem1_openModel);
-
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
-
-        jMenu3.setText("Help");
-
-        jMenuItem1_HowTo.setText("how to");
-        jMenuItem1_HowTo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1_HowToActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem1_HowTo);
-
-        jMenuItem2_tableStructure.setText("table structure");
-        jMenuItem2_tableStructure.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2_tableStructureActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem2_tableStructure);
-
-        jMenuItem1_info.setText("Info");
-        jMenuItem1_info.setToolTipText("");
-        jMenuItem1_info.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1_infoActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem1_info);
-
-        jMenuBar1.add(jMenu3);
-
-        setJMenuBar(jMenuBar1);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -633,7 +576,7 @@ public class ReadyForSQL extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Info_top, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE)
                 .addGap(5, 5, 5)
                 .addComponent(lbl_rowsReturned)
                 .addGap(15, 15, 15))
@@ -679,54 +622,6 @@ public class ReadyForSQL extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) table_SQLresult.getModel();
         model.setRowCount(0);
     }//GEN-LAST:event_btn_clearActionPerformed
-
-    private void jMenuItem1_openModelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1_openModelActionPerformed
-        File file = new File("model.pdf");
-        //File file = new File("C:\\Users\\gerda.modarres\\Desktop\\pat_DB\\stdpat_db_model.pdf");
-        try {
-            if (OSDetector.isWindows()){
-                //JOptionPane.showMessageDialog(null, OSDetector.isWindows());
-                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + "model.pdf");
-                //Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + "C:\\Users\\gerda.modarres\\Desktop\\pat_DB\\stdpat_db_model.pdf");
-            }else{
-                Desktop desktop = Desktop.getDesktop();
-                desktop.open(file);
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }       
-    }//GEN-LAST:event_jMenuItem1_openModelActionPerformed
-
-    private void jMenuItem2_tableStructureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2_tableStructureActionPerformed
-        TableStructure s = new TableStructure();
-        
-        Connection conn = DBconnect.ConnecrDb();
-        ResultSet rs = null;
-        PreparedStatement pst = null;
-
-        try {
-            //String sql = "select * from information_schema.columns where table_schema = DATABASE() order by table_name,ordinal_position;";	
-            String sql = "select TABLE_SCHEMA, TABLE_NAME, COLUMN_NAME, ORDINAL_POSITION, IS_NULLABLE, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH, "+
-                "CHARACTER_OCTET_LENGTH, NUMERIC_PRECISION, NUMERIC_SCALE, COLUMN_TYPE, COLUMN_KEY, EXTRA " +
-                "from information_schema.columns where table_schema = DATABASE() order by table_name,ordinal_position;";
-
-            pst = conn.prepareStatement(sql);
-            rs = pst.executeQuery();
-            //if (rs.next()) {      // this skips first row!   
-            TableStructure.tbl_structure.setModel(DbUtils.resultSetToTableModel(rs));        
-                               
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        } finally {
-            try {
-                if (rs != null) { rs.close();}
-                if (pst != null) { pst.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) {
-            }
-        }
-        s.setVisible(true);         
-    }//GEN-LAST:event_jMenuItem2_tableStructureActionPerformed
 
     private void table_SQLresultMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_SQLresultMouseClicked
         // right klick ==> save to file
@@ -775,16 +670,6 @@ public class ReadyForSQL extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_txtArea_SQLKeyPressed
-
-    private void jMenuItem1_infoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1_infoActionPerformed
-        ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/LIRA_med.png"));
-        JOptionPane.showMessageDialog(rootPane, "LInkedResultsAnalysis \nDB-request Tool\nVersion:   1.0.0", "Info", HEIGHT,img);
-    }//GEN-LAST:event_jMenuItem1_infoActionPerformed
-
-    private void jMenuItem1_HowToActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1_HowToActionPerformed
-        ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/ico/Monsters-Snail-icon.png"));
-        JOptionPane.showMessageDialog(rootPane, "... ummmmmm \n... errrrrr \n... pls ask again later", "apparently no useful Info", HEIGHT,img);
-    }//GEN-LAST:event_jMenuItem1_HowToActionPerformed
 
     /**
      * @param args the command line arguments
@@ -842,15 +727,6 @@ public class ReadyForSQL extends javax.swing.JFrame {
     private javax.swing.JButton btn_SQLquery;
     private javax.swing.JButton btn_clear;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1_HowTo;
-    private javax.swing.JMenuItem jMenuItem1_info;
-    private javax.swing.JMenuItem jMenuItem1_openModel;
-    private javax.swing.JMenuItem jMenuItem2_tableStructure;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane3;

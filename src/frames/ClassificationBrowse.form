@@ -26,54 +26,22 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cpLabIdsActionPerformed"/>
           </Events>
         </MenuItem>
+        <MenuItem class="javax.swing.JMenuItem" name="cpPatIds">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="copy pat_ids ..."/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cpPatIdsActionPerformed"/>
+          </Events>
+        </MenuItem>
       </SubComponents>
     </Container>
-    <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
-      <SubComponents>
-        <Menu class="javax.swing.JMenu" name="jMenu4">
-          <Properties>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="null"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/ico/LIRA_Font_small07_web.png"/>
-            </Property>
-            <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
-              <Insets value="[0, 0, 0, 5]"/>
-            </Property>
-          </Properties>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="File"/>
-          </Properties>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Edit"/>
-          </Properties>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu3">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Help"/>
-          </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="how to use"/>
-              </Properties>
-            </MenuItem>
-          </SubComponents>
-        </Menu>
-      </SubComponents>
-    </Menu>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
     <Property name="title" type="java.lang.String" value="Linked Results Analysis Tool - browse classification"/>
   </Properties>
   <SyntheticProperties>
-    <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
@@ -121,12 +89,12 @@
               <Component id="Info_top4" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" pref="231" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="252" max="32767" attributes="0"/>
                   <Component id="jScrollPane2" pref="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
               <Component id="lbl_rowsReturned" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -285,15 +253,10 @@
                                           <Component id="rbtn_CYT" alignment="1" min="-2" max="-2" attributes="0"/>
                                           <Component id="rbtn_CYT1" alignment="1" min="-2" max="-2" attributes="0"/>
                                       </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="CB_cytology" max="32767" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" attributes="0">
-                                              <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                                              <Component id="CB_cytology1" max="32767" attributes="0"/>
-                                          </Group>
+                                          <Component id="CB_cytology" max="32767" attributes="0"/>
+                                          <Component id="CB_cytology1" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Component id="rbtn_cytology" alignment="0" min="-2" pref="161" max="-2" attributes="0"/>
@@ -509,8 +472,8 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="someLab">
-                    <Property name="tabTitle" type="java.lang.String" value="someLab"/>
+                  <JTabbedPaneConstraints tabName="immunology">
+                    <Property name="tabTitle" type="java.lang.String" value="immunology"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -523,25 +486,20 @@
                           <Component id="CB_andor4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="rbtn_all_TODO" alignment="1" min="-2" pref="161" max="-2" attributes="0"/>
+                              <Component id="rbtn_all_immuno" alignment="1" min="-2" pref="161" max="-2" attributes="0"/>
                               <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="rbtn_specST6" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="rbtn_specST7" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="rbtn_IMM" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="rbtn_IMM1" alignment="1" min="-2" max="-2" attributes="0"/>
                                       </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="CB_RG4" max="32767" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" attributes="0">
-                                              <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                                              <Component id="CB_RG5" max="32767" attributes="0"/>
-                                          </Group>
+                                          <Component id="CB_immuno" max="32767" attributes="0"/>
+                                          <Component id="CB_immuno1" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Component id="rbtn_TODO" alignment="0" min="-2" pref="161" max="-2" attributes="0"/>
+                                  <Component id="rbtn_immuno" alignment="0" min="-2" pref="161" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -554,11 +512,11 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txt_RG4" max="32767" attributes="0"/>
+                                          <Component id="txt_immuno" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
                                           <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                                          <Component id="txt_RG5" max="32767" attributes="0"/>
+                                          <Component id="txt_immuno1" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -578,24 +536,24 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="rbtn_all_TODO" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="rbtn_all_immuno" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                                  <Component id="rbtn_TODO" min="-2" max="-2" attributes="0"/>
+                                  <Component id="rbtn_immuno" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="rbtn_NOT4_1" linkSize="19" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="rbtn_specST6" linkSize="19" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txt_RG4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="CB_RG4" linkSize="19" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="rbtn_IMM" linkSize="19" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txt_immuno" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="CB_immuno" linkSize="19" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="rbtn_NOT4_2" linkSize="19" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="rbtn_specST7" linkSize="19" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txt_RG5" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="CB_RG5" linkSize="19" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="rbtn_IMM1" linkSize="19" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txt_immuno1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="CB_immuno1" linkSize="19" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
@@ -609,7 +567,7 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JRadioButton" name="rbtn_TODO">
+                <Component class="javax.swing.JRadioButton" name="rbtn_immuno">
                   <Properties>
                     <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                       <ComponentRef name="buttonGroup1"/>
@@ -622,9 +580,6 @@
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtn_TODOActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="rbtn_NOT4_1">
                   <Properties>
@@ -632,7 +587,7 @@
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txt_RG4">
+                <Component class="javax.swing.JTextField" name="txt_immuno">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -640,12 +595,12 @@
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="rbtn_specST6">
+                <Component class="javax.swing.JRadioButton" name="rbtn_IMM">
                   <Properties>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="CB_RG4">
+                <Component class="javax.swing.JComboBox" name="CB_immuno">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="3">
@@ -674,12 +629,12 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="rbtn_specST7">
+                <Component class="javax.swing.JRadioButton" name="rbtn_IMM1">
                   <Properties>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="CB_RG5">
+                <Component class="javax.swing.JComboBox" name="CB_immuno1">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="3">
@@ -700,7 +655,7 @@
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txt_RG5">
+                <Component class="javax.swing.JTextField" name="txt_immuno1">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -708,7 +663,7 @@
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="rbtn_all_TODO">
+                <Component class="javax.swing.JRadioButton" name="rbtn_all_immuno">
                   <Properties>
                     <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                       <ComponentRef name="buttonGroup1"/>
@@ -721,11 +676,235 @@
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtn_all_TODOActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel4">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="14" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="4"/>
+                    <Property name="text" type="java.lang.String" value="someLab"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="jPanel6">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="99" red="66" type="rgb"/>
+                </Property>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                  <JTabbedPaneConstraints tabName="someLab">
+                    <Property name="tabTitle" type="java.lang.String" value="someLab"/>
+                  </JTabbedPaneConstraints>
+                </Constraint>
+              </Constraints>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                          <Component id="CB_andor5" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="rbtn_all_TODO1" alignment="1" min="-2" pref="161" max="-2" attributes="0"/>
+                              <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="rbtn_specST8" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="rbtn_specST9" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="CB_RG6" max="32767" attributes="0"/>
+                                          <Component id="CB_RG7" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Component id="rbtn_TODO1" alignment="0" min="-2" pref="161" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="rbtn_NOT4_4" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="rbtn_NOT4_3" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="txt_RG6" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                                          <Component id="txt_RG7" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace pref="126" max="32767" attributes="0"/>
+                                  <Component id="jLabel8" min="-2" pref="75" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="rbtn_all_TODO1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                                  <Component id="rbtn_TODO1" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="rbtn_NOT4_3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="rbtn_specST8" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txt_RG6" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="CB_RG6" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="rbtn_NOT4_4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="rbtn_specST9" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txt_RG7" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="CB_RG7" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
+                                  <Component id="CB_andor5" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JRadioButton" name="rbtn_TODO1">
+                  <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="buttonGroup1"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="s. with ..."/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+                        <BevelBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="borderPainted" type="boolean" value="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="rbtn_NOT4_3">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="NOT"/>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="txt_RG6">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="rbtn_specST8">
+                  <Properties>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="CB_RG6">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="3">
+                        <StringItem index="0" value="parameter 1"/>
+                        <StringItem index="1" value="parameter 2"/>
+                        <StringItem index="2" value="parameter 3"/>
+                      </StringArray>
+                    </Property>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="CB_andor5">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="2">
+                        <StringItem index="0" value="AND"/>
+                        <StringItem index="1" value="OR"/>
+                      </StringArray>
+                    </Property>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="rbtn_specST9">
+                  <Properties>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="CB_RG7">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="3">
+                        <StringItem index="0" value="parameter 1"/>
+                        <StringItem index="1" value="parameter 2"/>
+                        <StringItem index="2" value="parameter 3"/>
+                      </StringArray>
+                    </Property>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="rbtn_NOT4_4">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="NOT"/>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="txt_RG7">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="rbtn_all_TODO1">
+                  <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="buttonGroup1"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="all samples"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+                        <BevelBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="borderPainted" type="boolean" value="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel8">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="14" style="1"/>
@@ -783,15 +962,10 @@
                                       <Component id="rbtn_specST" alignment="1" min="-2" max="-2" attributes="0"/>
                                       <Component id="rbtn_specST1" alignment="1" min="-2" max="-2" attributes="0"/>
                                   </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="CB_specST" pref="159" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                                          <Component id="CB_specST1" max="32767" attributes="0"/>
-                                      </Group>
+                                      <Component id="CB_specST" pref="159" max="32767" attributes="0"/>
+                                      <Component id="CB_specST1" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <Component id="rbtn_all_subtypes" alignment="0" max="32767" attributes="0"/>
@@ -879,9 +1053,6 @@
                     <Property name="text" type="java.lang.String" value="NOT"/>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtn_NOT1_1ActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txt_specST">
                   <Properties>
@@ -904,7 +1075,7 @@
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="5">
                         <StringItem index="0" value="maj. subtype"/>
-                        <StringItem index="1" value="b-oth. subtype"/>
+                        <StringItem index="1" value="oth. subtype"/>
                         <StringItem index="2" value="spec. subt. 1"/>
                         <StringItem index="3" value="spec. subt. 2"/>
                         <StringItem index="4" value="spec. subt. 3"/>
@@ -940,7 +1111,7 @@
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="5">
                         <StringItem index="0" value="maj. subtype"/>
-                        <StringItem index="1" value="b-oth. subtype"/>
+                        <StringItem index="1" value="oth. subtype"/>
                         <StringItem index="2" value="spec. subt. 1"/>
                         <StringItem index="3" value="spec. subt. 2"/>
                         <StringItem index="4" value="spec. subt. 3"/>
@@ -965,15 +1136,13 @@
                     </Property>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_specST1ActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="rbtn_all_subtypes">
                   <Properties>
                     <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
+                    <Property name="selected" type="boolean" value="true"/>
                     <Property name="text" type="java.lang.String" value="all samples"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
@@ -1024,7 +1193,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jCheckBox_bothS" linkSize="25" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jCheckBox_othS" linkSize="25" alignment="0" max="32767" attributes="0"/>
                                       <Component id="jCheckBox_majS" linkSize="25" alignment="0" max="32767" attributes="0"/>
                                       <Component id="jCheckBox_specS1" linkSize="25" alignment="0" max="32767" attributes="0"/>
                                   </Group>
@@ -1040,7 +1209,7 @@
                                       <Component id="jCheckBox_ngsS1" linkSize="25" alignment="0" max="32767" attributes="0"/>
                                       <Component id="jCheckBox_ngsS2" linkSize="25" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="0" pref="73" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="85" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -1105,7 +1274,7 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jCheckBox_specS3" linkSize="23" alignment="3" min="-2" pref="14" max="-2" attributes="0"/>
-                                          <Component id="jCheckBox_bothS" linkSize="23" alignment="3" min="-2" pref="14" max="-2" attributes="0"/>
+                                          <Component id="jCheckBox_othS" linkSize="23" alignment="3" min="-2" pref="14" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jCheckBox4" linkSize="23" min="-2" pref="14" max="-2" attributes="0"/>
@@ -1170,9 +1339,9 @@
                     <Property name="text" type="java.lang.String" value="search in:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JCheckBox" name="jCheckBox_bothS">
+                <Component class="javax.swing.JCheckBox" name="jCheckBox_othS">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="b-other subtype"/>
+                    <Property name="text" type="java.lang.String" value="other subtype"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="jCheckBox_specS1">
@@ -1330,9 +1499,6 @@
                     <Property name="text" type="java.lang.String" value="NOT"/>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtn_NOT2_1ActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txt_class">
                   <Properties>
@@ -1382,9 +1548,6 @@
                     </Property>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CB_andor2ActionPerformed"/>
-                  </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
@@ -1424,9 +1587,6 @@
                     <Property name="text" type="java.lang.String" value="NOT"/>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtn_NOT2_2ActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txt_class1">
                   <Properties>
@@ -1496,6 +1656,7 @@
                               </Group>
                           </Group>
                           <Component id="rbtn_onlyPat1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="rbtn_idCollected" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -1512,6 +1673,8 @@
                       <Component id="rbtn_onlyPat1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="ComboBox_stdyPat" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="rbtn_idCollected" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -1560,6 +1723,12 @@
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="rbtn_idCollected">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="use IDs from collector"/>
+                <Property name="toolTipText" type="java.lang.String" value="select to get results from patients in a certain project (select from below)"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
