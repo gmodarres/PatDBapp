@@ -1,0 +1,722 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
+  </Properties>
+  <AccessibilityProperties>
+    <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="SelectMarker"/>
+  </AccessibilityProperties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+              <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+              <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+              <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="51" max="32767" attributes="0"/>
+              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="jPanel3" max="32767" attributes="0"/>
+                  <Component id="jPanel2" max="32767" attributes="0"/>
+                  <Component id="jPanel4" max="32767" attributes="0"/>
+                  <Component id="jPanel5" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JPanel" name="jPanel1">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="lbl_selName" max="32767" attributes="0"/>
+                      <Component id="btn_save" alignment="0" max="32767" attributes="0"/>
+                      <Component id="btn_set" alignment="0" max="32767" attributes="0"/>
+                      <Component id="btn_load" alignment="0" max="32767" attributes="0"/>
+                      <Component id="txt_nameSetting" alignment="0" max="32767" attributes="0"/>
+                      <Component id="btn_clear" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="btn_set" min="-2" pref="33" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                  <Component id="btn_save" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="btn_load" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="lbl_selName" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="txt_nameSetting" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="btn_clear" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JButton" name="btn_set">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="8c" green="8c" red="0" type="rgb"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/ico/check_s.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="set marker"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_setActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btn_load">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="99" red="33" type="rgb"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/ico/open-file-icon.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="&lt;html&gt; &lt;center&gt; load&lt;br&gt;selection&lt;/center&gt;&lt;/html&gt;"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_loadActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btn_save">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="99" red="ff" type="rgb"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/ico/Floppy-Small-icon.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="&lt;html&gt; &lt;center&gt; save&lt;br&gt;selection&lt;/center&gt;&lt;/html&gt;"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_saveActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbl_selName">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="11" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="99" red="66" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="setting:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txt_nameSetting">
+        </Component>
+        <Component class="javax.swing.JButton" name="btn_clear">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="99" green="99" red="99" type="rgb"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/ico/Actions-edit-clear-list-icon.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="clear"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_clearActionPerformed"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="jPanel2">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                          <Component id="chk_marker49" min="-2" max="-2" attributes="0"/>
+                          <Component id="chk_marker48" min="-2" max="-2" attributes="0"/>
+                          <Component id="chk_marker47" min="-2" max="-2" attributes="0"/>
+                          <Component id="chk_marker46" min="-2" max="-2" attributes="0"/>
+                          <Component id="chk_marker45" min="-2" max="-2" attributes="0"/>
+                          <Component id="chk_marker44" min="-2" max="-2" attributes="0"/>
+                          <Component id="chk_marker42" min="-2" max="-2" attributes="0"/>
+                          <Component id="chk_marker41" min="-2" max="-2" attributes="0"/>
+                          <Component id="chk_marker40" min="-2" max="-2" attributes="0"/>
+                          <Component id="chk_marker39" min="-2" max="-2" attributes="0"/>
+                          <Component id="chk_marker37" min="-2" max="-2" attributes="0"/>
+                          <Component id="chk_marker36" min="-2" max="-2" attributes="0"/>
+                          <Component id="chk_marker38" min="-2" max="-2" attributes="0"/>
+                          <Component id="chk_marker43" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="chk_nonlin" alignment="1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_nonlin" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="23" pref="23" max="-2" attributes="0"/>
+                          <Component id="chk_marker37" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="chk_marker38" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="chk_marker36" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                  <Component id="chk_marker39" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_marker40" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_marker41" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_marker42" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_marker43" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_marker44" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_marker45" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_marker46" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_marker47" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_marker48" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_marker49" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JCheckBox" name="chk_marker39">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="HLADR"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker40">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CD11a"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker43">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CD44"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_nonlin">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="non-lineage"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chk_nonlinActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker38">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CD45"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker47">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CD184"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker48">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="NG2"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker37">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CD38"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker36">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CD34"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker42">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CD36"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker45">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CD99"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker44">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CD56"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker49">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CD371"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker41">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CD11b"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker46">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CD123"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="jPanel3">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                          <Component id="chk_marker24" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="chk_marker23" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="chk_marker22" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="chk_marker25" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="chk_marker26" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="chk_marker27" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="chk_marker28" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="chk_marker29" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="chk_marker30" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="chk_marker31" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="chk_marker32" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="chk_marker33" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="chk_marker34" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="chk_marker35" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="chk_myelo" min="-2" pref="83" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_myelo" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                  <Component id="chk_marker22" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_marker23" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_marker24" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                  <Component id="chk_marker25" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_marker26" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_marker27" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_marker28" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_marker29" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_marker30" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_marker31" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_marker32" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_marker33" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_marker34" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_marker35" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JCheckBox" name="chk_marker34">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CD71"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker24">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CD117"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker26">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CD33"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker31">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CD64"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker33">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CD61"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker27">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CD15"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker28">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CD65"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker22">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="MPO"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker35">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CD133"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker30">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CD11c"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker29">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CD14"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_myelo">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="myeloisch"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chk_myeloActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker23">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="LZ"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker32">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CD41"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker25">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CD13"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="jPanel4">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                          <Component id="chk_marker12" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="chk_marker13" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="chk_marker14" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="chk_marker15" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="chk_marker16" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="chk_marker17" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="chk_marker18" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="chk_marker20" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="chk_marker19" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="chk_marker21" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="chk_Tlymph" min="-2" pref="89" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_Tlymph" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                  <Component id="chk_marker12" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_marker13" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_marker14" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                  <Component id="chk_marker15" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_marker16" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_marker17" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_marker18" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_marker19" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_marker20" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_marker21" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JCheckBox" name="chk_marker15">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CD5"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker20">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="TCRab"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker21">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="TCRgd"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker14">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CD2"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker18">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CD4"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker19">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CD8"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker17">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="sCD3"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_Tlymph">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="T-lymphoid"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chk_TlymphActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker16">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CD1a"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker12">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="iCD3"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker13">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CD7"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="jPanel5">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="chk_marker1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="chk_marker2" alignment="0" max="32767" attributes="0"/>
+                              <Component id="chk_marker3" alignment="0" max="32767" attributes="0"/>
+                              <Component id="chk_marker4" alignment="0" max="32767" attributes="0"/>
+                              <Component id="chk_marker5" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="chk_marker6" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="chk_marker7" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="chk_marker8" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="chk_marker9" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="chk_marker10" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="chk_Blymph" min="-2" pref="87" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                  <Component id="chk_marker11" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_Blymph" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                  <Component id="chk_marker1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_marker2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_marker3" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_marker4" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_marker5" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_marker6" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_marker7" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_marker8" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_marker9" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_marker10" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_marker11" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JCheckBox" name="chk_marker5">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CD20"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker10">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="ikappa"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker3">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="iCD79a"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="iCD22"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker7">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CD24"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_Blymph">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="B-lymphoid"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chk_BlymphActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker9">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="iIgM"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CD19"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker4">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CD10"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker6">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CD22"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker8">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CRLF2"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="chk_marker11">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="ilambda"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>

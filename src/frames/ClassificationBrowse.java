@@ -10,6 +10,7 @@
  */
 package frames;
 
+import static frames.SelectMarker.markerSql;
 import java.awt.Desktop;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
@@ -51,6 +52,8 @@ public class ClassificationBrowse extends javax.swing.JFrame {
     static String CB_patIDs = null;
     
     static String sqlShowWindow_CB = null;
+    
+    static public String tableSortAdd = null;
         
     Log my_log;
         
@@ -340,6 +343,11 @@ public class ClassificationBrowse extends javax.swing.JFrame {
             }
         }      
     }
+    //TEST
+    private String getMarker(){
+        String wiMarker = "";
+        return wiMarker;     
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -388,19 +396,34 @@ public class ClassificationBrowse extends javax.swing.JFrame {
         txt_immuno1 = new javax.swing.JTextField();
         rbtn_all_immuno = new javax.swing.JRadioButton();
         jLabel4 = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
-        rbtn_TODO1 = new javax.swing.JRadioButton();
-        rbtn_NOT4_3 = new javax.swing.JRadioButton();
-        txt_RG6 = new javax.swing.JTextField();
-        rbtn_specST8 = new javax.swing.JRadioButton();
-        CB_RG6 = new javax.swing.JComboBox<>();
+        jPanel8 = new javax.swing.JPanel();
+        rbtn_immuno2 = new javax.swing.JRadioButton();
+        rbtn_NOT5_1 = new javax.swing.JRadioButton();
+        txt_immuno2 = new javax.swing.JTextField();
+        rbtn_IMM2 = new javax.swing.JRadioButton();
+        CB_immuno2 = new javax.swing.JComboBox<>();
         CB_andor5 = new javax.swing.JComboBox<>();
-        rbtn_specST9 = new javax.swing.JRadioButton();
-        CB_RG7 = new javax.swing.JComboBox<>();
-        rbtn_NOT4_4 = new javax.swing.JRadioButton();
-        txt_RG7 = new javax.swing.JTextField();
-        rbtn_all_TODO1 = new javax.swing.JRadioButton();
-        jLabel8 = new javax.swing.JLabel();
+        rbtn_IMM21 = new javax.swing.JRadioButton();
+        CB_immuno21 = new javax.swing.JComboBox<>();
+        rbtn_NOT5_2 = new javax.swing.JRadioButton();
+        txt_immuno21 = new javax.swing.JTextField();
+        rbtn_all_immuno2 = new javax.swing.JRadioButton();
+        jLabel9 = new javax.swing.JLabel();
+        btn_test = new javax.swing.JButton();
+        rbtn_marker = new javax.swing.JRadioButton();
+        jPanel9 = new javax.swing.JPanel();
+        rbtn_somelab2 = new javax.swing.JRadioButton();
+        rbtn_NOT4_7 = new javax.swing.JRadioButton();
+        txt_immuno4 = new javax.swing.JTextField();
+        rbtn_IMM4 = new javax.swing.JRadioButton();
+        CB_immuno4 = new javax.swing.JComboBox<>();
+        CB_andor6 = new javax.swing.JComboBox<>();
+        rbtn_IMM5 = new javax.swing.JRadioButton();
+        CB_immuno5 = new javax.swing.JComboBox<>();
+        rbtn_NOT4_8 = new javax.swing.JRadioButton();
+        txt_immuno5 = new javax.swing.JTextField();
+        rbtn_all_some = new javax.swing.JRadioButton();
+        jLabel10 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         rbtn_subtype = new javax.swing.JRadioButton();
@@ -609,23 +632,22 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                                 .addComponent(rbtn_CYT1, javax.swing.GroupLayout.Alignment.TRAILING))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(CB_cytology, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(CB_cytology1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(CB_cytology1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(CB_cytology, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addComponent(rbtn_cytology, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 5, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(rbtn_NOT3_2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(rbtn_NOT3_1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 155, Short.MAX_VALUE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txt_cytology, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(txt_cytology1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(rbtn_NOT3_2)
+                            .addComponent(rbtn_NOT3_1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_cytology)
+                            .addComponent(txt_cytology1))))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -667,6 +689,11 @@ public class ClassificationBrowse extends javax.swing.JFrame {
         rbtn_immuno.setText("s. with ...");
         rbtn_immuno.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         rbtn_immuno.setBorderPainted(true);
+        rbtn_immuno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtn_immunoActionPerformed(evt);
+            }
+        });
 
         rbtn_NOT4_1.setText("NOT");
         rbtn_NOT4_1.setEnabled(false);
@@ -676,7 +703,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
 
         rbtn_IMM.setEnabled(false);
 
-        CB_immuno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "parameter 1", "parameter 2", "parameter 3" }));
+        CB_immuno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "immuno dworzak", "BAL dworzak", "MPAL dworzak", "MPAL pickl", "add_info" }));
         CB_immuno.setEnabled(false);
 
         CB_andor4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AND", "OR" }));
@@ -684,7 +711,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
 
         rbtn_IMM1.setEnabled(false);
 
-        CB_immuno1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "parameter 1", "parameter 2", "parameter 3" }));
+        CB_immuno1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "immuno dworzak", "BAL dworzak", "MPAL dworzak", "MPAL pickl", "add_info" }));
         CB_immuno1.setEnabled(false);
 
         rbtn_NOT4_2.setText("NOT");
@@ -697,11 +724,16 @@ public class ClassificationBrowse extends javax.swing.JFrame {
         rbtn_all_immuno.setText("all samples");
         rbtn_all_immuno.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         rbtn_all_immuno.setBorderPainted(true);
+        rbtn_all_immuno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtn_all_immunoActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel4.setText("someLab");
+        jLabel4.setText("immunology");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -711,34 +743,30 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 .addGap(5, 5, 5)
                 .addComponent(CB_andor4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(rbtn_all_immuno, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(rbtn_IMM, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(rbtn_IMM1, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(CB_immuno, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(CB_immuno1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addComponent(rbtn_immuno, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rbtn_IMM, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(rbtn_IMM1, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CB_immuno1, 0, 138, Short.MAX_VALUE)
+                            .addComponent(CB_immuno, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(rbtn_immuno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(rbtn_all_immuno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(rbtn_NOT4_2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(rbtn_NOT4_1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txt_immuno))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(txt_immuno1))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txt_immuno)
+                            .addComponent(txt_immuno1)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -774,116 +802,258 @@ public class ClassificationBrowse extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("immunology", jPanel4);
 
-        jPanel6.setBackground(new java.awt.Color(102, 153, 255));
+        jPanel8.setBackground(new java.awt.Color(102, 153, 255));
 
-        buttonGroup1.add(rbtn_TODO1);
-        rbtn_TODO1.setText("s. with ...");
-        rbtn_TODO1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        rbtn_TODO1.setBorderPainted(true);
+        buttonGroup1.add(rbtn_immuno2);
+        rbtn_immuno2.setText("s. with ...");
+        rbtn_immuno2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        rbtn_immuno2.setBorderPainted(true);
+        rbtn_immuno2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtn_immuno2ActionPerformed(evt);
+            }
+        });
 
-        rbtn_NOT4_3.setText("NOT");
-        rbtn_NOT4_3.setEnabled(false);
+        rbtn_NOT5_1.setText("NOT");
+        rbtn_NOT5_1.setEnabled(false);
 
-        txt_RG6.setBackground(new java.awt.Color(204, 204, 204));
-        txt_RG6.setEnabled(false);
+        txt_immuno2.setBackground(new java.awt.Color(204, 204, 204));
+        txt_immuno2.setEnabled(false);
 
-        rbtn_specST8.setEnabled(false);
+        rbtn_IMM2.setEnabled(false);
 
-        CB_RG6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "parameter 1", "parameter 2", "parameter 3" }));
-        CB_RG6.setEnabled(false);
+        CB_immuno2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "marker", "result", "marker group" }));
+        CB_immuno2.setEnabled(false);
 
         CB_andor5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AND", "OR" }));
         CB_andor5.setEnabled(false);
 
-        rbtn_specST9.setEnabled(false);
+        rbtn_IMM21.setEnabled(false);
 
-        CB_RG7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "parameter 1", "parameter 2", "parameter 3" }));
-        CB_RG7.setEnabled(false);
+        CB_immuno21.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "marker", "result", "marker group" }));
+        CB_immuno21.setEnabled(false);
 
-        rbtn_NOT4_4.setText("NOT");
-        rbtn_NOT4_4.setEnabled(false);
+        rbtn_NOT5_2.setText("NOT");
+        rbtn_NOT5_2.setEnabled(false);
 
-        txt_RG7.setBackground(new java.awt.Color(204, 204, 204));
-        txt_RG7.setEnabled(false);
+        txt_immuno21.setBackground(new java.awt.Color(204, 204, 204));
+        txt_immuno21.setEnabled(false);
 
-        buttonGroup1.add(rbtn_all_TODO1);
-        rbtn_all_TODO1.setText("all samples");
-        rbtn_all_TODO1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        rbtn_all_TODO1.setBorderPainted(true);
+        buttonGroup1.add(rbtn_all_immuno2);
+        rbtn_all_immuno2.setText("all samples");
+        rbtn_all_immuno2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        rbtn_all_immuno2.setBorderPainted(true);
+        rbtn_all_immuno2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtn_all_immuno2ActionPerformed(evt);
+            }
+        });
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 255, 255));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel8.setText("someLab");
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 255, 255));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel9.setText("immuno marker");
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+        btn_test.setText("select marker");
+        btn_test.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_testActionPerformed(evt);
+            }
+        });
+
+        rbtn_marker.setEnabled(false);
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(5, 5, 5)
                 .addComponent(CB_andor5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(rbtn_all_TODO1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel6Layout.createSequentialGroup()
-                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(rbtn_specST8, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(rbtn_specST9, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(rbtn_all_immuno2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel8Layout.createSequentialGroup()
+                            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(rbtn_IMM2, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(rbtn_IMM21, javax.swing.GroupLayout.Alignment.TRAILING))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(CB_RG6, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(CB_RG7, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addComponent(rbtn_TODO1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(rbtn_NOT4_4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(rbtn_NOT4_3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
+                            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(CB_immuno2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(CB_immuno21, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(rbtn_immuno2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(0, 96, Short.MAX_VALUE)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(rbtn_NOT5_2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rbtn_NOT5_1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rbtn_marker, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel8Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txt_RG6))
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(txt_RG7))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txt_immuno2)
+                                    .addComponent(txt_immuno21)))
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(btn_test, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGap(5, 5, 5)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rbtn_all_TODO1)
-                            .addComponent(jLabel8))
-                        .addGap(4, 4, 4)
-                        .addComponent(rbtn_TODO1)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(rbtn_marker)
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(rbtn_all_immuno2)
+                                    .addComponent(jLabel9))
+                                .addGap(4, 4, 4)
+                                .addComponent(rbtn_immuno2))
+                            .addComponent(btn_test))
                         .addGap(3, 3, 3)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rbtn_NOT4_3)
-                            .addComponent(rbtn_specST8)
-                            .addComponent(txt_RG6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CB_RG6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rbtn_NOT5_1)
+                            .addComponent(rbtn_IMM2)
+                            .addComponent(txt_immuno2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CB_immuno2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(3, 3, 3)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rbtn_NOT4_4)
-                            .addComponent(rbtn_specST9)
-                            .addComponent(txt_RG7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CB_RG7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rbtn_NOT5_2)
+                            .addComponent(rbtn_IMM21)
+                            .addComponent(txt_immuno21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CB_immuno21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                         .addGap(80, 80, 80)
                         .addComponent(CB_andor5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(5, 5, 5))
         );
 
-        jTabbedPane2.addTab("someLab", jPanel6);
+        jPanel8Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {CB_andor5, CB_immuno2, CB_immuno21, rbtn_IMM2, rbtn_IMM21, rbtn_NOT5_1, rbtn_NOT5_2});
+
+        jTabbedPane2.addTab("immuno marker", jPanel8);
+
+        jPanel9.setBackground(new java.awt.Color(102, 153, 255));
+
+        buttonGroup1.add(rbtn_somelab2);
+        rbtn_somelab2.setText("s. with ...");
+        rbtn_somelab2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        rbtn_somelab2.setBorderPainted(true);
+
+        rbtn_NOT4_7.setText("NOT");
+        rbtn_NOT4_7.setEnabled(false);
+
+        txt_immuno4.setBackground(new java.awt.Color(204, 204, 204));
+        txt_immuno4.setEnabled(false);
+
+        rbtn_IMM4.setEnabled(false);
+
+        CB_immuno4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "parameter 1", "parameter 2", "parameter 3" }));
+        CB_immuno4.setEnabled(false);
+
+        CB_andor6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AND", "OR" }));
+        CB_andor6.setEnabled(false);
+
+        rbtn_IMM5.setEnabled(false);
+
+        CB_immuno5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "parameter 1", "parameter 2", "parameter 3" }));
+        CB_immuno5.setEnabled(false);
+
+        rbtn_NOT4_8.setText("NOT");
+        rbtn_NOT4_8.setEnabled(false);
+
+        txt_immuno5.setBackground(new java.awt.Color(204, 204, 204));
+        txt_immuno5.setEnabled(false);
+
+        buttonGroup1.add(rbtn_all_some);
+        rbtn_all_some.setText("all samples");
+        rbtn_all_some.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        rbtn_all_some.setBorderPainted(true);
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 255, 255));
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel10.setText("someLab");
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addComponent(CB_andor6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(rbtn_all_some, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel9Layout.createSequentialGroup()
+                            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(rbtn_IMM4, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(rbtn_IMM5, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(CB_immuno4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(CB_immuno5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(rbtn_somelab2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(rbtn_NOT4_8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rbtn_NOT4_7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txt_immuno4))
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addComponent(txt_immuno5))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rbtn_all_some)
+                            .addComponent(jLabel10))
+                        .addGap(4, 4, 4)
+                        .addComponent(rbtn_somelab2)
+                        .addGap(3, 3, 3)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rbtn_NOT4_7)
+                            .addComponent(rbtn_IMM4)
+                            .addComponent(txt_immuno4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CB_immuno4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(3, 3, 3)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rbtn_NOT4_8)
+                            .addComponent(rbtn_IMM5)
+                            .addComponent(txt_immuno5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CB_immuno5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(CB_andor6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(5, 5, 5))
+        );
+
+        jPanel9Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {CB_andor6, CB_immuno4, CB_immuno5, rbtn_IMM4, rbtn_IMM5, rbtn_NOT4_7, rbtn_NOT4_8});
+
+        jTabbedPane2.addTab("someLab", jPanel9);
 
         jTabbedPane1.setBackground(new java.awt.Color(102, 153, 255));
         jTabbedPane1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -1320,10 +1490,10 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
+                .addComponent(jTabbedPane2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addGap(14, 14, 14)
                 .addComponent(btn_Search)
                 .addGap(21, 21, 21))
         );
@@ -1380,12 +1550,13 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                     .addComponent(Info_top4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(lbl_rowsReturned, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(20, 20, 20)
+                                .addComponent(lbl_rowsReturned, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(12, 12, 12))
         );
         layout.setVerticalGroup(
@@ -1412,6 +1583,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
     }//GEN-LAST:event_bnt_testActionPerformed
 
     private void btn_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SearchActionPerformed
+        this.tableSortAdd = null;
         if(rbtn_all_subtypes.isSelected() || rbtn_all_subtypes1.isSelected()){
             //rbtn_specST.setEnabled(false);
             initial_table_subtypes();
@@ -1420,7 +1592,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 String sql = "SELECT distinct t.auto_id, t.pat_id, major_subtype, other_subtype, spec_sub1, spec_sub2, spec_sub3, ngs_sub1, ngs_sub2 FROM sample s, patient p, subtypes t"
                     + " where s.pat_id=p.pat_id"
                     + " and t.pat_id=p.pat_id";
-                update_table_RgClassLab(sql,"true");          // Test second table - only project
+                update_table_RgClassLab(sql,"true");    // Test second table - only project
             } 
         } else if (rbtn_subtype.isSelected()){          // subtypes
             Connection conn = DBconnect.ConnecrDb();
@@ -1508,7 +1680,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
             if (rbtn_idCollected.isSelected()) {     
                 //deliver_collected_ids(method_name,sql);
                 //sql = this.mod_sql;
-                sql = IdCollector.deliver_collected_ids(sql,"",".s","t.");  // result_id,lab_id,pat_id
+                sql = IdCollector.deliver_collected_ids(sql,"","s.","t.");  // result_id,lab_id,pat_id
             }
             
             //txtArea_test.setText(sql);    //TEST
@@ -1843,7 +2015,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
              String sql = "SELECT pat_id, cyto_auto_ID as cytoID, fab_class, prcnt_blast_km as `% blast BM`, prcnt_blast_pb as `% blast PB`, eval, summ FROM cytology_result c, main_result m, sample s"
                      + " WHERE c.result_id=m.result_id "
                      + " AND s.lab_id=m.lab_id";
-            
+ 
             // only for the set collected IDs
             if (rbtn_idCollected.isSelected()) {     
                 sql = IdCollector.deliver_collected_ids(sql,"c.","m.","s.");  // result_id,lab_id,pat_id
@@ -2037,14 +2209,44 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 } catch (Exception e) {
                 }
             }  
-        } else if (rbtn_all_immuno.isSelected()) {               // immunology
+        } else if (rbtn_all_immuno.isSelected()) {               // immunology 1 
             Connection conn = DBconnect.ConnecrDb();
             ResultSet rs = null;
             PreparedStatement pst = null;
             //String sql = "SELECT * from cytology_result";
-            String sql = "";
-
+            String sql = "SELECT pat_id, r.result_id, immuno_dworzak, BAL_dworzak, MPAL_dworzak, MPAL_pickl, add_info FROM immuno_result r, main_result m, sample s "
+                    + " WHERE r.result_id=m.result_id" 
+                    + " AND s.lab_id=m.lab_id";
+ 
+            // only for the set collected IDs
+            if (rbtn_idCollected.isSelected()) {     
+                sql = IdCollector.deliver_collected_ids(sql,"r.","m.","s.");  // result_id,lab_id,pat_id
+            }
+            
             try {
+                pst = conn.prepareStatement(sql);
+                rs = pst.executeQuery();
+
+                table_RgClassLab.setModel(DbUtils.resultSetToTableModel(rs));
+                DefaultTableCellRenderer ren = new ColoredTableCellRenderer2();
+                table_RgClassLab.setDefaultRenderer(Object.class, ren);
+                CustomSorter.table_customRowSort(table_RgClassLab);
+
+                if (table_RgClassLab.getColumnModel().getColumnCount() > 0) {
+                     table_RgClassLab.getColumnModel().getColumn(0).setPreferredWidth(60);
+                     table_RgClassLab.getColumnModel().getColumn(0).setMaxWidth(60);
+                     table_RgClassLab.getColumnModel().getColumn(1).setPreferredWidth(80);
+                     table_RgClassLab.getColumnModel().getColumn(1).setMaxWidth(100);
+                }
+
+                //get_ids(sql,pst,rs,conn);
+                this.ids = IdManagement.get_ids(sql, pst, rs, conn, "pat_id");
+                update_table_resultID();
+                showSqlInWindow(sql, "CB_immuno");
+
+                if (rbtn_onlyPat.isSelected()) {
+                    update_table_RgClassLab(sql, "false");          // Test second table - only project
+                }
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e);
@@ -2057,8 +2259,313 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 } catch (Exception e) {
                 }
             }
-        } // end else if ()
+        } else if (rbtn_immuno.isSelected()) {               // immunology
+             Connection conn = DBconnect.ConnecrDb();
+             ResultSet rs = null;
+             PreparedStatement pst = null;
 
+            String sql = "SELECT pat_id, r.result_id, immuno_dworzak, BAL_dworzak, MPAL_dworzak, MPAL_pickl, add_info FROM immuno_result r, main_result m, sample s "
+                    + " WHERE r.result_id=m.result_id" 
+                    + " AND s.lab_id=m.lab_id";
+					
+             if (rbtn_IMM.isSelected()) {
+                 String imm_select = CB_immuno.getSelectedItem().toString();
+                 String immunology = "";
+                 switch (imm_select) {
+                     case "immuno dworzak":
+                         immunology = "immuno_dworzak";
+                         break;
+                     case "BAL dworzak":
+                         immunology = "BAL_dworzak";
+                         break;
+                     case "MPAL dworzak":
+                         immunology = "MPAL_dworzak";
+                         break;
+                     case "MPAL pickl":
+                         immunology = "MPAL_pickl";
+                         break;
+                     case "add_info":
+                         immunology = "add_info";
+                         break;
+                     default:
+                         break;
+                 }
+                 String IMM_txt = txt_immuno.getText();
+                     if (rbtn_NOT4_1.isSelected()) {
+                         if (IMM_txt.equals("null") || IMM_txt.equals("NULL")) {
+                             sql = sql + " and (" + immunology + " IS NOT NULL";
+                         } else {
+                             sql = sql + " and (" + immunology + " NOT like '%" + IMM_txt + "%'";
+                         }
+                     } else {
+                         if (IMM_txt.equals("null") || IMM_txt.equals("NULL")) {
+                             sql = sql + " and (" + immunology + " IS NULL";
+                         } else {
+                             sql = sql + " and (" + immunology + " like '%" + IMM_txt + "%'";
+                         }
+                     }
+                 }
+
+             if (rbtn_IMM1.isSelected()) {
+                String andor4 = CB_andor4.getSelectedItem().toString();
+                String imm_select1 = CB_immuno1.getSelectedItem().toString();
+                String immunology1 = "";
+                switch (imm_select1) {
+                    case "immuno dworzak":
+                        immunology1 = "immuno_dworzak";
+                        break;
+                    case "BAL dworzak":
+                        immunology1 = "BAL_dworzak";
+                        break;
+                    case "MPAL dworzak":
+                        immunology1 = "MPAL_dworzak";
+                        break;
+                    case "MPAL pickl":
+                        immunology1 = "MPAL_pickl";
+                        break;
+                    case "add_info":
+                        immunology1 = "add_info";
+                        break;
+                    default:
+                        break;
+                }
+                String IMM_txt1 = txt_immuno1.getText();
+                if (rbtn_NOT4_2.isSelected()) {
+                    if (IMM_txt1.equals("null") || IMM_txt1.equals("NULL")) {
+                        sql = sql + " " + andor4 + " " + immunology1 + " IS NOT NULL)";
+                    } else {
+                        sql = sql + " " + andor4 + " " + immunology1 + " NOT like '%" + IMM_txt1 + "%')";
+                    }
+                } else {
+                    if (IMM_txt1.equals("null") || IMM_txt1.equals("NULL")) {
+                        sql = sql + " " + andor4 + " " + immunology1 + " IS NULL)";
+                    } else {
+                        sql = sql + " " + andor4 + " " + immunology1 + " like '%" + IMM_txt1 + "%')";
+                    }
+                }
+            } else {
+                sql = sql + ")";
+            }
+            //txtArea_test.setText(sql);    //TEST
+
+            // only for the set collected IDs
+            if (rbtn_idCollected.isSelected()) {
+                sql = IdCollector.deliver_collected_ids(sql, "r.", "m.", "s.");  // result_id,lab_id,pat_id
+            }
+
+            try {
+                pst = conn.prepareStatement(sql);
+                rs = pst.executeQuery();
+
+                my_log.logger.info("SQL:  " + sql);
+                table_RgClassLab.setModel(DbUtils.resultSetToTableModel(rs));
+                DefaultTableCellRenderer ren = new ColoredTableCellRenderer2();
+                table_RgClassLab.setDefaultRenderer(Object.class, ren);
+                CustomSorter.table_customRowSort(table_RgClassLab);
+                
+                if (table_RgClassLab.getColumnModel().getColumnCount() > 0) {
+                    table_RgClassLab.getColumnModel().getColumn(0).setPreferredWidth(60);
+                    table_RgClassLab.getColumnModel().getColumn(0).setMaxWidth(60);
+                    table_RgClassLab.getColumnModel().getColumn(1).setPreferredWidth(80);
+                    table_RgClassLab.getColumnModel().getColumn(1).setMaxWidth(100);
+                }
+                //get_ids(sql, pst, rs, conn);
+                this.ids = IdManagement.get_ids(sql, pst, rs, conn, "pat_id");
+                update_table_resultID();
+                showSqlInWindow(sql, "CB_immuno");
+
+                if (rbtn_onlyPat.isSelected()) {
+                    update_table_RgClassLab(sql, "false");          // Test second table - only project
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+                my_log.logger.warning("ERROR: " + e);
+            } finally {
+                try {
+                    if (rs != null) { rs.close();}
+                    if (pst != null) { pst.close();}
+                    if (conn != null) { conn.close();}
+                } catch (Exception e) {
+                }
+            }  
+        } else if (rbtn_all_immuno2.isSelected()) {               // immunology 2 - marker 
+            this.tableSortAdd = "IMM2";
+            Connection conn = DBconnect.ConnecrDb();
+            ResultSet rs = null;
+            PreparedStatement pst = null;
+			String sql = "SELECT pat_id, o.result_id, im_sub_id, i.marker_name , result, marker_group FROM immuno_mresult o, immuno_marker i, main_result m, sample s"
+				+ " WHERE o.result_id=m.result_id"
+				+ " AND m.lab_id=s.lab_id"
+				+ " AND o.marker_id=i.marker_id";
+            if (markerSql != null && !markerSql.isEmpty()){ sql = sql + markerSql; }
+
+            // only for the set collected IDs
+            if (rbtn_idCollected.isSelected()) {     
+                sql = IdCollector.deliver_collected_ids(sql,"o.","m.","s.");  // result_id,lab_id,pat_id
+            }
+            
+            try {
+                pst = conn.prepareStatement(sql);
+                rs = pst.executeQuery();
+
+                table_RgClassLab.setModel(DbUtils.resultSetToTableModel(rs));
+                // DefaultTableCellRenderer ren = new ColoredTableCellRenderer2();  // do not use - it is ALWAYS more lines for one patient
+                DefaultTableCellRenderer ren = new DefaultTableCellRenderer();
+                table_RgClassLab.setDefaultRenderer(Object.class, ren);
+                CustomSorter.table_customRowSort(table_RgClassLab);
+
+                if (table_RgClassLab.getColumnModel().getColumnCount() > 0) {
+                     table_RgClassLab.getColumnModel().getColumn(0).setPreferredWidth(60);
+                     table_RgClassLab.getColumnModel().getColumn(0).setMaxWidth(60);
+                     table_RgClassLab.getColumnModel().getColumn(1).setPreferredWidth(80);
+                     table_RgClassLab.getColumnModel().getColumn(1).setMaxWidth(100);
+                }
+
+                //get_ids(sql,pst,rs,conn);
+                this.ids = IdManagement.get_ids(sql, pst, rs, conn, "pat_id");
+                update_table_resultID();
+                showSqlInWindow(sql, "CB_immunoMarker");
+
+                if (rbtn_onlyPat.isSelected()) {
+                    update_table_RgClassLab(sql, "false");          // Test second table - only project
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+                my_log.logger.warning("ERROR: " + e);
+            } finally {
+                try {
+                    if (rs != null) { rs.close();}
+                    if (pst != null) { pst.close();}
+                    if (conn != null) { conn.close();}
+                } catch (Exception e) {
+                }
+            }
+        } else if (rbtn_immuno2.isSelected()) {               // immunology 2 - marker
+            this.tableSortAdd = "IMM2"; 
+            Connection conn = DBconnect.ConnecrDb();
+             ResultSet rs = null;
+             PreparedStatement pst = null;
+             String sql = "SELECT pat_id, o.result_id, im_sub_id, i.marker_name , result, marker_group FROM immuno_mresult o, immuno_marker i, main_result m, sample s"
+				+ " WHERE o.result_id=m.result_id"
+				+ " AND m.lab_id=s.lab_id"
+				+ " AND o.marker_id=i.marker_id";
+             //TEST
+             //String wiMarker = getMarker();       
+             if (markerSql != null && !markerSql.isEmpty()){ sql = sql + markerSql; }
+             
+             if (rbtn_IMM2.isSelected()) {
+                 String imm_select = CB_immuno2.getSelectedItem().toString();
+                 String immunology = "";
+                 switch (imm_select) {
+                     case "marker":
+                         immunology = "marker_name";
+                         break;
+                     case "result":
+                         immunology = "result";
+                         break;
+                     case "marker group":
+                         immunology = "marker_group";
+                         break;
+                     default:
+                         break;
+                 }
+                 String IMM_txt = txt_immuno2.getText();
+                     if (rbtn_NOT5_1.isSelected()) {
+                         if (IMM_txt.equals("null") || IMM_txt.equals("NULL")) {
+                             sql = sql + " and (" + immunology + " IS NOT NULL";
+                         } else {
+                             sql = sql + " and (" + immunology + " NOT like '%" + IMM_txt + "%'";
+                         }
+                     } else {
+                         if (IMM_txt.equals("null") || IMM_txt.equals("NULL")) {
+                             sql = sql + " and (" + immunology + " IS NULL";
+                         } else {
+                             sql = sql + " and (" + immunology + " like '%" + IMM_txt + "%'";
+                         }
+                     }
+                 }
+
+             if (rbtn_IMM21.isSelected()) {
+                String andor5 = CB_andor5.getSelectedItem().toString();
+                String imm_select1 = CB_immuno21.getSelectedItem().toString();
+                String immunology1 = "";
+                switch (imm_select1) {
+                     case "marker":
+                         immunology1 = "marker_name";
+                         break;
+                     case "result":
+                         immunology1 = "result";
+                         break;
+                     case "marker group":
+                         immunology1 = "marker_group";
+                         break;
+                     default:
+                         break;
+                 }
+                String IMM_txt1 = txt_immuno21.getText();
+                    if (rbtn_NOT5_2.isSelected()) {
+                        if (IMM_txt1.equals("null") || IMM_txt1.equals("NULL")) {
+                            sql = sql + " " + andor5 + " " + immunology1 + " IS NOT NULL)";
+                        } else {                      
+                            sql = sql + " " + andor5 + " " + immunology1 + " NOT like '%" + IMM_txt1 + "%')";
+                        }
+                    } else {
+                        if (IMM_txt1.equals("null") || IMM_txt1.equals("NULL")) {
+                            sql = sql + " " + andor5 + " " + immunology1 + " IS NULL)";
+                        } else {
+                            sql = sql + " " + andor5 + " " + immunology1 + " like '%" + IMM_txt1 + "%')";                            
+                        }           
+                    }
+            } else {
+                sql = sql + ")";
+            }
+            // txtArea_test.setText(sql);    //TEST
+
+            // only for the set collected IDs
+            if (rbtn_idCollected.isSelected()) {     
+                sql = IdCollector.deliver_collected_ids(sql,"o.","m.","s.");  // result_id,lab_id,pat_id
+            }
+
+            try {
+                pst = conn.prepareStatement(sql);
+                rs = pst.executeQuery();
+
+                my_log.logger.info("SQL:  " + sql);
+                table_RgClassLab.setModel(DbUtils.resultSetToTableModel(rs));
+                // DefaultTableCellRenderer ren = new ColoredTableCellRenderer2();  // always more lines for one patient
+                // table_RgClassLab.setDefaultRenderer(Object.class, ren);
+                CustomSorter.table_customRowSort(table_RgClassLab);
+
+                if (table_RgClassLab.getColumnModel().getColumnCount() > 0) {
+                    table_RgClassLab.getColumnModel().getColumn(0).setPreferredWidth(60);
+                    table_RgClassLab.getColumnModel().getColumn(0).setMaxWidth(60);
+                    table_RgClassLab.getColumnModel().getColumn(1).setPreferredWidth(80);
+                    table_RgClassLab.getColumnModel().getColumn(1).setMaxWidth(100);
+                }
+                //get_ids(sql, pst, rs, conn);
+                this.ids = IdManagement.get_ids(sql, pst, rs, conn, "pat_id");
+                update_table_resultID();
+                showSqlInWindow(sql, "CB_immunoMarker");
+
+                if (rbtn_onlyPat.isSelected()) {
+                    update_table_RgClassLab(sql, "false");          // Test second table - only project
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+                my_log.logger.warning("ERROR: " + e);
+            } finally {
+                try {
+                    if (rs != null) { rs.close();}
+                    if (pst != null) { pst.close();}
+                    if (conn != null) { conn.close();}
+                } catch (Exception e) {
+                }
+            }  
+        } // end else if ()
+        
     }//GEN-LAST:event_btn_SearchActionPerformed
 
     private void table_resultIDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_resultIDMouseClicked
@@ -2350,6 +2857,79 @@ public class ClassificationBrowse extends javax.swing.JFrame {
                 new StringSelection(IDs), null); 
     }//GEN-LAST:event_cpPatIdsActionPerformed
 
+    private void rbtn_all_immuno2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_all_immuno2ActionPerformed
+    if (rbtn_all_immuno2.isSelected()){            
+            rbtn_IMM2.setEnabled(false);
+            rbtn_NOT5_1.setEnabled(false);
+            txt_immuno2.setEnabled(false);
+            txt_immuno2.setBackground(new java.awt.Color(204, 204, 204));
+            CB_immuno2.setEnabled(false);
+            
+            rbtn_IMM21.setEnabled(false);
+            rbtn_NOT5_2.setEnabled(false);
+            txt_immuno21.setEnabled(false);
+            txt_immuno21.setBackground(new java.awt.Color(204, 204, 204));
+            CB_immuno21.setEnabled(false);
+            CB_andor5.setEnabled(false);
+        }
+    }//GEN-LAST:event_rbtn_all_immuno2ActionPerformed
+
+    private void rbtn_immuno2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_immuno2ActionPerformed
+    if (rbtn_immuno2.isSelected()){            
+            rbtn_IMM2.setEnabled(true);
+            rbtn_NOT5_1.setEnabled(true);
+            txt_immuno2.setEnabled(true);
+            txt_immuno2.setBackground(new java.awt.Color(255, 255, 255));
+            CB_immuno2.setEnabled(true);
+            
+            rbtn_IMM21.setEnabled(true);
+            rbtn_NOT5_2.setEnabled(true);
+            txt_immuno21.setEnabled(true);
+            txt_immuno21.setBackground(new java.awt.Color(255, 255, 255));
+            CB_immuno21.setEnabled(true);
+            CB_andor5.setEnabled(true);
+        }
+    }//GEN-LAST:event_rbtn_immuno2ActionPerformed
+
+    private void rbtn_all_immunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_all_immunoActionPerformed
+        if (rbtn_all_immuno.isSelected()) {
+            rbtn_IMM.setEnabled(false);
+            rbtn_NOT4_1.setEnabled(false);
+            txt_immuno.setEnabled(false);
+            txt_immuno.setBackground(new java.awt.Color(204, 204, 204));
+            CB_immuno.setEnabled(false);
+
+            rbtn_IMM1.setEnabled(false);
+            rbtn_NOT4_2.setEnabled(false);
+            txt_immuno1.setEnabled(false);
+            txt_immuno1.setBackground(new java.awt.Color(204, 204, 204));
+            CB_immuno1.setEnabled(false);
+            CB_andor4.setEnabled(false);
+        }
+    }//GEN-LAST:event_rbtn_all_immunoActionPerformed
+
+    private void rbtn_immunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_immunoActionPerformed
+        if (rbtn_immuno.isSelected()){
+            rbtn_IMM.setEnabled(true);
+            rbtn_NOT4_1.setEnabled(true);
+            txt_immuno.setEnabled(true);
+            txt_immuno.setBackground(new java.awt.Color(255, 255, 255));
+            CB_immuno.setEnabled(true);
+
+            rbtn_IMM1.setEnabled(true);
+            rbtn_NOT4_2.setEnabled(true);
+            txt_immuno1.setEnabled(true);
+            txt_immuno1.setBackground(new java.awt.Color(255, 255, 255));
+            CB_immuno1.setEnabled(true);
+            CB_andor4.setEnabled(true);
+        }
+    }//GEN-LAST:event_rbtn_immunoActionPerformed
+
+    private void btn_testActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_testActionPerformed
+        SelectMarker s = new SelectMarker();
+        s.setVisible(true);  
+    }//GEN-LAST:event_btn_testActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2386,19 +2966,22 @@ public class ClassificationBrowse extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> CB_RG6;
-    private javax.swing.JComboBox<String> CB_RG7;
     private javax.swing.JComboBox<String> CB_andor1;
     private javax.swing.JComboBox<String> CB_andor2;
     private javax.swing.JComboBox<String> CB_andor3;
     private javax.swing.JComboBox<String> CB_andor4;
     private javax.swing.JComboBox<String> CB_andor5;
+    private javax.swing.JComboBox<String> CB_andor6;
     private javax.swing.JComboBox<String> CB_class;
     private javax.swing.JComboBox<String> CB_class1;
     private javax.swing.JComboBox<String> CB_cytology;
     private javax.swing.JComboBox<String> CB_cytology1;
     private javax.swing.JComboBox<String> CB_immuno;
     private javax.swing.JComboBox<String> CB_immuno1;
+    private javax.swing.JComboBox<String> CB_immuno2;
+    private javax.swing.JComboBox<String> CB_immuno21;
+    private javax.swing.JComboBox<String> CB_immuno4;
+    private javax.swing.JComboBox<String> CB_immuno5;
     private javax.swing.JComboBox<String> CB_specST;
     private javax.swing.JComboBox<String> CB_specST1;
     private javax.swing.JComboBox<String> ComboBox_projPat;
@@ -2406,6 +2989,7 @@ public class ClassificationBrowse extends javax.swing.JFrame {
     private javax.swing.JPanel Info_top4;
     private javax.swing.JButton bnt_test;
     private javax.swing.JButton btn_Search;
+    private javax.swing.JButton btn_test;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JMenuItem cpLabIds;
     private javax.swing.JMenuItem cpPatIds;
@@ -2420,20 +3004,22 @@ public class ClassificationBrowse extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBox_specS2;
     private javax.swing.JCheckBox jCheckBox_specS3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
@@ -2445,6 +3031,10 @@ public class ClassificationBrowse extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbtn_CYT1;
     private javax.swing.JRadioButton rbtn_IMM;
     private javax.swing.JRadioButton rbtn_IMM1;
+    private javax.swing.JRadioButton rbtn_IMM2;
+    private javax.swing.JRadioButton rbtn_IMM21;
+    private javax.swing.JRadioButton rbtn_IMM4;
+    private javax.swing.JRadioButton rbtn_IMM5;
     private javax.swing.JRadioButton rbtn_NOT1_1;
     private javax.swing.JRadioButton rbtn_NOT1_2;
     private javax.swing.JRadioButton rbtn_NOT2_1;
@@ -2453,39 +3043,44 @@ public class ClassificationBrowse extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbtn_NOT3_2;
     private javax.swing.JRadioButton rbtn_NOT4_1;
     private javax.swing.JRadioButton rbtn_NOT4_2;
-    private javax.swing.JRadioButton rbtn_NOT4_3;
-    private javax.swing.JRadioButton rbtn_NOT4_4;
+    private javax.swing.JRadioButton rbtn_NOT4_7;
+    private javax.swing.JRadioButton rbtn_NOT4_8;
+    private javax.swing.JRadioButton rbtn_NOT5_1;
+    private javax.swing.JRadioButton rbtn_NOT5_2;
     private javax.swing.JRadioButton rbtn_RG;
     private javax.swing.JRadioButton rbtn_RG1;
-    private javax.swing.JRadioButton rbtn_TODO1;
-    private javax.swing.JRadioButton rbtn_all_TODO1;
     private javax.swing.JRadioButton rbtn_all_class;
     private javax.swing.JRadioButton rbtn_all_cytology;
     private javax.swing.JRadioButton rbtn_all_immuno;
+    private javax.swing.JRadioButton rbtn_all_immuno2;
+    private javax.swing.JRadioButton rbtn_all_some;
     private javax.swing.JRadioButton rbtn_all_subtypes;
     private javax.swing.JRadioButton rbtn_all_subtypes1;
     private javax.swing.JRadioButton rbtn_class;
     private javax.swing.JRadioButton rbtn_cytology;
     private javax.swing.JRadioButton rbtn_idCollected;
     private javax.swing.JRadioButton rbtn_immuno;
+    private javax.swing.JRadioButton rbtn_immuno2;
+    private javax.swing.JRadioButton rbtn_marker;
     private javax.swing.JRadioButton rbtn_onlyPat;
     private javax.swing.JRadioButton rbtn_onlyPat1;
+    private javax.swing.JRadioButton rbtn_somelab2;
     private javax.swing.JRadioButton rbtn_specST;
     private javax.swing.JRadioButton rbtn_specST1;
-    private javax.swing.JRadioButton rbtn_specST8;
-    private javax.swing.JRadioButton rbtn_specST9;
     private javax.swing.JRadioButton rbtn_subtype;
     private javax.swing.JRadioButton rbtn_subtype1;
     private javax.swing.JTable table_RgClassLab;
     private javax.swing.JTable table_resultID;
-    private javax.swing.JTextField txt_RG6;
-    private javax.swing.JTextField txt_RG7;
     private javax.swing.JTextField txt_class;
     private javax.swing.JTextField txt_class1;
     private javax.swing.JTextField txt_cytology;
     private javax.swing.JTextField txt_cytology1;
     private javax.swing.JTextField txt_immuno;
     private javax.swing.JTextField txt_immuno1;
+    private javax.swing.JTextField txt_immuno2;
+    private javax.swing.JTextField txt_immuno21;
+    private javax.swing.JTextField txt_immuno4;
+    private javax.swing.JTextField txt_immuno5;
     private javax.swing.JTextField txt_specST;
     private javax.swing.JTextField txt_specST1;
     private javax.swing.JTextField txt_subA;

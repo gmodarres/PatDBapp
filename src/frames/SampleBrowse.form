@@ -26,6 +26,14 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cpLabIdsActionPerformed"/>
           </Events>
         </MenuItem>
+        <MenuItem class="javax.swing.JMenuItem" name="cpPatIds">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="copy pat_ids ..."/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cpPatIdsActionPerformed"/>
+          </Events>
+        </MenuItem>
       </SubComponents>
     </Container>
   </NonVisualComponents>
@@ -87,7 +95,7 @@
               <Component id="Info_top4" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" pref="325" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="327" max="32767" attributes="0"/>
                   <Component id="jScrollPane2" pref="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
@@ -207,12 +215,15 @@
                       <Component id="txt_refDiag" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="rbtn_study" min="-2" pref="179" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="rbtn_idCollected" max="32767" attributes="0"/>
+                      <Component id="rbtn_study" pref="160" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="ComboBox_stdyPat" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace pref="36" max="32767" attributes="0"/>
                   <Component id="btn_Search" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -231,14 +242,15 @@
                       <Component id="rbtn_MDown" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="CB_MDown" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="rbtn_patID" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txt_patID" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="rbtn_male" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="rbtn_corr" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="rbtn_idCollected" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                           <Component id="rbtn_labID" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -458,6 +470,18 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_labID">
+        </Component>
+        <Component class="javax.swing.JRadioButton" name="rbtn_idCollected">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="use IDs from collector"/>
+            <Property name="toolTipText" type="java.lang.String" value="select to get results from patients in a certain project (select from below)"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+                <BevelBorder/>
+              </Border>
+            </Property>
+            <Property name="borderPainted" type="boolean" value="true"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

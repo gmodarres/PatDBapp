@@ -11,10 +11,12 @@
 package myClass;
 
 import com.google.common.collect.ComparisonChain;
+import frames.ClassificationBrowse;
 import java.util.Comparator;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+
 
 /**
  *
@@ -115,9 +117,16 @@ public class CustomSorter {
             
         } else if (tableS.equals("table_subtypes")) {
             TableRowSorter<DefaultTableModel> rowSorter = (TableRowSorter<DefaultTableModel>) table.getRowSorter();
-            
-            rowSorter.setComparator(0, intComparator);
-            rowSorter.setComparator(1, intComparator);
+            //String get = ClassificationBrowse.tableSortAdd;
+            if (ClassificationBrowse.tableSortAdd !=null && ClassificationBrowse.tableSortAdd.equals ("IMM2"))
+            {
+                rowSorter.setComparator(0, intComparator);
+                rowSorter.setComparator(1, intComparator);
+                rowSorter.setComparator(2, IDComparator);
+            } else {
+                rowSorter.setComparator(0, intComparator);
+                rowSorter.setComparator(1, intComparator);
+            }
             table.setRowSorter(rowSorter);
             
         } else if (tableS.equals("table_queryIDs")) {

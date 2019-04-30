@@ -256,6 +256,7 @@ public class SampleBrowse extends javax.swing.JFrame {
         popUpResult = new javax.swing.JPopupMenu();
         cpResultIds = new javax.swing.JMenuItem();
         cpLabIds = new javax.swing.JMenuItem();
+        cpPatIds = new javax.swing.JMenuItem();
         jToolBar1 = new javax.swing.JToolBar();
         bnt_test = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -280,6 +281,7 @@ public class SampleBrowse extends javax.swing.JFrame {
         ComboBox_stdyPat = new javax.swing.JComboBox<>();
         rbtn_labID = new javax.swing.JRadioButton();
         txt_labID = new javax.swing.JTextField();
+        rbtn_idCollected = new javax.swing.JRadioButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         table_resultID = new javax.swing.JTable();
         lbl_rowsReturned = new javax.swing.JLabel();
@@ -299,6 +301,14 @@ public class SampleBrowse extends javax.swing.JFrame {
             }
         });
         popUpResult.add(cpLabIds);
+
+        cpPatIds.setText("copy pat_ids ...");
+        cpPatIds.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cpPatIdsActionPerformed(evt);
+            }
+        });
+        popUpResult.add(cpPatIds);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Linked Results Analysis Tool - browse samples");
@@ -405,6 +415,11 @@ public class SampleBrowse extends javax.swing.JFrame {
         rbtn_labID.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         rbtn_labID.setBorderPainted(true);
 
+        rbtn_idCollected.setText("use IDs from collector");
+        rbtn_idCollected.setToolTipText("select to get results from patients in a certain project (select from below)");
+        rbtn_idCollected.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        rbtn_idCollected.setBorderPainted(true);
+
         javax.swing.GroupLayout Info_top4Layout = new javax.swing.GroupLayout(Info_top4);
         Info_top4.setLayout(Info_top4Layout);
         Info_top4Layout.setHorizontalGroup(
@@ -442,12 +457,14 @@ public class SampleBrowse extends javax.swing.JFrame {
                         .addComponent(txt_date2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txt_refDiag))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rbtn_study, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(Info_top4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(rbtn_idCollected, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(rbtn_study, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ComboBox_stdyPat, 0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(btn_Search)
-                .addGap(21, 21, 21))
+                .addContainerGap())
         );
         Info_top4Layout.setVerticalGroup(
             Info_top4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -463,13 +480,14 @@ public class SampleBrowse extends javax.swing.JFrame {
                     .addComponent(ComboBox_stdyPat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rbtn_MDown)
                     .addComponent(CB_MDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(4, 4, 4)
+                .addGap(3, 3, 3)
                 .addGroup(Info_top4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rbtn_patID)
                     .addComponent(txt_patID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rbtn_male)
-                    .addComponent(rbtn_corr))
-                .addGap(5, 5, 5)
+                    .addComponent(rbtn_corr)
+                    .addComponent(rbtn_idCollected))
+                .addGap(4, 4, 4)
                 .addGroup(Info_top4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(Info_top4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(rbtn_labID)
@@ -541,7 +559,7 @@ public class SampleBrowse extends javax.swing.JFrame {
                 .addComponent(Info_top4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(2, 2, 2)
                 .addComponent(lbl_rowsReturned)
@@ -577,6 +595,13 @@ public class SampleBrowse extends javax.swing.JFrame {
                 String add = addStudy();
                 sql = sql + add;
             }
+            
+            // only for the set collected IDs
+            if (rbtn_idCollected.isSelected()) {     
+                sql = IdCollector.deliver_collected_ids(sql,"","a.","a.");  // result_id,lab_id,pat_id
+            }
+                    
+                    
             //JOptionPane.showMessageDialog(null, "2:  "+sql);  //TEST
             my_log.logger.info("SQL:  " + sql);
             
@@ -631,6 +656,11 @@ public class SampleBrowse extends javax.swing.JFrame {
             if (rbtn_study.isSelected()) { 
                 sql = sql + addStudy();
             }
+            // only for the set collected IDs
+            if (rbtn_idCollected.isSelected()) {     
+                sql = IdCollector.deliver_collected_ids(sql,"","s.","s.");  // result_id,lab_id,pat_id
+            }
+            
             my_log.logger.info("SQL:  " + sql);
             
             try {
@@ -684,6 +714,12 @@ public class SampleBrowse extends javax.swing.JFrame {
             if (rbtn_study.isSelected()) { 
                 sql = sql + addStudy();
             }
+            
+            // only for the set collected IDs
+            if (rbtn_idCollected.isSelected()) {     
+                sql = IdCollector.deliver_collected_ids(sql,"","s.","s.");  // result_id,lab_id,pat_id
+            }
+            
             my_log.logger.info("SQL:  " + sql);
             
             try {
@@ -740,6 +776,11 @@ public class SampleBrowse extends javax.swing.JFrame {
             if (rbtn_study.isSelected()) { 
                 sql = sql + addStudy();
             }
+            // only for the set collected IDs
+            if (rbtn_idCollected.isSelected()) {     
+                sql = IdCollector.deliver_collected_ids(sql,"","s.","s.");  // result_id,lab_id,pat_id
+            }
+            
             my_log.logger.info("SQL:  " + sql);
             
             try {
@@ -794,6 +835,11 @@ public class SampleBrowse extends javax.swing.JFrame {
             //txtArea_test.setText(sql);
             if (rbtn_study.isSelected()) { 
                 sql = sql + addStudy();
+            }
+            
+            // only for the set collected IDs
+            if (rbtn_idCollected.isSelected()) {     
+                sql = IdCollector.deliver_collected_ids(sql,"","s.","s.");  // result_id,lab_id,pat_id
             }
             my_log.logger.info("SQL:  " + sql);
             
@@ -852,6 +898,11 @@ public class SampleBrowse extends javax.swing.JFrame {
             if (rbtn_study.isSelected()) { 
                 sql = sql + addStudy();
             }
+            // only for the set collected IDs
+            if (rbtn_idCollected.isSelected()) {     
+                sql = IdCollector.deliver_collected_ids(sql,"","s.","s.");  // result_id,lab_id,pat_id
+            }
+            
             my_log.logger.info("SQL:  " + sql);
 
             try {
@@ -914,10 +965,16 @@ public class SampleBrowse extends javax.swing.JFrame {
                     + " where s.pat_id=p.pat_id"
                     + " and ref_diag NOT like  ('%" + refDiag +"%')" ;
             } 
-            
+
             if (rbtn_study.isSelected()) { 
                 sql = sql + addStudy();
             }
+
+            // only for the set collected IDs
+            if (rbtn_idCollected.isSelected()) {     
+                sql = IdCollector.deliver_collected_ids(sql,"","s.","s.");  // result_id,lab_id,pat_id
+            }
+            
             my_log.logger.info("SQL:  " + sql);
 
             try {
@@ -974,6 +1031,12 @@ public class SampleBrowse extends javax.swing.JFrame {
             if (rbtn_study.isSelected()) { 
                 sql = sql + addStudy();
             }
+            
+            // only for the set collected IDs
+            if (rbtn_idCollected.isSelected()) {     
+                sql = IdCollector.deliver_collected_ids(sql,"","s.","s.");  // result_id,lab_id,pat_id
+            }
+            
             my_log.logger.info("SQL:  " + sql);
             
             try {
@@ -1058,6 +1121,20 @@ public class SampleBrowse extends javax.swing.JFrame {
                 new StringSelection(IDs), null);
     }//GEN-LAST:event_cpLabIdsActionPerformed
 
+    private void cpPatIdsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpPatIdsActionPerformed
+        // ... copy pat_ids to clipboard
+        JTable OT = this.outTable;
+        String IDs = "";
+        int resultL = OT.getRowCount();
+        for(int i = 0; i < resultL; i++) {
+            String tmp = OT.getValueAt(i, 0).toString();
+            IDs = IDs + tmp + ", ";
+        }
+        IDs = IDs.substring(0, (IDs.length() - 2));
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(
+            new StringSelection(IDs), null);
+    }//GEN-LAST:event_cpPatIdsActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1104,6 +1181,7 @@ public class SampleBrowse extends javax.swing.JFrame {
     private javax.swing.JButton btn_Search;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JMenuItem cpLabIds;
+    private javax.swing.JMenuItem cpPatIds;
     private javax.swing.JMenuItem cpResultIds;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -1116,6 +1194,7 @@ public class SampleBrowse extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbtn_bdate;
     private javax.swing.JRadioButton rbtn_corr;
     private javax.swing.JRadioButton rbtn_female;
+    private javax.swing.JRadioButton rbtn_idCollected;
     private javax.swing.JRadioButton rbtn_labID;
     private javax.swing.JRadioButton rbtn_male;
     private javax.swing.JRadioButton rbtn_patID;
